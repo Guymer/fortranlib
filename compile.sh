@@ -12,5 +12,9 @@ fi
 # Clean up ...
 rm -f *.mod *.o
 
+# Define options ...
+LANG_OPTS="-ffree-form -ffree-line-length-none"
+WARN_OPTS="-Wall -Wextra -Waliasing -Warray-temporaries -Wconversion-extra -Wimplicit-interface -Wimplicit-procedure"
+
 # Compile ...
-$fc -c -ffree-line-length-none mod_safe.F90
+$fc -c ${LANG_OPTS} ${WARN_OPTS} mod_safe.F90

@@ -1,0 +1,3 @@
+# Ignore compiler generated files ...
+*.mod
+*.o

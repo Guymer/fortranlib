@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# NOTE: See https://oeis.org/A000142
+# NOTE: See https://oeis.org/A000142 for a handy sequence on the limits of the
+#       factorial function for different types and kinds.
 
 # Import modules ...
 import math

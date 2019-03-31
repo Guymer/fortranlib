@@ -20,12 +20,12 @@ All reals are declared as `REAL64` (from `ISO_FORTRAN_ENV`), except:
 
 ## Library Module/Function/Subroutine List
 
-* [mod_safe](mod_safe) is a module that can safely be used (without any extra dependencies) containing:
+* [mod_safe](mod_safe.F90) is a module that can safely be used (without any extra dependencies) containing:
     * [const_factorial](mod_safe/const_factorial.f90) is a constant containing the answers to `x!`
     * [func_overall_index](mod_safe/func_overall_index) is a function to return the overall index of an iteration inside many nested `DO` loops
     * [sub_load_array_from_BIN](mod_safe/sub_load_array_from_BIN) is a subroutine to populate an array with data from a binary file
     * [sub_save_array_as_BIN](mod_safe/sub_save_array_as_BIN) is a subroutine to save an array's data to a binary file
-* [mod_safe_mpi](mod_safe_mpi) is a module that can safely be used (without any extra dependencies) *by a MPI compiler*
+* [mod_safe_mpi](mod_safe_mpi.F90) is a module that can safely be used (without any extra dependencies) *by a MPI compiler*
 
 ## To Do
 

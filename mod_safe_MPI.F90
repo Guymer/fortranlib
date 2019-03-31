@@ -1,0 +1,6 @@
+MODULE mod_safe_MPI
+    USE ISO_FORTRAN_ENV
+    USE MPI
+
+    IMPLICIT NONE
+END MODULE mod_safe_MPI

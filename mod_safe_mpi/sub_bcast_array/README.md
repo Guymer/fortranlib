@@ -1,0 +1,1 @@
+The [`MPI_BCAST` reference](https://www.mpi-forum.org/docs/mpi-2.2/mpi22-report/node93.htm#Node93) states that `COUNT` is a default integer, which even on modern 64-bit x86 computers is usually still an un-signed 32-bit integer. Therefore, a single call of `MPI_BCAST` cannot be used to transfer more than 2,147,483,647 elements.

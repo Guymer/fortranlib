@@ -1,16 +1,14 @@
 #!/usr/bin/env bash
 
-# Try to determine the name of the compiler on this system ...
+# Try to determine the name of the compilers on this system ...
 if type gfortran-mp-8 &> /dev/null; then
     fc1=gfortran-mp-8
-    fc2=mpif90-openmpi-mp
 elif type gfortran8 &> /dev/null; then
     fc1=gfortran8
-    fc2=mpif90-openmpi-mp
 else
     fc1=gfortran
-    fc2=mpif90
 fi
+fc2=mpif90
 
 # Clean up ...
 rm -f *.mod *.o

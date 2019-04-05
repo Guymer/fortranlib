@@ -21,4 +21,4 @@ WARN_OPTS="-Wall -Wextra -Waliasing -Warray-temporaries -Wconversion-extra -Wimp
 
 # Compile ...
 $fc1 -c ${LANG_OPTS} ${WARN_OPTS} mod_safe.F90
-$fc2 -c ${LANG_OPTS} ${WARN_OPTS} mod_safe_MPI.F90
+$fc2 -c ${LANG_OPTS} ${WARN_OPTS} mod_safe_mpi.F90

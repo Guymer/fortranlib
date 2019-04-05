@@ -23,7 +23,7 @@ SUBROUTINE sub_load_1D_INT64_logical_array_from_BIN(arr, fname)
     OPEN(access = "stream", action = "read", file = TRIM(fname), form = "unformatted", iomsg = errmsg, iostat = errnum, newunit = funit, status = "old")
     IF(errnum /= 0_INT32)THEN
         WRITE(fmt = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")', unit = ERROR_UNIT) "Failed to open BIN", TRIM(errmsg), errnum
-        FLUSH(unit = funit)
+        FLUSH(unit = ERROR_UNIT)
         STOP
     END IF
 

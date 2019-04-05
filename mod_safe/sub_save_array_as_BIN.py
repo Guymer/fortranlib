@@ -48,7 +48,7 @@ for typ in sorted(data.keys()):
                 "    OPEN(access = \"stream\", action = \"write\", file = TRIM(fname), form = \"unformatted\", iomsg = errmsg, iostat = errnum, newunit = funit, status = \"replace\")\n"
                 "    IF(errnum /= 0_INT32)THEN\n"
                 "        WRITE(fmt = '(\"ERROR: \", a, \". ERRMSG = \", a, \". ERRNUM = \", i3, \".\")', unit = ERROR_UNIT) \"Failed to open BIN\", TRIM(errmsg), errnum\n"
-                "        FLUSH(unit = funit)\n"
+                "        FLUSH(unit = ERROR_UNIT)\n"
                 "        STOP\n"
                 "    END IF\n"
                 "\n"
@@ -65,7 +65,7 @@ for typ in sorted(data.keys()):
                 "{0:s}(kind = {1:s}), DIMENSION({2:s}), INTENT(in)".format(
                     typ.upper(),
                     knd,
-                    ", ".join((dim + 1) * ":")
+                    ", ".join((dim + 1) * [":"])
                 )
             )
 

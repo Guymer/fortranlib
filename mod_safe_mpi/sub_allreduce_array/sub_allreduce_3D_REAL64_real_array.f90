@@ -31,7 +31,7 @@ SUBROUTINE sub_allreduce_3D_REAL64_real_array(buff, op, comm)
     INTEGER                                                                     :: tmp2
 
     ! Declare MPI variables ...
-    INTEGER                                                                     :: errnum
+    INTEGER                                                                     :: ierr
 
     ! Create flat array of pointers ...
     n = SIZE(buff, kind = INT64)
@@ -43,11 +43,11 @@ SUBROUTINE sub_allreduce_3D_REAL64_real_array(buff, op, comm)
         tmp2 = INT(MIN(n - i + 1_INT64, tmp1))
 
         ! Reduce the chunk ...
-        CALL MPI_ALLREDUCE(MPI_IN_PLACE, buff_flat(i), tmp2, MPI_REAL8, op, comm, errnum)
-        IF(errnum /= MPI_SUCCESS)THEN
-            WRITE(fmt = '("ERROR: ", a, ". ERRNUM = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_ALLREDUCE() failed", errnum
+        CALL MPI_ALLREDUCE(MPI_IN_PLACE, buff_flat(i), tmp2, MPI_REAL8, op, comm, ierr)
+        IF(ierr /= MPI_SUCCESS)THEN
+            WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_ALLREDUCE() failed", ierr
             FLUSH(unit = ERROR_UNIT)
-            CALL MPI_ABORT(comm, 111, errnum)
+            CALL MPI_ABORT(comm, 111, ierr)
             STOP
         END IF
     END DO

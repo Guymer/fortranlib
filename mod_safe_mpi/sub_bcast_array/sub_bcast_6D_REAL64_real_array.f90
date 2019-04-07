@@ -31,7 +31,7 @@ SUBROUTINE sub_bcast_6D_REAL64_real_array(buff, root, comm)
     INTEGER                                                                     :: tmp2
 
     ! Declare MPI variables ...
-    INTEGER                                                                     :: errnum
+    INTEGER                                                                     :: ierr
 
     ! Create flat array of pointers ...
     n = SIZE(buff, kind = INT64)
@@ -43,11 +43,11 @@ SUBROUTINE sub_bcast_6D_REAL64_real_array(buff, root, comm)
         tmp2 = INT(MIN(n - i + 1_INT64, tmp1))
 
         ! Broadcast the chunk ...
-        CALL MPI_BCAST(buff_flat(i), tmp2, MPI_REAL8, root, comm, errnum)
-        IF(errnum /= MPI_SUCCESS)THEN
-            WRITE(fmt = '("ERROR: ", a, ". ERRNUM = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_BCAST() failed", errnum
+        CALL MPI_BCAST(buff_flat(i), tmp2, MPI_REAL8, root, comm, ierr)
+        IF(ierr /= MPI_SUCCESS)THEN
+            WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_BCAST() failed", ierr
             FLUSH(unit = ERROR_UNIT)
-            CALL MPI_ABORT(comm, 111, errnum)
+            CALL MPI_ABORT(comm, 111, ierr)
             STOP
         END IF
     END DO

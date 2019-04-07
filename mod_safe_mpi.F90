@@ -34,34 +34,6 @@ MODULE mod_safe_MPI
         MODULE PROCEDURE sub_allreduce_5D_INT64_integer_array
         MODULE PROCEDURE sub_allreduce_6D_INT64_integer_array
         MODULE PROCEDURE sub_allreduce_7D_INT64_integer_array
-        MODULE PROCEDURE sub_allreduce_1D_INT8_logical_array
-        MODULE PROCEDURE sub_allreduce_2D_INT8_logical_array
-        MODULE PROCEDURE sub_allreduce_3D_INT8_logical_array
-        MODULE PROCEDURE sub_allreduce_4D_INT8_logical_array
-        MODULE PROCEDURE sub_allreduce_5D_INT8_logical_array
-        MODULE PROCEDURE sub_allreduce_6D_INT8_logical_array
-        MODULE PROCEDURE sub_allreduce_7D_INT8_logical_array
-        MODULE PROCEDURE sub_allreduce_1D_INT16_logical_array
-        MODULE PROCEDURE sub_allreduce_2D_INT16_logical_array
-        MODULE PROCEDURE sub_allreduce_3D_INT16_logical_array
-        MODULE PROCEDURE sub_allreduce_4D_INT16_logical_array
-        MODULE PROCEDURE sub_allreduce_5D_INT16_logical_array
-        MODULE PROCEDURE sub_allreduce_6D_INT16_logical_array
-        MODULE PROCEDURE sub_allreduce_7D_INT16_logical_array
-        MODULE PROCEDURE sub_allreduce_1D_INT32_logical_array
-        MODULE PROCEDURE sub_allreduce_2D_INT32_logical_array
-        MODULE PROCEDURE sub_allreduce_3D_INT32_logical_array
-        MODULE PROCEDURE sub_allreduce_4D_INT32_logical_array
-        MODULE PROCEDURE sub_allreduce_5D_INT32_logical_array
-        MODULE PROCEDURE sub_allreduce_6D_INT32_logical_array
-        MODULE PROCEDURE sub_allreduce_7D_INT32_logical_array
-        MODULE PROCEDURE sub_allreduce_1D_INT64_logical_array
-        MODULE PROCEDURE sub_allreduce_2D_INT64_logical_array
-        MODULE PROCEDURE sub_allreduce_3D_INT64_logical_array
-        MODULE PROCEDURE sub_allreduce_4D_INT64_logical_array
-        MODULE PROCEDURE sub_allreduce_5D_INT64_logical_array
-        MODULE PROCEDURE sub_allreduce_6D_INT64_logical_array
-        MODULE PROCEDURE sub_allreduce_7D_INT64_logical_array
         MODULE PROCEDURE sub_allreduce_1D_REAL32_real_array
         MODULE PROCEDURE sub_allreduce_2D_REAL32_real_array
         MODULE PROCEDURE sub_allreduce_3D_REAL32_real_array
@@ -195,34 +167,6 @@ MODULE mod_safe_MPI
     INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_5D_INT64_integer_array.f90"
     INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_6D_INT64_integer_array.f90"
     INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_7D_INT64_integer_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_1D_INT8_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_2D_INT8_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_3D_INT8_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_4D_INT8_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_5D_INT8_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_6D_INT8_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_7D_INT8_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_1D_INT16_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_2D_INT16_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_3D_INT16_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_4D_INT16_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_5D_INT16_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_6D_INT16_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_7D_INT16_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_1D_INT32_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_2D_INT32_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_3D_INT32_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_4D_INT32_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_5D_INT32_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_6D_INT32_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_7D_INT32_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_1D_INT64_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_2D_INT64_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_3D_INT64_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_4D_INT64_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_5D_INT64_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_6D_INT64_logical_array.f90"
-    INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_7D_INT64_logical_array.f90"
     INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_1D_REAL32_real_array.f90"
     INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_2D_REAL32_real_array.f90"
     INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_3D_REAL32_real_array.f90"

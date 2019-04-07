@@ -19,4 +19,6 @@ WARN_OPTS="-Wall -Wextra -Waliasing -Warray-temporaries -Wconversion-extra -Wimp
 
 # Compile ...
 $fc2 -c ${LANG_OPTS} ${WARN_OPTS} -I../ test01.F90
+$fc2 -c ${LANG_OPTS} ${WARN_OPTS} -I../ test02.F90
 $fc2 -o test01 ${LANG_OPTS} ${WARN_OPTS} test01.o ../*.o -L../
+$fc2 -o test02 ${LANG_OPTS} ${WARN_OPTS} test02.o ../*.o -L../

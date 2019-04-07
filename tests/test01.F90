@@ -6,8 +6,7 @@ PROGRAM main
     ! Import modules ...
     USE ISO_FORTRAN_ENV
     USE MPI
-    USE mod_safe, ONLY: func_overall_index
-    USE mod_safe_mpi, ONLY: sub_allreduce_array
+    USE mod_safe_mpi, ONLY: sub_bcast_array
 
     IMPLICIT NONE
 
@@ -16,13 +15,6 @@ PROGRAM main
 
     ! Declare variables ...
     INTEGER(kind = INT8), ALLOCATABLE, DIMENSION(:, :, :, :, :, :, :)           :: arr
-    INTEGER(kind = INT64)                                                       :: i1
-    INTEGER(kind = INT64)                                                       :: i2
-    INTEGER(kind = INT64)                                                       :: i3
-    INTEGER(kind = INT64)                                                       :: i4
-    INTEGER(kind = INT64)                                                       :: i5
-    INTEGER(kind = INT64)                                                       :: i6
-    INTEGER(kind = INT64)                                                       :: i7
 
     ! Declare MPI variables ...
     INTEGER                                                                     :: ierr
@@ -59,31 +51,13 @@ PROGRAM main
     ALLOCATE(arr(n, n, n, n, n, n, n))
     arr = 0_INT8
 
-    ! Loop over dimensions ...
-    DO i1 = 1_INT64, n
-        DO i2 = 1_INT64, n
-            DO i3 = 1_INT64, n
-                DO i4 = 1_INT64, n
-                    DO i5 = 1_INT64, n
-                        DO i6 = 1_INT64, n
-                            DO i7 = 1_INT64, n
-                                ! Skip this iteration if it is not for this MPI task ...
-                                IF(INT(MOD(func_overall_index(i1, i2, i3, i4, i5, i6, i7, n, n, n, n, n, n, n), INT(n_tasks, kind = INT64))) /= i_tasks)THEN
-                                    CYCLE
-                                END IF
+    ! Populate array ...
+    IF(i_tasks == 0)THEN
+        arr = 1_INT8
+    END IF
 
-                                ! Populate array ...
-                                arr(i1, i2, i3, i4, i5, i6, i7) = 1_INT8
-                            END DO
-                        END DO
-                    END DO
-                END DO
-            END DO
-        END DO
-    END DO
-
-    ! Reduce array ...
-    CALL sub_allreduce_array(arr, MPI_SUM, MPI_COMM_WORLD)
+    ! Broadcast array ...
+    CALL sub_bcast_array(arr, 0, MPI_COMM_WORLD)
 
     ! Print summary ...
     WRITE(fmt = '("Does MPI task ", i1, " of ", i1, " think that everything worked? ", l1)', unit = OUTPUT_UNIT) i_tasks, n_tasks, ALL(arr == 1_INT8)

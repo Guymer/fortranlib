@@ -10,6 +10,7 @@ if not os.path.exists("sub_allreduce_array"):
 
 # Define types and kinds ...
 data = {
+    "logical" : ([  "INT8",  "INT16",   "INT32", "INT64"], ["MPI_INTEGER1", "MPI_INTEGER2", "MPI_INTEGER4", "MPI_INTEGER8"]),
     "integer" : ([  "INT8",  "INT16",   "INT32", "INT64"], ["MPI_INTEGER1", "MPI_INTEGER2", "MPI_INTEGER4", "MPI_INTEGER8"]),
        "real" : (["REAL32", "REAL64", "REAL128"         ], [   "MPI_REAL4",    "MPI_REAL8",   "MPI_REAL16"                ]),
 }

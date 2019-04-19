@@ -21,3 +21,11 @@ Does MPI task 1 of 2 think that everything worked? T
 ```
 
 Of course, the ordering of those two lines cannot be relied upon.
+
+### test03
+
+[test03](test03.F90) is compiled by [compile.sh](compile.sh) and it can be run using `./test03`. The program uses three [consts](../mod_safe/consts.inc); it is a simple demonstration of floating-point arithmetic. The correct output should be:
+
+```
+Does the task think that everything worked? T
+```

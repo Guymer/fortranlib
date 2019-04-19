@@ -172,8 +172,8 @@ MODULE mod_safe
     END INTERFACE sub_save_array_as_BIN
 
     ! Include files ...
-    INCLUDE "mod_safe/consts.inc"
-    INCLUDE "mod_safe/const_factorial.inc"
+    INCLUDE "mod_safe/consts.f90"
+    INCLUDE "mod_safe/const_factorial.f90"
 
     CONTAINS
 

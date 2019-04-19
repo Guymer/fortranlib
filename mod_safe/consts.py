@@ -7,7 +7,7 @@ import scipy
 import scipy.constants
 
 # Open output file ...
-with open("consts.inc", "wt") as fobj:
+with open("consts.f90", "wt") as fobj:
     # Write declarations ...
     fobj.write("REAL(kind = REAL64), PARAMETER                                                  :: const_1sigma = {:.16e}_REAL64\n".format(math.erf(1.0 / math.sqrt(2.0))))
     fobj.write("REAL(kind = REAL64), PARAMETER                                                  :: const_2sigma = {:.16e}_REAL64\n".format(math.erf(2.0 / math.sqrt(2.0))))

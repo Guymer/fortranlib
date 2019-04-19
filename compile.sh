@@ -4,7 +4,7 @@
 rm -f *.mod *.o
 
 # Define options ...
-LANG_OPTS="-ffree-form -ffree-line-length-none"
+LANG_OPTS="-ffree-form -ffree-line-length-none -fopenmp"
 WARN_OPTS="-Wall -Wextra -Waliasing -Warray-temporaries -Wconversion-extra -Wimplicit-interface -Wimplicit-procedure"
 
 # Compile ...

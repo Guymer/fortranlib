@@ -1,8 +1,8 @@
-This directory contains some basic tests to (hopefully) find any simple bugs that I might have introduced.
+This directory contains some basic tests to (hopefully) find any simple bugs that I might have introduced. The [compile.sh](compile.sh) script and run commands assume that "gfortran" and "openmpi" are being used.
 
 ### test01
 
-[test01](test01.F90) is compiled by [compile.sh](compile.sh) and it can be run using `mpirun -np 2 ./test01`. Each MPI task will use ~2.3 GiB of RAM. The program uses [sub_bcast_array](../mod_safe_mpi/sub_bcast_array). The correct output should be:
+[test01](test01.F90) is compiled by [compile.sh](compile.sh) and it can be run using `mpirun --oversubscribe -np 2 ./test01`. Each MPI task will use ~2.3 GiB of RAM. The program uses [sub_bcast_array](../mod_safe_mpi/sub_bcast_array). The correct output should be:
 
 ```
 Does MPI task 0 of 2 think that everything worked? T
@@ -13,7 +13,7 @@ Of course, the ordering of those two lines cannot be relied upon.
 
 ### test02
 
-[test02](test02.F90) is compiled by [compile.sh](compile.sh) and it can be run using `mpirun -np 2 ./test02`. Each MPI task will use ~2.3 GiB of RAM. The program uses both [func_overall_index](../mod_safe/func_overall_index) and [sub_allreduce_array](../mod_safe_mpi/sub_allreduce_array); it is a good demonstration of how to do some simple manual work sharing. The correct output should be:
+[test02](test02.F90) is compiled by [compile.sh](compile.sh) and it can be run using `mpirun --oversubscribe -np 2 ./test02`. Each MPI task will use ~2.3 GiB of RAM. The program uses both [func_overall_index](../mod_safe/func_overall_index) and [sub_allreduce_array](../mod_safe_mpi/sub_allreduce_array); it is a good demonstration of how to do some simple manual work sharing. The correct output should be:
 
 ```
 Does MPI task 0 of 2 think that everything worked? T
@@ -29,3 +29,23 @@ Of course, the ordering of those two lines cannot be relied upon.
 ```
 Does the task think that everything worked? T
 ```
+
+### test04 and test05
+
+[test04](test04.F90) and [test05](test05.F90) are compiled by [compile.sh](compile.sh) and they can be run using `./test04` and `mpirun --oversubscribe -np 4 ./test05` respectively. Both programs use a [const](../mod_safe/consts.f90) and the second program uses [sub_allreduce_array](../mod_safe_mpi/sub_allreduce_array); the second program is a good demonstration of how to do some simple manual work sharing. As both programs use random numbers the output is not repeatable. The correct output for the first program should be:
+
+```
+How does real pi compare to calculated pi? real = 3.141592654; calc = 3.136000000
+```
+
+Whereas the correct output for the second program should be:
+
+```
+For MPI task 0 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.120000000
+For MPI task 1 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.168000000
+For MPI task 2 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.088000000
+For MPI task 3 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.196000000
+Overall, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.143000000
+```
+
+Of course, the ordering of those five lines cannot be relied upon.

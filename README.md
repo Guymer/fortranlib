@@ -24,6 +24,7 @@ All reals are declared as `REAL64` (from `ISO_FORTRAN_ENV`), except:
 
 * [mod_safe](mod_safe.F90) is a module that can safely be used (without any extra dependencies) containing:
     * [const_factorial](mod_safe/const_factorial.f90) is a constant containing the answers to `x!`
+    * [func_integrate_array](mod_safe/func_integrate_array) is a function to integrate tabulated data
     * [func_overall_index](mod_safe/func_overall_index) is a function to return the overall index of an iteration inside many nested `DO` loops
     * [sub_allocate_array](mod_safe/sub_allocate_array) is a subroutine to allocate an array after checking that the requested size makes sense
     * [sub_load_array_from_BIN](mod_safe/sub_load_array_from_BIN) is a subroutine to populate an array with data from a binary file

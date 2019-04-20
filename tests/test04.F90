@@ -13,6 +13,7 @@ MODULE mod_test04
     FUNCTION calc_pi() RESULT(ans)
         ! Import modules ...
         USE ISO_FORTRAN_ENV
+        USE mod_safe, ONLY: sub_allocate_array
 
         IMPLICIT NONE
 
@@ -24,8 +25,8 @@ MODULE mod_test04
         REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                          :: y
 
         ! Allocate arrays ...
-        ALLOCATE(x(nsamples))
-        ALLOCATE(y(nsamples))
+        CALL sub_allocate_array(x, "x", nsamples, .FALSE._INT8)
+        CALL sub_allocate_array(y, "y", nsamples, .FALSE._INT8)
 
         ! Fill arrays with random numbers ...
         CALL RANDOM_NUMBER(x)

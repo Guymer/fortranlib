@@ -6,7 +6,7 @@ PROGRAM main
     ! Import modules ...
     USE ISO_FORTRAN_ENV
     USE MPI
-    USE mod_safe, ONLY: func_overall_index
+    USE mod_safe, ONLY: func_overall_index, sub_allocate_array
     USE mod_safe_mpi, ONLY: sub_allreduce_array
 
     IMPLICIT NONE
@@ -56,7 +56,7 @@ PROGRAM main
     END IF
 
     ! Allocate array and initialize it ...
-    ALLOCATE(arr(n, n, n, n, n, n, n))
+    CALL sub_allocate_array(arr, "arr", n, n, n, n, n, n, n, .FALSE._INT8)
     arr = 0_INT8
 
     ! Loop over dimensions ...

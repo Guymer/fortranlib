@@ -13,6 +13,7 @@ MODULE mod_test05
     FUNCTION calc_pi() RESULT(ans)
         ! Import modules ...
         USE ISO_FORTRAN_ENV
+        USE mod_safe, ONLY: sub_allocate_array
 
         IMPLICIT NONE
 
@@ -24,8 +25,8 @@ MODULE mod_test05
         REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                          :: y
 
         ! Allocate arrays ...
-        ALLOCATE(x(nsamples))
-        ALLOCATE(y(nsamples))
+        CALL sub_allocate_array(x, "x", nsamples, .FALSE._INT8)
+        CALL sub_allocate_array(y, "y", nsamples, .FALSE._INT8)
 
         ! Fill arrays with random numbers ...
         CALL RANDOM_NUMBER(x)
@@ -44,7 +45,7 @@ PROGRAM main
     ! Import modules ...
     USE ISO_FORTRAN_ENV
     USE MPI
-    USE mod_safe, ONLY: const_pi
+    USE mod_safe, ONLY: const_pi, sub_allocate_array
     USE mod_safe_mpi, ONLY: sub_allreduce_array
     USE mod_test05
 
@@ -86,7 +87,7 @@ PROGRAM main
     END IF
 
     ! Allocate array ...
-    ALLOCATE(tmp(n_tasks))
+    CALL sub_allocate_array(tmp, "tmp", INT(n_tasks, kind = INT64), .FALSE._INT8)
 
     ! Initizalize array ...
     tmp = 0.0e0_REAL64

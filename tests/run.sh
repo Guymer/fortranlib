@@ -5,3 +5,4 @@ mpirun --oversubscribe -np 2 ./test02
 ./test03
 ./test04
 mpirun --oversubscribe -np 4 ./test05
+./test06

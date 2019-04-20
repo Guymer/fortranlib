@@ -49,3 +49,12 @@ Overall, how does real pi compare to calculated pi? real = 3.141592654; calc = 3
 ```
 
 Of course, the ordering of those five lines cannot be relied upon.
+
+### test06
+
+[test06](test06.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [func_integrate_array](../mod_safe/func_integrate_array) and [sub_allocate_array](../mod_safe/sub_allocate_array). The correct output should be:
+
+```
+Does the task think that everything worked? T
+Does the task think that everything worked? T
+```

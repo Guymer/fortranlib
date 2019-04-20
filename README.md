@@ -32,6 +32,8 @@ All reals are declared as `REAL64` (from `ISO_FORTRAN_ENV`), except:
     * [sub_allreduce_array](mod_safe_mpi/sub_allreduce_array) is a subroutine to reduce arrays that are larger than MPI's in-built limits
     * [sub_bcast_array](mod_safe_mpi/sub_bcast_array) is a subroutine to broadcast arrays that are larger than MPI's in-built limits
 
+Additionally, [mod_safe](mod_safe.F90) contains some other constants, such as `const_c` and `const_kb`. A full list can be found in [consts.f90](mod_safe/consts.f90).
+
 ## To Do
 
 * This library is a consolidation of a whole load of functions and subroutines from a variety of different projects. It will take some time to pull them all in and make sure that they all work well together.

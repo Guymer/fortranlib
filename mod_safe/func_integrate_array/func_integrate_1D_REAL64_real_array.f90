@@ -2,13 +2,13 @@
 !>
 !> @param[in] x1 The variable of integration.
 !>
-!> @param[in] array The integrand.
+!> @param[in] arr The integrand.
 !>
 !> @note "x1" does not have to be uniform.
 !>
-!> @warning "x1" must be the same dimension as "array".
+!> @warning "x1" must be the same dimension as "arr".
 !>
-FUNCTION func_integrate_1D_REAL64_real_array(x1, array) RESULT(ans)
+FUNCTION func_integrate_1D_REAL64_real_array(x1, arr) RESULT(ans)
     USE ISO_FORTRAN_ENV
     USE OMP_LIB
 
@@ -16,7 +16,7 @@ FUNCTION func_integrate_1D_REAL64_real_array(x1, array) RESULT(ans)
 
     ! Declare input variables ...
     REAL(kind = REAL64), DIMENSION(:), INTENT(in)                               :: x1
-    REAL(kind = REAL64), DIMENSION(:), INTENT(in)                               :: array
+    REAL(kind = REAL64), DIMENSION(:), INTENT(in)                               :: arr
 
     ! Declare output variables ...
     REAL(kind = REAL64)                                                         :: ans
@@ -36,14 +36,14 @@ FUNCTION func_integrate_1D_REAL64_real_array(x1, array) RESULT(ans)
     !$omp private(i1)                                                           &
     !$omp shared(n1)                                                            &
     !$omp shared(x1)                                                            &
-    !$omp shared(array)                                                         &
+    !$omp shared(arr)                                                           &
     !$omp reduction(+:ans)
         !$omp do &
         !$omp schedule(dynamic)
             ! Loop over x ...
             DO i1 = 1_INT64, n1 - 1_INT64
                 ! Integrate via the trapezium rule ...
-                ans = ans + (x1(i1 + 1_INT64) - x1(i1)) * 0.5e0_REAL64 * (array(i1) + array(i1 + 1_INT64))
+                ans = ans + (x1(i1 + 1_INT64) - x1(i1)) * 0.5e0_REAL64 * (arr(i1) + arr(i1 + 1_INT64))
             END DO
         !$omp end do
     !$omp end parallel

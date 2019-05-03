@@ -26,8 +26,8 @@ PROGRAM main
 
     ! Declare MPI variables ...
     INTEGER                                                                     :: ierr
-    INTEGER                                                                     :: i_tasks
-    INTEGER                                                                     :: n_tasks
+    INTEGER                                                                     :: itasks
+    INTEGER                                                                     :: ntasks
 
     ! Initizalize MPI ...
     CALL MPI_INIT(ierr)
@@ -38,7 +38,7 @@ PROGRAM main
     END IF
 
     ! Find out this MPI task's rank ...
-    CALL MPI_COMM_RANK(MPI_COMM_WORLD, i_tasks, ierr)
+    CALL MPI_COMM_RANK(MPI_COMM_WORLD, itasks, ierr)
     IF(ierr /= MPI_SUCCESS)THEN
         WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_COMM_RANK() failed", ierr
         FLUSH(unit = ERROR_UNIT)
@@ -47,7 +47,7 @@ PROGRAM main
     END IF
 
     ! Find out how many MPI tasks there are ...
-    CALL MPI_COMM_SIZE(MPI_COMM_WORLD, n_tasks, ierr)
+    CALL MPI_COMM_SIZE(MPI_COMM_WORLD, ntasks, ierr)
     IF(ierr /= MPI_SUCCESS)THEN
         WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_COMM_SIZE() failed", ierr
         FLUSH(unit = ERROR_UNIT)
@@ -68,7 +68,7 @@ PROGRAM main
                         DO i6 = 1_INT64, n
                             DO i7 = 1_INT64, n
                                 ! Skip this iteration if it is not for this MPI task ...
-                                IF(INT(MOD(func_overall_index(i1, i2, i3, i4, i5, i6, i7, n, n, n, n, n, n, n), INT(n_tasks, kind = INT64))) /= i_tasks)THEN
+                                IF(INT(MOD(func_overall_index(i1, i2, i3, i4, i5, i6, i7, n, n, n, n, n, n, n), INT(ntasks, kind = INT64))) /= itasks)THEN
                                     CYCLE
                                 END IF
 
@@ -86,7 +86,7 @@ PROGRAM main
     CALL sub_allreduce_array(arr, MPI_SUM, MPI_COMM_WORLD)
 
     ! Print summary ...
-    WRITE(fmt = '("Does MPI task ", i1, " of ", i1, " think that everything worked? ", l1)', unit = OUTPUT_UNIT) i_tasks, n_tasks, ALL(arr == 1_INT8)
+    WRITE(fmt = '("Does MPI task ", i1, " of ", i1, " think that everything worked? ", l1)', unit = OUTPUT_UNIT) itasks, ntasks, ALL(arr == 1_INT8)
     FLUSH(unit = OUTPUT_UNIT)
 
     ! Clean up ...

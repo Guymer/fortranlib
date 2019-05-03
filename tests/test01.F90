@@ -19,8 +19,8 @@ PROGRAM main
 
     ! Declare MPI variables ...
     INTEGER                                                                     :: ierr
-    INTEGER                                                                     :: i_tasks
-    INTEGER                                                                     :: n_tasks
+    INTEGER                                                                     :: itasks
+    INTEGER                                                                     :: ntasks
 
     ! Initizalize MPI ...
     CALL MPI_INIT(ierr)
@@ -31,7 +31,7 @@ PROGRAM main
     END IF
 
     ! Find out this MPI task's rank ...
-    CALL MPI_COMM_RANK(MPI_COMM_WORLD, i_tasks, ierr)
+    CALL MPI_COMM_RANK(MPI_COMM_WORLD, itasks, ierr)
     IF(ierr /= MPI_SUCCESS)THEN
         WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_COMM_RANK() failed", ierr
         FLUSH(unit = ERROR_UNIT)
@@ -40,7 +40,7 @@ PROGRAM main
     END IF
 
     ! Find out how many MPI tasks there are ...
-    CALL MPI_COMM_SIZE(MPI_COMM_WORLD, n_tasks, ierr)
+    CALL MPI_COMM_SIZE(MPI_COMM_WORLD, ntasks, ierr)
     IF(ierr /= MPI_SUCCESS)THEN
         WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_COMM_SIZE() failed", ierr
         FLUSH(unit = ERROR_UNIT)
@@ -53,7 +53,7 @@ PROGRAM main
     arr = 0_INT8
 
     ! Populate array ...
-    IF(i_tasks == 0)THEN
+    IF(itasks == 0)THEN
         arr = 1_INT8
     END IF
 
@@ -61,7 +61,7 @@ PROGRAM main
     CALL sub_bcast_array(arr, 0, MPI_COMM_WORLD)
 
     ! Print summary ...
-    WRITE(fmt = '("Does MPI task ", i1, " of ", i1, " think that everything worked? ", l1)', unit = OUTPUT_UNIT) i_tasks, n_tasks, ALL(arr == 1_INT8)
+    WRITE(fmt = '("Does MPI task ", i1, " of ", i1, " think that everything worked? ", l1)', unit = OUTPUT_UNIT) itasks, ntasks, ALL(arr == 1_INT8)
     FLUSH(unit = OUTPUT_UNIT)
 
     ! Clean up ...

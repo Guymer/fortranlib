@@ -57,8 +57,8 @@ PROGRAM main
 
     ! Declare MPI variables ...
     INTEGER                                                                     :: ierr
-    INTEGER                                                                     :: i_tasks
-    INTEGER                                                                     :: n_tasks
+    INTEGER                                                                     :: itasks
+    INTEGER                                                                     :: ntasks
 
     ! Initizalize MPI ...
     CALL MPI_INIT(ierr)
@@ -69,7 +69,7 @@ PROGRAM main
     END IF
 
     ! Find out this MPI task's rank ...
-    CALL MPI_COMM_RANK(MPI_COMM_WORLD, i_tasks, ierr)
+    CALL MPI_COMM_RANK(MPI_COMM_WORLD, itasks, ierr)
     IF(ierr /= MPI_SUCCESS)THEN
         WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_COMM_RANK() failed", ierr
         FLUSH(unit = ERROR_UNIT)
@@ -78,7 +78,7 @@ PROGRAM main
     END IF
 
     ! Find out how many MPI tasks there are ...
-    CALL MPI_COMM_SIZE(MPI_COMM_WORLD, n_tasks, ierr)
+    CALL MPI_COMM_SIZE(MPI_COMM_WORLD, ntasks, ierr)
     IF(ierr /= MPI_SUCCESS)THEN
         WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_COMM_SIZE() failed", ierr
         FLUSH(unit = ERROR_UNIT)
@@ -87,29 +87,29 @@ PROGRAM main
     END IF
 
     ! Allocate array ...
-    CALL sub_allocate_array(tmp, "tmp", INT(n_tasks, kind = INT64), .FALSE._INT8)
+    CALL sub_allocate_array(tmp, "tmp", INT(ntasks, kind = INT64), .FALSE._INT8)
 
     ! Initizalize array ...
     tmp = 0.0e0_REAL64
 
     ! Calculate individual pi ...
-    tmp(i_tasks + 1) = calc_pi()
+    tmp(itasks + 1) = calc_pi()
 
     ! Print summary ...
-    WRITE(fmt = '("For MPI task ", i1, " of ", i1, ", how does real pi compare to calculated pi? real = ", f11.9, "; calc = ", f11.9)', unit = OUTPUT_UNIT) i_tasks, n_tasks, const_pi, tmp(i_tasks + 1)
+    WRITE(fmt = '("For MPI task ", i1, " of ", i1, ", how does real pi compare to calculated pi? real = ", f11.9, "; calc = ", f11.9)', unit = OUTPUT_UNIT) itasks, ntasks, const_pi, tmp(itasks + 1)
     FLUSH(unit = OUTPUT_UNIT)
 
     ! Reduce array ...
     CALL sub_allreduce_array(tmp, MPI_SUM, MPI_COMM_WORLD)
 
     ! Calculate average pi ...
-    pi = SUM(tmp) / REAL(n_tasks, kind = REAL64)
+    pi = SUM(tmp) / REAL(ntasks, kind = REAL64)
 
     ! Clean up ...
     DEALLOCATE(tmp)
 
     ! Print summary ...
-    IF(i_tasks == 0)THEN
+    IF(itasks == 0)THEN
         WRITE(fmt = '("Overall, how does real pi compare to calculated pi? real = ", f11.9, "; calc = ", f11.9)', unit = OUTPUT_UNIT) const_pi, pi
         FLUSH(unit = OUTPUT_UNIT)
     END IF

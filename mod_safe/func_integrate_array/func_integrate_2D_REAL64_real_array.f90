@@ -14,7 +14,6 @@
 !>
 FUNCTION func_integrate_2D_REAL64_real_array(x1, x2, arr) RESULT(ans)
     USE ISO_FORTRAN_ENV
-    USE OMP_LIB
 
     IMPLICIT NONE
 
@@ -39,26 +38,12 @@ FUNCTION func_integrate_2D_REAL64_real_array(x1, x2, arr) RESULT(ans)
     ! Set starting value ...
     ans = 0.0e0_REAL64
 
-    !$omp parallel                                                              &
-    !$omp default(none)                                                         &
-    !$omp private(i1)                                                           &
-    !$omp private(i2)                                                           &
-    !$omp shared(arr)                                                           &
-    !$omp shared(n1)                                                            &
-    !$omp shared(n2)                                                            &
-    !$omp shared(x1)                                                            &
-    !$omp shared(x2)                                                            &
-    !$omp reduction(+:ans)
-        !$omp do &
-        !$omp schedule(dynamic)
-            ! Loop over x ...
-            DO i1 = 1_INT64, n1 - 1_INT64
-                ! Loop over y ...
-                DO i2 = 1_INT64, n2 - 1_INT64
-                    ! Integrate via the trapezium rule ...
-                    ans = ans + (x1(i1 + 1_INT64) - x1(i1)) * (x2(i2 + 1_INT64) - x2(i2)) * 0.25e0_REAL64 * (arr(i1, i2) + arr(i1 + 1_INT64, i2) + arr(i1, i2 + 1_INT64) + arr(i1 + 1_INT64, i2 + 1_INT64))
-                END DO
-            END DO
-        !$omp end do
-    !$omp end parallel
+    ! Loop over x ...
+    DO i1 = 1_INT64, n1 - 1_INT64
+        ! Loop over y ...
+        DO i2 = 1_INT64, n2 - 1_INT64
+            ! Integrate via the trapezium rule ...
+            ans = ans + (x1(i1 + 1_INT64) - x1(i1)) * (x2(i2 + 1_INT64) - x2(i2)) * 0.25e0_REAL64 * (arr(i1, i2) + arr(i1 + 1_INT64, i2) + arr(i1, i2 + 1_INT64) + arr(i1 + 1_INT64, i2 + 1_INT64))
+        END DO
+    END DO
 END FUNCTION func_integrate_2D_REAL64_real_array

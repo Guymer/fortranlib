@@ -39,12 +39,12 @@ Does the task think that everything worked? T
 
 All four programs calculate the number "pi" in a rather silly way: the programs are merely examples of different types of parallelism.
 
-| Program              | Overall Strategy | Main Program | Calling Function |
-|:--------------------:|:----------------:|:------------:|:----------------:|
-| [test04](test04.F90) | serial           | serial       | serial           |
-| [test05](test05.F90) | MPI only         | MPI          | serial           |
-| [test06](test06.F90) | OpenMP only      | serial       | OpenMP           |
-| [test07](test07.F90) | MPI+OpenMP       | MPI          | OpenMP           |
+| Program              | Overall Strategy | Main Program | Called Function |
+|:--------------------:|:----------------:|:------------:|:---------------:|
+| [test04](test04.F90) | serial           | serial       | serial          |
+| [test05](test05.F90) | MPI only         | MPI          | serial          |
+| [test06](test06.F90) | OpenMP only      | serial       | OpenMP          |
+| [test07](test07.F90) | MPI+OpenMP       | MPI          | OpenMP          |
 
 All four programs are compiled by [compile.sh](compile.sh) and they can be run using [run.sh](run.sh). All four programs use a [const](../mod_safe/consts.f90) and [sub_allocate_array](../mod_safe/sub_allocate_array); the two programs that use MPI also use [sub_allreduce_array](../mod_safe_mpi/sub_allreduce_array). As all four programs use random numbers the output is not repeatable. The correct output for the first program should be something like:
 

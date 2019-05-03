@@ -4,7 +4,7 @@ Please enjoy using my FORTRAN library. It contains a whole load of random functi
 
 I find the [GFortran Intrinsic Procedures Reference](https://gcc.gnu.org/onlinedocs/gfortran/Intrinsic-Procedures.html) an excellent resource when determining what _kind_ an argument must be. As an aside, it niggles me that a lot of intrinsic procedures, according to the FORTRAN standard, are "of default kind" (to me, these are the sort of problems that `ISO_FORTRAN_ENV` was supposed to fix).
 
-Ditto, the [MPI 2.2 Specification](https://www.mpi-forum.org/docs/mpi-2.2/mpi22-report/mpi22-report.htm) is an excellent resource too.
+Ditto, the [MPI 3.1 Specification PDF](https://www.mpi-forum.org/docs/mpi-3.1/mpi31-report.pdf) and [OpenMP 5.0 Specification PDF](https://www.openmp.org/wp-content/uploads/OpenMP-API-Specification-5.0.pdf) are excellent resources too.
 
 ## FORTRAN Language Conventions
 

@@ -1,4 +1,9 @@
-This directory contains some basic tests to (hopefully) find any simple bugs that I might have introduced. The [compile.sh](compile.sh) script and [run.sh](run.sh) script assume that "gfortran" and "openmpi" are being used.
+This directory contains some basic tests to (hopefully):
+
+* find any simple bugs that I might have introduced; and
+* demonstrate some simple programming techniques.
+
+The [compile.sh](compile.sh) script and [run.sh](run.sh) script assume that "gfortran" and "openmpi" are being used.
 
 ### test01
 
@@ -30,29 +35,54 @@ Of course, the ordering of those two lines cannot be relied upon.
 Does the task think that everything worked? T
 ```
 
-### test04 and test05
+### test04, test05, test06 and test07
 
-[test04](test04.F90) and [test05](test05.F90) are compiled by [compile.sh](compile.sh) and they can be run using [run.sh](run.sh). Both programs use a [const](../mod_safe/consts.f90) and [sub_allocate_array](../mod_safe/sub_allocate_array); the second program also uses [sub_allreduce_array](../mod_safe_mpi/sub_allreduce_array). The second program is a good demonstration of how to do some simple manual time saving. As both programs use random numbers the output is not repeatable. The correct output for the first program should be something like:
+All four programs calculate the number "pi" in a rather silly way: the programs are merely examples of different types of parallelism.
+
+| Program              | Overall Strategy | Main Program | Calling Function |
+|:--------------------:|:----------------:|:------------:|:----------------:|
+| [test04](test04.F90) | serial           | serial       | serial           |
+| [test05](test05.F90) | MPI only         | MPI          | serial           |
+| [test06](test06.F90) | OpenMP only      | serial       | OpenMP           |
+| [test07](test07.F90) | MPI+OpenMP       | MPI          | OpenMP           |
+
+All four programs are compiled by [compile.sh](compile.sh) and they can be run using [run.sh](run.sh). All four programs use a [const](../mod_safe/consts.f90) and [sub_allocate_array](../mod_safe/sub_allocate_array); the two programs that use MPI also use [sub_allreduce_array](../mod_safe_mpi/sub_allreduce_array). As all four programs use random numbers the output is not repeatable. The correct output for the first program should be something like:
 
 ```
-How does real pi compare to calculated pi? real = 3.141592654; calc = 3.136000000
+How does real pi compare to calculated pi? real = 3.141592654; calc = 3.156000000
 ```
 
 Whereas the correct output for the second program should be something like:
 
 ```
-For MPI task 0 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.120000000
-For MPI task 1 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.168000000
-For MPI task 2 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.088000000
-For MPI task 3 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.196000000
-Overall, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.143000000
+For MPI task 0 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.132000000
+For MPI task 1 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.164000000
+For MPI task 2 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.100000000
+For MPI task 3 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.148000000
+Overall, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.136000000
 ```
 
-Of course, the ordering of those five lines cannot be relied upon.
+Whereas the correct output for the third program should be something like:
 
-### test06
+```
+How does real pi compare to calculated pi? real = 3.141592654; calc = 3.153000000
+```
 
-[test06](test06.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [func_integrate_array](../mod_safe/func_integrate_array) and [sub_allocate_array](../mod_safe/sub_allocate_array). The correct output should be:
+Whereas the correct output for the fourth program should be something like:
+
+```
+For MPI task 0 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.141000000
+For MPI task 1 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.147000000
+For MPI task 3 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.108000000
+For MPI task 2 of 4, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.129000000
+Overall, how does real pi compare to calculated pi? real = 3.141592654; calc = 3.131250000
+```
+
+Of course, the ordering of the lines from the programs that use MPI cannot be relied upon.
+
+### test08
+
+[test08](test08.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [func_integrate_array](../mod_safe/func_integrate_array) and [sub_allocate_array](../mod_safe/sub_allocate_array). The correct output should be:
 
 ```
 Does the task think that everything worked? T

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 
 # NOTE: See https://oeis.org/A000142 for a handy sequence on the limits of the

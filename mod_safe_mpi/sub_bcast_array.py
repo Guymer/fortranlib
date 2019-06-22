@@ -3,6 +3,7 @@
 
 # Import modules ...
 import os
+import string
 
 # Make target folder ...
 if not os.path.exists("sub_bcast_array"):
@@ -46,11 +47,11 @@ for typ in sorted(data.keys()):
                 "\n"
                 "    ! Declare parameters ...\n"
                 "    ! NOTE: \"chunk\" is the number of elements of \"buff\" that are needed to occupy exactly 1 GiB of RAM (which is 8 Gib of RAM).\n"
-                "    INTEGER(kind = INT64), PARAMETER                                            :: chunk = 8589934592_INT64 / STORAGE_SIZE(buff, kind = INT64)\n"
+                "    INTEGER(kind = INT64), PARAMETER                                            :: chunk = 8589934592_INT64 / {4:3d}_INT64\n"
                 "\n"
                 "    ! Declare variables ...\n"
                 "    ! NOTE: \"parcel\" is the number of elements of \"buff\" that will be transfered in the current \"MPI_BCAST\" call.\n"
-                "    {4:76s}:: buff_flat\n"
+                "    {5:76s}:: buff_flat\n"
                 "    INTEGER(kind = INT64)                                                       :: i\n"
                 "    INTEGER(kind = INT64)                                                       :: n\n"
                 "    INTEGER                                                                     :: parcel\n"
@@ -60,7 +61,7 @@ for typ in sorted(data.keys()):
                 "\n"
                 "    ! Create flat array of pointers ...\n"
                 "    n = SIZE(buff, kind = INT64)\n"
-                "    CALL C_F_POINTER(C_LOC(buff({5:s})), buff_flat, (/ n /))\n"
+                "    CALL C_F_POINTER(C_LOC(buff({6:s})), buff_flat, (/ n /))\n"
                 "\n"
                 "    ! Loop over parcels ...\n"
                 "    DO i = 1_INT64, n, chunk\n"
@@ -68,7 +69,7 @@ for typ in sorted(data.keys()):
                 "        parcel = INT(MIN(n - i + 1_INT64, chunk))\n"
                 "\n"
                 "        ! Broadcast the parcel ...\n"
-                "        CALL MPI_BCAST(buff_flat(i), parcel, {6:s}, root, comm, errnum)\n"
+                "        CALL MPI_BCAST(buff_flat(i), parcel, {7:s}, root, comm, errnum)\n"
                 "        IF(errnum /= MPI_SUCCESS)THEN\n"
                 "            WRITE(fmt = '(\"ERROR: \", a, \". errnum = \", i3, \".\")', unit = ERROR_UNIT) \"CALL MPI_BCAST() failed\", errnum\n"
                 "            FLUSH(unit = ERROR_UNIT)\n"
@@ -89,6 +90,7 @@ for typ in sorted(data.keys()):
                     knd1,
                     ", ".join((dim + 1) * [":"])
                 ),
+                int(knd1.strip(string.ascii_letters)),
                 "{0:s}(kind = {1:s}), CONTIGUOUS, DIMENSION(:), POINTER".format(
                     typ.upper(),
                     knd1

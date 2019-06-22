@@ -21,7 +21,7 @@ SUBROUTINE sub_bcast_5D_INT64_logical_array(buff, root, comm)
 
     ! Declare parameters ...
     ! NOTE: "chunk" is the number of elements of "buff" that are needed to occupy exactly 1 GiB of RAM (which is 8 Gib of RAM).
-    INTEGER(kind = INT64), PARAMETER                                            :: chunk = 8589934592_INT64 / STORAGE_SIZE(buff, kind = INT64)
+    INTEGER(kind = INT64), PARAMETER                                            :: chunk = 8589934592_INT64 /  64_INT64
 
     ! Declare variables ...
     ! NOTE: "parcel" is the number of elements of "buff" that will be transfered in the current "MPI_BCAST" call.

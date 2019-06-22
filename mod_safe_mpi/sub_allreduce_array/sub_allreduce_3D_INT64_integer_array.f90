@@ -24,11 +24,11 @@ SUBROUTINE sub_allreduce_3D_INT64_integer_array(buff, op, comm)
     INTEGER(kind = INT64), PARAMETER                                            :: chunk = 8589934592_INT64 / STORAGE_SIZE(buff, kind = INT64)
 
     ! Declare variables ...
-    ! NOTE: "tmp2" is the number of elements of "buff" that will be transfered in the current "MPI_ALLREDUCE" call.
+    ! NOTE: "parcel" is the number of elements of "buff" that will be transfered in the current "MPI_ALLREDUCE" call.
     INTEGER(kind = INT64), DIMENSION(:), POINTER                                :: buff_flat
     INTEGER(kind = INT64)                                                       :: i
     INTEGER(kind = INT64)                                                       :: n
-    INTEGER                                                                     :: tmp2
+    INTEGER                                                                     :: parcel
 
     ! Declare MPI variables ...
     INTEGER                                                                     :: ierr
@@ -37,13 +37,13 @@ SUBROUTINE sub_allreduce_3D_INT64_integer_array(buff, op, comm)
     n = SIZE(buff, kind = INT64)
     CALL C_F_POINTER(C_LOC(buff(1_INT64, 1_INT64, 1_INT64)), buff_flat, (/ n /))
 
-    ! Loop over chunks ...
+    ! Loop over parcels ...
     DO i = 1_INT64, n, chunk
-        ! Find the chunk size ...
-        tmp2 = INT(MIN(n - i + 1_INT64, chunk))
+        ! Find the parcel size ...
+        parcel = INT(MIN(n - i + 1_INT64, chunk))
 
-        ! Reduce the chunk ...
-        CALL MPI_ALLREDUCE(MPI_IN_PLACE, buff_flat(i), tmp2, MPI_INTEGER8, op, comm, ierr)
+        ! Reduce the parcel ...
+        CALL MPI_ALLREDUCE(MPI_IN_PLACE, buff_flat(i), parcel, MPI_INTEGER8, op, comm, ierr)
         IF(ierr /= MPI_SUCCESS)THEN
             WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_ALLREDUCE() failed", ierr
             FLUSH(unit = ERROR_UNIT)

@@ -31,7 +31,7 @@ SUBROUTINE sub_bcast_4D_INT64_logical_array(buff, root, comm)
     INTEGER                                                                     :: parcel
 
     ! Declare MPI variables ...
-    INTEGER                                                                     :: ierr
+    INTEGER                                                                     :: errnum
 
     ! Create flat array of pointers ...
     n = SIZE(buff, kind = INT64)
@@ -43,11 +43,11 @@ SUBROUTINE sub_bcast_4D_INT64_logical_array(buff, root, comm)
         parcel = INT(MIN(n - i + 1_INT64, chunk))
 
         ! Broadcast the parcel ...
-        CALL MPI_BCAST(buff_flat(i), parcel, MPI_INTEGER8, root, comm, ierr)
-        IF(ierr /= MPI_SUCCESS)THEN
-            WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_BCAST() failed", ierr
+        CALL MPI_BCAST(buff_flat(i), parcel, MPI_INTEGER8, root, comm, errnum)
+        IF(errnum /= MPI_SUCCESS)THEN
+            WRITE(fmt = '("ERROR: ", a, ". errnum = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_BCAST() failed", errnum
             FLUSH(unit = ERROR_UNIT)
-            CALL MPI_ABORT(comm, 111, ierr)
+            CALL MPI_ABORT(comm, 111, errnum)
             STOP
         END IF
     END DO

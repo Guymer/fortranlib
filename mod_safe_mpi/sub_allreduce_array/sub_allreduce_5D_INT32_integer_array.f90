@@ -31,7 +31,7 @@ SUBROUTINE sub_allreduce_5D_INT32_integer_array(buff, op, comm)
     INTEGER                                                                     :: parcel
 
     ! Declare MPI variables ...
-    INTEGER                                                                     :: ierr
+    INTEGER                                                                     :: errnum
 
     ! Create flat array of pointers ...
     n = SIZE(buff, kind = INT64)
@@ -43,11 +43,11 @@ SUBROUTINE sub_allreduce_5D_INT32_integer_array(buff, op, comm)
         parcel = INT(MIN(n - i + 1_INT64, chunk))
 
         ! Reduce the parcel ...
-        CALL MPI_ALLREDUCE(MPI_IN_PLACE, buff_flat(i), parcel, MPI_INTEGER4, op, comm, ierr)
-        IF(ierr /= MPI_SUCCESS)THEN
-            WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_ALLREDUCE() failed", ierr
+        CALL MPI_ALLREDUCE(MPI_IN_PLACE, buff_flat(i), parcel, MPI_INTEGER4, op, comm, errnum)
+        IF(errnum /= MPI_SUCCESS)THEN
+            WRITE(fmt = '("ERROR: ", a, ". errnum = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_ALLREDUCE() failed", errnum
             FLUSH(unit = ERROR_UNIT)
-            CALL MPI_ABORT(comm, 111, ierr)
+            CALL MPI_ABORT(comm, 111, errnum)
             STOP
         END IF
     END DO

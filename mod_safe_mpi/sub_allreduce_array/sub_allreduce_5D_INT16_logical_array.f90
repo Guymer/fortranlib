@@ -20,8 +20,8 @@ SUBROUTINE sub_allreduce_5D_INT16_logical_array(buff, op, comm)
     INTEGER, INTENT(in)                                                         :: comm
 
     ! Declare parameters ...
-    ! NOTE: "tmp1" is the number of elements of "buff" that are needed to occupy exactly 1 GiB of RAM (which is 8 Gib of RAM).
-    INTEGER(kind = INT64), PARAMETER                                            :: tmp1 = 8589934592_INT64 / STORAGE_SIZE(buff, kind = INT64)
+    ! NOTE: "chunk" is the number of elements of "buff" that are needed to occupy exactly 1 GiB of RAM (which is 8 Gib of RAM).
+    INTEGER(kind = INT64), PARAMETER                                            :: chunk = 8589934592_INT64 / STORAGE_SIZE(buff, kind = INT64)
 
     ! Declare variables ...
     ! NOTE: "tmp2" is the number of elements of "buff" that will be transfered in the current "MPI_ALLREDUCE" call.
@@ -38,9 +38,9 @@ SUBROUTINE sub_allreduce_5D_INT16_logical_array(buff, op, comm)
     CALL C_F_POINTER(C_LOC(buff(1_INT64, 1_INT64, 1_INT64, 1_INT64, 1_INT64)), buff_flat, (/ n /))
 
     ! Loop over chunks ...
-    DO i = 1_INT64, n, tmp1
+    DO i = 1_INT64, n, chunk
         ! Find the chunk size ...
-        tmp2 = INT(MIN(n - i + 1_INT64, tmp1))
+        tmp2 = INT(MIN(n - i + 1_INT64, chunk))
 
         ! Reduce the chunk ...
         CALL MPI_ALLREDUCE(MPI_IN_PLACE, buff_flat(i), tmp2, MPI_INTEGER2, op, comm, ierr)

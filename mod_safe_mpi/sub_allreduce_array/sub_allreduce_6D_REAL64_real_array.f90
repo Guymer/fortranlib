@@ -15,7 +15,7 @@ SUBROUTINE sub_allreduce_6D_REAL64_real_array(buff, op, comm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    REAL(kind = REAL64), DIMENSION(:, :, :, :, :, :), INTENT(inout), TARGET     :: buff
+    REAL(kind = REAL64), CONTIGUOUS, DIMENSION(:, :, :, :, :, :), INTENT(inout), TARGET:: buff
     INTEGER, INTENT(in)                                                         :: op
     INTEGER, INTENT(in)                                                         :: comm
 
@@ -25,7 +25,7 @@ SUBROUTINE sub_allreduce_6D_REAL64_real_array(buff, op, comm)
 
     ! Declare variables ...
     ! NOTE: "parcel" is the number of elements of "buff" that will be transfered in the current "MPI_ALLREDUCE" call.
-    REAL(kind = REAL64), DIMENSION(:), POINTER                                  :: buff_flat
+    REAL(kind = REAL64), CONTIGUOUS, DIMENSION(:), POINTER                      :: buff_flat
     INTEGER(kind = INT64)                                                       :: i
     INTEGER(kind = INT64)                                                       :: n
     INTEGER                                                                     :: parcel

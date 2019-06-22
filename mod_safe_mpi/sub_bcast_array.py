@@ -84,12 +84,12 @@ for typ in sorted(data.keys()):
                 typ,
                 knd1,
                 dim + 1,
-                "{0:s}(kind = {1:s}), DIMENSION({2:s}), INTENT(inout), TARGET".format(
+                "{0:s}(kind = {1:s}), CONTIGUOUS, DIMENSION({2:s}), INTENT(inout), TARGET".format(
                     typ.upper(),
                     knd1,
                     ", ".join((dim + 1) * [":"])
                 ),
-                "{0:s}(kind = {1:s}), DIMENSION(:), POINTER".format(
+                "{0:s}(kind = {1:s}), CONTIGUOUS, DIMENSION(:), POINTER".format(
                     typ.upper(),
                     knd1
                 ),

@@ -15,7 +15,7 @@ SUBROUTINE sub_allreduce_7D_INT8_logical_array(buff, op, comm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    LOGICAL(kind = INT8), DIMENSION(:, :, :, :, :, :, :), INTENT(inout), TARGET :: buff
+    LOGICAL(kind = INT8), CONTIGUOUS, DIMENSION(:, :, :, :, :, :, :), INTENT(inout), TARGET:: buff
     INTEGER, INTENT(in)                                                         :: op
     INTEGER, INTENT(in)                                                         :: comm
 
@@ -25,7 +25,7 @@ SUBROUTINE sub_allreduce_7D_INT8_logical_array(buff, op, comm)
 
     ! Declare variables ...
     ! NOTE: "parcel" is the number of elements of "buff" that will be transfered in the current "MPI_ALLREDUCE" call.
-    LOGICAL(kind = INT8), DIMENSION(:), POINTER                                 :: buff_flat
+    LOGICAL(kind = INT8), CONTIGUOUS, DIMENSION(:), POINTER                     :: buff_flat
     INTEGER(kind = INT64)                                                       :: i
     INTEGER(kind = INT64)                                                       :: n
     INTEGER                                                                     :: parcel

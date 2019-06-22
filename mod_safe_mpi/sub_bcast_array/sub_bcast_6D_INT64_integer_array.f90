@@ -15,7 +15,7 @@ SUBROUTINE sub_bcast_6D_INT64_integer_array(buff, root, comm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT64), DIMENSION(:, :, :, :, :, :), INTENT(inout), TARGET   :: buff
+    INTEGER(kind = INT64), CONTIGUOUS, DIMENSION(:, :, :, :, :, :), INTENT(inout), TARGET:: buff
     INTEGER, INTENT(in)                                                         :: root
     INTEGER, INTENT(in)                                                         :: comm
 
@@ -25,7 +25,7 @@ SUBROUTINE sub_bcast_6D_INT64_integer_array(buff, root, comm)
 
     ! Declare variables ...
     ! NOTE: "parcel" is the number of elements of "buff" that will be transfered in the current "MPI_BCAST" call.
-    INTEGER(kind = INT64), DIMENSION(:), POINTER                                :: buff_flat
+    INTEGER(kind = INT64), CONTIGUOUS, DIMENSION(:), POINTER                    :: buff_flat
     INTEGER(kind = INT64)                                                       :: i
     INTEGER(kind = INT64)                                                       :: n
     INTEGER                                                                     :: parcel

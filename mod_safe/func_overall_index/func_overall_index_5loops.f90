@@ -10,8 +10,6 @@
 !>
 !> @param[in] i5 the index of the fifth do loop
 !>
-!> @param[in] n1 the end of the first do loop
-!>
 !> @param[in] n2 the end of the second do loop
 !>
 !> @param[in] n3 the end of the third do loop
@@ -23,7 +21,7 @@
 !> @warning This function assumes that all indexes go from 1 to n (inclusive)
 !>
 
-ELEMENTAL FUNCTION func_overall_index_5loops(i1, i2, i3, i4, i5, n1, n2, n3, n4, n5) RESULT(ans)
+ELEMENTAL FUNCTION func_overall_index_5loops(i1, i2, i3, i4, i5, n2, n3, n4, n5) RESULT(ans)
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE
@@ -34,7 +32,6 @@ ELEMENTAL FUNCTION func_overall_index_5loops(i1, i2, i3, i4, i5, n1, n2, n3, n4,
     INTEGER(kind = INT64), INTENT(in)                                           :: i3
     INTEGER(kind = INT64), INTENT(in)                                           :: i4
     INTEGER(kind = INT64), INTENT(in)                                           :: i5
-    INTEGER(kind = INT64), INTENT(in)                                           :: n1
     INTEGER(kind = INT64), INTENT(in)                                           :: n2
     INTEGER(kind = INT64), INTENT(in)                                           :: n3
     INTEGER(kind = INT64), INTENT(in)                                           :: n4

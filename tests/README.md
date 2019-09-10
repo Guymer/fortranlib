@@ -88,3 +88,8 @@ Of course, the ordering of the lines from the programs that use MPI cannot be re
 Does the task think that everything worked? T
 Does the task think that everything worked? T
 ```
+
+### test09
+[test08](test08.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_save_array_as_PGM](../mod_safe/sub_save_array_as_PGM). The correct output should be:
+
+![test09 output image](test09.png)

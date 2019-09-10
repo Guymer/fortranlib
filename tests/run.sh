@@ -28,3 +28,10 @@ echo "Running test09 ..."
 ./test09
 convert test09.pgm test09.png
 optipng test09.png
+
+echo "Running test10 ..."
+./test10
+convert test10_fire.ppm test10_fire.png
+optipng test10_fire.png
+convert test10_jet.ppm test10_jet.png
+optipng test10_jet.png

@@ -1,5 +1,4 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 
 # Import modules ...
 import os
@@ -20,10 +19,10 @@ for typ in sorted(data.keys()):
     # Loop over kinds ...
     for knd in data[typ]:
         # Loop over dimensions ...
-        for dim in xrange(7):
+        for dim in range(7):
             # Create list of variables ...
             ns = []
-            for i in xrange(dim + 1):
+            for i in range(dim + 1):
                 ns.append("n{0:d}".format(i + 1))
 
             # Create source ...
@@ -41,7 +40,7 @@ for typ in sorted(data.keys()):
             )
 
             # Create source ...
-            for i in xrange(dim + 1):
+            for i in range(dim + 1):
                 src += (
                     "!> @param[in] n{0:d} The size of the {0:d}-th dimension of the array\n"
                     "!>\n"
@@ -95,7 +94,7 @@ for typ in sorted(data.keys()):
             )
 
             # Create source ...
-            for i in xrange(dim + 1):
+            for i in range(dim + 1):
                 src += (
                     "    IF(n{0:d} <= 0_INT64)THEN\n"
                     "        WRITE(fmt = '(\"ERROR: The size of the {0:d}-th dimension of \"\"\", a, \"\"\" is not positive.\")', unit = ERROR_UNIT) name\n"
@@ -160,11 +159,11 @@ with open("sub_allocate_array.tmp", "wt") as fobj:
     fobj.write("INTERFACE sub_allocate_array\n")
     for typ in sorted(data.keys()):
         for knd in data[typ]:
-            for dim in xrange(7):
+            for dim in range(7):
                 fobj.write("    MODULE PROCEDURE sub_allocate_{2:d}D_{1:s}_{0:s}_array\n".format(typ, knd, dim + 1))
     fobj.write("END INTERFACE sub_allocate_array\n")
     fobj.write("\n")
     for typ in sorted(data.keys()):
         for knd in data[typ]:
-            for dim in xrange(7):
+            for dim in range(7):
                 fobj.write("INCLUDE \"mod_safe/sub_allocate_array/sub_allocate_{2:d}D_{1:s}_{0:s}_array.f90\"\n".format(typ, knd, dim + 1))

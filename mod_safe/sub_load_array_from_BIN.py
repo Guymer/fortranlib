@@ -1,5 +1,4 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 
 # Import modules ...
 import os
@@ -20,7 +19,7 @@ for typ in sorted(data.keys()):
     # Loop over kinds ...
     for knd in data[typ]:
         # Loop over dimensions ...
-        for dim in xrange(7):
+        for dim in range(7):
             # Create source ...
             src = (
                 "!> @brief This subroutine loads a {2:d}D {1:s} {0:s} array from a BIN file.\n"
@@ -78,11 +77,11 @@ with open("sub_load_array_from_BIN.tmp", "wt") as fobj:
     fobj.write("INTERFACE sub_load_array_from_BIN\n")
     for typ in sorted(data.keys()):
         for knd in data[typ]:
-            for dim in xrange(7):
+            for dim in range(7):
                 fobj.write("    MODULE PROCEDURE sub_load_{2:d}D_{1:s}_{0:s}_array_from_BIN\n".format(typ, knd, dim + 1))
     fobj.write("END INTERFACE sub_load_array_from_BIN\n")
     fobj.write("\n")
     for typ in sorted(data.keys()):
         for knd in data[typ]:
-            for dim in xrange(7):
+            for dim in range(7):
                 fobj.write("INCLUDE \"mod_safe/sub_load_array_from_BIN/sub_load_{2:d}D_{1:s}_{0:s}_array_from_BIN.f90\"\n".format(typ, knd, dim + 1))

@@ -1,5 +1,4 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 
 # NOTE: See https://oeis.org/A000142 for a handy sequence on the limits of the
 #       factorial function for different types and kinds.
@@ -15,8 +14,8 @@ def hack(num, sig):
     # mantissa and 4 significant figures in the exponent.
 
     # Check input ...
-    if not isinstance(num, int) and not isinstance(num, long):
-        raise Exception("the first argument needs to be either an \"int\" or a \"long\"")
+    if not isinstance(num, int):
+        raise Exception("the first argument needs to be an \"int\"")
     if num <= 0:
         raise Exception("the first argument needs to be positive")
     if not isinstance(sig, int):
@@ -57,7 +56,7 @@ with open("const_factorial.f90", "wt") as fobj:
         )
 
         # Loop over factorials ...
-        for i in xrange(limit + 1):
+        for i in range(limit + 1):
             # Populate declaration ...
             if i == limit:
                 fobj.write(84 * " " + "{:d}_INT{:d}  &\n".format(math.factorial(i), kind))
@@ -80,7 +79,7 @@ with open("const_factorial.f90", "wt") as fobj:
         )
 
         # Loop over factorials ...
-        for i in xrange(limit + 1):
+        for i in range(limit + 1):
             # Populate declaration ...
             if i == limit:
                 fobj.write(84 * " " + "{:s}_REAL{:d}  &\n".format(hack(math.factorial(i), prec), kind))

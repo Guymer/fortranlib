@@ -256,6 +256,7 @@ MODULE mod_safe
 
     ! Include files ...
     INCLUDE "mod_safe/consts.f90"
+    INCLUDE "mod_safe/const_cm.f90"
     INCLUDE "mod_safe/const_factorial.f90"
 
     CONTAINS

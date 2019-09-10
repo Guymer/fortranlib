@@ -253,6 +253,15 @@ MODULE mod_safe
         MODULE PROCEDURE sub_save_6D_REAL128_real_array_as_BIN
         MODULE PROCEDURE sub_save_7D_REAL128_real_array_as_BIN
     END INTERFACE sub_save_array_as_BIN
+    INTERFACE sub_save_array_as_PGM
+        MODULE PROCEDURE sub_save_2D_INT8_integer_array_as_PGM
+        MODULE PROCEDURE sub_save_2D_INT16_integer_array_as_PGM
+        MODULE PROCEDURE sub_save_2D_INT32_integer_array_as_PGM
+        MODULE PROCEDURE sub_save_2D_INT64_integer_array_as_PGM
+        MODULE PROCEDURE sub_save_2D_REAL32_real_array_as_PGM
+        MODULE PROCEDURE sub_save_2D_REAL64_real_array_as_PGM
+        MODULE PROCEDURE sub_save_2D_REAL128_real_array_as_PGM
+    END INTERFACE sub_save_array_as_PGM
 
     ! Include files ...
     INCLUDE "mod_safe/consts.f90"
@@ -501,4 +510,11 @@ MODULE mod_safe
     INCLUDE "mod_safe/sub_save_array_as_BIN/sub_save_5D_REAL128_real_array_as_BIN.f90"
     INCLUDE "mod_safe/sub_save_array_as_BIN/sub_save_6D_REAL128_real_array_as_BIN.f90"
     INCLUDE "mod_safe/sub_save_array_as_BIN/sub_save_7D_REAL128_real_array_as_BIN.f90"
+    INCLUDE "mod_safe/sub_save_array_as_PGM/sub_save_2D_INT8_integer_array_as_PGM.f90"
+    INCLUDE "mod_safe/sub_save_array_as_PGM/sub_save_2D_INT16_integer_array_as_PGM.f90"
+    INCLUDE "mod_safe/sub_save_array_as_PGM/sub_save_2D_INT32_integer_array_as_PGM.f90"
+    INCLUDE "mod_safe/sub_save_array_as_PGM/sub_save_2D_INT64_integer_array_as_PGM.f90"
+    INCLUDE "mod_safe/sub_save_array_as_PGM/sub_save_2D_REAL32_real_array_as_PGM.f90"
+    INCLUDE "mod_safe/sub_save_array_as_PGM/sub_save_2D_REAL64_real_array_as_PGM.f90"
+    INCLUDE "mod_safe/sub_save_array_as_PGM/sub_save_2D_REAL128_real_array_as_PGM.f90"
 END MODULE mod_safe

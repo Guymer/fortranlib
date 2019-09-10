@@ -52,7 +52,7 @@ SUBROUTINE sub_save_2D_REAL128_real_array_as_PGM(arr, fname)
             lvl = MAX(0_INT64, MIN(255_INT64, NINT(255.0e0_REAL128 * arr(ix, iy), kind = INT64)))
 
             ! Set pixel ...
-            img(ix, iy) = CHAR(lvl)
+            img(ix, iy) = ACHAR(lvl)
         END DO
     END DO
 

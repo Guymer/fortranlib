@@ -61,9 +61,9 @@ SUBROUTINE sub_save_2D_REAL32_real_array_as_PPM(arr, fname, cm)
 
             ! Set pixel ...
             IF(TRIM(cm) == "fire")THEN
-                img(ix, iy) = const_cm_fire(lvl)
+                img(ix, iy) = const_cm_fire(lvl + 1_INT64)
             ELSE IF(TRIM(cm) == "jet")THEN
-                img(ix, iy) = const_cm_jet(lvl)
+                img(ix, iy) = const_cm_jet(lvl + 1_INT64)
             END IF
         END DO
     END DO

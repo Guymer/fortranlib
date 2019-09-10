@@ -23,9 +23,9 @@ with open("const_cm.f90", "wt") as fobj:
 
         # Write colour values ...
         if i == 255:
-            fobj.write(84 * " " + "CHAR({:3.0f}) // CHAR({:3.0f}) // CHAR({:3.0f})  &\n".format(r, g, b))
+            fobj.write(84 * " " + "ACHAR({:3.0f}) // ACHAR({:3.0f}) // ACHAR({:3.0f})  &\n".format(r, g, b))
         else:
-            fobj.write(84 * " " + "CHAR({:3.0f}) // CHAR({:3.0f}) // CHAR({:3.0f}), &\n".format(r, g, b))
+            fobj.write(84 * " " + "ACHAR({:3.0f}) // ACHAR({:3.0f}) // ACHAR({:3.0f}), &\n".format(r, g, b))
 
     # Finish declaration ...
     fobj.write(80 * " " + "/)\n")
@@ -45,9 +45,9 @@ with open("const_cm.f90", "wt") as fobj:
 
         # Write colour values ...
         if i == 255:
-            fobj.write(84 * " " + "CHAR({:3.0f}) // CHAR({:3.0f}) // CHAR({:3.0f})  &\n".format(r, g, b))
+            fobj.write(84 * " " + "ACHAR({:3.0f}) // ACHAR({:3.0f}) // ACHAR({:3.0f})  &\n".format(r, g, b))
         else:
-            fobj.write(84 * " " + "CHAR({:3.0f}) // CHAR({:3.0f}) // CHAR({:3.0f}), &\n".format(r, g, b))
+            fobj.write(84 * " " + "ACHAR({:3.0f}) // ACHAR({:3.0f}) // ACHAR({:3.0f}), &\n".format(r, g, b))
 
     # Finish declaration ...
     fobj.write(80 * " " + "/)\n")

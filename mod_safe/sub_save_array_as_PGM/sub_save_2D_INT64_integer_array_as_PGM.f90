@@ -52,7 +52,7 @@ SUBROUTINE sub_save_2D_INT64_integer_array_as_PGM(arr, fname)
             lvl = MAX(0_INT64, MIN(255_INT64, arr(ix, iy)))
 
             ! Set pixel ...
-            img(ix, iy) = CHAR(lvl)
+            img(ix, iy) = ACHAR(lvl)
         END DO
     END DO
 

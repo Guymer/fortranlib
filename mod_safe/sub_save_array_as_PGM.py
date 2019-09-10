@@ -92,7 +92,7 @@ for typ in sorted(data.keys()):
             "            lvl = {4:s}\n"
             "\n"
             "            ! Set pixel ...\n"
-            "            img(ix, iy) = CHAR(lvl)\n"
+            "            img(ix, iy) = ACHAR(lvl)\n"
             "        END DO\n"
             "    END DO\n"
             "\n"

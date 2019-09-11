@@ -20,7 +20,7 @@ PROGRAM main
     ! Populate array ...
     DO ix = 1_INT64, nx
         DO iy = 1_INT64, ny
-            arr(ix, iy) = INT(ix * iy, kind = INT16)
+            arr(ix, iy) = INT((ix - 1_INT64) * (iy - 1_INT64), kind = INT16)
         END DO
     END DO
 

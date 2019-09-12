@@ -102,3 +102,5 @@ Does the task think that everything worked? T
 ![test10 output fire image](test10_fire.png)
 
 ![test10 output jet image](test10_jet.png)
+
+![test10 output r2g image](test10_r2g.png)

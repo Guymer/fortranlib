@@ -35,3 +35,5 @@ convert test10_fire.ppm test10_fire.png
 optipng test10_fire.png
 convert test10_jet.ppm test10_jet.png
 optipng test10_jet.png
+convert test10_r2g.ppm test10_r2g.png
+optipng test10_r2g.png

@@ -51,3 +51,24 @@ with open("const_cm.f90", "wt") as fobj:
 
     # Finish declaration ...
     fobj.write(80 * " " + "/)\n")
+
+    # **************************************************************************
+
+    # Start declaration ...
+    fobj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                :: const_cm_r2g = (/ &\n")
+
+    # Loop over levels ...
+    for i in range(256):
+        # Find colour values in the range [0, 255] ...
+        r = float(255 - i)
+        g = float(i)
+        b = 0.0
+
+        # Write colour values ...
+        if i == 255:
+            fobj.write(84 * " " + "ACHAR({:3.0f}) // ACHAR({:3.0f}) // ACHAR({:3.0f})  &\n".format(r, g, b))
+        else:
+            fobj.write(84 * " " + "ACHAR({:3.0f}) // ACHAR({:3.0f}) // ACHAR({:3.0f}), &\n".format(r, g, b))
+
+    # Finish declaration ...
+    fobj.write(80 * " " + "/)\n")

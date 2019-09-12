@@ -36,7 +36,7 @@ SUBROUTINE sub_save_2D_REAL128_real_array_as_PPM(arr, fname, cm)
     INTEGER(kind = INT64)                                                       :: ny
 
     ! Check input ...
-    IF(TRIM(cm) /= "fire" .AND. TRIM(cm) /= "jet")THEN
+    IF(TRIM(cm) /= "fire" .AND. TRIM(cm) /= "jet" .AND. TRIM(cm) /= "r2g")THEN
         WRITE(fmt = '("ERROR: ", a, ".")', unit = ERROR_UNIT) "Not a recognised colour map"
         FLUSH(unit = ERROR_UNIT)
         STOP
@@ -64,6 +64,8 @@ SUBROUTINE sub_save_2D_REAL128_real_array_as_PPM(arr, fname, cm)
                 img(ix, iy) = const_cm_fire(lvl + 1_INT64)
             ELSE IF(TRIM(cm) == "jet")THEN
                 img(ix, iy) = const_cm_jet(lvl + 1_INT64)
+            ELSE IF(TRIM(cm) == "r2g")THEN
+                img(ix, iy) = const_cm_r2g(lvl + 1_INT64)
             END IF
         END DO
     END DO

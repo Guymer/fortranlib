@@ -89,18 +89,18 @@ Does the task think that everything worked? T
 Does the task think that everything worked? T
 ```
 
-### test09
-
-[test09](test09.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_save_array_as_PGM](../mod_safe/sub_save_array_as_PGM). The correct output should be:
-
-![test09 output image](test09.png)
-
 ### test10
 
-[test10](test10.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_save_array_as_PPM](../mod_safe/sub_save_array_as_PPM). The correct output should be:
+[test10](test10.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_save_array_as_PGM](../mod_safe/sub_save_array_as_PGM). The correct output should be:
 
-![test10 output fire image](test10_fire.png)
+![test10 output image](test10.png)
 
-![test10 output jet image](test10_jet.png)
+### test11
 
-![test10 output r2g image](test10_r2g.png)
+[test11](test11.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_save_array_as_PPM](../mod_safe/sub_save_array_as_PPM). The correct output should be:
+
+![test11 output fire image](test11_fire.png)
+
+![test11 output jet image](test11_jet.png)
+
+![test11 output r2g image](test11_r2g.png)

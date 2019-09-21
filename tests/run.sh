@@ -24,16 +24,16 @@ OMP_NUM_THREADS=4 mpirun --oversubscribe -np 4 ./test07
 echo "Running test08 ..."
 ./test08
 
-echo "Running test09 ..."
-./test09
-convert test09.pgm test09.png
-optipng test09.png
-
 echo "Running test10 ..."
 ./test10
-convert test10_fire.ppm test10_fire.png
-optipng test10_fire.png
-convert test10_jet.ppm test10_jet.png
-optipng test10_jet.png
-convert test10_r2g.ppm test10_r2g.png
-optipng test10_r2g.png
+convert test10.pgm test10.png
+optipng test10.png
+
+echo "Running test11 ..."
+./test11
+convert test11_fire.ppm test11_fire.png
+optipng test11_fire.png
+convert test11_jet.ppm test11_jet.png
+optipng test11_jet.png
+convert test11_r2g.ppm test11_r2g.png
+optipng test11_r2g.png

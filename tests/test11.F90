@@ -25,9 +25,9 @@ PROGRAM main
     END DO
 
     ! Save array as PPMs ...
-    CALL sub_save_array_as_PPM(arr, "test10_fire.ppm", "fire")
-    CALL sub_save_array_as_PPM(arr, "test10_jet.ppm" , "jet" )
-    CALL sub_save_array_as_PPM(arr, "test10_r2g.ppm" , "r2g" )
+    CALL sub_save_array_as_PPM(arr, "test11_fire.ppm", "fire")
+    CALL sub_save_array_as_PPM(arr, "test11_jet.ppm" , "jet" )
+    CALL sub_save_array_as_PPM(arr, "test11_r2g.ppm" , "r2g" )
 
     ! Clean up ...
     DEALLOCATE(arr)

@@ -4,9 +4,9 @@
 !>
 !> @param[in] fname The name of the PBM file
 !>
-!> @warning "array" must have sizes less than or equal to 99999
+!> @warning "arr" must have sizes less than or equal to 99999
 !>
-!> @warning the width of "array" must be an integer multiple of 8
+!> @warning the width of "arr" must be an integer multiple of 8
 !>
 
 SUBROUTINE sub_save_2D_INT32_logical_array_as_PBM(arr, fname)

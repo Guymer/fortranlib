@@ -4,11 +4,11 @@
 !>
 !> @param[in] fname The name of the PPM file
 !>
-!> @warning "array" must have sizes less than or equal to 99999
+!> @warning "arr" must have sizes less than or equal to 99999
 !>
-!> @warning values below 0 in "array" will be clipped to 0
+!> @warning values below 0 in "arr" will be clipped to 0
 !>
-!> @warning values above 1 in "array" will be clipped to 1
+!> @warning values above 1 in "arr" will be clipped to 1
 !>
 
 SUBROUTINE sub_save_2D_REAL32_real_array_as_PPM(arr, fname, cm)

@@ -72,7 +72,7 @@ for typ in sorted(data.keys()):
             "    nyImg = nyArr\n"
             "\n"
             "    ! Make header ...\n"
-            "    WRITE(hdr, fmt = '(\"P4 \", i5, \" \", i5, \" \")') nxImg, nyImg\n"
+            "    WRITE(hdr, fmt = '(\"P4 \", i5, \" \", i5, \" \")') nxArr, nyArr\n"
             "\n"
             "    ! Allocate image ...\n"
             "    ALLOCATE(img(nxImg, nyImg))\n"

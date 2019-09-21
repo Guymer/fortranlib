@@ -52,7 +52,7 @@ SUBROUTINE sub_save_2D_INT64_logical_array_as_PBM(arr, fname)
     nyImg = nyArr
 
     ! Make header ...
-    WRITE(hdr, fmt = '("P4 ", i5, " ", i5, " ")') nxImg, nyImg
+    WRITE(hdr, fmt = '("P4 ", i5, " ", i5, " ")') nxArr, nyArr
 
     ! Allocate image ...
     ALLOCATE(img(nxImg, nyImg))

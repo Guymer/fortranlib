@@ -30,8 +30,9 @@ All reals are declared as `REAL64` (from `ISO_FORTRAN_ENV`), except:
     * [sub_allocate_array](mod_safe/sub_allocate_array) is a subroutine to allocate an array after checking that the requested size makes sense
     * [sub_load_array_from_BIN](mod_safe/sub_load_array_from_BIN) is a subroutine to populate an array with data from a binary file
     * [sub_save_array_as_BIN](mod_safe/sub_save_array_as_BIN) is a subroutine to save an array's data to a binary file
-    * [sub_save_array_as_PGM](mod_safe/sub_save_array_as_PGM) is a subroutine to save an array's data to a portable graymap format (PGM) image file
-    * [sub_save_array_as_PPM](mod_safe/sub_save_array_as_PPM) is a subroutine to save an array's data to a portable pixmap format (PPM) image file
+    * [sub_save_array_as_PBM](mod_safe/sub_save_array_as_PBM) is a subroutine to save an array's data to a portable bit-map format (PBM) image file
+    * [sub_save_array_as_PGM](mod_safe/sub_save_array_as_PGM) is a subroutine to save an array's data to a portable grey-map format (PGM) image file
+    * [sub_save_array_as_PPM](mod_safe/sub_save_array_as_PPM) is a subroutine to save an array's data to a portable pix-map format (PPM) image file
 * [mod_safe_mpi](mod_safe_mpi.F90) is a module that can safely be used (without any extra dependencies) *by a MPI compiler* containing:
     * [sub_allreduce_array](mod_safe_mpi/sub_allreduce_array) is a subroutine to reduce arrays that are larger than MPI's in-built limits
     * [sub_bcast_array](mod_safe_mpi/sub_bcast_array) is a subroutine to broadcast arrays that are larger than MPI's in-built limits

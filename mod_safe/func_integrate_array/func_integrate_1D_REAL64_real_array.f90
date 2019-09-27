@@ -9,7 +9,7 @@
 !> @warning "x1" must be the same dimension as "arr".
 !>
 
-FUNCTION func_integrate_1D_REAL64_real_array(x1, arr) RESULT(ans)
+PURE FUNCTION func_integrate_1D_REAL64_real_array(x1, arr) RESULT(ans)
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE

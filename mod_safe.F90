@@ -8,6 +8,9 @@ MODULE mod_safe
         MODULE PROCEDURE func_integrate_1D_REAL64_real_array
         MODULE PROCEDURE func_integrate_2D_REAL64_real_array
     END INTERFACE func_integrate_array
+    INTERFACE func_interpolate_points
+        MODULE PROCEDURE func_interpolate_REAL64_points
+    END INTERFACE func_interpolate_points
     INTERFACE func_overall_index
         MODULE PROCEDURE func_overall_index_2loops
         MODULE PROCEDURE func_overall_index_3loops
@@ -288,6 +291,7 @@ MODULE mod_safe
     ! Include files ...
     INCLUDE "mod_safe/func_integrate_array/func_integrate_1D_REAL64_real_array.f90"
     INCLUDE "mod_safe/func_integrate_array/func_integrate_2D_REAL64_real_array.f90"
+    INCLUDE "mod_safe/func_interpolate_points/func_interpolate_REAL64_points.f90"
     INCLUDE "mod_safe/func_overall_index/func_overall_index_2loops.f90"
     INCLUDE "mod_safe/func_overall_index/func_overall_index_3loops.f90"
     INCLUDE "mod_safe/func_overall_index/func_overall_index_4loops.f90"

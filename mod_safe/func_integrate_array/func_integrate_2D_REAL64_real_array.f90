@@ -12,6 +12,7 @@
 !>
 !> @warning "x2" must be the same as the second dimension of "arr".
 !>
+
 FUNCTION func_integrate_2D_REAL64_real_array(x1, x2, arr) RESULT(ans)
     USE ISO_FORTRAN_ENV
 

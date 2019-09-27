@@ -10,6 +10,7 @@
 !>
 !> @param[in] x The x value where the y value is desired.
 !>
+
 FUNCTION func_interpolate_REAL64_points(x1, x2, y1, y2, x) RESULT(ans)
     USE ISO_FORTRAN_ENV
 

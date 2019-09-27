@@ -45,6 +45,13 @@ Additionally, [mod_safe](mod_safe.F90) contains some other constants, such as `c
 * This library is a consolidation of a whole load of functions and subroutines from a variety of different projects. It will take some time to pull them all in and make sure that they all work well together.
 * Obviously, the [compile.sh](compile.sh) needs to be replaced by a real Makefile at some point.
 
+## Testing
+
+The directory [tests](tests) contains some basic tests to (hopefully):
+
+* find any simple bugs that I might have introduced; and
+* demonstrate some simple programming techniques.
+
 ## Bugs
 
 * There is a bug in [Doxygen](https://github.com/doxygen/doxygen) which results in [FORTRAN INCLUDE statements not being parsed](https://github.com/doxygen/doxygen/issues/3461). Until this gets fixed then there is little point in maintaining the [Doxygen](https://github.com/doxygen/doxygen) comments in the source code here. The bug was reported on 2009-07-27 and it shows no sign of being fixed (I first commented on the bug report on 2013-01-11 and as of 2019-03-31 it is still open).

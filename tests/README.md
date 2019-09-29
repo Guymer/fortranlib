@@ -1,3 +1,5 @@
+### Test Notes
+
 This directory contains some basic tests to (hopefully):
 
 * find any simple bugs that I might have introduced; and
@@ -5,7 +7,7 @@ This directory contains some basic tests to (hopefully):
 
 The [compile.sh](compile.sh) script and [run.sh](run.sh) script assume that "gfortran" and "openmpi" are being used via the commands `mpif90` and `mpirun`.
 
-### test01
+#### test01
 
 [test01](test01.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). Each MPI task will use ~2.3 GiB of RAM. The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_bcast_array](../mod_safe_mpi/sub_bcast_array). The correct output should be:
 
@@ -16,7 +18,7 @@ Does MPI task 1 of 2 think that everything worked? T
 
 Of course, the ordering of those two lines cannot be relied upon.
 
-### test02
+#### test02
 
 [test02](test02.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). Each MPI task will use ~2.3 GiB of RAM. The program uses [func_overall_index](../mod_safe/func_overall_index), [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_allreduce_array](../mod_safe_mpi/sub_allreduce_array); it is a good demonstration of how to do some simple manual work sharing. The correct output should be:
 
@@ -27,7 +29,7 @@ Does MPI task 1 of 2 think that everything worked? T
 
 Of course, the ordering of those two lines cannot be relied upon.
 
-### test03
+#### test03
 
 [test03](test03.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses three [consts](../mod_safe/consts.f90); it is a simple demonstration of floating-point arithmetic. The correct output should be:
 
@@ -35,7 +37,7 @@ Of course, the ordering of those two lines cannot be relied upon.
 Does the task think that everything worked? T
 ```
 
-### test04, test05, test06 and test07
+#### test04, test05, test06 and test07
 
 All four programs calculate the number "pi" in a rather silly way: the programs are merely examples of different types of parallelism.
 
@@ -80,7 +82,7 @@ Overall, how does real pi compare to calculated pi? real = 3.141592654; calc = 3
 
 Of course, the ordering of the lines from the programs that use MPI cannot be relied upon.
 
-### test08
+#### test08
 
 [test08](test08.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [func_integrate_array](../mod_safe/func_integrate_array) and [sub_allocate_array](../mod_safe/sub_allocate_array). The correct output should be:
 
@@ -89,19 +91,19 @@ Does the task think that everything worked? T
 Does the task think that everything worked? T
 ```
 
-### test09
+#### test09
 
 [test09](test09.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_save_array_as_PBM](../mod_safe/sub_save_array_as_PBM). The correct output should be:
 
 ![test09 output image](test09.png)
 
-### test10
+#### test10
 
 [test10](test10.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_save_array_as_PGM](../mod_safe/sub_save_array_as_PGM). The correct output should be:
 
 ![test10 output image](test10.png)
 
-### test11
+#### test11
 
 [test11](test11.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_save_array_as_PPM](../mod_safe/sub_save_array_as_PPM). The correct output should be:
 
@@ -111,7 +113,7 @@ Does the task think that everything worked? T
 
 ![test11 output r2g image](test11_r2g.png)
 
-### test12
+#### test12
 
 [test12](test12.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [func_interpolate_points](../mod_safe/func_interpolate_points). The correct output should be:
 

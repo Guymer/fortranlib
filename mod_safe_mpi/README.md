@@ -1,4 +1,4 @@
-## Notes
+### `mod_safe_mpi` Notes
 
 [sub_allreduce_array](sub_allreduce_array) and [sub_bcast_array](sub_bcast_array) are designed to work around MPI's 32-bit limit on the number of elements that are passed around in a single MPI call. They do this by creating a C pointer to the start of the (optionally multi-dimensional) FORTRAN array and defining the C pointer as being 1D with a length equal to the total size of the (optionally multi-dimensional) FORTRAN array.
 

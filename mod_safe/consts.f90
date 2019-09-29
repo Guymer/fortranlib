@@ -1,3 +1,6 @@
+!> @cite scipy
+!>
+
 REAL(kind = REAL64), PARAMETER                                                  :: const_1sigma = 6.826894921370859e-01_REAL64
 REAL(kind = REAL64), PARAMETER                                                  :: const_2sigma = 9.544997361036416e-01_REAL64
 REAL(kind = REAL64), PARAMETER                                                  :: const_3sigma = 9.973002039367398e-01_REAL64

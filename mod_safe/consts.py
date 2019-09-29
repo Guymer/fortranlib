@@ -8,6 +8,11 @@ import scipy.constants
 
 # Open output file ...
 with open("consts.f90", "wt") as fobj:
+    # Write documentation ...
+    fobj.write("!> @cite scipy\n")
+    fobj.write("!>\n")
+    fobj.write("\n")
+
     # Write declarations ...
     fobj.write("REAL(kind = REAL64), PARAMETER                                                  :: const_1sigma = {:.15e}_REAL64\n".format(math.erf(1.0 / math.sqrt(2.0))))
     fobj.write("REAL(kind = REAL64), PARAMETER                                                  :: const_2sigma = {:.15e}_REAL64\n".format(math.erf(2.0 / math.sqrt(2.0))))

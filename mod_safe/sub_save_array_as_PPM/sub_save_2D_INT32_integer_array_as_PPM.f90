@@ -4,6 +4,8 @@
 !>
 !> @param[in] fname The name of the PPM file
 !>
+!> @param[in] cm The name of the colour map to use
+!>
 !> @warning "arr" must have sizes less than or equal to 99999
 !>
 !> @warning values below 0 in "arr" will be clipped to 0

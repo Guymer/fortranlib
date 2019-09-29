@@ -44,6 +44,8 @@ for typ in sorted(data.keys()):
             "!>\n"
             "!> @param[in] fname The name of the PPM file\n"
             "!>\n"
+            "!> @param[in] cm The name of the colour map to use\n"
+            "!>\n"
             "!> @warning \"arr\" must have sizes less than or equal to 99999\n"
             "!>\n"
             "!> @warning values below 0 in \"arr\" will be clipped to 0\n"

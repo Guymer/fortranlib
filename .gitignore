@@ -9,7 +9,11 @@ ehthumbs.db
 Thumbs.db
 
 # Ignore compiler generated files ...
+*.log
 *.mod
 *.o
 *.tmp
 tests/test??
+
+# Ignore documentation ...
+doc

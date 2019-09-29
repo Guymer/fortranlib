@@ -3,7 +3,7 @@ This directory contains some basic tests to (hopefully):
 * find any simple bugs that I might have introduced; and
 * demonstrate some simple programming techniques.
 
-The [compile.sh](compile.sh) script and [run.sh](run.sh) script assume that "gfortran" and "openmpi" are being used.
+The [compile.sh](compile.sh) script and [run.sh](run.sh) script assume that "gfortran" and "openmpi" are being used via the commands `mpif90` and `mpirun`.
 
 ### test01
 
@@ -110,3 +110,12 @@ Does the task think that everything worked? T
 ![test11 output jet image](test11_jet.png)
 
 ![test11 output r2g image](test11_r2g.png)
+
+### test12
+
+[test12](test12.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [func_interpolate_points](../mod_safe/func_interpolate_points). The correct output should be:
+
+```
+Does the task think that everything worked? T
+Does the task think that everything worked? T
+```

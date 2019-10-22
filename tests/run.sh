@@ -42,6 +42,8 @@ convert test11_jet.ppm test11_jet.png
 optipng test11_jet.png
 convert test11_r2g.ppm test11_r2g.png
 optipng test11_r2g.png
+convert test11_r2o2g.ppm test11_r2o2g.png
+optipng test11_r2o2g.png
 
 echo "Running test12 ..."
 ./test12

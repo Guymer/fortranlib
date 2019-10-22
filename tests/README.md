@@ -113,6 +113,8 @@ Does the task think that everything worked? T
 
 ![test11 output r2g image](test11_r2g.png)
 
+![test11 output r2o2g image](test11_r2o2g.png)
+
 #### test12
 
 [test12](test12.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [func_interpolate_points](../mod_safe/func_interpolate_points). The correct output should be:

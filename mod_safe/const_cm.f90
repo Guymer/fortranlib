@@ -514,6 +514,264 @@ CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   
                                                                                     ACHAR(132) // ACHAR(  0) // ACHAR(  0), &
                                                                                     ACHAR(128) // ACHAR(  0) // ACHAR(  0)  &
                                                                                 /)
+CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_g2b = (/ &
+                                                                                    ACHAR(  0) // ACHAR(255) // ACHAR(  0), &
+                                                                                    ACHAR(  0) // ACHAR(254) // ACHAR(  1), &
+                                                                                    ACHAR(  0) // ACHAR(253) // ACHAR(  2), &
+                                                                                    ACHAR(  0) // ACHAR(252) // ACHAR(  3), &
+                                                                                    ACHAR(  0) // ACHAR(251) // ACHAR(  4), &
+                                                                                    ACHAR(  0) // ACHAR(250) // ACHAR(  5), &
+                                                                                    ACHAR(  0) // ACHAR(249) // ACHAR(  6), &
+                                                                                    ACHAR(  0) // ACHAR(248) // ACHAR(  7), &
+                                                                                    ACHAR(  0) // ACHAR(247) // ACHAR(  8), &
+                                                                                    ACHAR(  0) // ACHAR(246) // ACHAR(  9), &
+                                                                                    ACHAR(  0) // ACHAR(245) // ACHAR( 10), &
+                                                                                    ACHAR(  0) // ACHAR(244) // ACHAR( 11), &
+                                                                                    ACHAR(  0) // ACHAR(243) // ACHAR( 12), &
+                                                                                    ACHAR(  0) // ACHAR(242) // ACHAR( 13), &
+                                                                                    ACHAR(  0) // ACHAR(241) // ACHAR( 14), &
+                                                                                    ACHAR(  0) // ACHAR(240) // ACHAR( 15), &
+                                                                                    ACHAR(  0) // ACHAR(239) // ACHAR( 16), &
+                                                                                    ACHAR(  0) // ACHAR(238) // ACHAR( 17), &
+                                                                                    ACHAR(  0) // ACHAR(237) // ACHAR( 18), &
+                                                                                    ACHAR(  0) // ACHAR(236) // ACHAR( 19), &
+                                                                                    ACHAR(  0) // ACHAR(235) // ACHAR( 20), &
+                                                                                    ACHAR(  0) // ACHAR(234) // ACHAR( 21), &
+                                                                                    ACHAR(  0) // ACHAR(233) // ACHAR( 22), &
+                                                                                    ACHAR(  0) // ACHAR(232) // ACHAR( 23), &
+                                                                                    ACHAR(  0) // ACHAR(231) // ACHAR( 24), &
+                                                                                    ACHAR(  0) // ACHAR(230) // ACHAR( 25), &
+                                                                                    ACHAR(  0) // ACHAR(229) // ACHAR( 26), &
+                                                                                    ACHAR(  0) // ACHAR(228) // ACHAR( 27), &
+                                                                                    ACHAR(  0) // ACHAR(227) // ACHAR( 28), &
+                                                                                    ACHAR(  0) // ACHAR(226) // ACHAR( 29), &
+                                                                                    ACHAR(  0) // ACHAR(225) // ACHAR( 30), &
+                                                                                    ACHAR(  0) // ACHAR(224) // ACHAR( 31), &
+                                                                                    ACHAR(  0) // ACHAR(223) // ACHAR( 32), &
+                                                                                    ACHAR(  0) // ACHAR(222) // ACHAR( 33), &
+                                                                                    ACHAR(  0) // ACHAR(221) // ACHAR( 34), &
+                                                                                    ACHAR(  0) // ACHAR(220) // ACHAR( 35), &
+                                                                                    ACHAR(  0) // ACHAR(219) // ACHAR( 36), &
+                                                                                    ACHAR(  0) // ACHAR(218) // ACHAR( 37), &
+                                                                                    ACHAR(  0) // ACHAR(217) // ACHAR( 38), &
+                                                                                    ACHAR(  0) // ACHAR(216) // ACHAR( 39), &
+                                                                                    ACHAR(  0) // ACHAR(215) // ACHAR( 40), &
+                                                                                    ACHAR(  0) // ACHAR(214) // ACHAR( 41), &
+                                                                                    ACHAR(  0) // ACHAR(213) // ACHAR( 42), &
+                                                                                    ACHAR(  0) // ACHAR(212) // ACHAR( 43), &
+                                                                                    ACHAR(  0) // ACHAR(211) // ACHAR( 44), &
+                                                                                    ACHAR(  0) // ACHAR(210) // ACHAR( 45), &
+                                                                                    ACHAR(  0) // ACHAR(209) // ACHAR( 46), &
+                                                                                    ACHAR(  0) // ACHAR(208) // ACHAR( 47), &
+                                                                                    ACHAR(  0) // ACHAR(207) // ACHAR( 48), &
+                                                                                    ACHAR(  0) // ACHAR(206) // ACHAR( 49), &
+                                                                                    ACHAR(  0) // ACHAR(205) // ACHAR( 50), &
+                                                                                    ACHAR(  0) // ACHAR(204) // ACHAR( 51), &
+                                                                                    ACHAR(  0) // ACHAR(203) // ACHAR( 52), &
+                                                                                    ACHAR(  0) // ACHAR(202) // ACHAR( 53), &
+                                                                                    ACHAR(  0) // ACHAR(201) // ACHAR( 54), &
+                                                                                    ACHAR(  0) // ACHAR(200) // ACHAR( 55), &
+                                                                                    ACHAR(  0) // ACHAR(199) // ACHAR( 56), &
+                                                                                    ACHAR(  0) // ACHAR(198) // ACHAR( 57), &
+                                                                                    ACHAR(  0) // ACHAR(197) // ACHAR( 58), &
+                                                                                    ACHAR(  0) // ACHAR(196) // ACHAR( 59), &
+                                                                                    ACHAR(  0) // ACHAR(195) // ACHAR( 60), &
+                                                                                    ACHAR(  0) // ACHAR(194) // ACHAR( 61), &
+                                                                                    ACHAR(  0) // ACHAR(193) // ACHAR( 62), &
+                                                                                    ACHAR(  0) // ACHAR(192) // ACHAR( 63), &
+                                                                                    ACHAR(  0) // ACHAR(191) // ACHAR( 64), &
+                                                                                    ACHAR(  0) // ACHAR(190) // ACHAR( 65), &
+                                                                                    ACHAR(  0) // ACHAR(189) // ACHAR( 66), &
+                                                                                    ACHAR(  0) // ACHAR(188) // ACHAR( 67), &
+                                                                                    ACHAR(  0) // ACHAR(187) // ACHAR( 68), &
+                                                                                    ACHAR(  0) // ACHAR(186) // ACHAR( 69), &
+                                                                                    ACHAR(  0) // ACHAR(185) // ACHAR( 70), &
+                                                                                    ACHAR(  0) // ACHAR(184) // ACHAR( 71), &
+                                                                                    ACHAR(  0) // ACHAR(183) // ACHAR( 72), &
+                                                                                    ACHAR(  0) // ACHAR(182) // ACHAR( 73), &
+                                                                                    ACHAR(  0) // ACHAR(181) // ACHAR( 74), &
+                                                                                    ACHAR(  0) // ACHAR(180) // ACHAR( 75), &
+                                                                                    ACHAR(  0) // ACHAR(179) // ACHAR( 76), &
+                                                                                    ACHAR(  0) // ACHAR(178) // ACHAR( 77), &
+                                                                                    ACHAR(  0) // ACHAR(177) // ACHAR( 78), &
+                                                                                    ACHAR(  0) // ACHAR(176) // ACHAR( 79), &
+                                                                                    ACHAR(  0) // ACHAR(175) // ACHAR( 80), &
+                                                                                    ACHAR(  0) // ACHAR(174) // ACHAR( 81), &
+                                                                                    ACHAR(  0) // ACHAR(173) // ACHAR( 82), &
+                                                                                    ACHAR(  0) // ACHAR(172) // ACHAR( 83), &
+                                                                                    ACHAR(  0) // ACHAR(171) // ACHAR( 84), &
+                                                                                    ACHAR(  0) // ACHAR(170) // ACHAR( 85), &
+                                                                                    ACHAR(  0) // ACHAR(169) // ACHAR( 86), &
+                                                                                    ACHAR(  0) // ACHAR(168) // ACHAR( 87), &
+                                                                                    ACHAR(  0) // ACHAR(167) // ACHAR( 88), &
+                                                                                    ACHAR(  0) // ACHAR(166) // ACHAR( 89), &
+                                                                                    ACHAR(  0) // ACHAR(165) // ACHAR( 90), &
+                                                                                    ACHAR(  0) // ACHAR(164) // ACHAR( 91), &
+                                                                                    ACHAR(  0) // ACHAR(163) // ACHAR( 92), &
+                                                                                    ACHAR(  0) // ACHAR(162) // ACHAR( 93), &
+                                                                                    ACHAR(  0) // ACHAR(161) // ACHAR( 94), &
+                                                                                    ACHAR(  0) // ACHAR(160) // ACHAR( 95), &
+                                                                                    ACHAR(  0) // ACHAR(159) // ACHAR( 96), &
+                                                                                    ACHAR(  0) // ACHAR(158) // ACHAR( 97), &
+                                                                                    ACHAR(  0) // ACHAR(157) // ACHAR( 98), &
+                                                                                    ACHAR(  0) // ACHAR(156) // ACHAR( 99), &
+                                                                                    ACHAR(  0) // ACHAR(155) // ACHAR(100), &
+                                                                                    ACHAR(  0) // ACHAR(154) // ACHAR(101), &
+                                                                                    ACHAR(  0) // ACHAR(153) // ACHAR(102), &
+                                                                                    ACHAR(  0) // ACHAR(152) // ACHAR(103), &
+                                                                                    ACHAR(  0) // ACHAR(151) // ACHAR(104), &
+                                                                                    ACHAR(  0) // ACHAR(150) // ACHAR(105), &
+                                                                                    ACHAR(  0) // ACHAR(149) // ACHAR(106), &
+                                                                                    ACHAR(  0) // ACHAR(148) // ACHAR(107), &
+                                                                                    ACHAR(  0) // ACHAR(147) // ACHAR(108), &
+                                                                                    ACHAR(  0) // ACHAR(146) // ACHAR(109), &
+                                                                                    ACHAR(  0) // ACHAR(145) // ACHAR(110), &
+                                                                                    ACHAR(  0) // ACHAR(144) // ACHAR(111), &
+                                                                                    ACHAR(  0) // ACHAR(143) // ACHAR(112), &
+                                                                                    ACHAR(  0) // ACHAR(142) // ACHAR(113), &
+                                                                                    ACHAR(  0) // ACHAR(141) // ACHAR(114), &
+                                                                                    ACHAR(  0) // ACHAR(140) // ACHAR(115), &
+                                                                                    ACHAR(  0) // ACHAR(139) // ACHAR(116), &
+                                                                                    ACHAR(  0) // ACHAR(138) // ACHAR(117), &
+                                                                                    ACHAR(  0) // ACHAR(137) // ACHAR(118), &
+                                                                                    ACHAR(  0) // ACHAR(136) // ACHAR(119), &
+                                                                                    ACHAR(  0) // ACHAR(135) // ACHAR(120), &
+                                                                                    ACHAR(  0) // ACHAR(134) // ACHAR(121), &
+                                                                                    ACHAR(  0) // ACHAR(133) // ACHAR(122), &
+                                                                                    ACHAR(  0) // ACHAR(132) // ACHAR(123), &
+                                                                                    ACHAR(  0) // ACHAR(131) // ACHAR(124), &
+                                                                                    ACHAR(  0) // ACHAR(130) // ACHAR(125), &
+                                                                                    ACHAR(  0) // ACHAR(129) // ACHAR(126), &
+                                                                                    ACHAR(  0) // ACHAR(128) // ACHAR(127), &
+                                                                                    ACHAR(  0) // ACHAR(127) // ACHAR(128), &
+                                                                                    ACHAR(  0) // ACHAR(126) // ACHAR(129), &
+                                                                                    ACHAR(  0) // ACHAR(125) // ACHAR(130), &
+                                                                                    ACHAR(  0) // ACHAR(124) // ACHAR(131), &
+                                                                                    ACHAR(  0) // ACHAR(123) // ACHAR(132), &
+                                                                                    ACHAR(  0) // ACHAR(122) // ACHAR(133), &
+                                                                                    ACHAR(  0) // ACHAR(121) // ACHAR(134), &
+                                                                                    ACHAR(  0) // ACHAR(120) // ACHAR(135), &
+                                                                                    ACHAR(  0) // ACHAR(119) // ACHAR(136), &
+                                                                                    ACHAR(  0) // ACHAR(118) // ACHAR(137), &
+                                                                                    ACHAR(  0) // ACHAR(117) // ACHAR(138), &
+                                                                                    ACHAR(  0) // ACHAR(116) // ACHAR(139), &
+                                                                                    ACHAR(  0) // ACHAR(115) // ACHAR(140), &
+                                                                                    ACHAR(  0) // ACHAR(114) // ACHAR(141), &
+                                                                                    ACHAR(  0) // ACHAR(113) // ACHAR(142), &
+                                                                                    ACHAR(  0) // ACHAR(112) // ACHAR(143), &
+                                                                                    ACHAR(  0) // ACHAR(111) // ACHAR(144), &
+                                                                                    ACHAR(  0) // ACHAR(110) // ACHAR(145), &
+                                                                                    ACHAR(  0) // ACHAR(109) // ACHAR(146), &
+                                                                                    ACHAR(  0) // ACHAR(108) // ACHAR(147), &
+                                                                                    ACHAR(  0) // ACHAR(107) // ACHAR(148), &
+                                                                                    ACHAR(  0) // ACHAR(106) // ACHAR(149), &
+                                                                                    ACHAR(  0) // ACHAR(105) // ACHAR(150), &
+                                                                                    ACHAR(  0) // ACHAR(104) // ACHAR(151), &
+                                                                                    ACHAR(  0) // ACHAR(103) // ACHAR(152), &
+                                                                                    ACHAR(  0) // ACHAR(102) // ACHAR(153), &
+                                                                                    ACHAR(  0) // ACHAR(101) // ACHAR(154), &
+                                                                                    ACHAR(  0) // ACHAR(100) // ACHAR(155), &
+                                                                                    ACHAR(  0) // ACHAR( 99) // ACHAR(156), &
+                                                                                    ACHAR(  0) // ACHAR( 98) // ACHAR(157), &
+                                                                                    ACHAR(  0) // ACHAR( 97) // ACHAR(158), &
+                                                                                    ACHAR(  0) // ACHAR( 96) // ACHAR(159), &
+                                                                                    ACHAR(  0) // ACHAR( 95) // ACHAR(160), &
+                                                                                    ACHAR(  0) // ACHAR( 94) // ACHAR(161), &
+                                                                                    ACHAR(  0) // ACHAR( 93) // ACHAR(162), &
+                                                                                    ACHAR(  0) // ACHAR( 92) // ACHAR(163), &
+                                                                                    ACHAR(  0) // ACHAR( 91) // ACHAR(164), &
+                                                                                    ACHAR(  0) // ACHAR( 90) // ACHAR(165), &
+                                                                                    ACHAR(  0) // ACHAR( 89) // ACHAR(166), &
+                                                                                    ACHAR(  0) // ACHAR( 88) // ACHAR(167), &
+                                                                                    ACHAR(  0) // ACHAR( 87) // ACHAR(168), &
+                                                                                    ACHAR(  0) // ACHAR( 86) // ACHAR(169), &
+                                                                                    ACHAR(  0) // ACHAR( 85) // ACHAR(170), &
+                                                                                    ACHAR(  0) // ACHAR( 84) // ACHAR(171), &
+                                                                                    ACHAR(  0) // ACHAR( 83) // ACHAR(172), &
+                                                                                    ACHAR(  0) // ACHAR( 82) // ACHAR(173), &
+                                                                                    ACHAR(  0) // ACHAR( 81) // ACHAR(174), &
+                                                                                    ACHAR(  0) // ACHAR( 80) // ACHAR(175), &
+                                                                                    ACHAR(  0) // ACHAR( 79) // ACHAR(176), &
+                                                                                    ACHAR(  0) // ACHAR( 78) // ACHAR(177), &
+                                                                                    ACHAR(  0) // ACHAR( 77) // ACHAR(178), &
+                                                                                    ACHAR(  0) // ACHAR( 76) // ACHAR(179), &
+                                                                                    ACHAR(  0) // ACHAR( 75) // ACHAR(180), &
+                                                                                    ACHAR(  0) // ACHAR( 74) // ACHAR(181), &
+                                                                                    ACHAR(  0) // ACHAR( 73) // ACHAR(182), &
+                                                                                    ACHAR(  0) // ACHAR( 72) // ACHAR(183), &
+                                                                                    ACHAR(  0) // ACHAR( 71) // ACHAR(184), &
+                                                                                    ACHAR(  0) // ACHAR( 70) // ACHAR(185), &
+                                                                                    ACHAR(  0) // ACHAR( 69) // ACHAR(186), &
+                                                                                    ACHAR(  0) // ACHAR( 68) // ACHAR(187), &
+                                                                                    ACHAR(  0) // ACHAR( 67) // ACHAR(188), &
+                                                                                    ACHAR(  0) // ACHAR( 66) // ACHAR(189), &
+                                                                                    ACHAR(  0) // ACHAR( 65) // ACHAR(190), &
+                                                                                    ACHAR(  0) // ACHAR( 64) // ACHAR(191), &
+                                                                                    ACHAR(  0) // ACHAR( 63) // ACHAR(192), &
+                                                                                    ACHAR(  0) // ACHAR( 62) // ACHAR(193), &
+                                                                                    ACHAR(  0) // ACHAR( 61) // ACHAR(194), &
+                                                                                    ACHAR(  0) // ACHAR( 60) // ACHAR(195), &
+                                                                                    ACHAR(  0) // ACHAR( 59) // ACHAR(196), &
+                                                                                    ACHAR(  0) // ACHAR( 58) // ACHAR(197), &
+                                                                                    ACHAR(  0) // ACHAR( 57) // ACHAR(198), &
+                                                                                    ACHAR(  0) // ACHAR( 56) // ACHAR(199), &
+                                                                                    ACHAR(  0) // ACHAR( 55) // ACHAR(200), &
+                                                                                    ACHAR(  0) // ACHAR( 54) // ACHAR(201), &
+                                                                                    ACHAR(  0) // ACHAR( 53) // ACHAR(202), &
+                                                                                    ACHAR(  0) // ACHAR( 52) // ACHAR(203), &
+                                                                                    ACHAR(  0) // ACHAR( 51) // ACHAR(204), &
+                                                                                    ACHAR(  0) // ACHAR( 50) // ACHAR(205), &
+                                                                                    ACHAR(  0) // ACHAR( 49) // ACHAR(206), &
+                                                                                    ACHAR(  0) // ACHAR( 48) // ACHAR(207), &
+                                                                                    ACHAR(  0) // ACHAR( 47) // ACHAR(208), &
+                                                                                    ACHAR(  0) // ACHAR( 46) // ACHAR(209), &
+                                                                                    ACHAR(  0) // ACHAR( 45) // ACHAR(210), &
+                                                                                    ACHAR(  0) // ACHAR( 44) // ACHAR(211), &
+                                                                                    ACHAR(  0) // ACHAR( 43) // ACHAR(212), &
+                                                                                    ACHAR(  0) // ACHAR( 42) // ACHAR(213), &
+                                                                                    ACHAR(  0) // ACHAR( 41) // ACHAR(214), &
+                                                                                    ACHAR(  0) // ACHAR( 40) // ACHAR(215), &
+                                                                                    ACHAR(  0) // ACHAR( 39) // ACHAR(216), &
+                                                                                    ACHAR(  0) // ACHAR( 38) // ACHAR(217), &
+                                                                                    ACHAR(  0) // ACHAR( 37) // ACHAR(218), &
+                                                                                    ACHAR(  0) // ACHAR( 36) // ACHAR(219), &
+                                                                                    ACHAR(  0) // ACHAR( 35) // ACHAR(220), &
+                                                                                    ACHAR(  0) // ACHAR( 34) // ACHAR(221), &
+                                                                                    ACHAR(  0) // ACHAR( 33) // ACHAR(222), &
+                                                                                    ACHAR(  0) // ACHAR( 32) // ACHAR(223), &
+                                                                                    ACHAR(  0) // ACHAR( 31) // ACHAR(224), &
+                                                                                    ACHAR(  0) // ACHAR( 30) // ACHAR(225), &
+                                                                                    ACHAR(  0) // ACHAR( 29) // ACHAR(226), &
+                                                                                    ACHAR(  0) // ACHAR( 28) // ACHAR(227), &
+                                                                                    ACHAR(  0) // ACHAR( 27) // ACHAR(228), &
+                                                                                    ACHAR(  0) // ACHAR( 26) // ACHAR(229), &
+                                                                                    ACHAR(  0) // ACHAR( 25) // ACHAR(230), &
+                                                                                    ACHAR(  0) // ACHAR( 24) // ACHAR(231), &
+                                                                                    ACHAR(  0) // ACHAR( 23) // ACHAR(232), &
+                                                                                    ACHAR(  0) // ACHAR( 22) // ACHAR(233), &
+                                                                                    ACHAR(  0) // ACHAR( 21) // ACHAR(234), &
+                                                                                    ACHAR(  0) // ACHAR( 20) // ACHAR(235), &
+                                                                                    ACHAR(  0) // ACHAR( 19) // ACHAR(236), &
+                                                                                    ACHAR(  0) // ACHAR( 18) // ACHAR(237), &
+                                                                                    ACHAR(  0) // ACHAR( 17) // ACHAR(238), &
+                                                                                    ACHAR(  0) // ACHAR( 16) // ACHAR(239), &
+                                                                                    ACHAR(  0) // ACHAR( 15) // ACHAR(240), &
+                                                                                    ACHAR(  0) // ACHAR( 14) // ACHAR(241), &
+                                                                                    ACHAR(  0) // ACHAR( 13) // ACHAR(242), &
+                                                                                    ACHAR(  0) // ACHAR( 12) // ACHAR(243), &
+                                                                                    ACHAR(  0) // ACHAR( 11) // ACHAR(244), &
+                                                                                    ACHAR(  0) // ACHAR( 10) // ACHAR(245), &
+                                                                                    ACHAR(  0) // ACHAR(  9) // ACHAR(246), &
+                                                                                    ACHAR(  0) // ACHAR(  8) // ACHAR(247), &
+                                                                                    ACHAR(  0) // ACHAR(  7) // ACHAR(248), &
+                                                                                    ACHAR(  0) // ACHAR(  6) // ACHAR(249), &
+                                                                                    ACHAR(  0) // ACHAR(  5) // ACHAR(250), &
+                                                                                    ACHAR(  0) // ACHAR(  4) // ACHAR(251), &
+                                                                                    ACHAR(  0) // ACHAR(  3) // ACHAR(252), &
+                                                                                    ACHAR(  0) // ACHAR(  2) // ACHAR(253), &
+                                                                                    ACHAR(  0) // ACHAR(  1) // ACHAR(254), &
+                                                                                    ACHAR(  0) // ACHAR(  0) // ACHAR(255)  &
+                                                                                /)
 CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2g = (/ &
                                                                                     ACHAR(255) // ACHAR(  0) // ACHAR(  0), &
                                                                                     ACHAR(254) // ACHAR(  1) // ACHAR(  0), &

@@ -40,6 +40,8 @@ convert test11_fire.ppm test11_fire.png
 optipng test11_fire.png
 convert test11_jet.ppm test11_jet.png
 optipng test11_jet.png
+convert test11_g2b.ppm test11_g2b.png
+optipng test11_g2b.png
 convert test11_r2g.ppm test11_r2g.png
 optipng test11_r2g.png
 convert test11_r2o2g.ppm test11_r2o2g.png

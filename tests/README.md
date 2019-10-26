@@ -111,6 +111,8 @@ Does the task think that everything worked? T
 
 ![test11 output jet image](test11_jet.png)
 
+![test11 output g2b image](test11_g2b.png)
+
 ![test11 output r2g image](test11_r2g.png)
 
 ![test11 output r2o2g image](test11_r2o2g.png)

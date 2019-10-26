@@ -27,6 +27,7 @@ PROGRAM main
     ! Save array as PPMs ...
     CALL sub_save_array_as_PPM(arr, "test11_fire.ppm" , "fire" )
     CALL sub_save_array_as_PPM(arr, "test11_jet.ppm"  , "jet"  )
+    CALL sub_save_array_as_PPM(arr, "test11_g2b.ppm"  , "g2b"  )
     CALL sub_save_array_as_PPM(arr, "test11_r2g.ppm"  , "r2g"  )
     CALL sub_save_array_as_PPM(arr, "test11_r2o2g.ppm", "r2o2g")
 

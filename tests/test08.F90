@@ -6,6 +6,7 @@ PROGRAM main
     IMPLICIT NONE
 
     ! Declare variables ...
+    REAL(kind = REAL64)                                                         :: eps
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: x
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: y
 
@@ -16,7 +17,8 @@ PROGRAM main
     x(2) = 2.0e0_REAL64
     y(1) = 1.0e0_REAL64
     y(2) = 1.0e0_REAL64
-    WRITE(fmt = '("Does the task think that everything worked? ", l1)', unit = OUTPUT_UNIT) func_integrate_array(x, y) == 1.0e0_REAL64
+    eps = ABS(1.0e0_REAL64 - func_integrate_array(x, y) / 1.0e0_REAL64)
+    WRITE(fmt = '("Does the task think that everything worked? ", l1)', unit = OUTPUT_UNIT) eps <= EPSILON(eps)
     FLUSH(unit = OUTPUT_UNIT)
     DEALLOCATE(x)
     DEALLOCATE(y)
@@ -30,7 +32,8 @@ PROGRAM main
     y(1) = 1.0e0_REAL64
     y(2) = 1.0e0_REAL64
     y(3) = 3.0e0_REAL64
-    WRITE(fmt = '("Does the task think that everything worked? ", l1)', unit = OUTPUT_UNIT) func_integrate_array(x, y) == 5.0e0_REAL64
+    eps = ABS(1.0e0_REAL64 - func_integrate_array(x, y) / 5.0e0_REAL64)
+    WRITE(fmt = '("Does the task think that everything worked? ", l1)', unit = OUTPUT_UNIT) eps <= EPSILON(eps)
     FLUSH(unit = OUTPUT_UNIT)
     DEALLOCATE(x)
     DEALLOCATE(y)

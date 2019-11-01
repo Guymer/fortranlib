@@ -43,7 +43,6 @@ Additionally, [mod_safe](mod_safe.F90) contains some other constants, such as `c
 ## To Do
 
 * This library is a consolidation of a whole load of functions and subroutines from a variety of different projects. It will take some time to pull them all in and make sure that they all work well together.
-* Obviously, the [compile.sh](compile.sh) needs to be replaced by a real Makefile at some point.
 
 ## Testing
 

@@ -5,11 +5,11 @@ This directory contains some basic tests to (hopefully):
 * find any simple bugs that I might have introduced; and
 * demonstrate some simple programming techniques.
 
-The [compile.sh](compile.sh) script and [run.sh](run.sh) script assume that "gfortran" and "openmpi" are being used via the commands `mpif90` and `mpirun`.
+The [Makefile](Makefile) and [run.sh](run.sh) script assume that "gfortran" and "openmpi" are being used via the commands `mpif90` and `mpirun`.
 
 #### test01
 
-[test01](test01.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). Each MPI task will use ~2.3 GiB of RAM. The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_bcast_array](../mod_safe_mpi/sub_bcast_array). The correct output should be:
+[test01](test01.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). Each MPI task will use ~2.3 GiB of RAM. The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_bcast_array](../mod_safe_mpi/sub_bcast_array). The correct output should be:
 
 ```
 Does MPI task 0 of 2 think that everything worked? T
@@ -20,7 +20,7 @@ Of course, the ordering of those two lines cannot be relied upon.
 
 #### test02
 
-[test02](test02.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). Each MPI task will use ~2.3 GiB of RAM. The program uses [func_overall_index](../mod_safe/func_overall_index), [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_allreduce_array](../mod_safe_mpi/sub_allreduce_array); it is a good demonstration of how to do some simple manual work sharing. The correct output should be:
+[test02](test02.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). Each MPI task will use ~2.3 GiB of RAM. The program uses [func_overall_index](../mod_safe/func_overall_index), [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_allreduce_array](../mod_safe_mpi/sub_allreduce_array); it is a good demonstration of how to do some simple manual work sharing. The correct output should be:
 
 ```
 Does MPI task 0 of 2 think that everything worked? T
@@ -31,7 +31,7 @@ Of course, the ordering of those two lines cannot be relied upon.
 
 #### test03
 
-[test03](test03.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses three [consts](../mod_safe/consts.f90); it is a simple demonstration of floating-point arithmetic. The correct output should be:
+[test03](test03.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). The program uses three [consts](../mod_safe/consts.f90); it is a simple demonstration of floating-point arithmetic. The correct output should be:
 
 ```
 Does the task think that everything worked? T
@@ -48,7 +48,7 @@ All four programs calculate the number "pi" in a rather silly way: the programs 
 | [test06](test06.F90) | OpenMP only      | serial       | OpenMP          |
 | [test07](test07.F90) | MPI+OpenMP       | MPI          | OpenMP          |
 
-All four programs are compiled by [compile.sh](compile.sh) and they can be run using [run.sh](run.sh). All four programs use a [const](../mod_safe/consts.f90) and [sub_allocate_array](../mod_safe/sub_allocate_array); the two programs that use MPI also use [sub_allreduce_array](../mod_safe_mpi/sub_allreduce_array). As all four programs use random numbers the output is not repeatable. The correct output for the first program should be something like:
+All four programs are compiled by [Makefile](Makefile) and they can be run using [run.sh](run.sh). All four programs use a [const](../mod_safe/consts.f90) and [sub_allocate_array](../mod_safe/sub_allocate_array); the two programs that use MPI also use [sub_allreduce_array](../mod_safe_mpi/sub_allreduce_array). As all four programs use random numbers the output is not repeatable. The correct output for the first program should be something like:
 
 ```
 How does real pi compare to calculated pi? real = 3.141592654; calc = 3.156000000
@@ -84,7 +84,7 @@ Of course, the ordering of the lines from the programs that use MPI cannot be re
 
 #### test08
 
-[test08](test08.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [func_integrate_array](../mod_safe/func_integrate_array) and [sub_allocate_array](../mod_safe/sub_allocate_array). The correct output should be:
+[test08](test08.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). The program uses [func_integrate_array](../mod_safe/func_integrate_array) and [sub_allocate_array](../mod_safe/sub_allocate_array). The correct output should be:
 
 ```
 Does the task think that everything worked? T
@@ -93,19 +93,19 @@ Does the task think that everything worked? T
 
 #### test09
 
-[test09](test09.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_save_array_as_PBM](../mod_safe/sub_save_array_as_PBM). The correct output should be:
+[test09](test09.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_save_array_as_PBM](../mod_safe/sub_save_array_as_PBM). The correct output should be:
 
 ![test09 output image](test09.png)
 
 #### test10
 
-[test10](test10.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_save_array_as_PGM](../mod_safe/sub_save_array_as_PGM). The correct output should be:
+[test10](test10.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_save_array_as_PGM](../mod_safe/sub_save_array_as_PGM). The correct output should be:
 
 ![test10 output image](test10.png)
 
 #### test11
 
-[test11](test11.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_save_array_as_PPM](../mod_safe/sub_save_array_as_PPM). The correct output should be:
+[test11](test11.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). The program uses [sub_allocate_array](../mod_safe/sub_allocate_array) and [sub_save_array_as_PPM](../mod_safe/sub_save_array_as_PPM). The correct output should be:
 
 ![test11 output fire image](test11_fire.png)
 
@@ -119,7 +119,7 @@ Does the task think that everything worked? T
 
 #### test12
 
-[test12](test12.F90) is compiled by [compile.sh](compile.sh) and it can be run using [run.sh](run.sh). The program uses [func_interpolate_points](../mod_safe/func_interpolate_points). The correct output should be:
+[test12](test12.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). The program uses [func_interpolate_points](../mod_safe/func_interpolate_points). The correct output should be:
 
 ```
 Does the task think that everything worked? T

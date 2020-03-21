@@ -20,11 +20,13 @@ SUBROUTINE sub_bcast_6D_REAL128_real_array(buff, root, comm)
     INTEGER, INTENT(in)                                                         :: comm
 
     ! Declare parameters ...
-    ! NOTE: "chunk" is the number of elements of "buff" that are needed to occupy exactly 1 GiB of RAM (which is 8 Gib of RAM).
+    ! NOTE: "chunk" is the number of elements of "buff" that are needed to
+    !       occupy exactly 1 GiB of RAM (which is 8 Gib of RAM).
     INTEGER(kind = INT64), PARAMETER                                            :: chunk = 8589934592_INT64 / 128_INT64
 
     ! Declare variables ...
-    ! NOTE: "parcel" is the number of elements of "buff" that will be transfered in the current "MPI_BCAST" call.
+    ! NOTE: "parcel" is the number of elements of "buff" that will be transfered
+    !       in the current "MPI_BCAST" call.
     REAL(kind = REAL128), CONTIGUOUS, DIMENSION(:), POINTER                     :: buff_flat
     INTEGER(kind = INT64)                                                       :: i
     INTEGER(kind = INT64)                                                       :: n

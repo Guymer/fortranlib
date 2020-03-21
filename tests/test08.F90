@@ -10,7 +10,8 @@ PROGRAM main
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: x
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: y
 
-    ! Allocate arrays, populate with values, integrate, print summary and clean up ...
+    ! Allocate arrays, populate with values, integrate, print summary and clean
+    ! up ...
     CALL sub_allocate_array(x, "x", 2_INT64, .FALSE._INT8)
     CALL sub_allocate_array(y, "y", 2_INT64, .FALSE._INT8)
     x(1) = 1.0e0_REAL64
@@ -23,7 +24,8 @@ PROGRAM main
     DEALLOCATE(x)
     DEALLOCATE(y)
 
-    ! Allocate arrays, populate with values, integrate, print summary and clean up ...
+    ! Allocate arrays, populate with values, integrate, print summary and clean
+    ! up ...
     CALL sub_allocate_array(x, "x", 3_INT64, .FALSE._INT8)
     CALL sub_allocate_array(y, "y", 3_INT64, .FALSE._INT8)
     x(1) = 1.0e0_REAL64

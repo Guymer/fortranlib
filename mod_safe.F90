@@ -5,11 +5,17 @@ MODULE mod_safe
 
     ! Declare interfaces ...
     INTERFACE func_integrate_array
+        MODULE PROCEDURE func_integrate_1D_REAL32_real_array
         MODULE PROCEDURE func_integrate_1D_REAL64_real_array
+        MODULE PROCEDURE func_integrate_1D_REAL128_real_array
+        MODULE PROCEDURE func_integrate_2D_REAL32_real_array
         MODULE PROCEDURE func_integrate_2D_REAL64_real_array
+        MODULE PROCEDURE func_integrate_2D_REAL128_real_array
     END INTERFACE func_integrate_array
     INTERFACE func_interpolate_points
+        MODULE PROCEDURE func_interpolate_REAL32_points
         MODULE PROCEDURE func_interpolate_REAL64_points
+        MODULE PROCEDURE func_interpolate_REAL128_points
     END INTERFACE func_interpolate_points
     INTERFACE func_overall_index
         MODULE PROCEDURE func_overall_index_2loops
@@ -289,9 +295,15 @@ MODULE mod_safe
     CONTAINS
 
     ! Include files ...
+    INCLUDE "mod_safe/func_integrate_array/func_integrate_1D_REAL32_real_array.f90"
     INCLUDE "mod_safe/func_integrate_array/func_integrate_1D_REAL64_real_array.f90"
+    INCLUDE "mod_safe/func_integrate_array/func_integrate_1D_REAL128_real_array.f90"
+    INCLUDE "mod_safe/func_integrate_array/func_integrate_2D_REAL32_real_array.f90"
     INCLUDE "mod_safe/func_integrate_array/func_integrate_2D_REAL64_real_array.f90"
+    INCLUDE "mod_safe/func_integrate_array/func_integrate_2D_REAL128_real_array.f90"
+    INCLUDE "mod_safe/func_interpolate_points/func_interpolate_REAL32_points.f90"
     INCLUDE "mod_safe/func_interpolate_points/func_interpolate_REAL64_points.f90"
+    INCLUDE "mod_safe/func_interpolate_points/func_interpolate_REAL128_points.f90"
     INCLUDE "mod_safe/func_overall_index/func_overall_index_2loops.f90"
     INCLUDE "mod_safe/func_overall_index/func_overall_index_3loops.f90"
     INCLUDE "mod_safe/func_overall_index/func_overall_index_4loops.f90"

@@ -125,3 +125,11 @@ Does the task think that everything worked? T
 Does the task think that everything worked? T
 Does the task think that everything worked? T
 ```
+
+#### test13
+
+[test13](test13.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). The program uses [sub_solve_quadratic_equation](../mod_safe/sub_solve_quadratic_equation). The correct output should be:
+
+```
+Does the task think that everything worked? T
+```

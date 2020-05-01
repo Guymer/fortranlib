@@ -59,7 +59,10 @@ echo "Running test11 ..."
 echo "Running test12 ..."
 ./test12
 
+echo "Running test13 ..."
+./test13
+
 echo "Converting images ..."
-mogrify -format png *.pbm *.pgm *.ppm &> /dev/null
-exiftool -overwrite_original -all= *.png &> /dev/null
-optipng *.png &> /dev/null
+mogrify -format png ./*.pbm ./*.pgm ./*.ppm &> /dev/null
+exiftool -overwrite_original -all= ./*.png &> /dev/null
+optipng ./*.png &> /dev/null

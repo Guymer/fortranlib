@@ -45,7 +45,8 @@ compile:		test01															\
 				test09															\
 				test10															\
 				test11															\
-				test12
+				test12															\
+				test13
 
 # "gmake help"    = print this help
 help:			$(EGREP)														\
@@ -136,6 +137,11 @@ test12.o:		$(FC)															\
 				test12.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test12.F90 -o $@
 
+test13.o:		$(FC)															\
+				$(FTNLIB)/mod_safe.mod											\
+				test13.F90
+	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test13.F90 -o $@
+
 test01:			$(FC)															\
 				$(FTNLIB)/mod_safe.o											\
 				$(FTNLIB)/mod_safe_mpi.o										\
@@ -199,3 +205,8 @@ test12:			$(FC)															\
 				$(FTNLIB)/mod_safe.o											\
 				test12.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test12.o $(FTNLIB)/mod_safe.o -L/usr/lib -o $@
+
+test13:			$(FC)															\
+				$(FTNLIB)/mod_safe.o											\
+				test13.o
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test13.o $(FTNLIB)/mod_safe.o -L/usr/lib -o $@

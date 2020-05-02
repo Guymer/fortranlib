@@ -23,6 +23,23 @@ ifeq ($(DEBUG), true)
 	LANG_OPTS += $(DEBG_OPTS)
 endif
 
+# Check binaries ...
+ifeq ($(CUT),ERROR)
+    $(error The binary "cut" is not installed)
+endif
+ifeq ($(DOXYGEN),ERROR)
+    $(error The binary "doxygen" is not installed)
+endif
+ifeq ($(EGREP),ERROR)
+    $(error The binary "egrep" is not installed)
+endif
+ifeq ($(FC),ERROR)
+    $(error The binary "fc" is not installed)
+endif
+ifeq ($(RM),ERROR)
+    $(error The binary "rm" is not installed)
+endif
+
 # ******************************************************************************
 
 # "gmake [all]"   = "make compile" (default)

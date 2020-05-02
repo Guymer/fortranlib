@@ -1,8 +1,8 @@
 # Find executables ...
 CUT     := $(shell which cut     2> /dev/null || echo "ERROR")
 DOXYGEN := $(shell which doxygen 2> /dev/null || echo "ERROR")
-EGREP   := $(shell which egrep   2> /dev/null || echo "ERROR")
 FC      := $(shell which mpif90  2> /dev/null || echo "ERROR")
+GREP    := $(shell which grep    2> /dev/null || echo "ERROR")
 RM      := $(shell which rm      2> /dev/null || echo "ERROR")
 
 # Set defaults ...
@@ -30,8 +30,8 @@ endif
 ifeq ($(DOXYGEN),ERROR)
     $(error The binary "doxygen" is not installed)
 endif
-ifeq ($(EGREP),ERROR)
-    $(error The binary "egrep" is not installed)
+ifeq ($(GREP),ERROR)
+    $(error The binary "grep" is not installed)
 endif
 ifeq ($(FC),ERROR)
     $(error The binary "fc" is not installed)
@@ -60,10 +60,10 @@ doxygen:		$(DOXYGEN)														\
 	$(MAKE) -C doc/latex
 
 # "gmake help"    = print this help
-help:			$(EGREP)														\
+help:			$(GREP) 														\
 				$(CUT)
 	echo "These are the available options:"
-	$(EGREP) "^# \"gmake " Makefile | $(CUT) -c 2-
+	$(GREP) -E "^# \"gmake " Makefile | $(CUT) -c 2-
 
 # ******************************************************************************
 

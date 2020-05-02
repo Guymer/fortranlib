@@ -40,6 +40,11 @@ ifeq ($(RM),ERROR)
     $(error The binary "rm" is not installed)
 endif
 
+# Check Python modules ...
+# ifneq ($(shell $(PYTHON3) -c "import numpy; print(0)" 2> /dev/null),0)
+    # $(error The Python module "numpy" is not installed)
+# endif
+
 # ******************************************************************************
 
 # "gmake [all]"   = "make compile" (default)

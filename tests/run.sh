@@ -64,5 +64,5 @@ echo "Running test13 ..."
 
 echo "Converting images ..."
 mogrify -format png ./*.pbm ./*.pgm ./*.ppm &> /dev/null
-exiftool -overwrite_original -all= ./*.png &> /dev/null
 optipng ./*.png &> /dev/null
+exiftool -overwrite_original -all= ./*.png &> /dev/null

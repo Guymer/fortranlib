@@ -25,9 +25,11 @@ All reals are declared as `REAL64` (from `ISO_FORTRAN_ENV`), except:
 * [mod_safe](mod_safe.F90) is a module that can safely be used (without any extra dependencies) containing:
     * [const_cm](mod_safe/const_cm.f90) are constants containing colour maps
     * [const_factorial](mod_safe/const_factorial.f90) is a constant containing the answers to `x!`
+    * [func_degrees](mod_safe/func_degrees.f90) is a function to convert from radians to degrees
     * [func_integrate_array](mod_safe/func_integrate_array) is a function to integrate tabulated data
     * [func_interpolate_points](mod_safe/func_interpolate_points) is a function to interpolate between points
     * [func_overall_index](mod_safe/func_overall_index) is a function to return the overall index of an iteration inside many nested `DO` loops
+    * [func_radians](mod_safe/func_radians.f90) is a function to convert from degrees to radians
     * [sub_allocate_array](mod_safe/sub_allocate_array) is a subroutine to allocate an array after checking that the requested size makes sense
     * [sub_load_array_from_BIN](mod_safe/sub_load_array_from_BIN) is a subroutine to populate an array with data from a binary file
     * [sub_save_array_as_BIN](mod_safe/sub_save_array_as_BIN) is a subroutine to save an array's data to a binary file

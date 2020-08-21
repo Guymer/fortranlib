@@ -133,3 +133,16 @@ Does the task think that everything worked? T
 ```
 Does the task think that everything worked? T
 ```
+
+#### test14
+
+[test14](test14.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). The program uses [sub_calc_loc_from_loc_and_bearing_and_dist](../mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist.f90). The correct output should be:
+
+```
+How does Python compare to FORTRAN?
+     Python =   30.820072345;   44.013665464;   67.257390656
+    FORTRAN =   30.820072345;   44.013665464;   67.257390656
+How does Python compare to FORTRAN?
+     Python = -153.457744125;   13.966090288;   87.849219513
+    FORTRAN = -153.457744125;   13.966090288;   87.849219513
+```

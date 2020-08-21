@@ -31,6 +31,7 @@ All reals are declared as `REAL64` (from `ISO_FORTRAN_ENV`), except:
     * [func_overall_index](mod_safe/func_overall_index) is a function to return the overall index of an iteration inside many nested `DO` loops
     * [func_radians](mod_safe/func_radians.f90) is a function to convert from degrees to radians
     * [sub_allocate_array](mod_safe/sub_allocate_array) is a subroutine to allocate an array after checking that the requested size makes sense
+    * [sub_calc_loc_from_loc_and_bearing_and_dist](mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist.f90) is a subroutine which implements Vincenty's formula to calculate the finishing location from a starting location, a bearing and a distance
     * [sub_load_array_from_BIN](mod_safe/sub_load_array_from_BIN) is a subroutine to populate an array with data from a binary file
     * [sub_save_array_as_BIN](mod_safe/sub_save_array_as_BIN) is a subroutine to save an array's data to a binary file
     * [sub_save_array_as_PBM](mod_safe/sub_save_array_as_PBM) is a subroutine to save an array's data to a portable bit-map format (PBM) image file

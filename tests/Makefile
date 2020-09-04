@@ -25,15 +25,15 @@ endif
 
 # ******************************************************************************
 
-# "gmake [all]"   = "make compile" (default)
+# "gmake -r [all]"   = "make compile" (default)
 all:			compile
 
-# "gmake clean"   = removes the compiled code
+# "gmake -r clean"   = removes the compiled code
 clean:			$(RM)
 	$(RM) -f test?? *.mod *.o
 	$(MAKE) -C $(FTNLIB) clean
 
-# "gmake compile" = compiles the code
+# "gmake -r compile" = compiles the code
 compile:		test01															\
 				test02															\
 				test03															\
@@ -49,11 +49,11 @@ compile:		test01															\
 				test13															\
 				test14
 
-# "gmake help"    = print this help
+# "gmake -r help"    = print this help
 help:			$(EGREP)														\
 				$(CUT)
 	echo "These are the available options:"
-	$(EGREP) "^# \"gmake " Makefile | $(CUT) -c 2-
+	$(EGREP) "^# \"gmake -r " Makefile | $(CUT) -c 2-
 
 # ******************************************************************************
 

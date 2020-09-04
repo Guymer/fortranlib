@@ -47,28 +47,28 @@ endif
 
 # ******************************************************************************
 
-# "gmake [all]"   = "make compile" (default)
+# "gmake -r [all]"   = "make compile" (default)
 all:			compile
 
-# "gmake clean"   = removes the compiled code
+# "gmake -r clean"   = removes the compiled code
 clean:			$(RM)
 	$(RM) -f *.mod *.o
 
-# "gmake compile" = compiles the code
+# "gmake -r compile" = compiles the code
 compile:		mod_safe.o														\
 				mod_safe_mpi.o
 
-# "gmake doxygen" = creates the Doxygen documentation
+# "gmake -r doxygen" = creates the Doxygen documentation
 doxygen:		$(DOXYGEN)														\
 				doxygen.cfg
 	$(DOXYGEN) doxygen.cfg
 	$(MAKE) -C doc/latex
 
-# "gmake help"    = print this help
+# "gmake -r help"    = print this help
 help:			$(GREP) 														\
 				$(CUT)
 	echo "These are the available options:"
-	$(GREP) -E "^# \"gmake " Makefile | $(CUT) -c 2-
+	$(GREP) -E "^# \"gmake -r " Makefile | $(CUT) -c 2-
 
 # ******************************************************************************
 

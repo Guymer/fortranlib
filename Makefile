@@ -12,7 +12,7 @@ DEBUG ?= true
 
 # Set compiler flags ...
 DEBG_OPTS := -g -fcheck=all
-LANG_OPTS := -ffree-form -ffree-line-length-none -frecursive -fno-unsafe-math-optimizations -frounding-math -fsignaling-nans
+LANG_OPTS := -ffree-form -ffree-line-length-none -frecursive -fno-unsafe-math-optimizations -frounding-math -fsignaling-nans -fPIC
 WARN_OPTS := -Wall -Wextra -Waliasing -Wcharacter-truncation -Wconversion-extra -Wimplicit-interface -Wimplicit-procedure -Wunderflow -Wtabs
 OPTM_OPTS := -O2
 MACH_OPTS := -march=native -m64
@@ -62,7 +62,7 @@ compile:		mod_safe.o														\
 doxygen:		$(DOXYGEN)														\
 				doxygen.cfg
 	$(DOXYGEN) doxygen.cfg
-	$(MAKE) -C doc/latex
+	$(MAKE) -r -C doc/latex
 
 # "gmake -r help"    = print this help
 help:			$(GREP) 														\

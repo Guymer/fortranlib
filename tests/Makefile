@@ -12,7 +12,7 @@ FTNLIB ?= ..
 
 # Set compiler flags ...
 DEBG_OPTS := -g -fcheck=all
-LANG_OPTS := -ffree-form -ffree-line-length-none -frecursive -fno-unsafe-math-optimizations -frounding-math -fsignaling-nans
+LANG_OPTS := -ffree-form -ffree-line-length-none -frecursive -fno-unsafe-math-optimizations -frounding-math -fsignaling-nans -fPIC
 WARN_OPTS := -Wall -Wextra -Waliasing -Wcharacter-truncation -Wconversion-extra -Wimplicit-interface -Wimplicit-procedure -Wunderflow -Wtabs
 OPTM_OPTS := -O2
 MACH_OPTS := -march=native -m64
@@ -31,7 +31,7 @@ all:			compile
 # "gmake -r clean"   = removes the compiled code
 clean:			$(RM)
 	$(RM) -f test?? *.mod *.o
-	$(MAKE) -C $(FTNLIB) clean
+	$(MAKE) -r -C $(FTNLIB) clean
 
 # "gmake -r compile" = compiles the code
 compile:		test01															\
@@ -72,7 +72,7 @@ help:			$(EGREP)														\
 $(FTNLIB)/%.mod																	\
 $(FTNLIB)/%.o:	$(FTNLIB)/Makefile												\
 				$(FTNLIB)/%.F90
-	$(MAKE) -C $(FTNLIB) DEBUG=$(DEBUG) $*.o
+	$(MAKE) -r -C $(FTNLIB) DEBUG=$(DEBUG) $*.o
 
 test01.o:		$(FC)															\
 				$(FTNLIB)/mod_safe.mod											\

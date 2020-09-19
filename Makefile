@@ -30,11 +30,11 @@ endif
 ifeq ($(DOXYGEN),ERROR)
     $(error The binary "doxygen" is not installed)
 endif
-ifeq ($(GREP),ERROR)
-    $(error The binary "grep" is not installed)
-endif
 ifeq ($(FC),ERROR)
     $(error The binary "fc" is not installed)
+endif
+ifeq ($(GREP),ERROR)
+    $(error The binary "grep" is not installed)
 endif
 ifeq ($(RM),ERROR)
     $(error The binary "rm" is not installed)

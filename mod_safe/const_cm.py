@@ -6,7 +6,7 @@ try:
     matplotlib.use("Agg")                                                       # NOTE: https://matplotlib.org/gallery/user_interfaces/canvasagg.html
     import matplotlib.pyplot
 except:
-    raise Exception("\"matplotlib\" is not installed; run \"pip install --user matplotlib\"")
+    raise Exception("\"matplotlib\" is not installed; run \"pip install --user matplotlib\"") from None
 
 # Open output file ...
 with open("const_cm.f90", "wt") as fobj:

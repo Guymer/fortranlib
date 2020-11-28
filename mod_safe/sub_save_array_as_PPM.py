@@ -21,7 +21,7 @@ for typ in sorted(data.keys()):
     elif typ == "real":
         lim = 1
     else:
-        raise Exception("\"typ\" was not an expected value", typ)
+        raise Exception("\"typ\" was not an expected value", typ) from None
 
     # Loop over kinds ...
     for knd in data[typ]:
@@ -34,7 +34,7 @@ for typ in sorted(data.keys()):
         elif typ == "real":
             ass = "MAX(0_INT64, MIN(255_INT64, NINT(255.0e0_{0:s} * arr(ix, iy), kind = INT64)))".format(knd)
         else:
-            raise Exception("\"typ\" was not an expected value", typ)
+            raise Exception("\"typ\" was not an expected value", typ) from None
 
         # Create source ...
         src = (

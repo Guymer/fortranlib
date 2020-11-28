@@ -15,13 +15,13 @@ def hack(num, sig):
 
     # Check input ...
     if not isinstance(num, int):
-        raise Exception("the first argument needs to be an \"int\"")
+        raise Exception("the first argument needs to be an \"int\"") from None
     if num <= 0:
-        raise Exception("the first argument needs to be positive")
+        raise Exception("the first argument needs to be positive") from None
     if not isinstance(sig, int):
-        raise Exception("the second argument needs to be an \"int\"")
+        raise Exception("the second argument needs to be an \"int\"") from None
     if sig <= 0:
-        raise Exception("the second argument needs to be positive")
+        raise Exception("the second argument needs to be positive") from None
 
     # Import modules ...
     import decimal

@@ -4,8 +4,11 @@
 import math
 
 # Import special modules ...
-import scipy
-import scipy.constants
+try:
+    import scipy
+    import scipy.constants
+except:
+    raise Exception("\"scipy\" is not installed; run \"pip install --user scipy\"") from None
 
 # Open output file ...
 with open("consts.f90", "wt") as fobj:

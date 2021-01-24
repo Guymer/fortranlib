@@ -23,7 +23,7 @@ def hack(num, sig):
     if sig <= 0:
         raise Exception("the second argument needs to be positive") from None
 
-    # Import modules ...
+    # Import standard modules ...
     import decimal
 
     # Convert integer to a decimal and find the exponent when expressed in

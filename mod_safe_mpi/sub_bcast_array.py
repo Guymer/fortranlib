@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Import modules ...
+# Import standard modules ...
 import os
 import string
 

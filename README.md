@@ -1,6 +1,8 @@
 # My FORTRAN Library
 
-Please enjoy using my FORTRAN library. It contains a whole load of random functions and subroutines that I have written over the years. Most of them are overloaded to allow their use by different kinds of arguments. To save repetitive typing you will find some Python scripts dotted around this repository which have been written to create all the different versions of each FORTRAN function or FORTRAN subroutine.
+[![Documentation Status](https://readthedocs.org/projects/fortranlib/badge/?version=latest)](https://fortranlib.readthedocs.io/en/latest/?badge=latest)
+
+Please enjoy using my FORTRAN library. It contains a whole load of random functions and subroutines that I have written over the years. Most of them are overloaded to allow their use by different kinds of arguments. To save repetitive typing you will find some Python scripts dotted around this repository which have been written to create all the different versions of each FORTRAN function or FORTRAN subroutine. The [documentation is on Read The Docs](https://fortranlib.readthedocs.io/).
 
 I find the [GFortran Intrinsic Procedures Reference](https://gcc.gnu.org/onlinedocs/gfortran/Intrinsic-Procedures.html) an excellent resource when determining what _kind_ an argument must be. As an aside, it niggles me that a lot of intrinsic procedures, according to the FORTRAN standard, are "of default kind" (to me, these are the sort of problems that `ISO_FORTRAN_ENV` was supposed to fix).
 

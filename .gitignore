@@ -19,6 +19,8 @@ shellcheck.log
 *.mod
 *.o
 *.tmp
+docs/_autosummary
+docs/_build
 tests/test??
 
 # Ignore Doxygen generated documentation ...

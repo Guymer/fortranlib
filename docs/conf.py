@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = "Guymer's FORTRAN Library"
+project = 'fortranlib'
 copyright = '2021, Thomas Guymer'
 author = 'Thomas Guymer'
 

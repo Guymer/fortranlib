@@ -4,15 +4,8 @@
 #         * https://sphinx-tutorial.readthedocs.io
 #         * https://www.ericholscher.com/blog/2016/jul/1/sphinx-and-rtd-for-writers/
 
-# Import standard modules ...
-import os
-import sys
-
 # Import special modules ...
 import sphinx_rtd_theme
-
-# Expand $PYTHONPATH so that PyGuymer3 can be imported later ...
-sys.path.insert(0, os.path.abspath(".."))
 
 # Set project information ...
 project = "fortranlib"

@@ -39,6 +39,11 @@ Additionally, ``mod_safe`` contains some other constants, such as ``const_c`` an
 Module Reference
 ----------------
 
+.. toctree::
+
+   mod_safe
+   mod_safe_mpi
+
 Indices and tables
 ==================
 

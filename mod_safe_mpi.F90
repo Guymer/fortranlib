@@ -1,4 +1,7 @@
 MODULE mod_safe_MPI
+    ! This module contains a lot of MPI subroutines which are thread-safe and
+    ! which can be safely imported in to any program.
+
     USE ISO_FORTRAN_ENV
     USE MPI
 

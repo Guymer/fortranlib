@@ -1,18 +1,15 @@
-!> @brief This function returns the passed angle converted from radians to degrees.
-!>
-!> @param[in] x The angle in radians.
-!>
-
 ELEMENTAL FUNCTION func_degrees(x) RESULT(ans)
+    ! This function returns the passed angle converted from radians to degrees.
+
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 
     ! Declare input variables ...
-    REAL(kind = REAL64), INTENT(in)                                             :: x
+    REAL(kind = REAL64), INTENT(in)                                             :: x        ! The input angle in radians.
 
     ! Declare output variables ...
-    REAL(kind = REAL64)                                                         :: ans
+    REAL(kind = REAL64)                                                         :: ans      ! The output angle in degrees.
 
     ! Set value ...
     ans = 180.0e0_REAL64 * x / const_pi                                         ! [deg]

@@ -1,9 +1,14 @@
-# NOTE: The following pages are useful guides and references:
+# NOTE: The following pages are useful guides and references for Sphinx:
 #         * https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 #         * https://github.com/ralsina/rst-cheatsheet/blob/master/rst-cheatsheet.rst
 #         * https://sphinx-tutorial.readthedocs.io
 #         * https://www.ericholscher.com/blog/2016/jul/1/sphinx-and-rtd-for-writers/
-#         * https://sphinx-fortran.readthedocs.io/en/latest/
+
+# NOTE: The following pages are useful guides and references for the FORTRAN
+#       extension:
+#         * https://sphinx-fortran.readthedocs.io
+#       To see examples of documentation syntax see:
+#         * https://sphinx-fortran.readthedocs.io/en/latest/user.autodoc.html#optimize-the-process
 
 # Import special modules ...
 import sphinx_rtd_theme

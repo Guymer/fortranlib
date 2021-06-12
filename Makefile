@@ -1,9 +1,8 @@
 # Find executables ...
-CUT     := $(shell which cut     2> /dev/null || echo "ERROR")
-DOXYGEN := $(shell which doxygen 2> /dev/null || echo "ERROR")
-FC      := $(shell which mpif90  2> /dev/null || echo "ERROR")
-GREP    := $(shell which grep    2> /dev/null || echo "ERROR")
-RM      := $(shell which rm      2> /dev/null || echo "ERROR")
+CUT  := $(shell which cut     2> /dev/null || echo "ERROR")
+FC   := $(shell which mpif90  2> /dev/null || echo "ERROR")
+GREP := $(shell which grep    2> /dev/null || echo "ERROR")
+RM   := $(shell which rm      2> /dev/null || echo "ERROR")
 
 # Set defaults ...
 DEBUG ?= false
@@ -26,9 +25,6 @@ endif
 # Check binaries ...
 ifeq ($(CUT),ERROR)
     $(error The binary "cut" is not installed)
-endif
-ifeq ($(DOXYGEN),ERROR)
-    $(error The binary "doxygen" is not installed)
 endif
 ifeq ($(FC),ERROR)
     $(error The binary "fc" is not installed)
@@ -57,12 +53,6 @@ clean:			$(RM)
 # "gmake -r compile" = compiles the code
 compile:		mod_safe.o														\
 				mod_safe_mpi.o
-
-# "gmake -r doxygen" = creates the Doxygen documentation
-doxygen:		$(DOXYGEN)														\
-				doxygen.cfg
-	$(DOXYGEN) doxygen.cfg
-	$(MAKE) -r -C doc/latex
 
 # "gmake -r help"    = print this help
 help:			$(GREP) 														\

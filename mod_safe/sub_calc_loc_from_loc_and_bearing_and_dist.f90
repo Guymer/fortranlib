@@ -112,7 +112,8 @@ PURE SUBROUTINE sub_calc_loc_from_loc_and_bearing_and_dist(lon1_deg, lat1_deg, a
     lat2 = ATAN2(SIN(u1) * COS(sigma) + COS(u1) * SIN(sigma) * COS(alpha1), (1.0e0_REAL64 - f) * HYPOT(sin_alpha, SIN(u1) * SIN(sigma) - COS(u1) * COS(sigma) * COS(alpha1)))
     lambda = ATAN2(SIN(sigma) * SIN(alpha1), COS(u1) * COS(sigma) - SIN(u1) * SIN(sigma) * COS(alpha1))
     l = lambda - (1.0e0_REAL64 - c) * f * sin_alpha * (sigma + c * SIN(sigma) * (COS(two_sigma_m) + c * COS(sigma) * (2.0e0_REAL64 * COS(two_sigma_m) ** 2 - 1.0e0_REAL64)))
-    lon2 = MODULO(l + lon1 + 3.0e0_REAL64 * const_pi, 2.0e0_REAL64 * const_pi) - const_pi   ! NOTE: Normalize to -180 <--> +180 (in radians)
+    lon2 = l + lon1
+    ! lon2 = MODULO(l + lon1 + 3.0e0_REAL64 * const_pi, 2.0e0_REAL64 * const_pi) - const_pi   ! NOTE: Normalize to -180 <--> +180 (in radians)
     alpha2 = ATAN2(sin_alpha, COS(u1) * COS(sigma) * COS(alpha1) - SIN(u1) * SIN(sigma))
     alpha2 = MODULO(alpha2 + 2.0e0_REAL64 * const_pi, 2.0e0_REAL64 * const_pi)              ! NOTE: Normalize to 0 <--> +360 (in radians)
 

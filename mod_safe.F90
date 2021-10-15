@@ -304,7 +304,11 @@ MODULE mod_safe
 
     ! Include files ...
     INCLUDE "mod_safe/func_degrees.f90"
+    INCLUDE "mod_safe/func_mean.f90"
     INCLUDE "mod_safe/func_radians.f90"
+    INCLUDE "mod_safe/func_stddev.f90"
+    INCLUDE "mod_safe/func_stderr.f90"
+    INCLUDE "mod_safe/func_var.f90"
     INCLUDE "mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist.f90"
     INCLUDE "mod_safe/func_integrate_array/func_integrate_1D_REAL32_real_array.f90"
     INCLUDE "mod_safe/func_integrate_array/func_integrate_1D_REAL64_real_array.f90"

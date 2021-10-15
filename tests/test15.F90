@@ -1,7 +1,7 @@
 PROGRAM main
     ! Import modules ...
     USE ISO_FORTRAN_ENV
-    USE mod_safe, ONLY: func_mean, func_var, func_stddev, func_stderr, sub_allocate_array, sub_ttest_ind
+    USE mod_safe, ONLY: func_mean, func_stddev, func_stderr, func_ttest_pdf, func_var, sub_allocate_array, sub_ttest_ind
 
     IMPLICIT NONE
 
@@ -12,6 +12,16 @@ PROGRAM main
     REAL(kind = REAL64)                                                         :: t
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: arr1
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: arr2
+
+    ! Calculate and print summary ...
+    ! NOTE: python3.9 -c "import scipy; import scipy.stats; print(scipy.stats.t.pdf( 0.0, 2.0));"
+    ! NOTE: python3.9 -c "import scipy; import scipy.stats; print(scipy.stats.t.pdf(-2.0, 2.0));"
+    ! NOTE: python3.9 -c "import scipy; import scipy.stats; print(scipy.stats.t.pdf(+2.0, 2.0));"
+    ! NOTE: python3.9 -c "import scipy; import scipy.stats; print(scipy.stats.t.pdf(+5.0, 5.0));"
+    WRITE(fmt = '("How does Python compare to FORTRAN?")', unit = OUTPUT_UNIT)
+    WRITE(fmt = '("     Python = ", f14.9, "; ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) 0.3535533905932738e0_REAL64, 0.06804138174397717e0_REAL64, 0.06804138174397717e0_REAL64, 0.0017574383788078445e0_REAL64
+    WRITE(fmt = '("    FORTRAN = ", f14.9, "; ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) func_ttest_pdf( 0.0e0_REAL64, 2.0e0_REAL64), func_ttest_pdf(-2.0e0_REAL64, 2.0e0_REAL64), func_ttest_pdf(+2.0e0_REAL64, 2.0e0_REAL64), func_ttest_pdf(+5.0e0_REAL64, 5.0e0_REAL64)
+    FLUSH(unit = OUTPUT_UNIT)
 
     ! Set sizes of arrays ...
     n1 = 50_INT64

@@ -1,7 +1,7 @@
 PROGRAM main
     ! Import modules ...
     USE ISO_FORTRAN_ENV
-    USE mod_safe, ONLY: func_hypergeometric, func_mean, func_stddev, func_stderr, func_ttest_pdf, func_var, sub_allocate_array, sub_ttest_ind
+    USE mod_safe, ONLY: func_hypergeometric, func_mean, func_stddev, func_stderr, func_ttest_cdf, func_ttest_pdf, func_var, sub_allocate_array, sub_ttest_ind
 
     IMPLICIT NONE
 
@@ -34,6 +34,18 @@ PROGRAM main
     WRITE(fmt = '("How does Python compare to FORTRAN?")', unit = OUTPUT_UNIT)
     WRITE(fmt = '("     Python = ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) 1.3862943611198901e0_REAL64, 1.098612288668109e0_REAL64, 0.9272952180016117e0_REAL64
     WRITE(fmt = '("    FORTRAN = ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) func_hypergeometric(1.0e0_REAL64, 1.0e0_REAL64, 2.0e0_REAL64, +0.5e0_REAL64), func_hypergeometric(0.5e0_REAL64, 1.0e0_REAL64, 1.5e0_REAL64, +0.25e0_REAL64), func_hypergeometric(0.5e0_REAL64, 1.0e0_REAL64, 1.5e0_REAL64, -0.25e0_REAL64)
+    FLUSH(unit = OUTPUT_UNIT)
+
+    ! **************************************************************************
+
+    ! Calculate and print summary ...
+    ! NOTE: python3.9 -c "import scipy; import scipy.stats; print(scipy.stats.t.cdf( 0.0, 2.0));"
+    ! NOTE: python3.9 -c "import scipy; import scipy.stats; print(scipy.stats.t.cdf(-2.0, 2.0));"
+    ! NOTE: python3.9 -c "import scipy; import scipy.stats; print(scipy.stats.t.cdf(+2.0, 2.0));"
+    ! NOTE: python3.9 -c "import scipy; import scipy.stats; print(scipy.stats.t.cdf(+5.0, 5.0));"
+    WRITE(fmt = '("How does Python compare to FORTRAN?")', unit = OUTPUT_UNIT)
+    WRITE(fmt = '("     Python = ", f14.9, "; ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) 0.5e0_REAL64, 0.09175170953613696e0_REAL64, 0.908248290463863e0_REAL64, 0.9979476420099733e0_REAL64
+    WRITE(fmt = '("    FORTRAN = ", f14.9, "; ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) func_ttest_cdf( 0.0e0_REAL64, 2.0e0_REAL64), func_ttest_cdf(-2.0e0_REAL64, 2.0e0_REAL64), func_ttest_cdf(+2.0e0_REAL64, 2.0e0_REAL64), func_ttest_cdf(+5.0e0_REAL64, 5.0e0_REAL64)
     FLUSH(unit = OUTPUT_UNIT)
 
     ! **************************************************************************

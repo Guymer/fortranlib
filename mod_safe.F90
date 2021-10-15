@@ -304,6 +304,7 @@ MODULE mod_safe
 
     ! Include files ...
     INCLUDE "mod_safe/func_degrees.f90"
+    INCLUDE "mod_safe/func_factorial.f90"
     INCLUDE "mod_safe/func_mean.f90"
     INCLUDE "mod_safe/func_radians.f90"
     INCLUDE "mod_safe/func_stddev.f90"

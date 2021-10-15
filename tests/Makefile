@@ -67,7 +67,8 @@ compile:		test01															\
 				test11															\
 				test12															\
 				test13															\
-				test14
+				test14															\
+				test15
 
 # "gmake -r help"    = print this help
 help:			$(GREP)															\

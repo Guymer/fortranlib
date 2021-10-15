@@ -29,11 +29,13 @@ All reals are declared as `REAL64` (from `ISO_FORTRAN_ENV`), except:
     * [const_factorial](mod_safe/const_factorial.f90) is a constant containing the answers to `x!`
     * [func_degrees](mod_safe/func_degrees.f90) is a function to convert from radians to degrees
     * [func_factorial](mod_safe/func_factorial.f90) is a function to calculate `x!` (only use this function if *either* `x` is not an integer *or* the `x` that you want is not in [const_factorial](mod_safe/const_factorial.f90))
+    * [func_falling_factorial](mod_safe/func_falling_factorial.f90) is a function to calculate the falling factorial
     * [func_integrate_array](mod_safe/func_integrate_array) is a function to integrate tabulated data
     * [func_interpolate_points](mod_safe/func_interpolate_points) is a function to interpolate between points
     * [func_mean](mod_safe/func_mean.f90) is a function to calculate the mean of an array
     * [func_overall_index](mod_safe/func_overall_index) is a function to return the overall index of an iteration inside many nested `DO` loops
     * [func_radians](mod_safe/func_radians.f90) is a function to convert from degrees to radians
+    * [func_rising_factorial](mod_safe/func_rising_factorial.f90) is a function to calculate the rising factorial
     * [func_stddev](mod_safe/func_stddev.f90) is a function to calculate the standard deviation of an array
     * [func_stderr](mod_safe/func_stderr.f90) is a function to calculate the standard error (of the mean) of an array
     * [func_var](mod_safe/func_var.f90) is a function to calculate the variance of an array

@@ -39,6 +39,8 @@ All reals are declared as `REAL64` (from `ISO_FORTRAN_ENV`), except:
     * [func_rising_factorial](mod_safe/func_rising_factorial.f90) is a function to calculate the rising factorial
     * [func_stddev](mod_safe/func_stddev.f90) is a function to calculate the standard deviation of an array
     * [func_stderr](mod_safe/func_stderr.f90) is a function to calculate the standard error (of the mean) of an array
+    * [func_ttest_cdf](mod_safe/func_ttest_cdf.f90) is a function to return the CDF of Student's t-distribution
+    * [func_ttest_pdf](mod_safe/func_ttest_pdf.f90) is a function to return the PDF of Student's t-distribution
     * [func_var](mod_safe/func_var.f90) is a function to calculate the variance of an array
     * [sub_allocate_array](mod_safe/sub_allocate_array) is a subroutine to allocate an array after checking that the requested size makes sense
     * [sub_calc_loc_from_loc_and_bearing_and_dist](mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist.f90) is a subroutine which implements Vincenty's formula to calculate the finishing location from a starting location, a bearing and a distance
@@ -48,6 +50,7 @@ All reals are declared as `REAL64` (from `ISO_FORTRAN_ENV`), except:
     * [sub_save_array_as_PGM](mod_safe/sub_save_array_as_PGM) is a subroutine to save an array's data to a portable grey-map format (PGM) image file
     * [sub_save_array_as_PPM](mod_safe/sub_save_array_as_PPM) is a subroutine to save an array's data to a portable pix-map format (PPM) image file
     * [sub_solve_quadratic_equation](mod_safe/sub_solve_quadratic_equation) is a subroutine to solve a quadratic equation of the form "ax2 + bx + c = 0"
+    * [sub_ttest_ind](mod_safe/sub_ttest_ind.f90) is a subroutine to test two sets of numbers using Student's t-test
 * [mod_safe_mpi](mod_safe_mpi.F90) is a module that can safely be used (without any extra dependencies) *by a MPI compiler* containing:
     * [sub_allreduce_array](mod_safe_mpi/sub_allreduce_array) is a subroutine to reduce arrays that are larger than MPI's in-built limits
     * [sub_bcast_array](mod_safe_mpi/sub_bcast_array) is a subroutine to broadcast arrays that are larger than MPI's in-built limits

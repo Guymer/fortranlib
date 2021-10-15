@@ -21,7 +21,7 @@ PROGRAM main
     dist = 1.0e6_REAL64                                                         ! [m]
 
     ! Solve and print summary ...
-    ! NOTE: python3.7 -c "import pyguymer3; print(pyguymer3.calc_loc_from_loc_and_bearing_and_dist(20.0, 40.0, 60.0, 1000000.0));"
+    ! NOTE: python3.9 -c "import pyguymer3; print(pyguymer3.calc_loc_from_loc_and_bearing_and_dist(20.0, 40.0, 60.0, 1000000.0));"
     CALL sub_calc_loc_from_loc_and_bearing_and_dist(lon1, lat1, bear1, dist, lon2, lat2, bear2)
     WRITE(fmt = '("How does Python compare to FORTRAN?")', unit = OUTPUT_UNIT)
     WRITE(fmt = '("     Python = ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) 30.82007234507776e0_REAL64, 44.01366546403752e0_REAL64, 67.2573906563704e0_REAL64
@@ -35,7 +35,7 @@ PROGRAM main
     dist = 4.0e6_REAL64                                                         ! [m]
 
     ! Solve and print summary ...
-    ! NOTE: python3.7 -c "import pyguymer3; print(pyguymer3.calc_loc_from_loc_and_bearing_and_dist(170.0, 10.0, 80.0, 4000000.0));"
+    ! NOTE: python3.9 -c "import pyguymer3; print(pyguymer3.calc_loc_from_loc_and_bearing_and_dist(170.0, 10.0, 80.0, 4000000.0));"
     CALL sub_calc_loc_from_loc_and_bearing_and_dist(lon1, lat1, bear1, dist, lon2, lat2, bear2)
     WRITE(fmt = '("How does Python compare to FORTRAN?")', unit = OUTPUT_UNIT)
     WRITE(fmt = '("     Python = ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) -153.45774412535758e0_REAL64, 13.966090287654401e0_REAL64, 87.84921951322094e0_REAL64

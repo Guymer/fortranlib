@@ -146,3 +146,7 @@ How does Python compare to FORTRAN?
      Python = -153.457744125;   13.966090288;   87.849219513
     FORTRAN = -153.457744125;   13.966090288;   87.849219513
 ```
+
+#### test15
+
+[test15](test15.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). The program uses [func_mean](../mod_safe/func_mean.f90), [func_var](../mod_safe/func_var.f90), [func_stddev](../mod_safe/func_stddev.f90), [func_stderr](../mod_safe/func_stderr.f90) and [sub_ttest_ind](../mod_safe/sub_ttest_ind.f90).

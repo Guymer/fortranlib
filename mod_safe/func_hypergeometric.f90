@@ -2,6 +2,7 @@ ELEMENTAL FUNCTION func_hypergeometric(a, b, c, z) RESULT(ans)
     ! NOTE: See https://en.wikipedia.org/wiki/Hypergeometric_function
     ! NOTE: See https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.hyp2f1.html
 
+    USE IEEE_ARITHMETIC
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE
@@ -30,8 +31,11 @@ ELEMENTAL FUNCTION func_hypergeometric(a, b, c, z) RESULT(ans)
         ! Create short-hand ...
         n = REAL(i, kind = REAL64)
 
-        ! Calculate increment ...
+        ! Calculate increment and stop looping if it is not finite ...
         eps = (func_rising_factorial(a, n) * func_rising_factorial(b, n) * (z ** i)) / (func_rising_factorial(c, n) * func_factorial(n))
+        IF(.NOT. IEEE_IS_FINITE(eps))THEN
+            EXIT
+        END IF
 
         ! Increment answer ...
         ans = ans + eps

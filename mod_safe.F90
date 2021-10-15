@@ -306,6 +306,7 @@ MODULE mod_safe
     INCLUDE "mod_safe/func_degrees.f90"
     INCLUDE "mod_safe/func_factorial.f90"
     INCLUDE "mod_safe/func_falling_factorial.f90"
+    INCLUDE "mod_safe/func_hypergeometric.f90"
     INCLUDE "mod_safe/func_mean.f90"
     INCLUDE "mod_safe/func_radians.f90"
     INCLUDE "mod_safe/func_rising_factorial.f90"

@@ -30,6 +30,7 @@ All reals are declared as `REAL64` (from `ISO_FORTRAN_ENV`), except:
     * [func_degrees](mod_safe/func_degrees.f90) is a function to convert from radians to degrees
     * [func_factorial](mod_safe/func_factorial.f90) is a function to calculate `x!` (only use this function if *either* `x` is not an integer *or* the `x` that you want is not in [const_factorial](mod_safe/const_factorial.f90))
     * [func_falling_factorial](mod_safe/func_falling_factorial.f90) is a function to calculate the falling factorial
+    * [func_hypergeometric](mod_safe/func_hypergeometric.f90) is a function to calculate the hypergeometric function "2F1(a, b; c; z)"
     * [func_integrate_array](mod_safe/func_integrate_array) is a function to integrate tabulated data
     * [func_interpolate_points](mod_safe/func_interpolate_points) is a function to interpolate between points
     * [func_mean](mod_safe/func_mean.f90) is a function to calculate the mean of an array

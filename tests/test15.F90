@@ -39,16 +39,19 @@ PROGRAM main
     ! Print summary ...
     WRITE(fmt = '("mean = ", f5.3, ", var = ", f5.3, ", std-dev = ", f5.3, ", std-err = ", f5.3)', unit = OUTPUT_UNIT) func_mean(arr1), func_var(arr1), func_stddev(arr1), func_stderr(arr1)
     WRITE(fmt = '("mean = ", f5.3, ", var = ", f5.3, ", std-dev = ", f5.3, ", std-err = ", f5.3)', unit = OUTPUT_UNIT) func_mean(arr2), func_var(arr2), func_stddev(arr2), func_stderr(arr2)
+    FLUSH(unit = OUTPUT_UNIT)
 
     ! Calculate the probability that both sets are sampled from Normal
     ! distributions with the same mean and similar variances ...
     CALL sub_ttest_ind(arr1, arr2, .TRUE._INT8, t, p)
     WRITE(fmt = '("TRUE : t = ", f6.3, ", p = ", f5.3)', unit = OUTPUT_UNIT) t, p
+    FLUSH(unit = OUTPUT_UNIT)
 
     ! Calculate the probability that both sets are sampled from Normal
     ! distributions with the same mean and dissimilar variances ...
     CALL sub_ttest_ind(arr1, arr2, .FALSE._INT8, t, p)
     WRITE(fmt = '("FALSE: t = ", f6.3, ", p = ", f5.3)', unit = OUTPUT_UNIT) t, p
+    FLUSH(unit = OUTPUT_UNIT)
 
     ! Clean up ...
     DEALLOCATE(arr1)

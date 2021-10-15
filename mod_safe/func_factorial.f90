@@ -1,18 +1,14 @@
-RECURSIVE FUNCTION func_factorial(x) result(ans)
+ELEMENTAL FUNCTION func_factorial(x) result(ans)
+    ! NOTE: See https://en.wikipedia.org/wiki/Factorial
+
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT64)                                                       :: ans
-    INTEGER(kind = INT64), INTENT(in)                                           :: x
+    REAL(kind = REAL64)                                                         :: ans
+    REAL(kind = REAL64), INTENT(in)                                             :: x
 
-    ! Check if it is a special case ...
-    IF(x == 0_INT64)THEN
-        ! Set value ...
-        ans = 1_INT64
-    ELSE
-        ! Set value ...
-        ans = x * func_factorial(x - 1_INT64)
-    END IF
+    ! Set value ...
+    ans = GAMMA(x + 1.0e0_REAL64)
 END FUNCTION func_factorial

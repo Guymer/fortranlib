@@ -312,6 +312,7 @@ MODULE mod_safe
     INCLUDE "mod_safe/func_rising_factorial.f90"
     INCLUDE "mod_safe/func_stddev.f90"
     INCLUDE "mod_safe/func_stderr.f90"
+    INCLUDE "mod_safe/func_ttest_cdf.f90"
     INCLUDE "mod_safe/func_ttest_pdf.f90"
     INCLUDE "mod_safe/func_var.f90"
     INCLUDE "mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist.f90"

@@ -2,7 +2,6 @@ ELEMENTAL FUNCTION func_hypergeometric(a, b, c, z) RESULT(ans)
     ! NOTE: See https://en.wikipedia.org/wiki/Hypergeometric_function
     ! NOTE: See https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.hyp2f1.html
 
-    USE IEEE_ARITHMETIC
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE
@@ -23,26 +22,30 @@ ELEMENTAL FUNCTION func_hypergeometric(a, b, c, z) RESULT(ans)
     REAL(kind = REAL64)                                                         :: eps
     REAL(kind = REAL64)                                                         :: n
 
-    ! Initialize answer ...
-    ans = 1.0e0_REAL64
+    ! Check that this value of z means that the answer is obtainable via the
+    ! power series ...
+    IF(ABS(z) .LT. 1.0e0_REAL64)THEN
+        ! Initialize answer ...
+        ans = 1.0e0_REAL64
 
-    ! Loop over iterations ...
-    DO i = 1_INT64, imax
-        ! Create short-hand ...
-        n = REAL(i, kind = REAL64)
+        ! Loop over iterations ...
+        DO i = 1_INT64, imax
+            ! Create short-hand ...
+            n = REAL(i, kind = REAL64)
 
-        ! Calculate increment and stop looping if it is not finite ...
-        eps = (func_rising_factorial(a, n) * func_rising_factorial(b, n) * (z ** i)) / (func_rising_factorial(c, n) * func_factorial(n))
-        IF(.NOT. IEEE_IS_FINITE(eps))THEN
-            EXIT
-        END IF
+            ! Calculate increment ...
+            eps = (func_rising_factorial(a, n) * func_rising_factorial(b, n) * (z ** i)) / (func_rising_factorial(c, n) * func_factorial(n))
 
-        ! Increment answer ...
-        ans = ans + eps
+            ! Increment answer ...
+            ans = ans + eps
 
-        ! Stop looping if the answer has converged ...
-        IF(ABS(eps / ans) .LE. epsmin)THEN
-            EXIT
-        END IF
-    END DO
+            ! Stop looping if the answer has converged ...
+            IF(ABS(eps / ans) .LE. epsmin)THEN
+                EXIT
+            END IF
+        END DO
+    ELSE
+        ! Set value ...
+        ans = 0.0e0_REAL64
+    END IF
 END FUNCTION func_hypergeometric

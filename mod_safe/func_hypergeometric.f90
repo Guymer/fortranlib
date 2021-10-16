@@ -24,7 +24,7 @@ ELEMENTAL FUNCTION func_hypergeometric(a, b, c, z) RESULT(ans)
 
     ! Check that this value of z means that the answer is obtainable via the
     ! power series ...
-    IF(ABS(z) .LT. 1.0e0_REAL64)THEN
+    IF(ABS(z) < 1.0e0_REAL64)THEN
         ! Initialize answer ...
         ans = 1.0e0_REAL64
 
@@ -40,7 +40,7 @@ ELEMENTAL FUNCTION func_hypergeometric(a, b, c, z) RESULT(ans)
             ans = ans + eps
 
             ! Stop looping if the answer has converged ...
-            IF(ABS(eps / ans) .LE. epsmin)THEN
+            IF(ABS(eps / ans) <= epsmin)THEN
                 EXIT
             END IF
         END DO

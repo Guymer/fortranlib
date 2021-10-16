@@ -21,7 +21,7 @@ ELEMENTAL FUNCTION func_ttest_cdf(x, dof) RESULT(ans)
     REAL(kind = REAL64)                                                         :: z
 
     ! Check that this value of dof means that the distribution exists ...
-    IF(dof .GT. 0.0e0_REAL64)THEN
+    IF(dof > 0.0e0_REAL64)THEN
         ! Create short-hands ...
         dofp1 = dof + 1.0e0_REAL64
         a = 0.5e0_REAL64

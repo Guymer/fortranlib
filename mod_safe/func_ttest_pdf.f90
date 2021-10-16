@@ -14,7 +14,7 @@ ELEMENTAL FUNCTION func_ttest_pdf(x, dof) RESULT(ans)
     REAL(kind = REAL64)                                                         :: dofp1
 
     ! Check that this value of dof means that the distribution exists ...
-    IF(dof .GT. 0.0e0_REAL64)THEN
+    IF(dof > 0.0e0_REAL64)THEN
         ! Create short-hand ...
         dofp1 = dof + 1.0e0_REAL64
 

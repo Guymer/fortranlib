@@ -149,18 +149,21 @@ How does Python compare to FORTRAN?
 
 #### test15
 
-[test15](test15.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). The program uses [func_hypergeometric](../mod_safe/func_hypergeometric.f90), [func_mean](../mod_safe/func_mean.f90), [func_stddev](../mod_safe/func_stddev.f90), [func_stderr](../mod_safe/func_stderr.f90), [func_ttest_pdf](../mod_safe/func_ttest_pdf.f90), [func_var](../mod_safe/func_var.f90) and [sub_ttest_ind](../mod_safe/sub_ttest_ind.f90). The correct output should be similar to (give or take random number generators):
+[test15](test15.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). The program uses [func_hypergeometric](../mod_safe/func_hypergeometric.f90), [func_mean](../mod_safe/func_mean.f90), [func_rising_factorial](../mod_safe/func_rising_factorial.f90), [func_stddev](../mod_safe/func_stddev.f90), [func_stderr](../mod_safe/func_stderr.f90), [func_ttest_cdf](../mod_safe/func_ttest_cdf.f90), [func_ttest_pdf](../mod_safe/func_ttest_pdf.f90), [func_var](../mod_safe/func_var.f90) and [sub_ttest_ind](../mod_safe/sub_ttest_ind.f90). The correct output should be similar to (give or take random number generators):
 
 ```
-How does Python compare to FORTRAN?
+How does Python compare to FORTRAN? (func_rising_factorial)
+     Python =    1.000000000;  120.000000000;   20.529581934
+    FORTRAN =    1.000000000;  120.000000000;   20.529581934
+How does Python compare to FORTRAN? (func_hypergeometric)
+     Python =    1.386294361;    1.098612289;    0.927295218;    0.577350269
+    FORTRAN =    1.386294361;    1.098612289;    0.927295218;    0.000000000
+How does Python compare to FORTRAN? (func_ttest_pdf)
      Python =    0.353553391;    0.068041382;    0.068041382;    0.001757438
     FORTRAN =    0.353553391;    0.068041382;    0.068041382;    0.001757438
-How does Python compare to FORTRAN?
-     Python =    1.386294361;    1.098612289;    0.927295218
-    FORTRAN =    1.386294361;    1.098612289;    0.927295218
-How does Python compare to FORTRAN?
+How does Python compare to FORTRAN? (func_ttest_cdf)
      Python =    0.500000000;    0.091751710;    0.908248290;    0.997947642
-    FORTRAN =    0.500000000; **************; **************; **************
+    FORTRAN =    0.500000000;    0.500000000;    0.500000000;    0.500000000
 mean = 0.562, var = 0.078, std-dev = 0.279, std-err = 0.040
 mean = 0.443, var = 0.073, std-dev = 0.270, std-err = 0.055
 TRUE : t =  1.740, p = 0.500

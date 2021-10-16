@@ -11,11 +11,19 @@ ELEMENTAL FUNCTION func_ttest_cdf(x, dof) RESULT(ans)
     REAL(kind = REAL64), INTENT(in)                                             :: x
 
     ! Declare internal variables ...
+    REAL(kind = REAL64)                                                         :: a
+    REAL(kind = REAL64)                                                         :: b
+    REAL(kind = REAL64)                                                         :: c
     REAL(kind = REAL64)                                                         :: dofp1
+    REAL(kind = REAL64)                                                         :: z
 
-    ! Create short-hand ...
+    ! Create short-hands ...
     dofp1 = dof + 1.0e0_REAL64
+    a = 0.5e0_REAL64
+    b = dofp1 / 2.0e0_REAL64
+    c = 1.5e0_REAL64
+    z = - (x ** 2 / dof)
 
-    ! Calculate PDF ...
-    ans = 0.5e0_REAL64 + x * GAMMA(dofp1 / 2.0e0_REAL64) * func_hypergeometric(0.5e0_REAL64, dofp1 / 2.0e0_REAL64, 1.5e0_REAL64, - (x ** 2 / dof)) / (SQRT(dof * const_pi) * GAMMA(dof / 2.0e0_REAL64))
+    ! Calculate CDF ...
+    ans = 0.5e0_REAL64 + x * GAMMA(dofp1 / 2.0e0_REAL64) * func_hypergeometric(a, b, c, z) / (SQRT(dof * const_pi) * GAMMA(dof / 2.0e0_REAL64))
 END FUNCTION func_ttest_cdf

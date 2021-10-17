@@ -6,8 +6,6 @@ PROGRAM main
     IMPLICIT NONE
 
     ! Declare variables ...
-    INTEGER(kind = REAL64)                                                      :: n1
-    INTEGER(kind = REAL64)                                                      :: n2
     REAL(kind = REAL64)                                                         :: p
     REAL(kind = REAL64)                                                         :: t
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: arr1
@@ -62,34 +60,42 @@ PROGRAM main
 
     ! **************************************************************************
 
-    ! Set sizes of arrays ...
-    n1 = 50_INT64
-    n2 = 25_INT64
+    ! NOTE: See https://en.wikipedia.org/wiki/Student's_t-test
+    !         * "Worked examples" section
 
-    ! Allocate arrays ...
-    CALL sub_allocate_array(arr1, "arr1", n1, .FALSE._INT8)
-    CALL sub_allocate_array(arr2, "arr2", n2, .FALSE._INT8)
+    ! Allocate and populate array ...
+    CALL sub_allocate_array(arr1, "arr1", 6_INT64, .FALSE._INT8)
+    arr1(1) = 30.02e0_REAL64
+    arr1(2) = 29.99e0_REAL64
+    arr1(3) = 30.11e0_REAL64
+    arr1(4) = 29.97e0_REAL64
+    arr1(5) = 30.01e0_REAL64
+    arr1(6) = 29.99e0_REAL64
 
-    ! Populate arrays ...
-    ! NOTE: Arrays are uniform from 0 to 1.
-    CALL RANDOM_NUMBER(arr1)
-    CALL RANDOM_NUMBER(arr2)
+    ! Allocate and populate array ...
+    CALL sub_allocate_array(arr2, "arr2", 6_INT64, .FALSE._INT8)
+    arr2(1) = 29.89e0_REAL64
+    arr2(2) = 29.93e0_REAL64
+    arr2(3) = 29.72e0_REAL64
+    arr2(4) = 29.98e0_REAL64
+    arr2(5) = 30.02e0_REAL64
+    arr2(6) = 29.98e0_REAL64
 
     ! Print summary ...
-    WRITE(fmt = '("mean = ", f5.3, ", var = ", f5.3, ", std-dev = ", f5.3, ", std-err = ", f5.3)', unit = OUTPUT_UNIT) func_mean(arr1), func_var(arr1), func_stddev(arr1), func_stderr(arr1)
-    WRITE(fmt = '("mean = ", f5.3, ", var = ", f5.3, ", std-dev = ", f5.3, ", std-err = ", f5.3)', unit = OUTPUT_UNIT) func_mean(arr2), func_var(arr2), func_stddev(arr2), func_stderr(arr2)
+    WRITE(fmt = '("mean = ", f5.2, ", var = ", f5.3, ", std-dev = ", f5.3, ", std-err = ", f5.3)', unit = OUTPUT_UNIT) func_mean(arr1), func_var(arr1), func_stddev(arr1), func_stderr(arr1)
+    WRITE(fmt = '("mean = ", f5.2, ", var = ", f5.3, ", std-dev = ", f5.3, ", std-err = ", f5.3)', unit = OUTPUT_UNIT) func_mean(arr2), func_var(arr2), func_stddev(arr2), func_stderr(arr2)
     FLUSH(unit = OUTPUT_UNIT)
 
     ! Calculate the probability that both sets are sampled from Normal
     ! distributions with the same mean and similar variances ...
     CALL sub_ttest_ind(arr1, arr2, .TRUE._INT8, t, p)
-    WRITE(fmt = '("TRUE : t = ", f6.3, ", p = ", f5.3)', unit = OUTPUT_UNIT) t, p
+    WRITE(fmt = '("TRUE : t = ", f5.3, ", p = ", f7.5)', unit = OUTPUT_UNIT) t, p
     FLUSH(unit = OUTPUT_UNIT)
 
     ! Calculate the probability that both sets are sampled from Normal
     ! distributions with the same mean and dissimilar variances ...
     CALL sub_ttest_ind(arr1, arr2, .FALSE._INT8, t, p)
-    WRITE(fmt = '("FALSE: t = ", f6.3, ", p = ", f5.3)', unit = OUTPUT_UNIT) t, p
+    WRITE(fmt = '("FALSE: t = ", f5.3, ", p = ", f7.5)', unit = OUTPUT_UNIT) t, p
     FLUSH(unit = OUTPUT_UNIT)
 
     ! Clean up ...

@@ -58,7 +58,5 @@ PURE SUBROUTINE sub_ttest_ind(arr1, arr2, similarVar, t, p)
     END IF
 
     ! Calculate probability ...
-    ! HACK: This is not implemented yet. First I need to implement a subroutine
-    !       that returns the CDF for Student's t-distribution.
-    p = 0.5e0_REAL64
+    p = 2.0e0_REAL64 * (1.0e0_REAL64 - func_t_CDF(ABS(t), dof))
 END SUBROUTINE sub_ttest_ind

@@ -164,8 +164,8 @@ How does Python compare to FORTRAN? (func_t_PDF)
 How does Python compare to FORTRAN? (func_t_CDF)
      Python =    0.500000000;    0.091751710;    0.908248290;    0.997947642
     FORTRAN =    0.500000000;    0.500000000;    0.500000000;    0.500000000
-mean = 0.562, var = 0.078, std-dev = 0.279, std-err = 0.040
-mean = 0.443, var = 0.073, std-dev = 0.270, std-err = 0.055
-TRUE : t =  1.740, p = 0.500
-FALSE: t =  1.754, p = 0.500
+mean = 0.472, var = 0.071, std-dev = 0.267, std-err = 0.038
+mean = 0.459, var = 0.055, std-dev = 0.235, std-err = 0.048
+TRUE : t =  0.205, p = 0.839
+FALSE: t =  0.213, p = 0.832
 ```

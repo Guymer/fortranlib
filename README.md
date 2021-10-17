@@ -34,6 +34,8 @@ All reals are declared as `REAL64` (from `ISO_FORTRAN_ENV`), except:
     * [func_integrate_array](mod_safe/func_integrate_array) is a function to integrate tabulated data
     * [func_interpolate_points](mod_safe/func_interpolate_points) is a function to interpolate between points
     * [func_mean](mod_safe/func_mean.f90) is a function to calculate the mean of an array
+    * [func_normal_CDF](mod_safe/func_normal_CDF.f90) is a function to return the CDF of the Normal distribution
+    * [func_normal_PDF](mod_safe/func_normal_PDF.f90) is a function to return the PDF of the Normal distribution
     * [func_overall_index](mod_safe/func_overall_index) is a function to return the overall index of an iteration inside many nested `DO` loops
     * [func_radians](mod_safe/func_radians.f90) is a function to convert from degrees to radians
     * [func_rising_factorial](mod_safe/func_rising_factorial.f90) is a function to calculate the rising factorial

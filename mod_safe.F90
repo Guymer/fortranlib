@@ -308,6 +308,8 @@ MODULE mod_safe
     INCLUDE "mod_safe/func_falling_factorial.f90"
     INCLUDE "mod_safe/func_hypergeometric.f90"
     INCLUDE "mod_safe/func_mean.f90"
+    INCLUDE "mod_safe/func_normal_CDF.f90"
+    INCLUDE "mod_safe/func_normal_PDF.f90"
     INCLUDE "mod_safe/func_radians.f90"
     INCLUDE "mod_safe/func_rising_factorial.f90"
     INCLUDE "mod_safe/func_stddev.f90"

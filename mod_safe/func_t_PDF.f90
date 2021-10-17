@@ -1,4 +1,4 @@
-ELEMENTAL FUNCTION func_ttest_pdf(x, dof) RESULT(ans)
+ELEMENTAL FUNCTION func_t_PDF(x, dof) RESULT(ans)
     ! NOTE: See https://en.wikipedia.org/wiki/Student's_t-distribution
 
     USE ISO_FORTRAN_ENV
@@ -24,4 +24,4 @@ ELEMENTAL FUNCTION func_ttest_pdf(x, dof) RESULT(ans)
         ! Set value ...
         ans = 0.0e0_REAL64
     END IF
-END FUNCTION func_ttest_pdf
+END FUNCTION func_t_PDF

@@ -1,7 +1,7 @@
 PROGRAM main
     ! Import modules ...
     USE ISO_FORTRAN_ENV
-    USE mod_safe, ONLY: func_hypergeometric, func_mean, func_rising_factorial, func_stddev, func_stderr, func_ttest_cdf, func_ttest_pdf, func_var, sub_allocate_array, sub_ttest_ind
+    USE mod_safe, ONLY: func_hypergeometric, func_mean, func_rising_factorial, func_stddev, func_stderr, func_t_CDF, func_t_PDF, func_var, sub_allocate_array, sub_ttest_ind
 
     IMPLICIT NONE
 
@@ -43,9 +43,9 @@ PROGRAM main
     ! NOTE: python3.9 -c "import scipy; import scipy.stats; print(scipy.stats.t.pdf(-2.0, 2.0));"
     ! NOTE: python3.9 -c "import scipy; import scipy.stats; print(scipy.stats.t.pdf(+2.0, 2.0));"
     ! NOTE: python3.9 -c "import scipy; import scipy.stats; print(scipy.stats.t.pdf(+5.0, 5.0));"
-    WRITE(fmt = '("How does Python compare to FORTRAN? (func_ttest_pdf)")', unit = OUTPUT_UNIT)
+    WRITE(fmt = '("How does Python compare to FORTRAN? (func_t_PDF)")', unit = OUTPUT_UNIT)
     WRITE(fmt = '("     Python = ", f14.9, "; ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) 0.3535533905932738e0_REAL64, 0.06804138174397717e0_REAL64, 0.06804138174397717e0_REAL64, 0.0017574383788078445e0_REAL64
-    WRITE(fmt = '("    FORTRAN = ", f14.9, "; ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) func_ttest_pdf( 0.0e0_REAL64, 2.0e0_REAL64), func_ttest_pdf(-2.0e0_REAL64, 2.0e0_REAL64), func_ttest_pdf(+2.0e0_REAL64, 2.0e0_REAL64), func_ttest_pdf(+5.0e0_REAL64, 5.0e0_REAL64)
+    WRITE(fmt = '("    FORTRAN = ", f14.9, "; ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) func_t_PDF( 0.0e0_REAL64, 2.0e0_REAL64), func_t_PDF(-2.0e0_REAL64, 2.0e0_REAL64), func_t_PDF(+2.0e0_REAL64, 2.0e0_REAL64), func_t_PDF(+5.0e0_REAL64, 5.0e0_REAL64)
     FLUSH(unit = OUTPUT_UNIT)
 
     ! **************************************************************************
@@ -55,9 +55,9 @@ PROGRAM main
     ! NOTE: python3.9 -c "import scipy; import scipy.stats; print(scipy.stats.t.cdf(-2.0, 2.0));"
     ! NOTE: python3.9 -c "import scipy; import scipy.stats; print(scipy.stats.t.cdf(+2.0, 2.0));"
     ! NOTE: python3.9 -c "import scipy; import scipy.stats; print(scipy.stats.t.cdf(+5.0, 5.0));"
-    WRITE(fmt = '("How does Python compare to FORTRAN? (func_ttest_cdf)")', unit = OUTPUT_UNIT)
+    WRITE(fmt = '("How does Python compare to FORTRAN? (func_t_CDF)")', unit = OUTPUT_UNIT)
     WRITE(fmt = '("     Python = ", f14.9, "; ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) 0.5e0_REAL64, 0.09175170953613696e0_REAL64, 0.908248290463863e0_REAL64, 0.9979476420099733e0_REAL64
-    WRITE(fmt = '("    FORTRAN = ", f14.9, "; ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) func_ttest_cdf( 0.0e0_REAL64, 2.0e0_REAL64), func_ttest_cdf(-2.0e0_REAL64, 2.0e0_REAL64), func_ttest_cdf(+2.0e0_REAL64, 2.0e0_REAL64), func_ttest_cdf(+5.0e0_REAL64, 5.0e0_REAL64)
+    WRITE(fmt = '("    FORTRAN = ", f14.9, "; ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) func_t_CDF( 0.0e0_REAL64, 2.0e0_REAL64), func_t_CDF(-2.0e0_REAL64, 2.0e0_REAL64), func_t_CDF(+2.0e0_REAL64, 2.0e0_REAL64), func_t_CDF(+5.0e0_REAL64, 5.0e0_REAL64)
     FLUSH(unit = OUTPUT_UNIT)
 
     ! **************************************************************************

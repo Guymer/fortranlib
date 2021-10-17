@@ -1,4 +1,4 @@
-ELEMENTAL FUNCTION func_ttest_cdf(x, dof) RESULT(ans)
+ELEMENTAL FUNCTION func_t_CDF(x, dof) RESULT(ans)
     ! NOTE: See https://en.wikipedia.org/wiki/Student's_t-distribution
     ! TODO: Given that func_hypergeometric() does not work when |z|>=1 this
     !       function should not attempt direct calculation of the CDF, but
@@ -35,4 +35,4 @@ ELEMENTAL FUNCTION func_ttest_cdf(x, dof) RESULT(ans)
         ! Set value ...
         ans = 0.0e0_REAL64
     END IF
-END FUNCTION func_ttest_cdf
+END FUNCTION func_t_CDF

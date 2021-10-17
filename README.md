@@ -39,8 +39,8 @@ All reals are declared as `REAL64` (from `ISO_FORTRAN_ENV`), except:
     * [func_rising_factorial](mod_safe/func_rising_factorial.f90) is a function to calculate the rising factorial
     * [func_stddev](mod_safe/func_stddev.f90) is a function to calculate the standard deviation of an array
     * [func_stderr](mod_safe/func_stderr.f90) is a function to calculate the standard error (of the mean) of an array
-    * [func_ttest_cdf](mod_safe/func_ttest_cdf.f90) is a function to return the CDF of Student's t-distribution
-    * [func_ttest_pdf](mod_safe/func_ttest_pdf.f90) is a function to return the PDF of Student's t-distribution
+    * [func_t_CDF](mod_safe/func_t_CDF.f90) is a function to return the CDF of Student's t-distribution
+    * [func_t_PDF](mod_safe/func_t_PDF.f90) is a function to return the PDF of Student's t-distribution
     * [func_var](mod_safe/func_var.f90) is a function to calculate the variance of an array
     * [sub_allocate_array](mod_safe/sub_allocate_array) is a subroutine to allocate an array after checking that the requested size makes sense
     * [sub_calc_loc_from_loc_and_bearing_and_dist](mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist.f90) is a subroutine which implements Vincenty's formula to calculate the finishing location from a starting location, a bearing and a distance

@@ -149,10 +149,11 @@ if __name__ == "__main__":
             )
 
             # Save source ...
-            open("sub_save_array_as_PPM/sub_save_2D_{1:s}_{0:s}_array_as_PPM.f90".format(typ, knd), "wt").write(src)
+            with open("sub_save_array_as_PPM/sub_save_2D_{1:s}_{0:s}_array_as_PPM.f90".format(typ, knd), "wt", encoding = "utf-8") as fobj:
+                fobj.write(src)
 
     # Open output file ...
-    with open("sub_save_array_as_PPM.tmp", "wt") as fobj:
+    with open("sub_save_array_as_PPM.tmp", "wt", encoding = "utf-8") as fobj:
         # Write out interfaces and includes ...
         fobj.write("INTERFACE sub_save_array_as_PPM\n")
         for typ in sorted(data.keys()):

@@ -14,7 +14,7 @@ if __name__ == "__main__":
         raise Exception("\"scipy\" is not installed; run \"pip install --user scipy\"") from None
 
     # Open output file ...
-    with open("consts.f90", "wt") as fobj:
+    with open("consts.f90", "wt", encoding = "utf-8") as fobj:
         # Write documentation ...
         fobj.write("!> @cite scipy\n")
         fobj.write("!>\n")

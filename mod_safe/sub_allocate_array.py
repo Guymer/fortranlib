@@ -154,10 +154,11 @@ if __name__ == "__main__":
                 )
 
                 # Save source ...
-                open("sub_allocate_array/sub_allocate_{2:d}D_{1:s}_{0:s}_array.f90".format(typ, knd, dim + 1), "wt").write(src)
+                with open("sub_allocate_array/sub_allocate_{2:d}D_{1:s}_{0:s}_array.f90".format(typ, knd, dim + 1), "wt", encoding = "utf-8") as fobj:
+                    fobj.write(src)
 
     # Open output file ...
-    with open("sub_allocate_array.tmp", "wt") as fobj:
+    with open("sub_allocate_array.tmp", "wt", encoding = "utf-8") as fobj:
         # Write out interfaces and includes ...
         fobj.write("INTERFACE sub_allocate_array\n")
         for typ in sorted(data.keys()):

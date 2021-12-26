@@ -12,7 +12,7 @@ if __name__ == "__main__":
         raise Exception("\"matplotlib\" is not installed; run \"pip install --user matplotlib\"") from None
 
     # Open output file ...
-    with open("const_cm.f90", "wt") as fobj:
+    with open("const_cm.f90", "wt", encoding = "utf-8") as fobj:
         # Start declaration ...
         fobj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_fire = (/ &\n")
 

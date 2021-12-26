@@ -47,7 +47,7 @@ if __name__ == "__main__":
         return ans
 
     # Open output file ...
-    with open("const_factorial.f90", "wt") as fobj:
+    with open("const_factorial.f90", "wt", encoding = "utf-8") as fobj:
         # Loop over all integer kinds (and their limits) that are defined in
         # ISO_FORTRAN_ENV ...
         for kind, limit in [(8, 5), (16, 7), (32, 12), (64, 20)]:

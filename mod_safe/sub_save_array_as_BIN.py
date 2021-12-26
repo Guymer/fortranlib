@@ -72,10 +72,11 @@ if __name__ == "__main__":
                 )
 
                 # Save source ...
-                open("sub_save_array_as_BIN/sub_save_{2:d}D_{1:s}_{0:s}_array_as_BIN.f90".format(typ, knd, dim + 1), "wt").write(src)
+                with open("sub_save_array_as_BIN/sub_save_{2:d}D_{1:s}_{0:s}_array_as_BIN.f90".format(typ, knd, dim + 1), "wt", encoding = "utf-8") as fobj:
+                    fobj.write(src)
 
     # Open output file ...
-    with open("sub_save_array_as_BIN.tmp", "wt") as fobj:
+    with open("sub_save_array_as_BIN.tmp", "wt", encoding = "utf-8") as fobj:
         # Write out interfaces and includes ...
         fobj.write("INTERFACE sub_save_array_as_BIN\n")
         for typ in sorted(data.keys()):

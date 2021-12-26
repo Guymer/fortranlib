@@ -35,13 +35,13 @@ if __name__ == "__main__":
         exp = dec.adjusted()
 
         # Create string ...
-        ans = "{:d}".format(num)
+        ans = f"{num:d}"
         if len(ans) > sig:
             ans = ans[:sig]
         else:
             while len(ans) < sig:
                 ans += "0"
-        ans = ans[0] + "." + ans[1:] + "e+{:04d}".format(exp)
+        ans = ans[0] + "." + ans[1:] + f"e+{exp:04d}"
 
         # Return answer ...
         return ans
@@ -54,7 +54,7 @@ if __name__ == "__main__":
             # Start declaration ...
             fobj.write(
                 "{:80s}:: const_factorial_INT{:d} = (/ &\n".format(
-                    "INTEGER(kind = INT{:d}), DIMENSION(0:{:d}), PARAMETER".format(kind, limit),
+                    f"INTEGER(kind = INT{kind:d}), DIMENSION(0:{limit:d}), PARAMETER",
                     kind
                 )
             )
@@ -63,9 +63,9 @@ if __name__ == "__main__":
             for i in range(limit + 1):
                 # Populate declaration ...
                 if i == limit:
-                    fobj.write(84 * " " + "{:d}_INT{:d}  &\n".format(math.factorial(i), kind))
+                    fobj.write(84 * " " + f"{math.factorial(i):d}_INT{kind:d}  &\n")
                 else:
-                    fobj.write(84 * " " + "{:d}_INT{:d}, &\n".format(math.factorial(i), kind))
+                    fobj.write(84 * " " + f"{math.factorial(i):d}_INT{kind:d}, &\n")
 
             # Finish declaration ...
             fobj.write(80 * " " + "/)\n")
@@ -78,7 +78,7 @@ if __name__ == "__main__":
             # Start declaration ...
             fobj.write(
                 "{:80s}:: const_factorial_REAL{:d} = (/ &\n".format(
-                    "REAL(kind = REAL{:d}), DIMENSION(0:{:d}), PARAMETER".format(kind, limit),
+                    f"REAL(kind = REAL{kind:d}), DIMENSION(0:{limit:d}), PARAMETER",
                     kind
                 )
             )
@@ -87,9 +87,9 @@ if __name__ == "__main__":
             for i in range(limit + 1):
                 # Populate declaration ...
                 if i == limit:
-                    fobj.write(84 * " " + "{:s}_REAL{:d}  &\n".format(hack(math.factorial(i), prec), kind))
+                    fobj.write(84 * " " + f"{hack(math.factorial(i), prec)}_REAL{kind:d}  &\n")
                 else:
-                    fobj.write(84 * " " + "{:s}_REAL{:d}, &\n".format(hack(math.factorial(i), prec), kind))
+                    fobj.write(84 * " " + f"{hack(math.factorial(i), prec)}_REAL{kind:d}, &\n")
 
             # Finish declaration ...
             fobj.write(80 * " " + "/)\n")

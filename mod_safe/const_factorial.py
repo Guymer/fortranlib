@@ -10,6 +10,7 @@ if __name__ == "__main__":
 
     # Import standard modules ...
     import math
+    import os
 
     # Define functions ...
     def hack(num, sig):
@@ -47,11 +48,15 @@ if __name__ == "__main__":
         # Return answer ...
         return ans
 
-    # Open output file ...
-    with open("const_factorial.f90", "wt", encoding = "utf-8") as fobj:
-        # Loop over all integer kinds (and their limits) that are defined in
-        # ISO_FORTRAN_ENV ...
-        for kind, limit in [(8, 5), (16, 7), (32, 12), (64, 20)]:
+    # Make target folder ...
+    if not os.path.exists("const_factorial"):
+        os.makedirs("const_factorial")
+
+    # Loop over all integer kinds (and their limits) that are defined in
+    # ISO_FORTRAN_ENV ...
+    for kind, limit in [(8, 5), (16, 7), (32, 12), (64, 20)]:
+        # Open output file ...
+        with open(f"const_factorial/const_factorial_INT{kind:d}.f90", "wt", encoding = "utf-8") as fobj:
             # Start declaration ...
             fobj.write(
                 "{:80s}:: const_factorial_INT{:d} = (/ &\n".format(
@@ -71,11 +76,13 @@ if __name__ == "__main__":
             # Finish declaration ...
             fobj.write(80 * " " + "/)\n")
 
-        # **********************************************************************
+    # **************************************************************************
 
-        # Loop over all real kinds (and their limits and precisions) that are
-        # defined in ISO_FORTRAN_ENV ...
-        for kind, limit, prec in [(32, 34, 7), (64, 170, 16), (128, 1754, 33)]:
+    # Loop over all real kinds (and their limits and precisions) that are
+    # defined in ISO_FORTRAN_ENV ...
+    for kind, limit, prec in [(32, 34, 7), (64, 170, 16), (128, 1754, 33)]:
+        # Open output file ...
+        with open(f"const_factorial/const_factorial_REAL{kind:d}.f90", "wt", encoding = "utf-8") as fobj:
             # Start declaration ...
             fobj.write(
                 "{:80s}:: const_factorial_REAL{:d} = (/ &\n".format(

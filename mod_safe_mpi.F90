@@ -79,6 +79,7 @@ MODULE mod_safe_MPI
         MODULE PROCEDURE sub_allreduce_5D_REAL64_real_array
         MODULE PROCEDURE sub_allreduce_6D_REAL64_real_array
         MODULE PROCEDURE sub_allreduce_7D_REAL64_real_array
+#if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
         MODULE PROCEDURE sub_allreduce_1D_REAL128_real_array
         MODULE PROCEDURE sub_allreduce_2D_REAL128_real_array
         MODULE PROCEDURE sub_allreduce_3D_REAL128_real_array
@@ -86,6 +87,7 @@ MODULE mod_safe_MPI
         MODULE PROCEDURE sub_allreduce_5D_REAL128_real_array
         MODULE PROCEDURE sub_allreduce_6D_REAL128_real_array
         MODULE PROCEDURE sub_allreduce_7D_REAL128_real_array
+#endif
     END INTERFACE sub_allreduce_array
     INTERFACE sub_bcast_array
         MODULE PROCEDURE sub_bcast_1D_INT8_integer_array
@@ -158,6 +160,7 @@ MODULE mod_safe_MPI
         MODULE PROCEDURE sub_bcast_5D_REAL64_real_array
         MODULE PROCEDURE sub_bcast_6D_REAL64_real_array
         MODULE PROCEDURE sub_bcast_7D_REAL64_real_array
+#if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
         MODULE PROCEDURE sub_bcast_1D_REAL128_real_array
         MODULE PROCEDURE sub_bcast_2D_REAL128_real_array
         MODULE PROCEDURE sub_bcast_3D_REAL128_real_array
@@ -165,6 +168,7 @@ MODULE mod_safe_MPI
         MODULE PROCEDURE sub_bcast_5D_REAL128_real_array
         MODULE PROCEDURE sub_bcast_6D_REAL128_real_array
         MODULE PROCEDURE sub_bcast_7D_REAL128_real_array
+#endif
     END INTERFACE sub_bcast_array
 
     CONTAINS
@@ -240,6 +244,7 @@ MODULE mod_safe_MPI
     INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_5D_REAL64_real_array.f90"
     INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_6D_REAL64_real_array.f90"
     INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_7D_REAL64_real_array.f90"
+#if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
     INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_1D_REAL128_real_array.f90"
     INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_2D_REAL128_real_array.f90"
     INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_3D_REAL128_real_array.f90"
@@ -247,6 +252,7 @@ MODULE mod_safe_MPI
     INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_5D_REAL128_real_array.f90"
     INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_6D_REAL128_real_array.f90"
     INCLUDE "mod_safe_mpi/sub_allreduce_array/sub_allreduce_7D_REAL128_real_array.f90"
+#endif
     INCLUDE "mod_safe_mpi/sub_bcast_array/sub_bcast_1D_INT8_integer_array.f90"
     INCLUDE "mod_safe_mpi/sub_bcast_array/sub_bcast_2D_INT8_integer_array.f90"
     INCLUDE "mod_safe_mpi/sub_bcast_array/sub_bcast_3D_INT8_integer_array.f90"
@@ -317,6 +323,7 @@ MODULE mod_safe_MPI
     INCLUDE "mod_safe_mpi/sub_bcast_array/sub_bcast_5D_REAL64_real_array.f90"
     INCLUDE "mod_safe_mpi/sub_bcast_array/sub_bcast_6D_REAL64_real_array.f90"
     INCLUDE "mod_safe_mpi/sub_bcast_array/sub_bcast_7D_REAL64_real_array.f90"
+#if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
     INCLUDE "mod_safe_mpi/sub_bcast_array/sub_bcast_1D_REAL128_real_array.f90"
     INCLUDE "mod_safe_mpi/sub_bcast_array/sub_bcast_2D_REAL128_real_array.f90"
     INCLUDE "mod_safe_mpi/sub_bcast_array/sub_bcast_3D_REAL128_real_array.f90"
@@ -324,4 +331,5 @@ MODULE mod_safe_MPI
     INCLUDE "mod_safe_mpi/sub_bcast_array/sub_bcast_5D_REAL128_real_array.f90"
     INCLUDE "mod_safe_mpi/sub_bcast_array/sub_bcast_6D_REAL128_real_array.f90"
     INCLUDE "mod_safe_mpi/sub_bcast_array/sub_bcast_7D_REAL128_real_array.f90"
+#endif
 END MODULE mod_safe_MPI

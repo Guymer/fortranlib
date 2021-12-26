@@ -70,6 +70,8 @@ The directory [tests](tests) contains some basic tests to (hopefully):
 * find any simple bugs that I might have introduced; and
 * demonstrate some simple programming techniques.
 
+ARM CPUs often do not define a native `REAL128` kind. The command `touch foo.f90; gfortran -cpp -E -dM foo.f90 | sort` will print out all of the predefined macros on your current system. This suite now uses the test `__SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__` to conditionally compile the `REAL128` overloaded parts.
+
 ## Dependencies
 
 This FORTRAN library requires the following Python modules to be installed and available in your `PYTHONPATH`.

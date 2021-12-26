@@ -5,7 +5,8 @@
 if __name__ == "__main__":
     # NOTE: See https://oeis.org/A000142 for a handy sequence on the limits of
     #       the factorial function for different types and kinds.
-    # https://oeis.org/A152909
+    # NOTE: See https://oeis.org/A152909 for another handy sequence on the
+    #       limits of the factorial function for different types and kinds.
 
     # Import standard modules ...
     import math

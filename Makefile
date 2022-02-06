@@ -41,6 +41,10 @@ endif
     # $(error The Python module "numpy" is not installed)
 # endif
 
+# Define source files ...
+MOD_SAFE_SRC     := $(sort mod_safe.F90 $(wildcard mod_safe/*.f90) $(wildcard mod_safe/*/*.f90))
+MOD_SAFE_MPI_SRC := $(sort mod_safe_mpi.F90 $(wildcard mod_safe_mpi/*.f90) $(wildcard mod_safe_mpi/*/*.f90))
+
 # ******************************************************************************
 
 # "gmake -r [all]"   = "make compile" (default)
@@ -69,14 +73,11 @@ help:			$(GREP) 														\
 mod_safe.mod																	\
 mod_safe.o:		$(FC)															\
 				Makefile														\
-				mod_safe.F90													\
-				mod_safe/*.f90 													\
-				mod_safe/*/*.f90
+				$(MOD_SAFE_SRC)
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) mod_safe.F90
 
 mod_safe_mpi.mod																\
 mod_safe_mpi.o:	$(FC)															\
 				Makefile														\
-				mod_safe_mpi.F90												\
-				mod_safe_mpi/*/*.f90
+				$(MOD_SAFE_MPI_SRC)
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) mod_safe_mpi.F90

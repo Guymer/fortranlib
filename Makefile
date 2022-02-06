@@ -68,6 +68,7 @@ help:			$(GREP) 														\
 
 mod_safe.mod																	\
 mod_safe.o:		$(FC)															\
+				Makefile														\
 				mod_safe.F90													\
 				mod_safe/*.f90 													\
 				mod_safe/*/*.f90
@@ -75,6 +76,7 @@ mod_safe.o:		$(FC)															\
 
 mod_safe_mpi.mod																\
 mod_safe_mpi.o:	$(FC)															\
+				Makefile														\
 				mod_safe_mpi.F90												\
 				mod_safe_mpi/*/*.f90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) mod_safe_mpi.F90

@@ -1,13 +1,6 @@
-!> @brief This subroutine broadcasts a 6D REAL32 real array.
-!>
-!> @param[in] buff The 6D REAL32 real array to be broadcast
-!>
-!> @param[in] root The root task
-!>
-!> @param[in] comm The communicator
-!>
-
 SUBROUTINE sub_bcast_6D_REAL32_real_array(buff, root, comm)
+    ! This subroutine broadcasts a 6D REAL32 real array.
+
     USE ISO_C_BINDING
     USE ISO_FORTRAN_ENV
     USE MPI
@@ -15,9 +8,9 @@ SUBROUTINE sub_bcast_6D_REAL32_real_array(buff, root, comm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    REAL(kind = REAL32), CONTIGUOUS, DIMENSION(:, :, :, :, :, :), INTENT(inout), TARGET:: buff
-    INTEGER, INTENT(in)                                                         :: root
-    INTEGER, INTENT(in)                                                         :: comm
+    REAL(kind = REAL32), CONTIGUOUS, DIMENSION(:, :, :, :, :, :), INTENT(inout), TARGET:: buff ! The 6D REAL32 real array to be broadcast.
+    INTEGER, INTENT(in)                                                         :: root ! The root task.
+    INTEGER, INTENT(in)                                                         :: comm ! The communicator.
 
     ! Declare parameters ...
     ! NOTE: "chunk" is the number of elements of "buff" that are needed to

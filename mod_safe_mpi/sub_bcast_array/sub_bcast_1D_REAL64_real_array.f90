@@ -1,13 +1,6 @@
-!> @brief This subroutine broadcasts a 1D REAL64 real array.
-!>
-!> @param[in] buff The 1D REAL64 real array to be broadcast
-!>
-!> @param[in] root The root task
-!>
-!> @param[in] comm The communicator
-!>
-
 SUBROUTINE sub_bcast_1D_REAL64_real_array(buff, root, comm)
+    ! This subroutine broadcasts a 1D REAL64 real array.
+
     USE ISO_C_BINDING
     USE ISO_FORTRAN_ENV
     USE MPI
@@ -15,9 +8,9 @@ SUBROUTINE sub_bcast_1D_REAL64_real_array(buff, root, comm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    REAL(kind = REAL64), CONTIGUOUS, DIMENSION(:), INTENT(inout), TARGET        :: buff
-    INTEGER, INTENT(in)                                                         :: root
-    INTEGER, INTENT(in)                                                         :: comm
+    REAL(kind = REAL64), CONTIGUOUS, DIMENSION(:), INTENT(inout), TARGET        :: buff ! The 1D REAL64 real array to be broadcast.
+    INTEGER, INTENT(in)                                                         :: root ! The root task.
+    INTEGER, INTENT(in)                                                         :: comm ! The communicator.
 
     ! Declare parameters ...
     ! NOTE: "chunk" is the number of elements of "buff" that are needed to

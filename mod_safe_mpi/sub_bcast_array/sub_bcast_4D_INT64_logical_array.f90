@@ -1,13 +1,6 @@
-!> @brief This subroutine broadcasts a 4D INT64 logical array.
-!>
-!> @param[in] buff The 4D INT64 logical array to be broadcast
-!>
-!> @param[in] root The root task
-!>
-!> @param[in] comm The communicator
-!>
-
 SUBROUTINE sub_bcast_4D_INT64_logical_array(buff, root, comm)
+    ! This subroutine broadcasts a 4D INT64 logical array.
+
     USE ISO_C_BINDING
     USE ISO_FORTRAN_ENV
     USE MPI
@@ -15,9 +8,9 @@ SUBROUTINE sub_bcast_4D_INT64_logical_array(buff, root, comm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    LOGICAL(kind = INT64), CONTIGUOUS, DIMENSION(:, :, :, :), INTENT(inout), TARGET:: buff
-    INTEGER, INTENT(in)                                                         :: root
-    INTEGER, INTENT(in)                                                         :: comm
+    LOGICAL(kind = INT64), CONTIGUOUS, DIMENSION(:, :, :, :), INTENT(inout), TARGET:: buff ! The 4D INT64 logical array to be broadcast.
+    INTEGER, INTENT(in)                                                         :: root ! The root task.
+    INTEGER, INTENT(in)                                                         :: comm ! The communicator.
 
     ! Declare parameters ...
     ! NOTE: "chunk" is the number of elements of "buff" that are needed to

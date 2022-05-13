@@ -1,13 +1,6 @@
-!> @brief This subroutine reduces a 3D INT8 integer array.
-!>
-!> @param[in] buff The 3D INT8 integer array to be reduced
-!>
-!> @param[in] op The operation to perform
-!>
-!> @param[in] comm The communicator
-!>
-
 SUBROUTINE sub_allreduce_3D_INT8_integer_array(buff, op, comm)
+    ! This subroutine reduces a 3D INT8 integer array.
+
     USE ISO_C_BINDING
     USE ISO_FORTRAN_ENV
     USE MPI
@@ -15,9 +8,9 @@ SUBROUTINE sub_allreduce_3D_INT8_integer_array(buff, op, comm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT8), CONTIGUOUS, DIMENSION(:, :, :), INTENT(inout), TARGET :: buff
-    INTEGER, INTENT(in)                                                         :: op
-    INTEGER, INTENT(in)                                                         :: comm
+    INTEGER(kind = INT8), CONTIGUOUS, DIMENSION(:, :, :), INTENT(inout), TARGET :: buff ! The 3D INT8 integer array to be reduced.
+    INTEGER, INTENT(in)                                                         :: op ! The operation to perform.
+    INTEGER, INTENT(in)                                                         :: comm ! The communicator.
 
     ! Declare parameters ...
     ! NOTE: "chunk" is the number of elements of "buff" that are needed to

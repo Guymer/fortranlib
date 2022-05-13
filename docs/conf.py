@@ -15,7 +15,7 @@ import sphinx_rtd_theme
 
 # Set project information ...
 project = "fortranlib"
-copyright = "2021, Thomas Guymer"
+copyright = "2022, Thomas Guymer"
 author = "Thomas Guymer"
 
 # Add Sphinx extension modules ...
@@ -23,8 +23,8 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.napoleon",
-    "sphinxfortran.fortran_autodoc",    # pip-3.9 install --user sphinx-fortran
-    "sphinxfortran.fortran_domain",     # pip-3.9 install --user sphinx-fortran
+    "sphinxfortran.fortran_autodoc",    # pip-3.10 install --user sphinx-fortran
+    "sphinxfortran.fortran_domain",     # pip-3.10 install --user sphinx-fortran
 ]
 
 # Configure Sphinx extension modules ...

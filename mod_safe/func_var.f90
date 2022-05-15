@@ -27,7 +27,7 @@ PURE FUNCTION func_var(arr, dof) RESULT(ans)
     ALLOCATE(tmp(n))
 
     ! Calculate the squared deviations from the mean ...
-    tmp = ABS(arr - func_mean(arr)) ** 2
+    tmp = ABS(arr - func_mean(arr, 0_INT64)) ** 2
 
     ! Calculate the variance ...
     IF(PRESENT(dof))THEN

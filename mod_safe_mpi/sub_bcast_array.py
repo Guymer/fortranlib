@@ -97,19 +97,20 @@ if __name__ == "__main__":
                 )
 
                 # Save source ...
-                open("sub_bcast_array/sub_bcast_{2:d}D_{1:s}_{0:s}_array.f90".format(typ, knd1, dim + 1), "wt").write(src)
+                with open(f"sub_bcast_array/sub_bcast_{dim + 1:d}D_{knd1}_{typ}_array.f90", "wt", encoding = "utf-8") as fobj:
+                    fobj.write(src)
 
     # Open output file ...
-    with open("sub_bcast_array.tmp", "wt") as fobj:
+    with open("sub_bcast_array.tmp", "wt", encoding = "utf-8") as fobj:
         # Write out interfaces and includes ...
         fobj.write("INTERFACE sub_bcast_array\n")
         for typ in sorted(data.keys()):
             for knd1, knd2 in zip(data[typ][0], data[typ][1]):
                 for dim in range(7):
-                    fobj.write("    MODULE PROCEDURE sub_bcast_{2:d}D_{1:s}_{0:s}_array\n".format(typ, knd1, dim + 1))
+                    fobj.write(f"    MODULE PROCEDURE sub_bcast_{dim + 1:d}D_{knd1}_{typ}_array\n")
         fobj.write("END INTERFACE sub_bcast_array\n")
         fobj.write("\n")
         for typ in sorted(data.keys()):
             for knd1, knd2 in zip(data[typ][0], data[typ][1]):
                 for dim in range(7):
-                    fobj.write("INCLUDE \"mod_safe_mpi/sub_bcast_array/sub_bcast_{2:d}D_{1:s}_{0:s}_array.f90\"\n".format(typ, knd1, dim + 1))
+                    fobj.write(f"INCLUDE \"mod_safe_mpi/sub_bcast_array/sub_bcast_{dim + 1:d}D_{knd1}_{typ}_array.f90\"\n")

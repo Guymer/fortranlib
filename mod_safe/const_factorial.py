@@ -43,7 +43,7 @@ if __name__ == "__main__":
         else:
             while len(ans) < sig:
                 ans += "0"
-        ans = ans[0] + "." + ans[1:] + f"e+{exp:04d}"
+        ans = f"{ans[0]}.{ans[1:]}e+{exp:04d}"
 
         # Return answer ...
         return ans
@@ -69,12 +69,12 @@ if __name__ == "__main__":
             for i in range(limit + 1):
                 # Populate declaration ...
                 if i == limit:
-                    fobj.write(84 * " " + f"{math.factorial(i):d}_INT{kind:d}  &\n")
+                    fobj.write(f'{84 * " "}{math.factorial(i):d}_INT{kind:d}  &\n')
                 else:
-                    fobj.write(84 * " " + f"{math.factorial(i):d}_INT{kind:d}, &\n")
+                    fobj.write(f'{84 * " "}{math.factorial(i):d}_INT{kind:d}, &\n')
 
             # Finish declaration ...
-            fobj.write(80 * " " + "/)\n")
+            fobj.write(f'{80 * " "}/)\n')
 
     # **************************************************************************
 
@@ -95,9 +95,9 @@ if __name__ == "__main__":
             for i in range(limit + 1):
                 # Populate declaration ...
                 if i == limit:
-                    fobj.write(84 * " " + f"{hack(math.factorial(i), prec)}_REAL{kind:d}  &\n")
+                    fobj.write(f'{84 * " "}{hack(math.factorial(i), prec)}_REAL{kind:d}  &\n')
                 else:
-                    fobj.write(84 * " " + f"{hack(math.factorial(i), prec)}_REAL{kind:d}, &\n")
+                    fobj.write(f'{84 * " "}{hack(math.factorial(i), prec)}_REAL{kind:d}, &\n')
 
             # Finish declaration ...
-            fobj.write(80 * " " + "/)\n")
+            fobj.write(f'{80 * " "}/)\n')

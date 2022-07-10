@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     # Make target folder ...
     if not os.path.exists("sub_allreduce_array"):
-        os.makedirs("sub_allreduce_array")
+        os.mkdir("sub_allreduce_array")
 
     # Define types and kinds ...
     data = {

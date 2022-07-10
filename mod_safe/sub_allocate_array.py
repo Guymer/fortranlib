@@ -8,7 +8,7 @@ if __name__ == "__main__":
 
     # Make target folder ...
     if not os.path.exists("sub_allocate_array"):
-        os.makedirs("sub_allocate_array")
+        os.mkdir("sub_allocate_array")
 
     # Define types and kinds ...
     data = {

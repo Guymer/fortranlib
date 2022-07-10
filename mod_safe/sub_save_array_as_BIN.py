@@ -8,7 +8,7 @@ if __name__ == "__main__":
 
     # Make target folder ...
     if not os.path.exists("sub_save_array_as_BIN"):
-        os.makedirs("sub_save_array_as_BIN")
+        os.mkdir("sub_save_array_as_BIN")
 
     # Define types and kinds ...
     data = {

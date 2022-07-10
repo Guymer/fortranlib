@@ -8,7 +8,7 @@ if __name__ == "__main__":
 
     # Make target folder ...
     if not os.path.exists("sub_save_array_as_PBM"):
-        os.makedirs("sub_save_array_as_PBM")
+        os.mkdir("sub_save_array_as_PBM")
 
     # Define types and kinds ...
     data = {

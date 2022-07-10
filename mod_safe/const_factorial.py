@@ -50,7 +50,7 @@ if __name__ == "__main__":
 
     # Make target folder ...
     if not os.path.exists("const_factorial"):
-        os.makedirs("const_factorial")
+        os.mkdir("const_factorial")
 
     # Loop over all integer kinds (and their limits) that are defined in
     # ISO_FORTRAN_ENV ...

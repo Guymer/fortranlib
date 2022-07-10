@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     # Make target folder ...
     if not os.path.exists("sub_bcast_array"):
-        os.makedirs("sub_bcast_array")
+        os.mkdir("sub_bcast_array")
 
     # Define types and kinds ...
     data = {

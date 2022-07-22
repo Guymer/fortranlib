@@ -12,5 +12,5 @@ ELEMENTAL FUNCTION func_degrees(x) RESULT(ans)
     REAL(kind = REAL64)                                                         :: ans      ! The output angle in degrees.
 
     ! Set value ...
-    ans = 180.0e0_REAL64 * x / const_pi                                         ! [deg]
+    ans = 180.0e0_REAL64 * x / const_pi                                         ! [°]
 END FUNCTION func_degrees

@@ -15,9 +15,9 @@ PROGRAM main
     REAL(kind = REAL64)                                                         :: bear2
 
     ! Populate the coefficients ...
-    lon1 = 20.0e0_REAL64                                                        ! [deg]
-    lat1 = 40.0e0_REAL64                                                        ! [deg]
-    bear1 = 60.0e0_REAL64                                                       ! [deg]
+    lon1 = 20.0e0_REAL64                                                        ! [°]
+    lat1 = 40.0e0_REAL64                                                        ! [°]
+    bear1 = 60.0e0_REAL64                                                       ! [°]
     dist = 1.0e6_REAL64                                                         ! [m]
 
     ! Solve and print summary ...
@@ -29,9 +29,9 @@ PROGRAM main
     FLUSH(unit = OUTPUT_UNIT)
 
     ! Populate the coefficients ...
-    lon1 = 170.0e0_REAL64                                                       ! [deg]
-    lat1 = 10.0e0_REAL64                                                        ! [deg]
-    bear1 = 80.0e0_REAL64                                                       ! [deg]
+    lon1 = 170.0e0_REAL64                                                       ! [°]
+    lat1 = 10.0e0_REAL64                                                        ! [°]
+    bear1 = 80.0e0_REAL64                                                       ! [°]
     dist = 4.0e6_REAL64                                                         ! [m]
 
     ! Solve and print summary ...

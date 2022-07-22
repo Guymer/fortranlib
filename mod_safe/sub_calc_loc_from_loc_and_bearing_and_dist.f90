@@ -117,7 +117,7 @@ PURE SUBROUTINE sub_calc_loc_from_loc_and_bearing_and_dist(lon1_deg, lat1_deg, a
     alpha2 = MODULO(alpha2 + 2.0e0_REAL64 * const_pi, 2.0e0_REAL64 * const_pi)              ! NOTE: Normalize to 0 <--> +360 (in radians)
 
     ! Convert to degrees ...
-    lon2_deg = func_degrees(lon2)                                               ! [deg]
-    lat2_deg = func_degrees(lat2)                                               ! [deg]
-    alpha2_deg = func_degrees(alpha2)                                           ! [deg]
+    lon2_deg = func_degrees(lon2)                                               ! [°]
+    lat2_deg = func_degrees(lat2)                                               ! [°]
+    alpha2_deg = func_degrees(alpha2)                                           ! [°]
 END SUBROUTINE sub_calc_loc_from_loc_and_bearing_and_dist

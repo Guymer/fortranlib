@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Use the proper idiom in the main module ...
-# NOTE: See https://docs.python.org/3.8/library/multiprocessing.html#multiprocessing-programming
+# NOTE: See https://docs.python.org/3.10/library/multiprocessing.html#the-spawn-and-forkserver-start-methods
 if __name__ == "__main__":
     # NOTE: See https://oeis.org/A000142 for a handy sequence on the limits of
     #       the factorial function for different types and kinds.

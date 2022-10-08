@@ -24,22 +24,23 @@ if __name__ == "__main__":
             # Loop over dimensions ...
             for dim in range(7):
                 # Create source ...
+                lhs = f'{typ.upper()}(kind = {knd}), DIMENSION({", ".join((dim + 1) * [":"])}), INTENT(in)'
                 src = (
-                    "!> @brief This subroutine saves a {2:d}D {1:s} {0:s} array to a BIN file.\n"
+                    f"!> @brief This subroutine saves a {dim + 1:d}D {knd} {typ} array to a BIN file.\n"
                     "!>\n"
-                    "!> @param[in] arr The {2:d}D {1:s} {0:s} array to be saved to a BIN file\n"
+                    f"!> @param[in] arr The {dim + 1:d}D {knd} {typ} array to be saved to a BIN file\n"
                     "!>\n"
                     "!> @param[in] fname The name of the BIN file\n"
                     "!>\n"
                     "\n"
-                    "SUBROUTINE sub_save_{2:d}D_{1:s}_{0:s}_array_as_BIN(arr, fname)\n"
+                    f"SUBROUTINE sub_save_{dim + 1:d}D_{knd}_{typ}_array_as_BIN(arr, fname)\n"
                     "    USE ISO_FORTRAN_ENV\n"
                     "\n"
                     "    IMPLICIT NONE\n"
                     "\n"
                     "    ! Declare inputs/outputs ...\n"
                     "    CHARACTER(len = *), INTENT(in)                                              :: fname\n"
-                    "    {3:76s}:: arr\n"
+                    f"    {lhs:76s}:: arr\n"
                     "\n"
                     "    ! Declare FORTRAN variables ...\n"
                     "    CHARACTER(len = 256)                                                        :: errmsg\n"
@@ -59,20 +60,11 @@ if __name__ == "__main__":
                     "\n"
                     "    ! Close BIN ...\n"
                     "    CLOSE(unit = funit)\n"
-                    "END SUBROUTINE sub_save_{2:d}D_{1:s}_{0:s}_array_as_BIN\n"
-                ).format(
-                    typ,
-                    knd,
-                    dim + 1,
-                    "{0:s}(kind = {1:s}), DIMENSION({2:s}), INTENT(in)".format(
-                        typ.upper(),
-                        knd,
-                        ", ".join((dim + 1) * [":"])
-                    )
+                    f"END SUBROUTINE sub_save_{dim + 1:d}D_{knd}_{typ}_array_as_BIN\n"
                 )
 
                 # Save source ...
-                with open("sub_save_array_as_BIN/sub_save_{2:d}D_{1:s}_{0:s}_array_as_BIN.f90".format(typ, knd, dim + 1), "wt", encoding = "utf-8") as fobj:
+                with open(f"sub_save_array_as_BIN/sub_save_{dim + 1:d}D_{knd}_{typ}_array_as_BIN.f90", "wt", encoding = "utf-8") as fobj:
                     fobj.write(src)
 
     # Open output file ...
@@ -82,10 +74,10 @@ if __name__ == "__main__":
         for typ in sorted(data.keys()):
             for knd in data[typ]:
                 for dim in range(7):
-                    fobj.write("    MODULE PROCEDURE sub_save_{2:d}D_{1:s}_{0:s}_array_as_BIN\n".format(typ, knd, dim + 1))
+                    fobj.write(f"    MODULE PROCEDURE sub_save_{dim + 1:d}D_{knd}_{typ}_array_as_BIN\n")
         fobj.write("END INTERFACE sub_save_array_as_BIN\n")
         fobj.write("\n")
         for typ in sorted(data.keys()):
             for knd in data[typ]:
                 for dim in range(7):
-                    fobj.write("INCLUDE \"mod_safe/sub_save_array_as_BIN/sub_save_{2:d}D_{1:s}_{0:s}_array_as_BIN.f90\"\n".format(typ, knd, dim + 1))
+                    fobj.write(f"INCLUDE \"mod_safe/sub_save_array_as_BIN/sub_save_{dim + 1:d}D_{knd}_{typ}_array_as_BIN.f90\"\n")

@@ -11,6 +11,11 @@ if __name__ == "__main__":
     # Import standard modules ...
     import math
     import os
+    import sys
+
+    # Increase the maximum length of an integer string ...
+    # NOTE: See https://docs.python.org/3/library/stdtypes.html#integer-string-conversion-length-limitation
+    sys.set_int_max_str_digits(5000)
 
     # Define functions ...
     def hack(num, sig):
@@ -58,12 +63,8 @@ if __name__ == "__main__":
         # Open output file ...
         with open(f"const_factorial/const_factorial_INT{kind:d}.f90", "wt", encoding = "utf-8") as fobj:
             # Start declaration ...
-            fobj.write(
-                "{:80s}:: const_factorial_INT{:d} = (/ &\n".format(
-                    f"INTEGER(kind = INT{kind:d}), DIMENSION(0:{limit:d}), PARAMETER",
-                    kind
-                )
-            )
+            lhs = f"INTEGER(kind = INT{kind:d}), DIMENSION(0:{limit:d}), PARAMETER"
+            fobj.write(f"{lhs:80s}:: const_factorial_INT{kind:d} = (/ &\n")
 
             # Loop over factorials ...
             for i in range(limit + 1):
@@ -84,12 +85,8 @@ if __name__ == "__main__":
         # Open output file ...
         with open(f"const_factorial/const_factorial_REAL{kind:d}.f90", "wt", encoding = "utf-8") as fobj:
             # Start declaration ...
-            fobj.write(
-                "{:80s}:: const_factorial_REAL{:d} = (/ &\n".format(
-                    f"REAL(kind = REAL{kind:d}), DIMENSION(0:{limit:d}), PARAMETER",
-                    kind
-                )
-            )
+            lhs = f"REAL(kind = REAL{kind:d}), DIMENSION(0:{limit:d}), PARAMETER"
+            fobj.write(f"{lhs:80s}:: const_factorial_REAL{kind:d} = (/ &\n")
 
             # Loop over factorials ...
             for i in range(limit + 1):

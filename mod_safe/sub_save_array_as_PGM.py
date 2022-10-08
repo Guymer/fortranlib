@@ -35,15 +35,16 @@ if __name__ == "__main__":
                 else:
                     ass = "MAX(0_INT64, MIN(255_INT64, INT(arr(ix, iy), kind = INT64)))"
             elif typ == "real":
-                ass = "MAX(0_INT64, MIN(255_INT64, NINT(255.0e0_{0:s} * arr(ix, iy), kind = INT64)))".format(knd)
+                ass = f"MAX(0_INT64, MIN(255_INT64, NINT(255.0e0_{knd} * arr(ix, iy), kind = INT64)))"
             else:
                 raise Exception("\"typ\" was not an expected value", typ) from None
 
             # Create source ...
+            lhs = f"{typ.upper()}(kind = {knd}), DIMENSION(:, :), INTENT(in)"
             src = (
-                "!> @brief This subroutine saves a 2D {1:s} {0:s} array to a PGM file.\n"
+                f"!> @brief This subroutine saves a 2D {knd} {typ} array to a PGM file.\n"
                 "!>\n"
-                "!> @param[in] arr The 2D {1:s} {0:s} array to be saved to a PGM file\n"
+                f"!> @param[in] arr The 2D {knd} {typ} array to be saved to a PGM file\n"
                 "!>\n"
                 "!> @param[in] fname The name of the PGM file\n"
                 "!>\n"
@@ -51,17 +52,17 @@ if __name__ == "__main__":
                 "!>\n"
                 "!> @warning values below 0 in \"arr\" will be clipped to 0\n"
                 "!>\n"
-                "!> @warning values above {2:d} in \"arr\" will be clipped to {2:d}\n"
+                f"!> @warning values above {lim:d} in \"arr\" will be clipped to {lim:d}\n"
                 "!>\n"
                 "\n"
-                "SUBROUTINE sub_save_2D_{1:s}_{0:s}_array_as_PGM(arr, fname)\n"
+                f"SUBROUTINE sub_save_2D_{knd}_{typ}_array_as_PGM(arr, fname)\n"
                 "    USE ISO_FORTRAN_ENV\n"
                 "\n"
                 "    IMPLICIT NONE\n"
                 "\n"
                 "    ! Declare inputs/outputs ...\n"
                 "    CHARACTER(len = *), INTENT(in)                                              :: fname\n"
-                "    {3:76s}:: arr\n"
+                f"    {lhs:76s}:: arr\n"
                 "\n"
                 "    ! Declare FORTRAN variables ...\n"
                 "    CHARACTER(len = 256)                                                        :: errmsg\n"
@@ -92,7 +93,7 @@ if __name__ == "__main__":
                 "        ! Loop over y ...\n"
                 "        DO iy = 1_INT64, ny\n"
                 "            ! Determine level ...\n"
-                "            lvl = {4:s}\n"
+                f"            lvl = {ass}\n"
                 "\n"
                 "            ! Set pixel ...\n"
                 "            img(ix, iy) = ACHAR(lvl)\n"
@@ -116,20 +117,11 @@ if __name__ == "__main__":
                 "\n"
                 "    ! Clean up ...\n"
                 "    DEALLOCATE(img)\n"
-                "END SUBROUTINE sub_save_2D_{1:s}_{0:s}_array_as_PGM\n"
-            ).format(
-                typ,
-                knd,
-                lim,
-                "{0:s}(kind = {1:s}), DIMENSION(:, :), INTENT(in)".format(
-                    typ.upper(),
-                    knd
-                ),
-                ass
+                f"END SUBROUTINE sub_save_2D_{knd}_{typ}_array_as_PGM\n"
             )
 
             # Save source ...
-            with open("sub_save_array_as_PGM/sub_save_2D_{1:s}_{0:s}_array_as_PGM.f90".format(typ, knd), "wt", encoding = "utf-8") as fobj:
+            with open(f"sub_save_array_as_PGM/sub_save_2D_{knd}_{typ}_array_as_PGM.f90", "wt", encoding = "utf-8") as fobj:
                 fobj.write(src)
 
     # Open output file ...
@@ -138,9 +130,9 @@ if __name__ == "__main__":
         fobj.write("INTERFACE sub_save_array_as_PGM\n")
         for typ in sorted(data.keys()):
             for knd in data[typ]:
-                fobj.write("    MODULE PROCEDURE sub_save_2D_{1:s}_{0:s}_array_as_PGM\n".format(typ, knd))
+                fobj.write(f"    MODULE PROCEDURE sub_save_2D_{knd}_{typ}_array_as_PGM\n")
         fobj.write("END INTERFACE sub_save_array_as_PGM\n")
         fobj.write("\n")
         for typ in sorted(data.keys()):
             for knd in data[typ]:
-                fobj.write("INCLUDE \"mod_safe/sub_save_array_as_PGM/sub_save_2D_{1:s}_{0:s}_array_as_PGM.f90\"\n".format(typ, knd))
+                fobj.write(f"INCLUDE \"mod_safe/sub_save_array_as_PGM/sub_save_2D_{knd}_{typ}_array_as_PGM.f90\"\n")

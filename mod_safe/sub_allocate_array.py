@@ -26,35 +26,31 @@ if __name__ == "__main__":
                 # Create list of variables ...
                 ns = []
                 for i in range(dim + 1):
-                    ns.append("n{0:d}".format(i + 1))
+                    ns.append(f"n{i + 1:d}")
 
                 # Create source ...
                 src = (
-                    "!> @brief This subroutine allocates a {2:d}D {1:s} {0:s} array.\n"
+                    f"!> @brief This subroutine allocates a {dim + 1:d}D {knd} {typ} array.\n"
                     "!>\n"
-                    "!> @param[inout] arr The {2:d}D {1:s} {0:s} array to be allocated\n"
+                    f"!> @param[inout] arr The {dim + 1:d}D {knd} {typ} array to be allocated\n"
                     "!>\n"
                     "!> @param[in] name The name of the array\n"
                     "!>\n"
-                ).format(
-                    typ,
-                    knd,
-                    dim + 1
                 )
 
                 # Create source ...
                 for i in range(dim + 1):
                     src += (
-                        "!> @param[in] n{0:d} The size of the {0:d}-th dimension of the array\n"
+                        f"!> @param[in] n{i + 1:d} The size of the {i + 1:d}-th dimension of the array\n"
                         "!>\n"
-                    ).format(i + 1)
+                    )
 
                 # Create source ...
                 src += (
                     "!> @param[in] debug Verbosity flag\n"
                     "!>\n"
                     "\n"
-                    "SUBROUTINE sub_allocate_{2:d}D_{1:s}_{0:s}_array(arr, name, {3:s}, debug)\n"
+                    f'SUBROUTINE sub_allocate_{dim + 1:d}D_{knd}_{typ}_array(arr, name, {", ".join(ns)}, debug)\n'
                     "    USE ISO_FORTRAN_ENV\n"
                     "\n"
                     "    IMPLICIT NONE\n"
@@ -62,22 +58,18 @@ if __name__ == "__main__":
                     "    ! Declare inputs/outputs ...\n"
                     "    CHARACTER(len = *), INTENT(in)                                              :: name\n"
                     "    LOGICAL(kind = INT8), INTENT(in)                                            :: debug\n"
-                ).format(
-                    typ,
-                    knd,
-                    dim + 1,
-                    ", ".join(ns)
                 )
 
                 # Create source ...
                 for n in ns:
                     src += (
-                        "    INTEGER(kind = INT64), INTENT(in)                                           :: {0:s}\n"
-                    ).format(n)
+                        f"    INTEGER(kind = INT64), INTENT(in)                                           :: {n}\n"
+                    )
 
                 # Create source ...
+                lhs = f'{typ.upper()}(kind = {knd}), ALLOCATABLE, DIMENSION({", ".join((dim + 1) * [":"])}), INTENT(inout)'
                 src += (
-                    "    {0:76s}:: arr\n"
+                    f"    {lhs:76s}:: arr\n"
                     "\n"
                     "    ! Declare variables ...\n"
                     "    CHARACTER(len = 3)                                                          :: units\n"
@@ -88,23 +80,17 @@ if __name__ == "__main__":
                     "    INTEGER(kind = INT32)                                                       :: errnum\n"
                     "\n"
                     "    ! Check inputs ...\n"
-                ).format(
-                    "{0:s}(kind = {1:s}), ALLOCATABLE, DIMENSION({2:s}), INTENT(inout)".format(
-                        typ.upper(),
-                        knd,
-                        ", ".join((dim + 1) * [":"])
-                    )
                 )
 
                 # Create source ...
                 for i in range(dim + 1):
                     src += (
-                        "    IF(n{0:d} <= 0_INT64)THEN\n"
-                        "        WRITE(fmt = '(\"ERROR: The size of the {0:d}-th dimension of \"\"\", a, \"\"\" is not positive.\")', unit = ERROR_UNIT) name\n"
+                        f"    IF(n{i + 1:d} <= 0_INT64)THEN\n"
+                        f"        WRITE(fmt = '(\"ERROR: The size of the {i + 1:d}-th dimension of \"\"\", a, \"\"\" is not positive.\")', unit = ERROR_UNIT) name\n"
                         "        FLUSH(unit = ERROR_UNIT)\n"
                         "        STOP\n"
                         "    END IF\n"
-                    ).format(i + 1)
+                    )
 
                 # Create source ...
                 src += (
@@ -112,7 +98,7 @@ if __name__ == "__main__":
                     "    ! Check that a message needs printing ...\n"
                     "    IF(debug)THEN\n"
                     "        ! Calculate size ...\n"
-                    "        tmp = REAL({0:s} * STORAGE_SIZE(arr, kind = INT64) / 8_INT64, kind = REAL64) / 1024.0e0_REAL64\n"
+                    f'        tmp = REAL({" * ".join(ns)} * STORAGE_SIZE(arr, kind = INT64) / 8_INT64, kind = REAL64) / 1024.0e0_REAL64\n'
                     "        units = \"KiB\"\n"
                     "        IF(tmp >= 1024.0e0_REAL64)THEN\n"
                     "            tmp = tmp / 1024.0e0_REAL64\n"
@@ -133,28 +119,21 @@ if __name__ == "__main__":
                     "    END IF\n"
                     "\n"
                     "    ! Allocate array ...\n"
-                    "    ALLOCATE(arr({1:s}), stat = errnum, errmsg = errmsg)\n"
+                    f'    ALLOCATE(arr({", ".join(ns)}), stat = errnum, errmsg = errmsg)\n'
                     "    IF(errnum /= 0_INT32)THEN\n"
                     "        WRITE(fmt = '(\"ERROR: Failed to ALLOCATE() \"\"\", a, \"\"\". ERRMSG = \", a, \". ERRNUM = \", i3, \".\")', unit = ERROR_UNIT) name, TRIM(errmsg), errnum\n"
                     "        FLUSH(unit = ERROR_UNIT)\n"
                     "        STOP\n"
                     "    END IF\n"
-                ).format(
-                    " * ".join(ns),
-                    ", ".join(ns)
                 )
 
                 # Create source ...
                 src += (
-                    "END SUBROUTINE sub_allocate_{2:d}D_{1:s}_{0:s}_array\n"
-                ).format(
-                    typ,
-                    knd,
-                    dim + 1
+                    f"END SUBROUTINE sub_allocate_{dim + 1:d}D_{knd}_{typ}_array\n"
                 )
 
                 # Save source ...
-                with open("sub_allocate_array/sub_allocate_{2:d}D_{1:s}_{0:s}_array.f90".format(typ, knd, dim + 1), "wt", encoding = "utf-8") as fobj:
+                with open(f"sub_allocate_array/sub_allocate_{dim + 1:d}D_{knd}_{typ}_array.f90", "wt", encoding = "utf-8") as fobj:
                     fobj.write(src)
 
     # Open output file ...
@@ -164,10 +143,10 @@ if __name__ == "__main__":
         for typ in sorted(data.keys()):
             for knd in data[typ]:
                 for dim in range(7):
-                    fobj.write("    MODULE PROCEDURE sub_allocate_{2:d}D_{1:s}_{0:s}_array\n".format(typ, knd, dim + 1))
+                    fobj.write(f"    MODULE PROCEDURE sub_allocate_{dim + 1:d}D_{knd}_{typ}_array\n")
         fobj.write("END INTERFACE sub_allocate_array\n")
         fobj.write("\n")
         for typ in sorted(data.keys()):
             for knd in data[typ]:
                 for dim in range(7):
-                    fobj.write("INCLUDE \"mod_safe/sub_allocate_array/sub_allocate_{2:d}D_{1:s}_{0:s}_array.f90\"\n".format(typ, knd, dim + 1))
+                    fobj.write(f"INCLUDE \"mod_safe/sub_allocate_array/sub_allocate_{dim + 1:d}D_{knd}_{typ}_array.f90\"\n")

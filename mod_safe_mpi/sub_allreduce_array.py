@@ -25,9 +25,11 @@ if __name__ == "__main__":
             # Loop over dimensions ...
             for dim in range(7):
                 # Create source ...
+                lhs1 = f'{typ.upper()}(kind = {knd1}), CONTIGUOUS, DIMENSION({", ".join((dim + 1) * [":"])}), INTENT(inout), TARGET'
+                lhs2 = f"{typ.upper()}(kind = {knd1}), CONTIGUOUS, DIMENSION(:), POINTER"
                 src = (
-                    "SUBROUTINE sub_allreduce_{2:d}D_{1:s}_{0:s}_array(buff, op, comm)\n"
-                    "    ! This subroutine reduces a {2:d}D {1:s} {0:s} array.\n"
+                    f"SUBROUTINE sub_allreduce_{dim + 1:d}D_{knd1}_{typ}_array(buff, op, comm)\n"
+                    f"    ! This subroutine reduces a {dim + 1:d}D {knd1} {typ} array.\n"
                     "\n"
                     "    USE ISO_C_BINDING\n"
                     "    USE ISO_FORTRAN_ENV\n"
@@ -36,19 +38,19 @@ if __name__ == "__main__":
                     "    IMPLICIT NONE\n"
                     "\n"
                     "    ! Declare inputs/outputs ...\n"
-                    "    {3:76s}:: buff ! The {2:d}D {1:s} {0:s} array to be reduced.\n"
+                    f"    {lhs1:76s}:: buff ! The {dim + 1:d}D {knd1} {typ} array to be reduced.\n"
                     "    INTEGER, INTENT(in)                                                         :: op ! The operation to perform.\n"
                     "    INTEGER, INTENT(in)                                                         :: comm ! The communicator.\n"
                     "\n"
                     "    ! Declare parameters ...\n"
                     "    ! NOTE: \"chunk\" is the number of elements of \"buff\" that are needed to\n"
                     "    !       occupy exactly 1 GiB of RAM (which is 8 Gib of RAM).\n"
-                    "    INTEGER(kind = INT64), PARAMETER                                            :: chunk = 8589934592_INT64 / {4:3d}_INT64\n"
+                    f"    INTEGER(kind = INT64), PARAMETER                                            :: chunk = 8589934592_INT64 / {int(knd1.strip(string.ascii_letters)):3d}_INT64\n"
                     "\n"
                     "    ! Declare variables ...\n"
                     "    ! NOTE: \"parcel\" is the number of elements of \"buff\" that will be transfered\n"
                     "    !       in the current \"MPI_ALLREDUCE\" call.\n"
-                    "    {5:76s}:: buff_flat\n"
+                    f"    {lhs2:76s}:: buff_flat\n"
                     "    INTEGER(kind = INT64)                                                       :: i\n"
                     "    INTEGER(kind = INT64)                                                       :: n\n"
                     "    INTEGER                                                                     :: parcel\n"
@@ -58,7 +60,7 @@ if __name__ == "__main__":
                     "\n"
                     "    ! Create flat array of pointers ...\n"
                     "    n = SIZE(buff, kind = INT64)\n"
-                    "    CALL C_F_POINTER(C_LOC(buff({6:s})), buff_flat, (/ n /))\n"
+                    f'    CALL C_F_POINTER(C_LOC(buff({", ".join((dim + 1) * ["1_INT64"])})), buff_flat, (/ n /))\n'
                     "\n"
                     "    ! Loop over parcels ...\n"
                     "    DO i = 1_INT64, n, chunk\n"
@@ -66,7 +68,7 @@ if __name__ == "__main__":
                     "        parcel = INT(MIN(n - i + 1_INT64, chunk))\n"
                     "\n"
                     "        ! Reduce the parcel ...\n"
-                    "        CALL MPI_ALLREDUCE(MPI_IN_PLACE, buff_flat(i), parcel, {7:s}, op, comm, errnum)\n"
+                    f"        CALL MPI_ALLREDUCE(MPI_IN_PLACE, buff_flat(i), parcel, {knd2}, op, comm, errnum)\n"
                     "        IF(errnum /= MPI_SUCCESS)THEN\n"
                     "            WRITE(fmt = '(\"ERROR: \", a, \". errnum = \", i3, \".\")', unit = ERROR_UNIT) \"CALL MPI_ALLREDUCE() failed\", errnum\n"
                     "            FLUSH(unit = ERROR_UNIT)\n"
@@ -77,23 +79,7 @@ if __name__ == "__main__":
                     "\n"
                     "    ! Destroy pointer ...\n"
                     "    NULLIFY(buff_flat)\n"
-                    "END SUBROUTINE sub_allreduce_{2:d}D_{1:s}_{0:s}_array\n"
-                ).format(
-                    typ,
-                    knd1,
-                    dim + 1,
-                    "{0:s}(kind = {1:s}), CONTIGUOUS, DIMENSION({2:s}), INTENT(inout), TARGET".format(
-                        typ.upper(),
-                        knd1,
-                        ", ".join((dim + 1) * [":"])
-                    ),
-                    int(knd1.strip(string.ascii_letters)),
-                    "{0:s}(kind = {1:s}), CONTIGUOUS, DIMENSION(:), POINTER".format(
-                        typ.upper(),
-                        knd1
-                    ),
-                    ", ".join((dim + 1) * ["1_INT64"]),
-                    knd2
+                    f"END SUBROUTINE sub_allreduce_{dim + 1:d}D_{knd1}_{typ}_array\n"
                 )
 
                 # Save source ...

@@ -20,10 +20,11 @@ if __name__ == "__main__":
         # Loop over kinds ...
         for knd in data[typ]:
             # Create source ...
+            lhs = f"{typ.upper()}(kind = {knd}), DIMENSION(:, :), INTENT(in)"
             src = (
-                "!> @brief This subroutine saves a 2D {1:s} {0:s} array to a PBM file.\n"
+                f"!> @brief This subroutine saves a 2D {knd} {typ} array to a PBM file.\n"
                 "!>\n"
-                "!> @param[in] arr The 2D {1:s} {0:s} array to be saved to a PBM file\n"
+                f"!> @param[in] arr The 2D {knd} {typ} array to be saved to a PBM file\n"
                 "!>\n"
                 "!> @param[in] fname The name of the PBM file\n"
                 "!>\n"
@@ -32,14 +33,14 @@ if __name__ == "__main__":
                 "!> @warning the width of \"arr\" must be an integer multiple of 8\n"
                 "!>\n"
                 "\n"
-                "SUBROUTINE sub_save_2D_{1:s}_{0:s}_array_as_PBM(arr, fname)\n"
+                f"SUBROUTINE sub_save_2D_{knd}_{typ}_array_as_PBM(arr, fname)\n"
                 "    USE ISO_FORTRAN_ENV\n"
                 "\n"
                 "    IMPLICIT NONE\n"
                 "\n"
                 "    ! Declare inputs/outputs ...\n"
                 "    CHARACTER(len = *), INTENT(in)                                              :: fname\n"
-                "    {2:76s}:: arr\n"
+                f"    {lhs:76s}:: arr\n"
                 "\n"
                 "    ! Declare FORTRAN variables ...\n"
                 "    CHARACTER(len = 256)                                                        :: errmsg\n"
@@ -119,18 +120,11 @@ if __name__ == "__main__":
                 "\n"
                 "    ! Clean up ...\n"
                 "    DEALLOCATE(img)\n"
-                "END SUBROUTINE sub_save_2D_{1:s}_{0:s}_array_as_PBM\n"
-            ).format(
-                typ,
-                knd,
-                "{0:s}(kind = {1:s}), DIMENSION(:, :), INTENT(in)".format(
-                    typ.upper(),
-                    knd
-                ),
+                f"END SUBROUTINE sub_save_2D_{knd}_{typ}_array_as_PBM\n"
             )
 
             # Save source ...
-            with open("sub_save_array_as_PBM/sub_save_2D_{1:s}_{0:s}_array_as_PBM.f90".format(typ, knd), "wt", encoding = "utf-8") as fobj:
+            with open(f"sub_save_array_as_PBM/sub_save_2D_{knd}_{typ}_array_as_PBM.f90", "wt", encoding = "utf-8") as fobj:
                 fobj.write(src)
 
     # Open output file ...
@@ -139,9 +133,9 @@ if __name__ == "__main__":
         fobj.write("INTERFACE sub_save_array_as_PBM\n")
         for typ in sorted(data.keys()):
             for knd in data[typ]:
-                fobj.write("    MODULE PROCEDURE sub_save_2D_{1:s}_{0:s}_array_as_PBM\n".format(typ, knd))
+                fobj.write(f"    MODULE PROCEDURE sub_save_2D_{knd}_{typ}_array_as_PBM\n")
         fobj.write("END INTERFACE sub_save_array_as_PBM\n")
         fobj.write("\n")
         for typ in sorted(data.keys()):
             for knd in data[typ]:
-                fobj.write("INCLUDE \"mod_safe/sub_save_array_as_PBM/sub_save_2D_{1:s}_{0:s}_array_as_PBM.f90\"\n".format(typ, knd))
+                fobj.write(f"INCLUDE \"mod_safe/sub_save_array_as_PBM/sub_save_2D_{knd}_{typ}_array_as_PBM.f90\"\n")

@@ -45,6 +45,7 @@ All reals are declared as `REAL64` (from `ISO_FORTRAN_ENV`), except:
     * [func_t_PDF](mod_safe/func_t_PDF.f90) is a function to return the PDF of Student's t-distribution
     * [func_var](mod_safe/func_var.f90) is a function to calculate the variance of an array
     * [sub_allocate_array](mod_safe/sub_allocate_array) is a subroutine to allocate an array after checking that the requested size makes sense
+    * [sub_calc_dist_between_two_locs](mod_safe/sub_calc_dist_between_two_locs.f90) is a subroutine which implements Vincenty's formula to calculate the distance, and both bearings, between two locations
     * [sub_calc_loc_from_loc_and_bearing_and_dist](mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist.f90) is a subroutine which implements Vincenty's formula to calculate the finishing location from a starting location, a bearing and a distance
     * [sub_load_array_from_BIN](mod_safe/sub_load_array_from_BIN) is a subroutine to populate an array with data from a binary file
     * [sub_save_array_as_BIN](mod_safe/sub_save_array_as_BIN) is a subroutine to save an array's data to a binary file

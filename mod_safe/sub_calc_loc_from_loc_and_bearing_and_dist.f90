@@ -69,6 +69,14 @@ PURE SUBROUTINE sub_calc_loc_from_loc_and_bearing_and_dist(lon1_deg, lat1_deg, a
         eps2 = 1.0e-12_REAL64
     END IF
 
+    ! Skip if the isn't a distance ...
+    IF(s_m <= 0.0e0_REAL64)THEN
+        lon2_deg = 0.0e0_REAL64                                                 ! [°]
+        lat2_deg = 0.0e0_REAL64                                                 ! [°]
+        alpha2_deg = 0.0e0_REAL64                                               ! [°]
+        RETURN
+    END IF
+
     ! Convert to radians ...
     lon1 = func_radians(lon1_deg)                                               ! [rad]
     lat1 = func_radians(lat1_deg)                                               ! [rad]

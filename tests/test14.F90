@@ -1,7 +1,8 @@
 PROGRAM main
     ! Import modules ...
     USE ISO_FORTRAN_ENV
-    USE mod_safe, ONLY: sub_calc_loc_from_loc_and_bearing_and_dist
+    USE mod_safe, ONLY: sub_calc_dist_between_two_locs,                         &
+                        sub_calc_loc_from_loc_and_bearing_and_dist
 
     IMPLICIT NONE
 
@@ -13,6 +14,34 @@ PROGRAM main
     REAL(kind = REAL64)                                                         :: lon2
     REAL(kind = REAL64)                                                         :: lat2
     REAL(kind = REAL64)                                                         :: bear2
+
+    ! Populate the coefficients ...
+    lon1 = 20.0e0_REAL64                                                        ! [°]
+    lat1 = 40.0e0_REAL64                                                        ! [°]
+    lon2 = 31.0e0_REAL64                                                        ! [°]
+    lat2 = 44.0e0_REAL64                                                        ! [°]
+
+    ! Solve and print summary ...
+    ! NOTE: python3.10 -c "import pyguymer3; import pyguymer3.geo; print(pyguymer3.geo.calc_dist_between_two_locs(20.0, 40.0, 31.0, 44.0));"
+    CALL sub_calc_dist_between_two_locs(lon1, lat1, lon2, lat2, dist, bear1, bear2)
+    WRITE(fmt = '("How does Python compare to FORTRAN?")', unit = OUTPUT_UNIT)
+    WRITE(fmt = '("     Python = ", f14.6, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) 1012752.1163662494e0_REAL64, 60.39569659166906e0_REAL64, 112.22682686474255e0_REAL64
+    WRITE(fmt = '("    FORTRAN = ", f14.6, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) dist, bear1, bear2
+    FLUSH(unit = OUTPUT_UNIT)
+
+    ! Populate the coefficients ...
+    lon1 = 170.0e0_REAL64                                                       ! [°]
+    lat1 = 10.0e0_REAL64                                                        ! [°]
+    lon2 = -153.0e0_REAL64                                                      ! [°]
+    lat2 = 14.0e0_REAL64                                                        ! [°]
+
+    ! Solve and print summary ...
+    ! NOTE: python3.10 -c "import pyguymer3; import pyguymer3.geo; print(pyguymer3.geo.calc_dist_between_two_locs(170.0, 10.0, -153.0, 14.0));"
+    CALL sub_calc_dist_between_two_locs(lon1, lat1, lon2, lat2, dist, bear1, bear2)
+    WRITE(fmt = '("How does Python compare to FORTRAN?")', unit = OUTPUT_UNIT)
+    WRITE(fmt = '("     Python = ", f14.6, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) 4049560.052853737e0_REAL64, 79.97059150621645e0_REAL64, 92.06388518630848e0_REAL64
+    WRITE(fmt = '("    FORTRAN = ", f14.6, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) dist, bear1, bear2
+    FLUSH(unit = OUTPUT_UNIT)
 
     ! Populate the coefficients ...
     lon1 = 20.0e0_REAL64                                                        ! [°]

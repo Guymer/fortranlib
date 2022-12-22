@@ -42,6 +42,7 @@ endif
 # endif
 
 # Define source files ...
+MOD_GEO_SRC      := $(sort mod_geo.F90 $(wildcard mod_geo/*.f90) $(wildcard mod_geo/*/*.f90))
 MOD_SAFE_SRC     := $(sort mod_safe.F90 $(wildcard mod_safe/*.f90) $(wildcard mod_safe/*/*.f90))
 MOD_SAFE_MPI_SRC := $(sort mod_safe_mpi.F90 $(wildcard mod_safe_mpi/*.f90) $(wildcard mod_safe_mpi/*/*.f90))
 
@@ -55,7 +56,8 @@ clean:			$(RM)
 	$(RM) -f *.mod *.o
 
 # "gmake -r compile" = compiles the code
-compile:		mod_safe.o														\
+compile:		mod_geo.o														\
+				mod_safe.o														\
 				mod_safe_mpi.o
 
 # "gmake -r help"    = print this help
@@ -69,6 +71,13 @@ help:			$(GREP) 														\
 .SILENT: help
 
 # ******************************************************************************
+
+mod_geo.mod																		\
+mod_geo.o:		$(FC)															\
+				Makefile														\
+				$(MOD_GEO_SRC)													\
+				mod_safe.mod
+	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) mod_geo.F90
 
 mod_safe.mod																	\
 mod_safe.o:		$(FC)															\

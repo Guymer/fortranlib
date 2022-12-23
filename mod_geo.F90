@@ -47,9 +47,13 @@ MODULE mod_geo
     INTERFACE sub_buffer
         MODULE PROCEDURE sub_buffer_POINT
     END INTERFACE sub_buffer
+    INTERFACE sub_save_as_GEOJSON
+        MODULE PROCEDURE sub_save_POLYGON_as_GEOJSON
+    END INTERFACE sub_save_as_GEOJSON
 
     CONTAINS
 
     ! Include files ...
     INCLUDE "mod_geo/sub_buffer/sub_buffer_POINT.f90"
+    INCLUDE "mod_geo/sub_save_as_GEOJSON/sub_save_POLYGON_as_GEOJSON.f90"
 END MODULE mod_geo

@@ -1,4 +1,4 @@
-SUBROUTINE sub_buffer_POINT(point, dist, nang, polygon)
+PURE SUBROUTINE sub_buffer_POINT(point, dist, nang, polygon)
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 

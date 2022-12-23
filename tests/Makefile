@@ -68,7 +68,8 @@ compile:		test01															\
 				test12															\
 				test13															\
 				test14															\
-				test15
+				test15															\
+				test16
 
 # "gmake -r help"    = print this help
 help:			$(GREP)															\
@@ -174,6 +175,12 @@ test15.o:		$(FC)															\
 				test15.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test15.F90 -o $@
 
+test16.o:		$(FC)															\
+				$(FTNLIB)/mod_geo.mod											\
+				$(FTNLIB)/mod_safe.mod											\
+				test16.F90
+	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test16.F90 -o $@
+
 test01:			$(FC)															\
 				$(FTNLIB)/mod_safe.o											\
 				$(FTNLIB)/mod_safe_mpi.o										\
@@ -252,3 +259,9 @@ test15:			$(FC)															\
 				$(FTNLIB)/mod_safe.o											\
 				test15.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test15.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
+
+test16:			$(FC)															\
+				$(FTNLIB)/mod_geo.o												\
+				$(FTNLIB)/mod_safe.o											\
+				test16.o
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test16.o $(FTNLIB)/mod_geo.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@

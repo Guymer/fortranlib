@@ -175,3 +175,7 @@ mean = 29.92, var = 0.010, std-dev = 0.098, std-err = 0.044
 TRUE : t = 1.959, p = 0.07857
 FALSE: t = 1.959, p = 0.09077
 ```
+
+#### test16
+
+[test16](test16.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). The program uses [sub_buffer](../mod_geo/sub_buffer/) and [sub_save_as_GEOJSON](../mod_geo/sub_save_as_GEOJSON).

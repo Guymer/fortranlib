@@ -178,4 +178,4 @@ FALSE: t = 1.959, p = 0.09077
 
 #### test16
 
-[test16](test16.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). The program uses [sub_buffer](../mod_geo/sub_buffer/) and [sub_save_as_GEOJSON](../mod_geo/sub_save_as_GEOJSON).
+[test16](test16.F90) is compiled by [Makefile](Makefile) and it can be run using [run.sh](run.sh). The program uses [sub_buffer](../mod_geo/sub_buffer/) and [sub_save_as_GEOJSON](../mod_geo/sub_save_as_GEOJSON/).

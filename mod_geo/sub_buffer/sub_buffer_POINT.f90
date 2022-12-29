@@ -32,11 +32,14 @@ PURE SUBROUTINE sub_buffer_POINT(point, dist, nang, polygon)
     DO iang = 1_INT32, nang - 1_INT32
         ! Calculate initial angle, then the ring coordinates and add them to the
         ! lists ...
-        ang1 = 360.0e0_REAL64 * REAL(nang - iang, kind = REAL64) / REAL(nang - 1_INT32, kind = REAL64)  ! [°]
+        ang1 = MODULO(                                                          &
+            360.0e0_REAL64 * REAL(nang - iang, kind = REAL64) / REAL(nang - 1_INT32, kind = REAL64),    &
+            360.0e0_REAL64                                                      & ! [°]
+        )
         CALL sub_calc_loc_from_loc_and_bearing_and_dist(                        &
               lon1_deg = point%x,                                               &
               lat1_deg = point%y,                                               &
-            alpha1_deg = MODULO(ang1, 360.0e0_C_DOUBLE),                        &
+            alpha1_deg = ang1,                                                  &
                    s_m = dist,                                                  &
               lon2_deg = polygon%exterior%x(iang),                              &
               lat2_deg = polygon%exterior%y(iang),                              &

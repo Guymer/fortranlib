@@ -30,12 +30,13 @@ PURE SUBROUTINE sub_buffer_POINT(point, dist, nang, polygon)
     !       angle will *always* be exactly South. The most two subsequent points
     !       can be apart is ~45° (with nang ≥ 9).
     DO iang = 1_INT32, nang - 1_INT32
-        ! Calculate initial angle, then the ring coordinates and add them to the
-        ! lists ...
+        ! Calculate initial angle ...
         ang1 = MODULO(                                                          &
             360.0e0_REAL64 * REAL(nang - iang, kind = REAL64) / REAL(nang - 1_INT32, kind = REAL64),    &
-            360.0e0_REAL64                                                      & ! [°]
-        )
+            360.0e0_REAL64                                                      &
+        )                                                                       ! [°]
+
+        ! Calculate the ring coordinates ...
         CALL sub_calc_loc_from_loc_and_bearing_and_dist(                        &
               lon1_deg = point%x,                                               &
               lat1_deg = point%y,                                               &

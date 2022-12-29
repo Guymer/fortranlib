@@ -36,7 +36,7 @@ PURE SUBROUTINE sub_buffer_POINT(point, dist, nang, polygon)
         CALL sub_calc_loc_from_loc_and_bearing_and_dist(                        &
               lon1_deg = point%x,                                               &
               lat1_deg = point%y,                                               &
-            alpha1_deg = ang1,                                                  &
+            alpha1_deg = MODULO(ang1, 360.0e0_C_DOUBLE),                        &
                    s_m = dist,                                                  &
               lon2_deg = polygon%exterior%x(iang),                              &
               lat2_deg = polygon%exterior%y(iang),                              &

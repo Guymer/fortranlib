@@ -61,21 +61,21 @@ if __name__ == "__main__":
     # ISO_FORTRAN_ENV ...
     for kind, limit in [(8, 5), (16, 7), (32, 12), (64, 20)]:
         # Open output file ...
-        with open(f"const_factorial/const_factorial_INT{kind:d}.f90", "wt", encoding = "utf-8") as fobj:
+        with open(f"const_factorial/const_factorial_INT{kind:d}.f90", "wt", encoding = "utf-8") as fObj:
             # Start declaration ...
             lhs = f"INTEGER(kind = INT{kind:d}), DIMENSION(0:{limit:d}), PARAMETER"
-            fobj.write(f"{lhs:80s}:: const_factorial_INT{kind:d} = (/ &\n")
+            fObj.write(f"{lhs:80s}:: const_factorial_INT{kind:d} = (/ &\n")
 
             # Loop over factorials ...
             for i in range(limit + 1):
                 # Populate declaration ...
                 if i == limit:
-                    fobj.write(f'{84 * " "}{math.factorial(i):d}_INT{kind:d}  &\n')
+                    fObj.write(f'{84 * " "}{math.factorial(i):d}_INT{kind:d}  &\n')
                 else:
-                    fobj.write(f'{84 * " "}{math.factorial(i):d}_INT{kind:d}, &\n')
+                    fObj.write(f'{84 * " "}{math.factorial(i):d}_INT{kind:d}, &\n')
 
             # Finish declaration ...
-            fobj.write(f'{80 * " "}/)\n')
+            fObj.write(f'{80 * " "}/)\n')
 
     # **************************************************************************
 
@@ -83,18 +83,18 @@ if __name__ == "__main__":
     # defined in ISO_FORTRAN_ENV ...
     for kind, limit, prec in [(32, 34, 7), (64, 170, 16), (128, 1754, 33)]:
         # Open output file ...
-        with open(f"const_factorial/const_factorial_REAL{kind:d}.f90", "wt", encoding = "utf-8") as fobj:
+        with open(f"const_factorial/const_factorial_REAL{kind:d}.f90", "wt", encoding = "utf-8") as fObj:
             # Start declaration ...
             lhs = f"REAL(kind = REAL{kind:d}), DIMENSION(0:{limit:d}), PARAMETER"
-            fobj.write(f"{lhs:80s}:: const_factorial_REAL{kind:d} = (/ &\n")
+            fObj.write(f"{lhs:80s}:: const_factorial_REAL{kind:d} = (/ &\n")
 
             # Loop over factorials ...
             for i in range(limit + 1):
                 # Populate declaration ...
                 if i == limit:
-                    fobj.write(f'{84 * " "}{hack(math.factorial(i), prec)}_REAL{kind:d}  &\n')
+                    fObj.write(f'{84 * " "}{hack(math.factorial(i), prec)}_REAL{kind:d}  &\n')
                 else:
-                    fobj.write(f'{84 * " "}{hack(math.factorial(i), prec)}_REAL{kind:d}, &\n')
+                    fObj.write(f'{84 * " "}{hack(math.factorial(i), prec)}_REAL{kind:d}, &\n')
 
             # Finish declaration ...
-            fobj.write(f'{80 * " "}/)\n')
+            fObj.write(f'{80 * " "}/)\n')

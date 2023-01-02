@@ -64,20 +64,20 @@ if __name__ == "__main__":
                 )
 
                 # Save source ...
-                with open(f"sub_load_array_from_BIN/sub_load_{dim + 1:d}D_{knd}_{typ}_array_from_BIN.f90", "wt", encoding = "utf-8") as fobj:
-                    fobj.write(src)
+                with open(f"sub_load_array_from_BIN/sub_load_{dim + 1:d}D_{knd}_{typ}_array_from_BIN.f90", "wt", encoding = "utf-8") as fObj:
+                    fObj.write(src)
 
     # Open output file ...
-    with open("sub_load_array_from_BIN.tmp", "wt", encoding = "utf-8") as fobj:
+    with open("sub_load_array_from_BIN.tmp", "wt", encoding = "utf-8") as fObj:
         # Write out interfaces and includes ...
-        fobj.write("INTERFACE sub_load_array_from_BIN\n")
+        fObj.write("INTERFACE sub_load_array_from_BIN\n")
         for typ in sorted(data.keys()):
             for knd in data[typ]:
                 for dim in range(7):
-                    fobj.write(f"    MODULE PROCEDURE sub_load_{dim + 1:d}D_{knd}_{typ}_array_from_BIN\n")
-        fobj.write("END INTERFACE sub_load_array_from_BIN\n")
-        fobj.write("\n")
+                    fObj.write(f"    MODULE PROCEDURE sub_load_{dim + 1:d}D_{knd}_{typ}_array_from_BIN\n")
+        fObj.write("END INTERFACE sub_load_array_from_BIN\n")
+        fObj.write("\n")
         for typ in sorted(data.keys()):
             for knd in data[typ]:
                 for dim in range(7):
-                    fobj.write(f"INCLUDE \"mod_safe/sub_load_array_from_BIN/sub_load_{dim + 1:d}D_{knd}_{typ}_array_from_BIN.f90\"\n")
+                    fObj.write(f"INCLUDE \"mod_safe/sub_load_array_from_BIN/sub_load_{dim + 1:d}D_{knd}_{typ}_array_from_BIN.f90\"\n")

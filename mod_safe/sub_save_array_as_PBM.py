@@ -124,18 +124,18 @@ if __name__ == "__main__":
             )
 
             # Save source ...
-            with open(f"sub_save_array_as_PBM/sub_save_2D_{knd}_{typ}_array_as_PBM.f90", "wt", encoding = "utf-8") as fobj:
-                fobj.write(src)
+            with open(f"sub_save_array_as_PBM/sub_save_2D_{knd}_{typ}_array_as_PBM.f90", "wt", encoding = "utf-8") as fObj:
+                fObj.write(src)
 
     # Open output file ...
-    with open("sub_save_array_as_PBM.tmp", "wt", encoding = "utf-8") as fobj:
+    with open("sub_save_array_as_PBM.tmp", "wt", encoding = "utf-8") as fObj:
         # Write out interfaces and includes ...
-        fobj.write("INTERFACE sub_save_array_as_PBM\n")
+        fObj.write("INTERFACE sub_save_array_as_PBM\n")
         for typ in sorted(data.keys()):
             for knd in data[typ]:
-                fobj.write(f"    MODULE PROCEDURE sub_save_2D_{knd}_{typ}_array_as_PBM\n")
-        fobj.write("END INTERFACE sub_save_array_as_PBM\n")
-        fobj.write("\n")
+                fObj.write(f"    MODULE PROCEDURE sub_save_2D_{knd}_{typ}_array_as_PBM\n")
+        fObj.write("END INTERFACE sub_save_array_as_PBM\n")
+        fObj.write("\n")
         for typ in sorted(data.keys()):
             for knd in data[typ]:
-                fobj.write(f"INCLUDE \"mod_safe/sub_save_array_as_PBM/sub_save_2D_{knd}_{typ}_array_as_PBM.f90\"\n")
+                fObj.write(f"INCLUDE \"mod_safe/sub_save_array_as_PBM/sub_save_2D_{knd}_{typ}_array_as_PBM.f90\"\n")

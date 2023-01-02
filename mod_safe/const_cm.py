@@ -13,9 +13,9 @@ if __name__ == "__main__":
         raise Exception("\"matplotlib\" is not installed; run \"pip install --user matplotlib\"") from None
 
     # Open output file ...
-    with open("const_cm.f90", "wt", encoding = "utf-8") as fobj:
+    with open("const_cm.f90", "wt", encoding = "utf-8") as fObj:
         # Start declaration ...
-        fobj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_fire = (/ &\n")
+        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_fire = (/ &\n")
 
         # Loop over levels ...
         for i in range(256):
@@ -27,17 +27,17 @@ if __name__ == "__main__":
 
             # Write colour values ...
             if i == 255:
-                fobj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f})  &\n')
+                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f})  &\n')
             else:
-                fobj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
+                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
 
         # Finish declaration ...
-        fobj.write(f'{80 * " "}/)\n')
+        fObj.write(f'{80 * " "}/)\n')
 
         # **********************************************************************
 
         # Start declaration ...
-        fobj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_jet = (/ &\n")
+        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_jet = (/ &\n")
 
         # Loop over levels ...
         for i in range(256):
@@ -49,18 +49,18 @@ if __name__ == "__main__":
 
             # Write colour values ...
             if i == 255:
-                fobj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f})  &\n')
+                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f})  &\n')
             else:
-                fobj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
+                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
 
         # Finish declaration ...
-        fobj.write(f'{80 * " "}/)\n')
+        fObj.write(f'{80 * " "}/)\n')
 
         # **********************************************************************
 
         # Start declaration ...
         # NOTE: This colour map will go from (0,255,0) to (0,0,255).
-        fobj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_g2b = (/ &\n")
+        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_g2b = (/ &\n")
 
         # Loop over levels ...
         for i in range(256):
@@ -71,18 +71,18 @@ if __name__ == "__main__":
 
             # Write colour values ...
             if i == 255:
-                fobj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f})  &\n')
+                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f})  &\n')
             else:
-                fobj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
+                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
 
         # Finish declaration ...
-        fobj.write(f'{80 * " "}/)\n')
+        fObj.write(f'{80 * " "}/)\n')
 
         # **********************************************************************
 
         # Start declaration ...
         # NOTE: This colour map will go from (255,0,0) to (0,255,0).
-        fobj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2g = (/ &\n")
+        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2g = (/ &\n")
 
         # Loop over levels ...
         for i in range(256):
@@ -93,18 +93,18 @@ if __name__ == "__main__":
 
             # Write colour values ...
             if i == 255:
-                fobj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f})  &\n')
+                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f})  &\n')
             else:
-                fobj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
+                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
 
         # Finish declaration ...
-        fobj.write(f'{80 * " "}/)\n')
+        fObj.write(f'{80 * " "}/)\n')
 
         # **********************************************************************
 
         # Start declaration ...
         # NOTE: This colour map will go from (255,0,0) to (255,127,0) to (0,255,0).
-        fobj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2o2g = (/ &\n")
+        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2o2g = (/ &\n")
 
         # Loop over levels ...
         for i in range(256):
@@ -118,9 +118,9 @@ if __name__ == "__main__":
 
             # Write colour values ...
             if i == 255:
-                fobj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f})  &\n')
+                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f})  &\n')
             else:
-                fobj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
+                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
 
         # Finish declaration ...
-        fobj.write(f'{80 * " "}/)\n')
+        fObj.write(f'{80 * " "}/)\n')

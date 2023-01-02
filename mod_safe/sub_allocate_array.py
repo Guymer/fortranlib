@@ -133,20 +133,20 @@ if __name__ == "__main__":
                 )
 
                 # Save source ...
-                with open(f"sub_allocate_array/sub_allocate_{dim + 1:d}D_{knd}_{typ}_array.f90", "wt", encoding = "utf-8") as fobj:
-                    fobj.write(src)
+                with open(f"sub_allocate_array/sub_allocate_{dim + 1:d}D_{knd}_{typ}_array.f90", "wt", encoding = "utf-8") as fObj:
+                    fObj.write(src)
 
     # Open output file ...
-    with open("sub_allocate_array.tmp", "wt", encoding = "utf-8") as fobj:
+    with open("sub_allocate_array.tmp", "wt", encoding = "utf-8") as fObj:
         # Write out interfaces and includes ...
-        fobj.write("INTERFACE sub_allocate_array\n")
+        fObj.write("INTERFACE sub_allocate_array\n")
         for typ in sorted(data.keys()):
             for knd in data[typ]:
                 for dim in range(7):
-                    fobj.write(f"    MODULE PROCEDURE sub_allocate_{dim + 1:d}D_{knd}_{typ}_array\n")
-        fobj.write("END INTERFACE sub_allocate_array\n")
-        fobj.write("\n")
+                    fObj.write(f"    MODULE PROCEDURE sub_allocate_{dim + 1:d}D_{knd}_{typ}_array\n")
+        fObj.write("END INTERFACE sub_allocate_array\n")
+        fObj.write("\n")
         for typ in sorted(data.keys()):
             for knd in data[typ]:
                 for dim in range(7):
-                    fobj.write(f"INCLUDE \"mod_safe/sub_allocate_array/sub_allocate_{dim + 1:d}D_{knd}_{typ}_array.f90\"\n")
+                    fObj.write(f"INCLUDE \"mod_safe/sub_allocate_array/sub_allocate_{dim + 1:d}D_{knd}_{typ}_array.f90\"\n")

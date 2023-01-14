@@ -17,7 +17,7 @@ if __name__ == "__main__":
     # NOTE: See https://docs.python.org/3/library/stdtypes.html#integer-string-conversion-length-limitation
     sys.set_int_max_str_digits(5000)
 
-    # Define functions ...
+    # Define function ...
     def hack(num, sig):
         # This function accepts an integer ("num") that is to be represented in
         # a string using scientific notation with "sig" significant figures in

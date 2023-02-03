@@ -25,8 +25,8 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.napoleon",
-    "sphinxfortran.fortran_autodoc",    # pip-3.10 install --user sphinx-fortran
-    "sphinxfortran.fortran_domain",     # pip-3.10 install --user sphinx-fortran
+    "sphinxfortran.fortran_autodoc",                                            # pip-3.10 install --user sphinx-fortran
+    "sphinxfortran.fortran_domain",                                             # pip-3.10 install --user sphinx-fortran
 ]
 
 # Configure Sphinx extension modules ...

@@ -18,7 +18,7 @@ if __name__ == "__main__":
     sys.set_int_max_str_digits(5000)
 
     # Define function ...
-    def hack(num, sig):
+    def hack(num, sig, /):
         # This function accepts an integer ("num") that is to be represented in
         # a string using scientific notation with "sig" significant figures in
         # the mantissa and 4 significant figures in the exponent.

@@ -21,7 +21,7 @@ if __name__ == "__main__":
     # Loop over types ...
     for typ in sorted(data.keys()):
         # Loop over kinds ...
-        for knd1, knd2 in zip(data[typ][0], data[typ][1]):
+        for knd1, knd2 in zip(data[typ][0], data[typ][1], strict = True):
             # Loop over dimensions ...
             for dim in range(7):
                 # Create source ...
@@ -91,12 +91,12 @@ if __name__ == "__main__":
         # Write out interfaces and includes ...
         fObj.write("INTERFACE sub_bcast_array\n")
         for typ in sorted(data.keys()):
-            for knd1, knd2 in zip(data[typ][0], data[typ][1]):
+            for knd1, knd2 in zip(data[typ][0], data[typ][1], strict = True):
                 for dim in range(7):
                     fObj.write(f"    MODULE PROCEDURE sub_bcast_{dim + 1:d}D_{knd1}_{typ}_array\n")
         fObj.write("END INTERFACE sub_bcast_array\n")
         fObj.write("\n")
         for typ in sorted(data.keys()):
-            for knd1, knd2 in zip(data[typ][0], data[typ][1]):
+            for knd1, knd2 in zip(data[typ][0], data[typ][1], strict = True):
                 for dim in range(7):
                     fObj.write(f"INCLUDE \"mod_safe_mpi/sub_bcast_array/sub_bcast_{dim + 1:d}D_{knd1}_{typ}_array.f90\"\n")

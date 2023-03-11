@@ -1,28 +1,36 @@
-# Find executables ...
-CUT  := $(shell which cut                  2> /dev/null || echo "ERROR")
-FC   := $(shell which mpif90-openmpi-gcc12 2> /dev/null || echo "ERROR")
-GREP := $(shell which grep                 2> /dev/null || echo "ERROR")
-RM   := $(shell which rm                   2> /dev/null || echo "ERROR")
-
-# Set defaults ...
-DEBUG ?= false
-
+# ******************************************************************************
+# *                                 VARIABLES                                  *
 # ******************************************************************************
 
-# Set compiler flags ...
+DEBUG     ?= false
 DEBG_OPTS := -g -fcheck=all
 LANG_OPTS := -ffree-form -ffree-line-length-none -frecursive -fno-unsafe-math-optimizations -frounding-math -fsignaling-nans -fPIC
 WARN_OPTS := -Wall -Wextra -Waliasing -Wcharacter-truncation -Wconversion-extra -Wimplicit-interface -Wimplicit-procedure -Wunderflow -Wtabs
 OPTM_OPTS := -O2
 MACH_OPTS := -march=native -m64
 
-# If the user wants debugging then append the debugging flags to the language
-# flags ...
+# ******************************************************************************
+# *                                  BINARIES                                  *
+# ******************************************************************************
+
+CUT     := $(shell which cut                  2> /dev/null || echo "ERROR")
+FC      := $(shell which mpif90-openmpi-gcc12 2> /dev/null || echo "ERROR")
+GREP    := $(shell which grep                 2> /dev/null || echo "ERROR")
+PYTHON3 := $(shell which python3.11           2> /dev/null || echo "ERROR")
+RM      := $(shell which rm                   2> /dev/null || echo "ERROR")
+
+# ******************************************************************************
+# *                             DYNAMIC VARIABLES                              *
+# ******************************************************************************
+
 ifeq ($(DEBUG), true)
 	LANG_OPTS += $(DEBG_OPTS)
 endif
 
-# Check binaries ...
+# ******************************************************************************
+# *                               CHECK BINARIES                               *
+# ******************************************************************************
+
 ifeq ($(CUT),ERROR)
     $(error The binary "cut" is not installed)
 endif
@@ -32,20 +40,34 @@ endif
 ifeq ($(GREP),ERROR)
     $(error The binary "grep" is not installed)
 endif
+ifeq ($(PYTHON3),ERROR)
+    $(error The binary "python3" is not installed)
+endif
 ifeq ($(RM),ERROR)
     $(error The binary "rm" is not installed)
 endif
 
-# Check Python modules ...
-# ifneq ($(shell $(PYTHON3) -c "import numpy; print(0)" 2> /dev/null),0)
-    # $(error The Python module "numpy" is not installed)
-# endif
+# ******************************************************************************
+# *                            CHECK PYTHON MODULES                            *
+# ******************************************************************************
 
-# Define source files ...
+ifneq ($(shell $(PYTHON3) -c "import matplotlib; print(0)" 2> /dev/null),0)
+    $(error The Python module "matplotlib" is not installed)
+endif
+ifneq ($(shell $(PYTHON3) -c "import scipy; print(0)" 2> /dev/null),0)
+    $(error The Python module "scipy" is not installed)
+endif
+
+# ******************************************************************************
+# *                             DERIVED VARIABLES                              *
+# ******************************************************************************
+
 MOD_GEO_SRC      := $(sort mod_geo.F90 $(wildcard mod_geo/*.f90) $(wildcard mod_geo/*/*.f90))
 MOD_SAFE_SRC     := $(sort mod_safe.F90 $(wildcard mod_safe/*.f90) $(wildcard mod_safe/*/*.f90))
 MOD_SAFE_MPI_SRC := $(sort mod_safe_mpi.F90 $(wildcard mod_safe_mpi/*.f90) $(wildcard mod_safe_mpi/*/*.f90))
 
+# ******************************************************************************
+# *                           USER-SPECIFIED TARGETS                           *
 # ******************************************************************************
 
 # "gmake -r [all]"   = "make compile" (default)
@@ -67,9 +89,13 @@ help:			$(GREP) 														\
 	$(GREP) -E "^# \"gmake -r " Makefile | $(CUT) -c 2-
 
 # ******************************************************************************
+# *                            ENVIRONMENT SETTINGS                            *
+# ******************************************************************************
 
 .SILENT: help
 
+# ******************************************************************************
+# *                        INTERNALLY-SPECIFIED TARGETS                        *
 # ******************************************************************************
 
 mod_geo.mod																		\

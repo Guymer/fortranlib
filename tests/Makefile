@@ -1,30 +1,37 @@
-# Find executables ...
-CUT  := $(shell which cut                  2> /dev/null || echo "ERROR")
-FC   := $(shell which mpif90-openmpi-gcc12 2> /dev/null || echo "ERROR")
-GREP := $(shell which grep                 2> /dev/null || echo "ERROR")
-RM   := $(shell which rm                   2> /dev/null || echo "ERROR")
-
-# Set defaults ...
-DEBUG  ?= false
-FTNLIB ?= ..
-LIBDIR ?= /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
-
+# ******************************************************************************
+# *                                 VARIABLES                                  *
 # ******************************************************************************
 
-# Set compiler flags ...
+DEBUG     ?= false
+FTNLIB    ?= ..
+LIBDIR    ?= /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
 DEBG_OPTS := -g -fcheck=all
 LANG_OPTS := -ffree-form -ffree-line-length-none -frecursive -fno-unsafe-math-optimizations -frounding-math -fsignaling-nans -fPIC
 WARN_OPTS := -Wall -Wextra -Waliasing -Wcharacter-truncation -Wconversion-extra -Wimplicit-interface -Wimplicit-procedure -Wunderflow -Wtabs
 OPTM_OPTS := -O2
 MACH_OPTS := -march=native -m64
 
-# If the user wants debugging then append the debugging flags to the language
-# flags ...
+# ******************************************************************************
+# *                                  BINARIES                                  *
+# ******************************************************************************
+
+CUT  := $(shell which cut                  2> /dev/null || echo "ERROR")
+FC   := $(shell which mpif90-openmpi-gcc12 2> /dev/null || echo "ERROR")
+GREP := $(shell which grep                 2> /dev/null || echo "ERROR")
+RM   := $(shell which rm                   2> /dev/null || echo "ERROR")
+
+# ******************************************************************************
+# *                             DYNAMIC VARIABLES                              *
+# ******************************************************************************
+
 ifeq ($(DEBUG), true)
 	LANG_OPTS += $(DEBG_OPTS)
 endif
 
-# Check binaries ...
+# ******************************************************************************
+# *                               CHECK BINARIES                               *
+# ******************************************************************************
+
 ifeq ($(CUT),ERROR)
     $(error The binary "cut" is not installed)
 endif
@@ -38,11 +45,8 @@ ifeq ($(RM),ERROR)
     $(error The binary "rm" is not installed)
 endif
 
-# Check Python modules ...
-# ifneq ($(shell $(PYTHON3) -c "import numpy; print(0)" 2> /dev/null),0)
-    # $(error The Python module "numpy" is not installed)
-# endif
-
+# ******************************************************************************
+# *                           USER-SPECIFIED TARGETS                           *
 # ******************************************************************************
 
 # "gmake -r [all]"   = "make compile" (default)
@@ -78,9 +82,13 @@ help:			$(GREP)															\
 	$(GREP) -E "^# \"gmake -r " Makefile | $(CUT) -c 2-
 
 # ******************************************************************************
+# *                            ENVIRONMENT SETTINGS                            *
+# ******************************************************************************
 
 .SILENT: help
 
+# ******************************************************************************
+# *                        INTERNALLY-SPECIFIED TARGETS                        *
 # ******************************************************************************
 
 # NOTE: As of 01/Nov/2019 there is still a bug in "gcc9" from MacPorts which

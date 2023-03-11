@@ -350,6 +350,24 @@ mod_safe/sub_save_array_as_BIN/sub_save_7D_REAL64_real_array_as_BIN.f90	    	\
 mod_safe/sub_save_array_as_BIN/sub_save_7D_REAL128_real_array_as_BIN.f90:		mod_safe/sub_save_array_as_BIN.py
 	cd $(<D) && $(PYTHON3) $(<F)
 
+mod_safe/sub_save_array_as_PGM/sub_save_2D_INT8_integer_array_as_PGM.f90		\
+mod_safe/sub_save_array_as_PGM/sub_save_2D_INT16_integer_array_as_PGM.f90		\
+mod_safe/sub_save_array_as_PGM/sub_save_2D_INT32_integer_array_as_PGM.f90		\
+mod_safe/sub_save_array_as_PGM/sub_save_2D_INT64_integer_array_as_PGM.f90		\
+mod_safe/sub_save_array_as_PGM/sub_save_2D_REAL32_real_array_as_PGM.f90	    	\
+mod_safe/sub_save_array_as_PGM/sub_save_2D_REAL64_real_array_as_PGM.f90	    	\
+mod_safe/sub_save_array_as_PGM/sub_save_2D_REAL128_real_array_as_PGM.f90:		mod_safe/sub_save_array_as_PGM.py
+	cd $(<D) && $(PYTHON3) $(<F)
+
+mod_safe/sub_save_array_as_PPM/sub_save_2D_INT8_integer_array_as_PPM.f90		\
+mod_safe/sub_save_array_as_PPM/sub_save_2D_INT16_integer_array_as_PPM.f90		\
+mod_safe/sub_save_array_as_PPM/sub_save_2D_INT32_integer_array_as_PPM.f90		\
+mod_safe/sub_save_array_as_PPM/sub_save_2D_INT64_integer_array_as_PPM.f90		\
+mod_safe/sub_save_array_as_PPM/sub_save_2D_REAL32_real_array_as_PPM.f90	    	\
+mod_safe/sub_save_array_as_PPM/sub_save_2D_REAL64_real_array_as_PPM.f90	    	\
+mod_safe/sub_save_array_as_PPM/sub_save_2D_REAL128_real_array_as_PPM.f90:		mod_safe/sub_save_array_as_PPM.py
+	cd $(<D) && $(PYTHON3) $(<F)
+
 mod_geo.mod																		\
 mod_geo.o:		$(MOD_GEO_SRC)													\
 				mod_safe.mod

@@ -98,19 +98,98 @@ help:			$(GREP) 														\
 # *                        INTERNALLY-SPECIFIED TARGETS                        *
 # ******************************************************************************
 
-mod_safe/const_cm.f90:									mod_safe/const_cm.py
+mod_safe/const_cm.f90:															mod_safe/const_cm.py
 	cd $(<D) && $(PYTHON3) $(<F)
 
-mod_safe/const_factorial/const_factorial_INT8.f90	\
-mod_safe/const_factorial/const_factorial_INT16.f90	\
-mod_safe/const_factorial/const_factorial_INT32.f90	\
-mod_safe/const_factorial/const_factorial_INT64.f90	\
-mod_safe/const_factorial/const_factorial_REAL32.f90	\
-mod_safe/const_factorial/const_factorial_REAL64.f90	\
-mod_safe/const_factorial/const_factorial_REAL128.f90:	mod_safe/const_factorial.py
+mod_safe/const_factorial/const_factorial_INT8.f90								\
+mod_safe/const_factorial/const_factorial_INT16.f90								\
+mod_safe/const_factorial/const_factorial_INT32.f90								\
+mod_safe/const_factorial/const_factorial_INT64.f90								\
+mod_safe/const_factorial/const_factorial_REAL32.f90								\
+mod_safe/const_factorial/const_factorial_REAL64.f90								\
+mod_safe/const_factorial/const_factorial_REAL128.f90:							mod_safe/const_factorial.py
 	cd $(<D) && $(PYTHON3) $(<F)
 
-mod_safe/consts.f90:									mod_safe/consts.py
+mod_safe/consts.f90:															mod_safe/consts.py
+	cd $(<D) && $(PYTHON3) $(<F)
+
+mod_safe/sub_allocate_array/sub_allocate_1D_INT8_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_1D_INT8_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_1D_INT16_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_1D_INT16_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_1D_INT32_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_1D_INT32_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_1D_INT64_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_1D_INT64_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_1D_REAL32_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_1D_REAL64_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_1D_REAL128_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_2D_INT8_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_2D_INT8_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_2D_INT16_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_2D_INT16_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_2D_INT32_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_2D_INT32_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_2D_INT64_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_2D_INT64_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_2D_REAL32_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_2D_REAL64_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_2D_REAL128_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_3D_INT8_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_3D_INT8_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_3D_INT16_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_3D_INT16_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_3D_INT32_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_3D_INT32_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_3D_INT64_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_3D_INT64_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_3D_REAL32_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_3D_REAL64_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_3D_REAL128_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_4D_INT8_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_4D_INT8_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_4D_INT16_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_4D_INT16_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_4D_INT32_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_4D_INT32_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_4D_INT64_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_4D_INT64_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_4D_REAL32_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_4D_REAL64_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_4D_REAL128_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_5D_INT8_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_5D_INT8_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_5D_INT16_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_5D_INT16_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_5D_INT32_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_5D_INT32_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_5D_INT64_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_5D_INT64_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_5D_REAL32_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_5D_REAL64_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_5D_REAL128_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_6D_INT8_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_6D_INT8_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_6D_INT16_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_6D_INT16_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_6D_INT32_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_6D_INT32_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_6D_INT64_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_6D_INT64_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_6D_REAL32_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_6D_REAL64_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_6D_REAL128_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_7D_INT8_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_7D_INT8_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_7D_INT16_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_7D_INT16_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_7D_INT32_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_7D_INT32_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_7D_INT64_integer_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_7D_INT64_logical_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_7D_REAL32_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_7D_REAL64_real_array.f90				\
+mod_safe/sub_allocate_array/sub_allocate_7D_REAL128_real_array.f90:				mod_safe/sub_allocate_array.py
 	cd $(<D) && $(PYTHON3) $(<F)
 
 mod_geo.mod																		\

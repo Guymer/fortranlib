@@ -350,6 +350,12 @@ mod_safe/sub_save_array_as_BIN/sub_save_7D_REAL64_real_array_as_BIN.f90	    	\
 mod_safe/sub_save_array_as_BIN/sub_save_7D_REAL128_real_array_as_BIN.f90:		mod_safe/sub_save_array_as_BIN.py
 	cd $(<D) && $(PYTHON3) $(<F)
 
+mod_safe/sub_save_array_as_PBM/sub_save_2D_INT8_logical_array_as_PBM.f90		\
+mod_safe/sub_save_array_as_PBM/sub_save_2D_INT16_logical_array_as_PBM.f90		\
+mod_safe/sub_save_array_as_PBM/sub_save_2D_INT32_logical_array_as_PBM.f90		\
+mod_safe/sub_save_array_as_PBM/sub_save_2D_INT64_logical_array_as_PBM.f90:		mod_safe/sub_save_array_as_PBM.py
+	cd $(<D) && $(PYTHON3) $(<F)
+
 mod_safe/sub_save_array_as_PGM/sub_save_2D_INT8_integer_array_as_PGM.f90		\
 mod_safe/sub_save_array_as_PGM/sub_save_2D_INT16_integer_array_as_PGM.f90		\
 mod_safe/sub_save_array_as_PGM/sub_save_2D_INT32_integer_array_as_PGM.f90		\

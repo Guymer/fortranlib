@@ -41,6 +41,7 @@ Module Reference
 
 .. toctree::
 
+   mod_geo
    mod_safe
    mod_safe_mpi
 

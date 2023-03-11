@@ -25,16 +25,18 @@ extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
     "sphinx.ext.napoleon",
-    "sphinxfortran.fortran_autodoc",                                            # pip-3.10 install --user sphinx-fortran
-    "sphinxfortran.fortran_domain",                                             # pip-3.10 install --user sphinx-fortran
+    "sphinxfortran.fortran_autodoc",                                            # pip-3.11 install --user sphinx-fortran
+    "sphinxfortran.fortran_domain",                                             # pip-3.11 install --user sphinx-fortran
 ]
 
 # Configure Sphinx extension modules ...
 autosummary_generate = True
 napoleon_google_docstring = False
 fortran_src = [
+    "../mod_geo.F90",
     "../mod_safe.F90",
     "../mod_safe_mpi.F90",
+    "../mod_geo",
     "../mod_safe",
     "../mod_safe_mpi",
 ]

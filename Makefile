@@ -98,21 +98,30 @@ help:			$(GREP) 														\
 # *                        INTERNALLY-SPECIFIED TARGETS                        *
 # ******************************************************************************
 
+mod_safe/const_cm.f90:									mod_safe/const_cm.py
+	cd $(<D) && $(PYTHON3) $(<F)
+
+mod_safe/const_factorial/const_factorial_INT8.f90	\
+mod_safe/const_factorial/const_factorial_INT16.f90	\
+mod_safe/const_factorial/const_factorial_INT32.f90	\
+mod_safe/const_factorial/const_factorial_INT64.f90	\
+mod_safe/const_factorial/const_factorial_REAL32.f90	\
+mod_safe/const_factorial/const_factorial_REAL64.f90	\
+mod_safe/const_factorial/const_factorial_REAL128.f90:	mod_safe/const_factorial.py
+	cd $(<D) && $(PYTHON3) $(<F)
+
+mod_safe/consts.f90:									mod_safe/consts.py
+	cd $(<D) && $(PYTHON3) $(<F)
+
 mod_geo.mod																		\
-mod_geo.o:		$(FC)															\
-				Makefile														\
-				$(MOD_GEO_SRC)													\
+mod_geo.o:		$(MOD_GEO_SRC)													\
 				mod_safe.mod
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) mod_geo.F90
 
 mod_safe.mod																	\
-mod_safe.o:		$(FC)															\
-				Makefile														\
-				$(MOD_SAFE_SRC)
+mod_safe.o:		$(MOD_SAFE_SRC)
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) mod_safe.F90
 
 mod_safe_mpi.mod																\
-mod_safe_mpi.o:	$(FC)															\
-				Makefile														\
-				$(MOD_SAFE_MPI_SRC)
+mod_safe_mpi.o:	$(MOD_SAFE_MPI_SRC)
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) mod_safe_mpi.F90

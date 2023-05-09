@@ -1,1 +1,1 @@
-sphinxfortran
+sphinx-fortran

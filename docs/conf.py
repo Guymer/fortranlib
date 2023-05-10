@@ -17,7 +17,7 @@ import sphinx_rtd_theme
 
 # Set project information ...
 project = "fortranlib"
-copyright = "2023, Thomas Guymer"
+copyright = "2023, Thomas Guymer"                                               # pylint: disable=W0622
 author = "Thomas Guymer"
 
 # Add Sphinx extension modules ...

@@ -42,9 +42,26 @@ endif
 ifeq ($(GREP),ERROR)
     $(error The binary "grep" is not installed)
 endif
+ifeq ($(PYTHON3),ERROR)
+    $(error The binary "python3" is not installed)
+endif
 ifeq ($(RM),ERROR)
     $(error The binary "rm" is not installed)
 endif
+
+# ******************************************************************************
+# *                            CHECK PYTHON MODULES                            *
+# ******************************************************************************
+
+# ifneq ($(shell $(PYTHON3) -c "import numpy; print(0)" 2> /dev/null),0)
+#     $(error The Python module "numpy" is not installed)
+# endif
+
+# ******************************************************************************
+# *                             DERIVED VARIABLES                              *
+# ******************************************************************************
+
+# SUFFIX ?= $(shell $(PYTHON3) -c "import sysconfig; print(sysconfig.get_config_var(\"EXT_SUFFIX\"))")
 
 # ******************************************************************************
 # *                           USER-SPECIFIED TARGETS                           *
@@ -54,7 +71,7 @@ endif
 all:			compile
 
 # "gmake -r clean"   = removes the compiled code
-clean:			$(RM)
+clean:
 	$(RM) -f test?? *.mod *.o
 	$(MAKE) -r -C $(FTNLIB) FC=$(FC) PYTHON3=$(PYTHON3) clean
 
@@ -77,8 +94,7 @@ compile:		test01															\
 				test16
 
 # "gmake -r help"    = print this help
-help:			$(GREP)															\
-				$(CUT)
+help:
 	echo "These are the available options:"
 	$(GREP) -E "^# \"gmake -r " Makefile | $(CUT) -c 2-
 
@@ -101,176 +117,143 @@ help:			$(GREP)															\
 #         * https://stackoverflow.com/a/58081934
 
 $(FTNLIB)/%.mod																	\
-$(FTNLIB)/%.o:	$(FTNLIB)/Makefile												\
-				$(FTNLIB)/%.F90
+$(FTNLIB)/%.o:	$(FTNLIB)/%.F90
 	$(MAKE) -r -C $(FTNLIB) DEBUG=$(DEBUG) FC=$(FC) PYTHON3=$(PYTHON3) $*.o
 
-test01.o:		$(FC)															\
-				$(FTNLIB)/mod_safe.mod											\
+test01.o:		$(FTNLIB)/mod_safe.mod											\
 				$(FTNLIB)/mod_safe_mpi.mod										\
 				test01.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test01.F90 -o $@
 
-test02.o:		$(FC)															\
-				$(FTNLIB)/mod_safe.mod											\
+test02.o:		$(FTNLIB)/mod_safe.mod											\
 				$(FTNLIB)/mod_safe_mpi.mod										\
 				test02.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test02.F90 -o $@
 
-test03.o:		$(FC)															\
-				$(FTNLIB)/mod_safe.mod											\
+test03.o:		$(FTNLIB)/mod_safe.mod											\
 				test03.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test03.F90 -o $@
 
-test04.o:		$(FC)															\
-				$(FTNLIB)/mod_safe.mod											\
+test04.o:		$(FTNLIB)/mod_safe.mod											\
 				test04.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test04.F90 -o $@
 
-test05.o:		$(FC)															\
-				$(FTNLIB)/mod_safe.mod											\
+test05.o:		$(FTNLIB)/mod_safe.mod											\
 				$(FTNLIB)/mod_safe_mpi.mod										\
 				test05.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test05.F90 -o $@
 
-test06.o:		$(FC)															\
-				$(FTNLIB)/mod_safe.mod											\
+test06.o:		$(FTNLIB)/mod_safe.mod											\
 				test06.F90
 	$(FC) -c -fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test06.F90 -o $@
 
-test07.o:		$(FC)															\
-				$(FTNLIB)/mod_safe.mod											\
+test07.o:		$(FTNLIB)/mod_safe.mod											\
 				$(FTNLIB)/mod_safe_mpi.mod										\
 				test07.F90
 	$(FC) -c -fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test07.F90 -o $@
 
-test08.o:		$(FC)															\
-				$(FTNLIB)/mod_safe.mod											\
+test08.o:		$(FTNLIB)/mod_safe.mod											\
 				test08.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test08.F90 -o $@
 
-test09.o:		$(FC)															\
-				$(FTNLIB)/mod_safe.mod											\
+test09.o:		$(FTNLIB)/mod_safe.mod											\
 				test09.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test09.F90 -o $@
 
-test10.o:		$(FC)															\
-				$(FTNLIB)/mod_safe.mod											\
+test10.o:		$(FTNLIB)/mod_safe.mod											\
 				test10.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test10.F90 -o $@
 
-test11.o:		$(FC)															\
-				$(FTNLIB)/mod_safe.mod											\
+test11.o:		$(FTNLIB)/mod_safe.mod											\
 				test11.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test11.F90 -o $@
 
-test12.o:		$(FC)															\
-				$(FTNLIB)/mod_safe.mod											\
+test12.o:		$(FTNLIB)/mod_safe.mod											\
 				test12.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test12.F90 -o $@
 
-test13.o:		$(FC)															\
-				$(FTNLIB)/mod_safe.mod											\
+test13.o:		$(FTNLIB)/mod_safe.mod											\
 				test13.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test13.F90 -o $@
 
-test14.o:		$(FC)															\
-				$(FTNLIB)/mod_safe.mod											\
+test14.o:		$(FTNLIB)/mod_safe.mod											\
 				test14.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test14.F90 -o $@
 
-test15.o:		$(FC)															\
-				$(FTNLIB)/mod_safe.mod											\
+test15.o:		$(FTNLIB)/mod_safe.mod											\
 				test15.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test15.F90 -o $@
 
-test16.o:		$(FC)															\
-				$(FTNLIB)/mod_geo.mod											\
+test16.o:		$(FTNLIB)/mod_geo.mod											\
 				$(FTNLIB)/mod_safe.mod											\
 				test16.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test16.F90 -o $@
 
-test01:			$(FC)															\
-				$(FTNLIB)/mod_safe.o											\
+test01:			$(FTNLIB)/mod_safe.o											\
 				$(FTNLIB)/mod_safe_mpi.o										\
 				test01.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test01.o $(FTNLIB)/mod_safe.o $(FTNLIB)/mod_safe_mpi.o -L$(LIBDIR) -o $@
 
-test02:			$(FC)															\
-				$(FTNLIB)/mod_safe.o											\
+test02:			$(FTNLIB)/mod_safe.o											\
 				$(FTNLIB)/mod_safe_mpi.o										\
 				test02.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test02.o $(FTNLIB)/mod_safe.o $(FTNLIB)/mod_safe_mpi.o -L$(LIBDIR) -o $@
 
-test03:			$(FC)															\
-				$(FTNLIB)/mod_safe.o											\
+test03:			$(FTNLIB)/mod_safe.o											\
 				test03.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test03.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
 
-test04:			$(FC)															\
-				$(FTNLIB)/mod_safe.o											\
+test04:			$(FTNLIB)/mod_safe.o											\
 				test04.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test04.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
 
-test05:			$(FC)															\
-				$(FTNLIB)/mod_safe.o											\
+test05:			$(FTNLIB)/mod_safe.o											\
 				$(FTNLIB)/mod_safe_mpi.o										\
 				test05.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test05.o $(FTNLIB)/mod_safe.o $(FTNLIB)/mod_safe_mpi.o -L$(LIBDIR) -o $@
 
-test06:			$(FC)															\
-				$(FTNLIB)/mod_safe.o											\
+test06:			$(FTNLIB)/mod_safe.o											\
 				test06.o
 	$(FC) -fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test06.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
 
-test07:			$(FC)															\
-				$(FTNLIB)/mod_safe.o											\
+test07:			$(FTNLIB)/mod_safe.o											\
 				$(FTNLIB)/mod_safe_mpi.o										\
 				test07.o
 	$(FC) -fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test07.o $(FTNLIB)/mod_safe.o $(FTNLIB)/mod_safe_mpi.o -L$(LIBDIR) -o $@
 
-test08:			$(FC)															\
-				$(FTNLIB)/mod_safe.o											\
+test08:			$(FTNLIB)/mod_safe.o											\
 				test08.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test08.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
 
-test09:			$(FC)															\
-				$(FTNLIB)/mod_safe.o											\
+test09:			$(FTNLIB)/mod_safe.o											\
 				test09.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test09.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
 
-test10:			$(FC)															\
-				$(FTNLIB)/mod_safe.o											\
+test10:			$(FTNLIB)/mod_safe.o											\
 				test10.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test10.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
 
-test11:			$(FC)															\
-				$(FTNLIB)/mod_safe.o											\
+test11:			$(FTNLIB)/mod_safe.o											\
 				test11.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test11.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
 
-test12:			$(FC)															\
-				$(FTNLIB)/mod_safe.o											\
+test12:			$(FTNLIB)/mod_safe.o											\
 				test12.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test12.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
 
-test13:			$(FC)															\
-				$(FTNLIB)/mod_safe.o											\
+test13:			$(FTNLIB)/mod_safe.o											\
 				test13.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test13.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
 
-test14:			$(FC)															\
-				$(FTNLIB)/mod_safe.o											\
+test14:			$(FTNLIB)/mod_safe.o											\
 				test14.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test14.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
 
-test15:			$(FC)															\
-				$(FTNLIB)/mod_safe.o											\
+test15:			$(FTNLIB)/mod_safe.o											\
 				test15.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test15.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
 
-test16:			$(FC)															\
-				$(FTNLIB)/mod_geo.o												\
+test16:			$(FTNLIB)/mod_geo.o												\
 				$(FTNLIB)/mod_safe.o											\
 				test16.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test16.o $(FTNLIB)/mod_geo.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@

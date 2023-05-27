@@ -74,7 +74,7 @@ MOD_SAFE_MPI_SRC := $(sort mod_safe_mpi.F90 $(wildcard mod_safe_mpi/*.f90) $(wil
 all:			compile
 
 # "gmake -r clean"   = removes the compiled code
-clean:			$(RM)
+clean:
 	$(RM) -f *.mod *.o
 
 # "gmake -r compile" = compiles the code
@@ -83,8 +83,7 @@ compile:		mod_geo.o														\
 				mod_safe_mpi.o
 
 # "gmake -r help"    = print this help
-help:			$(GREP) 														\
-				$(CUT)
+help:
 	echo "These are the available options:"
 	$(GREP) -E "^# \"gmake -r " Makefile | $(CUT) -c 2-
 

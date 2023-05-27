@@ -15,10 +15,11 @@ MACH_OPTS := -march=native -m64
 # *                                  BINARIES                                  *
 # ******************************************************************************
 
-CUT  := $(shell which cut                  2> /dev/null || echo "ERROR")
-FC   := $(shell which mpif90-openmpi-gcc12 2> /dev/null || echo "ERROR")
-GREP := $(shell which grep                 2> /dev/null || echo "ERROR")
-RM   := $(shell which rm                   2> /dev/null || echo "ERROR")
+CUT     := $(shell which cut                  2> /dev/null || echo "ERROR")
+FC      := $(shell which mpif90-openmpi-gcc12 2> /dev/null || echo "ERROR")
+GREP    := $(shell which grep                 2> /dev/null || echo "ERROR")
+PYTHON3 := $(shell which python3.11           2> /dev/null || echo "ERROR")
+RM      := $(shell which rm                   2> /dev/null || echo "ERROR")
 
 # ******************************************************************************
 # *                             DYNAMIC VARIABLES                              *
@@ -55,7 +56,7 @@ all:			compile
 # "gmake -r clean"   = removes the compiled code
 clean:			$(RM)
 	$(RM) -f test?? *.mod *.o
-	$(MAKE) -r -C $(FTNLIB) clean
+	$(MAKE) -r -C $(FTNLIB) FC=$(FC) PYTHON3=$(PYTHON3) clean
 
 # "gmake -r compile" = compiles the code
 compile:		test01															\
@@ -102,7 +103,7 @@ help:			$(GREP)															\
 $(FTNLIB)/%.mod																	\
 $(FTNLIB)/%.o:	$(FTNLIB)/Makefile												\
 				$(FTNLIB)/%.F90
-	$(MAKE) -r -C $(FTNLIB) DEBUG=$(DEBUG) $*.o
+	$(MAKE) -r -C $(FTNLIB) DEBUG=$(DEBUG) FC=$(FC) PYTHON3=$(PYTHON3) $*.o
 
 test01.o:		$(FC)															\
 				$(FTNLIB)/mod_safe.mod											\

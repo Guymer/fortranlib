@@ -26,7 +26,7 @@ All reals are declared as ``REAL64`` (from ``ISO_FORTRAN_ENV``), except:
 
 ``GOTO`` statements are never used because `I do not want to be eaten by a velociraptor <https://xkcd.com/292/>`_.
 
-Additionally, ``mod_safe`` contains some other constants, such as ``const_c`` and ``const_kb``. A full list can be found in "consts.f90".
+Additionally, :f:mod:`mod_safe` contains some other constants, such as :f:var:`mod_safe/const_c` and :f:var:`mod_safe/const_kb`. A full list can be found in "consts.f90".
 
 .. include:: dependencies.rst
 

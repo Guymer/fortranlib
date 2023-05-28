@@ -39,6 +39,7 @@ fortran_src = [
     "../mod_geo",
     "../mod_safe",
     "../mod_safe_mpi",
+    "../tests",
 ]
 fortran_ext = [
     "F90",

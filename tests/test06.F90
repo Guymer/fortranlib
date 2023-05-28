@@ -61,7 +61,7 @@ MODULE mod_test06
     END FUNCTION calc_pi
 END MODULE mod_test06
 
-PROGRAM main
+PROGRAM test06
     ! Import modules ...
     USE ISO_FORTRAN_ENV
     USE mod_safe, ONLY: const_pi
@@ -78,4 +78,4 @@ PROGRAM main
     ! Print summary ...
     WRITE(fmt = '("How does real pi compare to calculated pi? real = ", f11.9, "; calc = ", f11.9)', unit = OUTPUT_UNIT) const_pi, pi
     FLUSH(unit = OUTPUT_UNIT)
-END PROGRAM main
+END PROGRAM test06

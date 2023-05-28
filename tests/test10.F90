@@ -1,4 +1,4 @@
-PROGRAM main
+PROGRAM test10
     ! Import modules ...
     USE ISO_FORTRAN_ENV
     USE mod_safe, ONLY: sub_allocate_array, sub_save_array_as_PGM
@@ -29,4 +29,4 @@ PROGRAM main
 
     ! Clean up ...
     DEALLOCATE(arr)
-END PROGRAM main
+END PROGRAM test10

@@ -1,4 +1,4 @@
-PROGRAM main
+PROGRAM test12
     ! Import modules ...
     USE ISO_FORTRAN_ENV
     USE mod_safe, ONLY: func_interpolate_points
@@ -31,4 +31,4 @@ PROGRAM main
     eps = ABS(1.0e0_REAL64 - func_interpolate_points(x1, x2, y1, y2, x) / 2.0e0_REAL64)
     WRITE(fmt = '("Does the task think that everything worked? ", l1)', unit = OUTPUT_UNIT) eps <= EPSILON(eps)
     FLUSH(unit = OUTPUT_UNIT)
-END PROGRAM main
+END PROGRAM test12

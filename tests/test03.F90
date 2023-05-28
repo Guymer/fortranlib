@@ -1,4 +1,4 @@
-PROGRAM main
+PROGRAM test03
     ! Import modules ...
     USE ISO_FORTRAN_ENV
     USE mod_safe, ONLY: const_c, const_eps0, const_mu0
@@ -16,4 +16,4 @@ PROGRAM main
     ! Print summary ...
     WRITE(fmt = '("Does the task think that everything worked? ", l1)', unit = OUTPUT_UNIT) eps <= EPSILON(eps)
     FLUSH(unit = OUTPUT_UNIT)
-END PROGRAM main
+END PROGRAM test03

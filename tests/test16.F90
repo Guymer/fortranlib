@@ -1,4 +1,4 @@
-PROGRAM main
+PROGRAM test16
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
@@ -22,4 +22,4 @@ PROGRAM main
 
     ! Save polygon ...
     CALL sub_save_as_GEOJSON(polygon, "test16.geojson")
-END PROGRAM main
+END PROGRAM test16

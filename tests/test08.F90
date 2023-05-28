@@ -1,4 +1,4 @@
-PROGRAM main
+PROGRAM test08
     ! Import modules ...
     USE ISO_FORTRAN_ENV
     USE mod_safe, ONLY: func_integrate_array, sub_allocate_array
@@ -39,4 +39,4 @@ PROGRAM main
     FLUSH(unit = OUTPUT_UNIT)
     DEALLOCATE(x)
     DEALLOCATE(y)
-END PROGRAM main
+END PROGRAM test08

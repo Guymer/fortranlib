@@ -1,4 +1,4 @@
-PROGRAM main
+PROGRAM test02
     ! NOTE: 22^7 = 2,494,357,888
     ! NOTE: 2^31 - 1 = 2,147,483,647
     ! NOTE: 2,494,357,888 > 2,147,483,647
@@ -101,4 +101,4 @@ PROGRAM main
         CALL MPI_ABORT(MPI_COMM_WORLD, 111, ierr)
         STOP
     END IF
-END PROGRAM main
+END PROGRAM test02

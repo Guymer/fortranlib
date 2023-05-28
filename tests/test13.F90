@@ -1,4 +1,4 @@
-PROGRAM main
+PROGRAM test13
     ! Import modules ...
     USE ISO_FORTRAN_ENV
     USE mod_safe, ONLY: sub_solve_quadratic_equation
@@ -33,4 +33,4 @@ PROGRAM main
     CALL sub_solve_quadratic_equation(a, b, c, x1, x2)
     WRITE(fmt = '("Does the task think that everything worked? ", l1)', unit = OUTPUT_UNIT) x1 == -10.0e0_REAL64 .AND. x2 == 5.0e0_REAL64
     FLUSH(unit = OUTPUT_UNIT)
-END PROGRAM main
+END PROGRAM test13

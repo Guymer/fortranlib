@@ -61,7 +61,7 @@ MODULE mod_test07
     END FUNCTION calc_pi
 END MODULE mod_test07
 
-PROGRAM main
+PROGRAM test07
     ! Import modules ...
     USE ISO_FORTRAN_ENV
     USE MPI
@@ -142,4 +142,4 @@ PROGRAM main
         CALL MPI_ABORT(MPI_COMM_WORLD, 111, ierr)
         STOP
     END IF
-END PROGRAM main
+END PROGRAM test07

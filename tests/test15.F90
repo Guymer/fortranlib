@@ -1,4 +1,4 @@
-PROGRAM main
+PROGRAM test15
     ! Import modules ...
     USE ISO_FORTRAN_ENV
     USE mod_safe, ONLY: func_hypergeometric, func_mean, func_rising_factorial, func_stddev, func_stderr, func_t_CDF, func_t_PDF, func_var, sub_allocate_array, sub_ttest_ind
@@ -101,4 +101,4 @@ PROGRAM main
     ! Clean up ...
     DEALLOCATE(arr1)
     DEALLOCATE(arr2)
-END PROGRAM main
+END PROGRAM test15

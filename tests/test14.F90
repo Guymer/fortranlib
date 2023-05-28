@@ -1,4 +1,4 @@
-PROGRAM main
+PROGRAM test14
     ! Import modules ...
     USE ISO_FORTRAN_ENV
     USE mod_safe, ONLY: sub_calc_dist_between_two_locs,                         &
@@ -70,4 +70,4 @@ PROGRAM main
     WRITE(fmt = '("     Python = ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) -153.45774412535758e0_REAL64, 13.966090287654401e0_REAL64, 87.84921951322094e0_REAL64
     WRITE(fmt = '("    FORTRAN = ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) lon2, lat2, bear2
     FLUSH(unit = OUTPUT_UNIT)
-END PROGRAM main
+END PROGRAM test14

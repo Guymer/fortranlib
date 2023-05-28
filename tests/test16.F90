@@ -3,7 +3,7 @@ PROGRAM test16
     USE ISO_FORTRAN_ENV
 
     ! Import my modules ...
-    USE mod_geo
+    USE mod_geo, ONLY: sub_buffer, sub_save_as_GEOJSON
 
     IMPLICIT NONE
 

@@ -4,6 +4,3 @@
 #         * https://github.com/VACUMM/sphinx-fortran/issues/33
 numpy
 six
-
-# Install the FORTRAN parser using Pip ...
-sphinx-fortran

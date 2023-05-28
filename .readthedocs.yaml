@@ -16,7 +16,7 @@ build:
             - which f2py
             - which pip3
             - which python3
-            - pip3 install --user git+https://github.com/VACUMM/sphinx-fortran.git@master
+            - pip3 install git+https://github.com/VACUMM/sphinx-fortran.git@master
     os: ubuntu-22.04
     tools:
         python: "3.11"

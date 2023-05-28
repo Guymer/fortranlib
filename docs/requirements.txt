@@ -1,3 +1,9 @@
+# Install dependencies using Pip ...
+# NOTE: "sphinx-fortran" does not correctly specify its dependencies, so they
+#       must be manually installed using Pip, see:
+#         * https://github.com/VACUMM/sphinx-fortran/issues/33
 numpy
 six
+
+# Install the FORTRAN parser using Pip ...
 sphinx-fortran

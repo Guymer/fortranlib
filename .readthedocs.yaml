@@ -1,4 +1,6 @@
-# See https://github.com/readthedocs/readthedocs.org/issues/10290#issuecomment-1535120995
+# NOTE: The "os" must be specified to work around a library incompatibility in
+#       the default one, see:
+#         * https://github.com/readthedocs/readthedocs.org/issues/10290
 
 version: 2
 

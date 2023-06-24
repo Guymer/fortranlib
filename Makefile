@@ -106,7 +106,7 @@ mod_safe/const_factorial/const_factorial_INT32.f90								\
 mod_safe/const_factorial/const_factorial_INT64.f90								\
 mod_safe/const_factorial/const_factorial_REAL32.f90								\
 mod_safe/const_factorial/const_factorial_REAL64.f90								\
-mod_safe/const_factorial/const_factorial_REAL128.f90:							mod_safe/const_factorial.py
+mod_safe/const_factorial/const_factorial_REAL128.f90 &:							mod_safe/const_factorial.py
 	cd $(<D) && $(PYTHON3) $(<F)
 
 mod_safe/consts.f90:															mod_safe/consts.py
@@ -188,7 +188,7 @@ mod_safe/sub_allocate_array/sub_allocate_7D_INT64_integer_array.f90				\
 mod_safe/sub_allocate_array/sub_allocate_7D_INT64_logical_array.f90				\
 mod_safe/sub_allocate_array/sub_allocate_7D_REAL32_real_array.f90				\
 mod_safe/sub_allocate_array/sub_allocate_7D_REAL64_real_array.f90				\
-mod_safe/sub_allocate_array/sub_allocate_7D_REAL128_real_array.f90:				mod_safe/sub_allocate_array.py
+mod_safe/sub_allocate_array/sub_allocate_7D_REAL128_real_array.f90 &:			mod_safe/sub_allocate_array.py
 	cd $(<D) && $(PYTHON3) $(<F)
 
 mod_safe/sub_load_array_as_BIN/sub_load_1D_INT8_integer_array_as_BIN.f90		\
@@ -267,7 +267,7 @@ mod_safe/sub_load_array_as_BIN/sub_load_7D_INT64_integer_array_as_BIN.f90		\
 mod_safe/sub_load_array_as_BIN/sub_load_7D_INT64_logical_array_as_BIN.f90		\
 mod_safe/sub_load_array_as_BIN/sub_load_7D_REAL32_real_array_as_BIN.f90	    	\
 mod_safe/sub_load_array_as_BIN/sub_load_7D_REAL64_real_array_as_BIN.f90	    	\
-mod_safe/sub_load_array_as_BIN/sub_load_7D_REAL128_real_array_as_BIN.f90:		mod_safe/sub_load_array_as_BIN.py
+mod_safe/sub_load_array_as_BIN/sub_load_7D_REAL128_real_array_as_BIN.f90 &:		mod_safe/sub_load_array_as_BIN.py
 	cd $(<D) && $(PYTHON3) $(<F)
 
 mod_safe/sub_save_array_as_BIN/sub_save_1D_INT8_integer_array_as_BIN.f90		\
@@ -346,13 +346,13 @@ mod_safe/sub_save_array_as_BIN/sub_save_7D_INT64_integer_array_as_BIN.f90		\
 mod_safe/sub_save_array_as_BIN/sub_save_7D_INT64_logical_array_as_BIN.f90		\
 mod_safe/sub_save_array_as_BIN/sub_save_7D_REAL32_real_array_as_BIN.f90	    	\
 mod_safe/sub_save_array_as_BIN/sub_save_7D_REAL64_real_array_as_BIN.f90	    	\
-mod_safe/sub_save_array_as_BIN/sub_save_7D_REAL128_real_array_as_BIN.f90:		mod_safe/sub_save_array_as_BIN.py
+mod_safe/sub_save_array_as_BIN/sub_save_7D_REAL128_real_array_as_BIN.f90 &:		mod_safe/sub_save_array_as_BIN.py
 	cd $(<D) && $(PYTHON3) $(<F)
 
 mod_safe/sub_save_array_as_PBM/sub_save_2D_INT8_logical_array_as_PBM.f90		\
 mod_safe/sub_save_array_as_PBM/sub_save_2D_INT16_logical_array_as_PBM.f90		\
 mod_safe/sub_save_array_as_PBM/sub_save_2D_INT32_logical_array_as_PBM.f90		\
-mod_safe/sub_save_array_as_PBM/sub_save_2D_INT64_logical_array_as_PBM.f90:		mod_safe/sub_save_array_as_PBM.py
+mod_safe/sub_save_array_as_PBM/sub_save_2D_INT64_logical_array_as_PBM.f90 &:	mod_safe/sub_save_array_as_PBM.py
 	cd $(<D) && $(PYTHON3) $(<F)
 
 mod_safe/sub_save_array_as_PGM/sub_save_2D_INT8_integer_array_as_PGM.f90		\
@@ -361,7 +361,7 @@ mod_safe/sub_save_array_as_PGM/sub_save_2D_INT32_integer_array_as_PGM.f90		\
 mod_safe/sub_save_array_as_PGM/sub_save_2D_INT64_integer_array_as_PGM.f90		\
 mod_safe/sub_save_array_as_PGM/sub_save_2D_REAL32_real_array_as_PGM.f90	    	\
 mod_safe/sub_save_array_as_PGM/sub_save_2D_REAL64_real_array_as_PGM.f90	    	\
-mod_safe/sub_save_array_as_PGM/sub_save_2D_REAL128_real_array_as_PGM.f90:		mod_safe/sub_save_array_as_PGM.py
+mod_safe/sub_save_array_as_PGM/sub_save_2D_REAL128_real_array_as_PGM.f90 &:		mod_safe/sub_save_array_as_PGM.py
 	cd $(<D) && $(PYTHON3) $(<F)
 
 mod_safe/sub_save_array_as_PPM/sub_save_2D_INT8_integer_array_as_PPM.f90		\
@@ -370,7 +370,7 @@ mod_safe/sub_save_array_as_PPM/sub_save_2D_INT32_integer_array_as_PPM.f90		\
 mod_safe/sub_save_array_as_PPM/sub_save_2D_INT64_integer_array_as_PPM.f90		\
 mod_safe/sub_save_array_as_PPM/sub_save_2D_REAL32_real_array_as_PPM.f90	    	\
 mod_safe/sub_save_array_as_PPM/sub_save_2D_REAL64_real_array_as_PPM.f90	    	\
-mod_safe/sub_save_array_as_PPM/sub_save_2D_REAL128_real_array_as_PPM.f90:		mod_safe/sub_save_array_as_PPM.py
+mod_safe/sub_save_array_as_PPM/sub_save_2D_REAL128_real_array_as_PPM.f90 &:		mod_safe/sub_save_array_as_PPM.py
 	cd $(<D) && $(PYTHON3) $(<F)
 
 mod_safe_mpi/sub_allreduce_array/sub_allreduce_1D_INT8_integer_array.f90		\
@@ -449,7 +449,7 @@ mod_safe_mpi/sub_allreduce_array/sub_allreduce_7D_INT64_integer_array.f90		\
 mod_safe_mpi/sub_allreduce_array/sub_allreduce_7D_INT64_logical_array.f90		\
 mod_safe_mpi/sub_allreduce_array/sub_allreduce_7D_REAL32_real_array.f90	    	\
 mod_safe_mpi/sub_allreduce_array/sub_allreduce_7D_REAL64_real_array.f90	    	\
-mod_safe_mpi/sub_allreduce_array/sub_allreduce_7D_REAL128_real_array.f90:		mod_safe_mpi/sub_allreduce_array.py
+mod_safe_mpi/sub_allreduce_array/sub_allreduce_7D_REAL128_real_array.f90 &:		mod_safe_mpi/sub_allreduce_array.py
 	cd $(<D) && $(PYTHON3) $(<F)
 
 mod_safe_mpi/sub_bcast_array/sub_bcast_1D_INT8_integer_array.f90				\
@@ -528,18 +528,18 @@ mod_safe_mpi/sub_bcast_array/sub_bcast_7D_INT64_integer_array.f90				\
 mod_safe_mpi/sub_bcast_array/sub_bcast_7D_INT64_logical_array.f90				\
 mod_safe_mpi/sub_bcast_array/sub_bcast_7D_REAL32_real_array.f90	    			\
 mod_safe_mpi/sub_bcast_array/sub_bcast_7D_REAL64_real_array.f90	    			\
-mod_safe_mpi/sub_bcast_array/sub_bcast_7D_REAL128_real_array.f90:				mod_safe_mpi/sub_bcast_array.py
+mod_safe_mpi/sub_bcast_array/sub_bcast_7D_REAL128_real_array.f90 &:				mod_safe_mpi/sub_bcast_array.py
 	cd $(<D) && $(PYTHON3) $(<F)
 
 mod_geo.mod																		\
-mod_geo.o:		$(MOD_GEO_SRC)													\
-				mod_safe.mod
+mod_geo.o &:		$(MOD_GEO_SRC)												\
+					mod_safe.mod
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) mod_geo.F90
 
 mod_safe.mod																	\
-mod_safe.o:		$(MOD_SAFE_SRC)
+mod_safe.o &:		$(MOD_SAFE_SRC)
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) mod_safe.F90
 
 mod_safe_mpi.mod																\
-mod_safe_mpi.o:	$(MOD_SAFE_MPI_SRC)
+mod_safe_mpi.o &:	$(MOD_SAFE_MPI_SRC)
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) mod_safe_mpi.F90

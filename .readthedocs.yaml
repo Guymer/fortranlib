@@ -11,9 +11,13 @@
 version: 2
 
 build:
+    apt_packages:
+        - gfortran-12
     jobs:
         post_install:
             - which f2py
+            - which gfortran-12
+            - which gmake
             - which pip3
             - which python3
             - pip3 install git+https://github.com/VACUMM/sphinx-fortran.git@master

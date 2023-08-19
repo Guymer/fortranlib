@@ -70,8 +70,9 @@ MOD_SAFE_MPI_SRC := $(sort mod_safe_mpi.F90 $(wildcard mod_safe_mpi/*.f90) $(wil
 # *                           USER-SPECIFIED TARGETS                           *
 # ******************************************************************************
 
-# "gmake -r [all]"       = "gmake -r compile" (default)
-all:			compile
+# "gmake -r [all]"       = "gmake -r compile doc" (default)
+all:			compile															\
+				doc
 
 # "gmake -r clean"       = removes the compiled FORTRAN code
 clean:

@@ -57,6 +57,9 @@ endif
 ifneq ($(shell $(PYTHON3) -c "import scipy; print(0)" 2> /dev/null),0)
     $(error The Python module "scipy" is not installed)
 endif
+ifneq ($(shell $(PYTHON3) -c "import sphinx; print(0)" 2> /dev/null),0)
+    $(error The Python module "sphinx" is not installed)
+endif
 
 # ******************************************************************************
 # *                             DERIVED VARIABLES                              *

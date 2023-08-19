@@ -67,15 +67,15 @@ endif
 # *                           USER-SPECIFIED TARGETS                           *
 # ******************************************************************************
 
-# "gmake -r [all]"   = "make compile" (default)
+# "gmake -r [all]"   = "gmake -r compile" (default)
 all:			compile
 
-# "gmake -r clean"   = removes the compiled code
+# "gmake -r clean"   = removes the compiled FORTRAN code
 clean:
 	$(RM) -f test?? *.mod *.o
 	$(MAKE) -r -C $(FTNLIB) FC=$(FC) PYTHON3=$(PYTHON3) clean
 
-# "gmake -r compile" = compiles the code
+# "gmake -r compile" = compiles the FORTRAN code
 compile:		test01															\
 				test02															\
 				test03															\

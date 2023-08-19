@@ -70,19 +70,27 @@ MOD_SAFE_MPI_SRC := $(sort mod_safe_mpi.F90 $(wildcard mod_safe_mpi/*.f90) $(wil
 # *                           USER-SPECIFIED TARGETS                           *
 # ******************************************************************************
 
-# "gmake -r [all]"   = "make compile" (default)
+# "gmake -r [all]"       = "gmake -r compile" (default)
 all:			compile
 
-# "gmake -r clean"   = removes the compiled code
+# "gmake -r doc"         = compiles the Sphinx documentation
+doc:
+	$(MAKE) -C docs html
+
+# "gmake -r doc-targets" = lists all the available Sphinx documentation targets
+doc-targets:	docs/_build/html/objects.inv
+	$(PYTHON3) -m sphinx.ext.intersphinx docs/_build/html/objects.inv
+
+# "gmake -r clean"       = removes the compiled FORTRAN code
 clean:
 	$(RM) -f *.mod *.o
 
-# "gmake -r compile" = compiles the code
+# "gmake -r compile"     = compiles the FORTRAN code
 compile:		mod_geo.o														\
 				mod_safe.o														\
 				mod_safe_mpi.o
 
-# "gmake -r help"    = print this help
+# "gmake -r help"        = print this help
 help:
 	echo "These are the available options:"
 	$(GREP) -E "^# \"gmake -r " Makefile | $(CUT) -c 2-

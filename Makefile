@@ -77,7 +77,7 @@ MOD_SAFE_MPI_SRC := $(sort mod_safe_mpi.F90 $(wildcard mod_safe_mpi/*.f90) $(wil
 all:			compile															\
 				doc
 
-# "gmake -r clean"       = removes the compiled FORTRAN code
+# "gmake -r clean"       = removes the compiled FORTRAN code and Sphinx documentation
 clean:
 	$(RM) -f *.mod *.o
 	$(MAKE) -C docs clean

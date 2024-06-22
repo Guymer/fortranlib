@@ -19,25 +19,29 @@ if __name__ == "__main__":
     # Loop over types ...
     for typ in sorted(data.keys()):
         # Create assignment ...
-        if typ == "integer":
-            lim = 255
-        elif typ == "real":
-            lim = 1
-        else:
-            raise Exception("\"typ\" was not an expected value", typ) from None
+        match typ:
+            case "integer":
+                lim = 255
+            case "real":
+                lim = 1
+            case _:
+                # Crash ...
+                raise ValueError(f"\"typ\" is an unexpected value ({repr(typ)})") from None
 
         # Loop over kinds ...
         for knd in data[typ]:
             # Create assignment ...
-            if typ == "integer":
-                if knd == "INT64":
-                    ass = "MAX(0_INT64, MIN(255_INT64, arr(ix, iy)))"
-                else:
-                    ass = "MAX(0_INT64, MIN(255_INT64, INT(arr(ix, iy), kind = INT64)))"
-            elif typ == "real":
-                ass = f"MAX(0_INT64, MIN(255_INT64, NINT(255.0e0_{knd} * arr(ix, iy), kind = INT64)))"
-            else:
-                raise Exception("\"typ\" was not an expected value", typ) from None
+            match typ:
+                case "integer":
+                    if knd == "INT64":
+                        ass = "MAX(0_INT64, MIN(255_INT64, arr(ix, iy)))"
+                    else:
+                        ass = "MAX(0_INT64, MIN(255_INT64, INT(arr(ix, iy), kind = INT64)))"
+                case "real":
+                    ass = f"MAX(0_INT64, MIN(255_INT64, NINT(255.0e0_{knd} * arr(ix, iy), kind = INT64)))"
+                case _:
+                    # Crash ...
+                    raise ValueError(f"\"typ\" is an unexpected value ({repr(typ)})") from None
 
             # Create source ...
             lhs = f"{typ.upper()}(kind = {knd}), DIMENSION(:, :), INTENT(in)"

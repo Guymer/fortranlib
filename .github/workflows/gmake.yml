@@ -22,7 +22,7 @@ jobs:
             -
                 name: Install FORTRAN dependencies
                 run: |
-                    apt-get install openmpi-bin
+                    sudo apt-get install openmpi-bin
             -
                 name: Install Python dependencies
                 run: |

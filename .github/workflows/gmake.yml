@@ -22,7 +22,7 @@ jobs:
             -
                 name: Install FORTRAN dependencies
                 run: |
-                    sudo apt-get install openmpi-bin openmpi-common
+                    sudo apt-get install openmpi-bin openmpi-common libopenmpi-dev
             -
                 name: Install Python ${{ matrix.python-version }} dependencies
                 run: |

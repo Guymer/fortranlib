@@ -31,6 +31,7 @@ jobs:
                     pip install pylint
                     pip install scipy
                     pip install sphinx
+                    pip install sphinx_rtd_theme
             -
                 name: Compile the FORTRAN code
                 run: |

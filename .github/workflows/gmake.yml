@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                python-version: ["3.10"]
+                python-version: ["3.10", "3.11", "3.12"]
         steps:
             -
                 name: Checkout project                                          # https://github.com/actions/checkout
@@ -22,7 +22,9 @@ jobs:
             -
                 name: Install FORTRAN dependencies
                 run: |
-                    sudo apt-get install openmpi-bin openmpi-common libopenmpi-dev
+                    sudo apt-get install openmpi-bin
+                    sudo apt-get install openmpi-common
+                    sudo apt-get install libopenmpi-dev
             -
                 name: Install Python ${{ matrix.python-version }} dependencies
                 run: |
@@ -38,6 +40,7 @@ jobs:
             -
                 name: Compile the FORTRAN code
                 run: |
+                    echo "::notice $(which f2py)"
                     echo "::notice $(which gfortran)"
                     echo "::notice $(which gmake)"
                     echo "::notice $(which mpif90)"

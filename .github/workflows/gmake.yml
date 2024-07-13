@@ -36,7 +36,8 @@ jobs:
                 run: |
                     echo "::notice $(which gfortran)"
                     echo "::notice $(which gmake)"
+                    echo "::notice $(which mpif90-openmpi-gcc)"
                     echo "::notice $(which pip)"
                     echo "::notice $(which python)"
                     cd main
-                    gmake -r FC=`which gfortran` PYTHON3=`which python`
+                    gmake -r FC=`which mpif90-openmpi-gcc` PYTHON3=`which python`

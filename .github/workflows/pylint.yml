@@ -15,12 +15,6 @@ jobs:
                 with:
                     path: main
             -
-                name: Checkout PyGuymer3                                        # https://github.com/actions/checkout
-                uses: actions/checkout@v4
-                with:
-                    path: pyguymer3
-                    repository: Guymer/PyGuymer3
-            -
                 name: Set up Python ${{ matrix.python-version }}
                 uses: actions/setup-python@v5                                   # https://github.com/actions/setup-python
                 with:
@@ -32,8 +26,13 @@ jobs:
                     pip install pylint
                     pip install sphinx_rtd_theme
             -
+                name: List programs
+                run: |
+                    echo "::notice $(which pip)"
+                    echo "::notice $(which pylint)"
+                    echo "::notice $(which python)"
+            -
                 name: Analyse the Python ${{ matrix.python-version }} code
                 run: |
-                    export PYTHONPATH=${PWD}/pyguymer3:${PYTHONPATH}
                     cd main
                     pylint --rcfile=".pylintrc" --errors-only $(git ls-files "*.py")

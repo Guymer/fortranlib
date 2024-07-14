@@ -30,14 +30,13 @@ jobs:
                     python -m pip install --upgrade pip
                     pip install matplotlib
                     pip install numpy
-                    pip install pylint
                     pip install scipy
                     pip install six
                     pip install sphinx
                     pip install sphinx_rtd_theme
                     pip install git+https://github.com/VACUMM/sphinx-fortran.git@master
             -
-                name: Compile the FORTRAN code
+                name: List programs
                 run: |
                     echo "::notice $(which f2py)"
                     echo "::notice $(which gfortran)"
@@ -45,5 +44,8 @@ jobs:
                     echo "::notice $(which mpif90)"
                     echo "::notice $(which pip)"
                     echo "::notice $(which python)"
+            -
+                name: Compile the FORTRAN code
+                run: |
                     cd main
                     gmake -r FC=`which mpif90` PYTHON3=`which python`

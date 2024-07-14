@@ -31,12 +31,9 @@ jobs:
                 run: |
                     python -m pip install --upgrade pip
                     pip install -r main/requirements.txt
-                    pip install -r main/docs/requirements.txt
-                    pip install git+https://github.com/VACUMM/sphinx-fortran.git@master
             -
                 name: List programs
                 run: |
-                    echo "::notice $(which f2py)"
                     echo "::notice $(which gfortran)"
                     echo "::notice $(which gmake)"
                     echo "::notice $(which mpif90)"
@@ -46,4 +43,4 @@ jobs:
                 name: Compile the FORTRAN code
                 run: |
                     cd main
-                    gmake -r FC=`which mpif90` PYTHON3=`which python`
+                    gmake -r FC=`which mpif90` PYTHON3=`which python` compile

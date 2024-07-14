@@ -79,7 +79,9 @@ This FORTRAN library requires the following Python modules to be installed and a
 
 * [matplotlib](https://pypi.org/project/matplotlib/)
 * [scipy](https://pypi.org/project/scipy/)
-* [Sphinx](https://pypi.org/project/Sphinx/)
+* [sphinx](https://pypi.org/project/Sphinx/)
+    * [sphinx_fortran](https://pypi.org/project/sphinx-fortran/)
+    * [sphinx_rtd_theme](https://pypi.org/project/sphinx-rtd-theme/)
 
 ## Bugs
 

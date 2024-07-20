@@ -1,6 +1,6 @@
 # My FORTRAN Library
 
-[![Documentation Status](https://readthedocs.org/projects/fortranlib/badge/?version=latest)](https://fortranlib.readthedocs.io/en/latest/?badge=latest)
+![Documentation Status](https://readthedocs.org/projects/fortranlib/badge/) !["gmake" GitHub Action Status](https://github.com/Guymer/fortranlib/actions/workflows/gmake.yml/badge.svg) !["pylint" GitHub Action Status](https://github.com/Guymer/fortranlib/actions/workflows/pylint.yml/badge.svg) !["shellcheck" GitHub Action Status](https://github.com/Guymer/fortranlib/actions/workflows/shellcheck.yml/badge.svg)
 
 Please enjoy using my FORTRAN library. It contains a whole load of random functions and subroutines that I have written over the years. Most of them are overloaded to allow their use by different kinds of arguments. To save repetitive typing you will find some Python scripts dotted around this repository which have been written to create all the different versions of each FORTRAN function or FORTRAN subroutine. The [documentation is on Read The Docs](https://fortranlib.readthedocs.io/).
 

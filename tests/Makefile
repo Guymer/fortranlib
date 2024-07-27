@@ -16,7 +16,7 @@ MACH_OPTS := -march=native -m64
 # ******************************************************************************
 
 CUT     := $(shell which cut                  2> /dev/null || echo "ERROR")
-FC      := $(shell which mpif90-openmpi-gcc12 2> /dev/null || echo "ERROR")
+FC      := $(shell which mpif90-openmpi-gcc13 2> /dev/null || echo "ERROR")
 GREP    := $(shell which grep                 2> /dev/null || echo "ERROR")
 PYTHON3 := $(shell which python3.11           2> /dev/null || echo "ERROR")
 RM      := $(shell which rm                   2> /dev/null || echo "ERROR")

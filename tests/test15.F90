@@ -1,7 +1,17 @@
+! Declare program ...
 PROGRAM test15
     ! Import modules ...
     USE ISO_FORTRAN_ENV
-    USE mod_safe, ONLY: func_hypergeometric, func_mean, func_rising_factorial, func_stddev, func_stderr, func_t_CDF, func_t_PDF, func_var, sub_allocate_array, sub_ttest_ind
+    USE mod_safe, ONLY:                 func_hypergeometric,                    &
+                                        func_mean,                              &
+                                        func_rising_factorial,                  &
+                                        func_stddev,                            &
+                                        func_stderr,                            &
+                                        func_t_CDF,                             &
+                                        func_t_PDF,                             &
+                                        func_var,                               &
+                                        sub_allocate_array,                     &
+                                        sub_ttest_ind
 
     IMPLICIT NONE
 
@@ -14,6 +24,7 @@ PROGRAM test15
     ! **************************************************************************
 
     ! Calculate and print summary ...
+    ! NOTE: https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.poch.html
     ! NOTE: python3.11 -c "import scipy; import scipy.special; print(scipy.special.poch(2.0, 0.0));"
     ! NOTE: python3.11 -c "import scipy; import scipy.special; print(scipy.special.poch(1.0, 5.0));"
     ! NOTE: python3.11 -c "import scipy; import scipy.special; print(scipy.special.poch(3.7, 2.1));"
@@ -25,6 +36,7 @@ PROGRAM test15
     ! **************************************************************************
 
     ! Calculate and print summary ...
+    ! NOTE: https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.hyp2f1.html
     ! NOTE: python3.11 -c "import scipy; import scipy.special; print(scipy.special.hyp2f1(1.0, 1.0, 2.0, +0.5 ));"
     ! NOTE: python3.11 -c "import scipy; import scipy.special; print(scipy.special.hyp2f1(0.5, 1.0, 1.5, +0.25));"
     ! NOTE: python3.11 -c "import scipy; import scipy.special; print(scipy.special.hyp2f1(0.5, 1.0, 1.5, -0.25));"
@@ -37,6 +49,7 @@ PROGRAM test15
     ! **************************************************************************
 
     ! Calculate and print summary ...
+    ! NOTE: https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.t.html
     ! NOTE: python3.11 -c "import scipy; import scipy.stats; print(scipy.stats.t.pdf( 0.0, 2.0));"
     ! NOTE: python3.11 -c "import scipy; import scipy.stats; print(scipy.stats.t.pdf(-2.0, 2.0));"
     ! NOTE: python3.11 -c "import scipy; import scipy.stats; print(scipy.stats.t.pdf(+2.0, 2.0));"
@@ -49,6 +62,7 @@ PROGRAM test15
     ! **************************************************************************
 
     ! Calculate and print summary ...
+    ! NOTE: https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.t.html
     ! NOTE: python3.11 -c "import scipy; import scipy.stats; print(scipy.stats.t.cdf( 0.0, 2.0));"
     ! NOTE: python3.11 -c "import scipy; import scipy.stats; print(scipy.stats.t.cdf(-2.0, 2.0));"
     ! NOTE: python3.11 -c "import scipy; import scipy.stats; print(scipy.stats.t.cdf(+2.0, 2.0));"
@@ -62,6 +76,7 @@ PROGRAM test15
 
     ! NOTE: See https://en.wikipedia.org/wiki/Student's_t-test
     !         * "Worked examples" section
+    !       The test statistic is approximately equal to 1.959, which gives a two-tailed p-value of 0.07857.
 
     ! Allocate and populate array ...
     CALL sub_allocate_array(arr1, "arr1", 6_INT64, .FALSE._INT8)

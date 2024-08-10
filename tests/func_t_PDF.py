@@ -2,12 +2,17 @@
 
 # Import standard modules ...
 import math
+import sys
 
 # Import special modules ...
 try:
     import scipy
 except:
     raise Exception("\"scipy\" is not installed; run \"pip install --user scipy\"") from None
+
+# Import local modules ...
+sys.path.append("..")
+from mod_f2py import mod_f2py
 
 # Define function ...
 def t_PDF(x, dof):
@@ -56,6 +61,8 @@ if __name__ == "__main__":
             # Create short-hands ...
             val1 = scipy.stats.t.pdf(float(j), float(i))
             val2 = t_PDF(float(j), float(i))
-            diff = 100.0 * (val2 - val1) / val1                                 # [%]
+            val3 = mod_f2py.sub_t_pdf(float(j), float(i))
+            dif2 = 100.0 * (val2 - val1) / val1                                 # [%]
+            dif3 = 100.0 * (val3 - val1) / val1                                 # [%]
 
-            print(f"dof = {i:d}    t = {j:+2d}    SciPy = {val1:8.6f}    fortranlib = {val2:8.6f}    % diff = {diff:+9.6f}%")
+            print(f"dof = {i:d}    t = {j:+2d}    SciPy = {val1:8.6f}    Python = {val2:8.6f} ({dif2:+9.6f}%)    FORTRAN = {val3:8.6f} ({dif3:+9.6f}%)")

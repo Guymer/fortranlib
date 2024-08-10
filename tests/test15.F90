@@ -67,12 +67,6 @@ PROGRAM test15
     ! NOTE: python3.11 -c "import scipy; import scipy.stats; print(scipy.stats.t.cdf(-2.0, 2.0));"
     ! NOTE: python3.11 -c "import scipy; import scipy.stats; print(scipy.stats.t.cdf(+2.0, 2.0));"
     ! NOTE: python3.11 -c "import scipy; import scipy.stats; print(scipy.stats.t.cdf(+5.0, 5.0));"
-    ! NOTE: The 2nd, 3rd and 4th numbers disagree because |z| >= 1 for
-    !       "func_hypergeometric()". The four sets of "a", "b", "c" and "z" are:
-    !         * 0.50000000000000000        1.5000000000000000        1.5000000000000000       -0.0000000000000000
-    !         * 0.50000000000000000        1.5000000000000000        1.5000000000000000       -2.0000000000000000
-    !         * 0.50000000000000000        1.5000000000000000        1.5000000000000000       -2.0000000000000000
-    !         * 0.50000000000000000        3.0000000000000000        1.5000000000000000       -5.0000000000000000
     WRITE(fmt = '("How does Python compare to FORTRAN? (func_t_CDF)")', unit = OUTPUT_UNIT)
     WRITE(fmt = '("     Python = ", f14.9, "; ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) 0.5e0_REAL64, 0.09175170953613696e0_REAL64, 0.908248290463863e0_REAL64, 0.9979476420099733e0_REAL64
     WRITE(fmt = '("    FORTRAN = ", f14.9, "; ", f14.9, "; ", f14.9, "; ", f14.9)', unit = OUTPUT_UNIT) func_t_CDF( 0.0e0_REAL64, 2.0e0_REAL64), func_t_CDF(-2.0e0_REAL64, 2.0e0_REAL64), func_t_CDF(+2.0e0_REAL64, 2.0e0_REAL64), func_t_CDF(+5.0e0_REAL64, 5.0e0_REAL64)

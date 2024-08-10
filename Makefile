@@ -3,6 +3,7 @@
 # ******************************************************************************
 
 DEBUG     ?= false
+LIBDIR    ?= /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
 DEBG_OPTS := -g -fcheck=all
 LANG_OPTS := -ffree-form -ffree-line-length-none -frecursive -fno-unsafe-math-optimizations -frounding-math -fsignaling-nans -fPIC
 WARN_OPTS := -Wall -Wextra -Waliasing -Wcharacter-truncation -Wconversion-extra -Wimplicit-interface -Wimplicit-procedure -Wunderflow -Wtabs
@@ -14,8 +15,10 @@ MACH_OPTS := -march=native -m64
 # ******************************************************************************
 
 CUT     := $(shell which cut                  2> /dev/null || echo "ERROR")
+F2PY    := $(shell which f2py-3.11            2> /dev/null || echo "ERROR")
 FC      := $(shell which mpif90-openmpi-gcc13 2> /dev/null || echo "ERROR")
 GREP    := $(shell which grep                 2> /dev/null || echo "ERROR")
+LN      := $(shell which ln                   2> /dev/null || echo "ERROR")
 PYTHON3 := $(shell which python3.11           2> /dev/null || echo "ERROR")
 RM      := $(shell which rm                   2> /dev/null || echo "ERROR")
 
@@ -39,6 +42,9 @@ ifeq ($(FC),ERROR)
 endif
 ifeq ($(GREP),ERROR)
     $(error The binary "grep" is not installed)
+endif
+ifeq ($(LN),ERROR)
+    $(error The binary "ln" is not installed)
 endif
 ifeq ($(PYTHON3),ERROR)
     $(error The binary "python3" is not installed)
@@ -68,6 +74,7 @@ endif
 MOD_GEO_SRC      := $(sort mod_geo.F90 $(wildcard mod_geo/*.f90) $(wildcard mod_geo/*/*.f90))
 MOD_SAFE_SRC     := $(sort mod_safe.F90 $(wildcard mod_safe/*.f90) $(wildcard mod_safe/*/*.f90))
 MOD_SAFE_MPI_SRC := $(sort mod_safe_mpi.F90 $(wildcard mod_safe_mpi/*.f90) $(wildcard mod_safe_mpi/*/*.f90))
+SUFFIX           := $(shell $(PYTHON3) -c "import sysconfig; print(sysconfig.get_config_var(\"EXT_SUFFIX\"))")
 
 # ******************************************************************************
 # *                           USER-SPECIFIED TARGETS                           *
@@ -79,7 +86,7 @@ all:			compile															\
 
 # "gmake -r clean"       = removes the compiled FORTRAN code and Sphinx documentation
 clean:
-	$(RM) -f *.mod *.o
+	$(RM) -f *.mod *.o *.so
 	$(MAKE) -C docs clean
 
 # "gmake -r compile"     = compiles the FORTRAN code
@@ -98,6 +105,7 @@ doc-targets:	docs/_build/html/objects.inv
 
 # "gmake -r help"        = print this help
 help:
+	echo "The suffix is \"${SUFFIX}\"."
 	echo "These are the available options:"
 	$(GREP) -E "^# \"gmake -r " Makefile | $(CUT) -c 2-
 
@@ -110,6 +118,22 @@ help:
 # ******************************************************************************
 # *                        INTERNALLY-SPECIFIED TARGETS                        *
 # ******************************************************************************
+
+# NOTE: As of 01/Nov/2019 there is still a bug in "gcc9" from MacPorts which
+#       results in it being unable to find some system libraries. Below are
+#       links to the MacPorts ticket and the GCC ticket as well as the reference
+#       for my chosen (hopefully temporary) workaround.
+#         * https://trac.macports.org/ticket/59113
+#         * https://gcc.gnu.org/bugzilla/show_bug.cgi?id=90835
+#         * https://stackoverflow.com/a/58081934
+
+# NOTE: There was a bug in NumPy (using "meson" to build) where "f2py" would
+#       copy the file to a build folder but not copy the "INCLUDE" files and,
+#       therefore, the compilation would fail because it would not find the
+#       included file. To work around this I use the "--include-paths" argument
+#       as demonstrated in the test code added as part of the Pull Request which
+#       closed the following issue:
+#         * https://github.com/numpy/numpy/issues/25344
 
 mod_safe/const_cm.f90:															mod_safe/const_cm.py
 	cd $(<D) && $(PYTHON3) $(<F)
@@ -557,3 +581,10 @@ mod_safe.o &:		$(MOD_SAFE_SRC)
 mod_safe_mpi.mod																\
 mod_safe_mpi.o &:	$(MOD_SAFE_MPI_SRC)
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) mod_safe_mpi.F90
+
+mod_f2py.so:		mod_safe.o 													\
+					mod_f2py.F90 												\
+					mod_f2py/*.f90
+	$(RM) -f mod_f2py.*.so mod_f2py.so
+	$(F2PY) -c --include-paths $(PWD) --f77exec=$(FC) --f90exec=$(FC) --opt="-fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS)" --arch="$(MACH_OPTS)" -lgomp -m mod_f2py mod_f2py.F90 mod_safe.o -L$(LIBDIR)
+	$(LN) -s mod_f2py$(SUFFIX) mod_f2py.so

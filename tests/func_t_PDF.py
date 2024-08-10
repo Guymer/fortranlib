@@ -15,7 +15,7 @@ sys.path.append("..")
 from mod_f2py import mod_f2py
 
 # Define function ...
-def t_PDF(x, dof):
+def t_PDF(x, dof, /):
     """This function calculates the PDF of Student's t-distribution in the same
     way as the FORTRAN function in this repository.
     """

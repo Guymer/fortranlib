@@ -7,6 +7,7 @@ MODULE mod_f2py
     CONTAINS
 
     ! Include functions and subroutines ...
+    INCLUDE "mod_f2py/sub_hypergeometric.f90"
     INCLUDE "mod_f2py/sub_t_CDF.f90"
     INCLUDE "mod_f2py/sub_t_PDF.f90"
 END MODULE mod_f2py

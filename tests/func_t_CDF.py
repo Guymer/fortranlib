@@ -15,7 +15,7 @@ sys.path.append("..")
 from mod_f2py import mod_f2py
 
 # Define function ...
-def t_CDF(x, dof):
+def t_CDF(x, dof, /, *, fortran = True):
     """This function calculates the CDF of Student's t-distribution in the same
     way as the FORTRAN function in this repository.
     """
@@ -52,7 +52,10 @@ def t_CDF(x, dof):
         z = - (x ** 2 / dof)
 
         # Calculate CDF ...
-        ans = a + x * math.gamma(b) * scipy.special.hyp2f1(a, b, c, z) / (math.sqrt(dof * math.pi) * math.gamma(0.5 * dof))
+        if fortran:
+            ans = a + x * math.gamma(b) * mod_f2py.sub_hypergeometric(a, b, c, z) / (math.sqrt(dof * math.pi) * math.gamma(0.5 * dof))
+        else:
+            ans = a + x * math.gamma(b) * scipy.special.hyp2f1(a, b, c, z) / (math.sqrt(dof * math.pi) * math.gamma(0.5 * dof))
 
     # Return answer ...
     return ans

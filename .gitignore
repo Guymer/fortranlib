@@ -18,6 +18,7 @@ shellcheck.log
 # Ignore compiler generated files ...
 *.mod
 *.o
+*.so
 *.tmp
 docs/_autosummary
 docs/_build

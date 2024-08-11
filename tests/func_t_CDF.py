@@ -12,7 +12,7 @@ except:
 
 # Import local modules ...
 sys.path.append("..")
-from mod_f2py import mod_f2py
+from mod_f2py import mod_f2py                                                   # pylint: disable=E0401
 
 # Define function ...
 def t_CDF(x, dof, /, *, fortran = True):

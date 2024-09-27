@@ -39,10 +39,6 @@ jobs:
                     echo "::notice $(which pip)"
                     echo "::notice $(which python)"
             -
-                # As of 27/Sept/2024, the version of Meson available is too old
-                # for "f2py" to succeed, see the following error last time I
-                # tried:
-                #   * meson.build:1:0: ERROR: Meson version is 0.61.2 but project requires >= 1.1.0
                 name: Compile the FORTRAN code
                 run: |
                     cd main

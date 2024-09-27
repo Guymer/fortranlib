@@ -21,7 +21,6 @@ build:
             - which f2py
             - which gfortran-12
             - which gmake
-            - which meson
             - which pip3
             - which python3
             - pip3 install git+https://github.com/VACUMM/sphinx-fortran.git@master

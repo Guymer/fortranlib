@@ -69,6 +69,7 @@ endif
 # *                             DERIVED VARIABLES                              *
 # ******************************************************************************
 
+MOD_F2PY_SRC     := $(sort mod_f2py.F90 $(wildcard mod_f2py/*.f90) $(wildcard mod_f2py/*/*.f90))
 MOD_GEO_SRC      := $(sort mod_geo.F90 $(wildcard mod_geo/*.f90) $(wildcard mod_geo/*/*.f90))
 MOD_SAFE_SRC     := $(sort mod_safe.F90 $(wildcard mod_safe/*.f90) $(wildcard mod_safe/*/*.f90))
 MOD_SAFE_MPI_SRC := $(sort mod_safe_mpi.F90 $(wildcard mod_safe_mpi/*.f90) $(wildcard mod_safe_mpi/*/*.f90))
@@ -572,9 +573,8 @@ mod_safe_mpi.mod																\
 mod_safe_mpi.o &:	$(MOD_SAFE_MPI_SRC)
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) mod_safe_mpi.F90
 
-mod_f2py.so:		mod_safe.o 													\
-					mod_f2py.F90 												\
-					mod_f2py/*.f90
+mod_f2py.so:		$(MOD_F2PY_SRC)												\
+					mod_safe.mod
 	$(RM) -f mod_f2py.*.so mod_f2py.so
 	FC=$(FC) FFLAGS="-fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS)" $(PYTHON3) -m numpy.f2py -c mod_f2py.F90 -m mod_f2py --backend meson -lgomp -I$(PWD)
 	$(LN) -s mod_f2py$(SUFFIX) mod_f2py.so

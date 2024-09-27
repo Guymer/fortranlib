@@ -576,5 +576,5 @@ mod_safe_mpi.o &:	$(MOD_SAFE_MPI_SRC)
 mod_f2py.so:		$(MOD_F2PY_SRC)												\
 					mod_safe.mod
 	$(RM) -f mod_f2py.*.so mod_f2py.so
-	FC=$(FC) FFLAGS="-fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS)" $(PYTHON3) -m numpy.f2py -c mod_f2py.F90 -m mod_f2py --backend meson -lgomp -I$(PWD)
+	FC=$(FC) FFLAGS="-fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS)" $(PYTHON3) -m numpy.f2py -c mod_f2py.F90 -m mod_f2py --backend meson -lgomp -I$(CURDIR)
 	$(LN) -s mod_f2py$(SUFFIX) mod_f2py.so

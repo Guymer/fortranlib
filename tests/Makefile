@@ -4,7 +4,6 @@
 
 DEBUG     ?= false
 FTNLIB    ?= ..
-LIBDIR    ?= /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib
 DEBG_OPTS := -g -fcheck=all
 LANG_OPTS := -ffree-form -ffree-line-length-none -frecursive -fno-unsafe-math-optimizations -frounding-math -fsignaling-nans -fPIC
 WARN_OPTS := -Wall -Wextra -Waliasing -Wcharacter-truncation -Wconversion-extra -Wimplicit-interface -Wimplicit-procedure -Wunderflow -Wtabs
@@ -16,7 +15,7 @@ MACH_OPTS := -march=native -m64
 # ******************************************************************************
 
 CUT     := $(shell which cut                  2> /dev/null || echo "ERROR")
-FC      := $(shell which mpif90-openmpi-gcc13 2> /dev/null || echo "ERROR")
+FC      := $(shell which mpif90-openmpi-gcc14 2> /dev/null || echo "ERROR")
 GREP    := $(shell which grep                 2> /dev/null || echo "ERROR")
 PYTHON3 := $(shell which python3.11           2> /dev/null || echo "ERROR")
 RM      := $(shell which rm                   2> /dev/null || echo "ERROR")
@@ -108,13 +107,13 @@ help:
 # *                        INTERNALLY-SPECIFIED TARGETS                        *
 # ******************************************************************************
 
-# NOTE: As of 01/Nov/2019 there is still a bug in "gcc9" from MacPorts which
-#       results in it being unable to find some system libraries. Below are
-#       links to the MacPorts ticket and the GCC ticket as well as the reference
-#       for my chosen (hopefully temporary) workaround.
-#         * https://trac.macports.org/ticket/59113
-#         * https://gcc.gnu.org/bugzilla/show_bug.cgi?id=90835
-#         * https://stackoverflow.com/a/58081934
+# NOTE: There was a bug in NumPy (using "meson" to build) where "f2py" would
+#       copy the file to a build folder and, therefore, the relative paths to
+#       external libraries would break. To work around this I prepend the
+#       current directory to the library path to make it an absolute path. See:
+#         * https://github.com/numpy/numpy/issues/25344
+
+# NOTE: See https://numpy.org/doc/stable/f2py/buildtools/distutils-to-meson.html
 
 $(FTNLIB)/%.mod																	\
 $(FTNLIB)/%.o &:	$(FTNLIB)/%.F90
@@ -192,68 +191,68 @@ test16.o:			$(FTNLIB)/mod_geo.mod										\
 test01:				$(FTNLIB)/mod_safe.o										\
 					$(FTNLIB)/mod_safe_mpi.o									\
 					test01.o
-	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test01.o $(FTNLIB)/mod_safe.o $(FTNLIB)/mod_safe_mpi.o -L$(LIBDIR) -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test01.o $(FTNLIB)/mod_safe.o $(FTNLIB)/mod_safe_mpi.o -o $@
 
 test02:				$(FTNLIB)/mod_safe.o										\
 					$(FTNLIB)/mod_safe_mpi.o									\
 					test02.o
-	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test02.o $(FTNLIB)/mod_safe.o $(FTNLIB)/mod_safe_mpi.o -L$(LIBDIR) -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test02.o $(FTNLIB)/mod_safe.o $(FTNLIB)/mod_safe_mpi.o -o $@
 
 test03:				$(FTNLIB)/mod_safe.o										\
 					test03.o
-	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test03.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test03.o $(FTNLIB)/mod_safe.o -o $@
 
 test04:				$(FTNLIB)/mod_safe.o										\
 					test04.o
-	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test04.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test04.o $(FTNLIB)/mod_safe.o -o $@
 
 test05:				$(FTNLIB)/mod_safe.o										\
 					$(FTNLIB)/mod_safe_mpi.o									\
 					test05.o
-	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test05.o $(FTNLIB)/mod_safe.o $(FTNLIB)/mod_safe_mpi.o -L$(LIBDIR) -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test05.o $(FTNLIB)/mod_safe.o $(FTNLIB)/mod_safe_mpi.o -o $@
 
 test06:				$(FTNLIB)/mod_safe.o										\
 					test06.o
-	$(FC) -fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test06.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
+	$(FC) -fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test06.o $(FTNLIB)/mod_safe.o -o $@
 
 test07:				$(FTNLIB)/mod_safe.o										\
 					$(FTNLIB)/mod_safe_mpi.o									\
 					test07.o
-	$(FC) -fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test07.o $(FTNLIB)/mod_safe.o $(FTNLIB)/mod_safe_mpi.o -L$(LIBDIR) -o $@
+	$(FC) -fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test07.o $(FTNLIB)/mod_safe.o $(FTNLIB)/mod_safe_mpi.o -o $@
 
 test08:				$(FTNLIB)/mod_safe.o										\
 					test08.o
-	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test08.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test08.o $(FTNLIB)/mod_safe.o -o $@
 
 test09:				$(FTNLIB)/mod_safe.o										\
 					test09.o
-	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test09.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test09.o $(FTNLIB)/mod_safe.o -o $@
 
 test10:				$(FTNLIB)/mod_safe.o										\
 					test10.o
-	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test10.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test10.o $(FTNLIB)/mod_safe.o -o $@
 
 test11:				$(FTNLIB)/mod_safe.o										\
 					test11.o
-	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test11.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test11.o $(FTNLIB)/mod_safe.o -o $@
 
 test12:				$(FTNLIB)/mod_safe.o										\
 					test12.o
-	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test12.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test12.o $(FTNLIB)/mod_safe.o -o $@
 
 test13:				$(FTNLIB)/mod_safe.o										\
 					test13.o
-	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test13.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test13.o $(FTNLIB)/mod_safe.o -o $@
 
 test14:				$(FTNLIB)/mod_safe.o										\
 					test14.o
-	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test14.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test14.o $(FTNLIB)/mod_safe.o -o $@
 
 test15:				$(FTNLIB)/mod_safe.o										\
 					test15.o
-	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test15.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test15.o $(FTNLIB)/mod_safe.o -o $@
 
 test16:				$(FTNLIB)/mod_geo.o											\
 					$(FTNLIB)/mod_safe.o										\
 					test16.o
-	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test16.o $(FTNLIB)/mod_geo.o $(FTNLIB)/mod_safe.o -L$(LIBDIR) -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test16.o $(FTNLIB)/mod_geo.o $(FTNLIB)/mod_safe.o -o $@

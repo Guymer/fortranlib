@@ -15,10 +15,6 @@ build:
         - gfortran-12
     jobs:
         post_install:
-            # As of 27/Sept/2024, the version of Meson available is too old for
-            # "f2py" to succeed, see the following error last time I tried:
-            #   * meson.build:1:0: ERROR: Meson version is 0.61.2 but project requires >= 1.1.0
-            - which f2py
             - which gfortran-12
             - which gmake
             - which pip3

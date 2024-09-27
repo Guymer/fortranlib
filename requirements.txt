@@ -2,7 +2,6 @@
 # "check_READMEs.py" script from "https://github.com/Guymer/misc".
 
 matplotlib
-meson
 scipy
 sphinx
 sphinx_rtd_theme

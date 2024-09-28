@@ -61,7 +61,7 @@ def t_CDF(x, dof, /, *, fortran = True):
     return ans
 
 # Use the proper idiom in the main module ...
-# NOTE: See https://docs.python.org/3.11/library/multiprocessing.html#the-spawn-and-forkserver-start-methods
+# NOTE: See https://docs.python.org/3.12/library/multiprocessing.html#the-spawn-and-forkserver-start-methods
 if __name__ == "__main__":
     # Loop over number of degrees of freedom ...
     for i in range(1, 7):

@@ -57,7 +57,16 @@ SUBROUTINE sub_save_2D_INT8_integer_array_as_PGM(arr, fname)
     END DO
 
     ! Open PGM ...
-    OPEN(access = "stream", action = "write", file = TRIM(fname), form = "unformatted", iomsg = errmsg, iostat = errnum, newunit = funit, status = "replace")
+    OPEN(                                                                       &
+         access = "stream",                                                     &
+         action = "write",                                                      &
+           file = TRIM(fname),                                                  &
+           form = "unformatted",                                                &
+          iomsg = errmsg,                                                       &
+         iostat = errnum,                                                       &
+        newunit = funit,                                                        &
+         status = "replace"                                                     &
+    )
     IF(errnum /= 0_INT32)THEN
         WRITE(fmt = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")', unit = ERROR_UNIT) "Failed to open PGM", TRIM(errmsg), errnum
         FLUSH(unit = ERROR_UNIT)

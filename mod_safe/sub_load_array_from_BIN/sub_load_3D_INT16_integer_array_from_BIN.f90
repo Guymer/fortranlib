@@ -20,7 +20,16 @@ SUBROUTINE sub_load_3D_INT16_integer_array_from_BIN(arr, fname)
     INTEGER(kind = INT32)                                                       :: funit
 
     ! Open BIN ...
-    OPEN(access = "stream", action = "read", file = TRIM(fname), form = "unformatted", iomsg = errmsg, iostat = errnum, newunit = funit, status = "old")
+    OPEN(                                                                       &
+         access = "stream",                                                     &
+         action = "read",                                                       &
+           file = TRIM(fname),                                                  &
+           form = "unformatted",                                                &
+          iomsg = errmsg,                                                       &
+         iostat = errnum,                                                       &
+        newunit = funit,                                                        &
+         status = "old"                                                         &
+    )
     IF(errnum /= 0_INT32)THEN
         WRITE(fmt = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")', unit = ERROR_UNIT) "Failed to open BIN", TRIM(errmsg), errnum
         FLUSH(unit = ERROR_UNIT)

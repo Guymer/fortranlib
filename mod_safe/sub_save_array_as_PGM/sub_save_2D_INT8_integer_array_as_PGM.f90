@@ -42,6 +42,7 @@ SUBROUTINE sub_save_2D_INT8_integer_array_as_PGM(arr, fname)
     WRITE(hdr, fmt = '("P5 ", i5, " ", i5, " 255 ")') nx, ny
 
     ! Allocate image ...
+    ! NOTE: There is no "sub_allocate_array()" for CHARACTER arrays.
     ALLOCATE(img(nx, ny))
 
     ! Loop over x ...

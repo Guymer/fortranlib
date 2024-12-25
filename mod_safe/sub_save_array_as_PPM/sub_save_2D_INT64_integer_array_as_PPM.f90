@@ -52,6 +52,7 @@ SUBROUTINE sub_save_2D_INT64_integer_array_as_PPM(arr, fname, cm)
     WRITE(hdr, fmt = '("P6 ", i5, " ", i5, " 255 ")') nx, ny
 
     ! Allocate image ...
+    ! NOTE: There is no "sub_allocate_array()" for CHARACTER arrays.
     ALLOCATE(img(nx, ny))
 
     ! Loop over x ...

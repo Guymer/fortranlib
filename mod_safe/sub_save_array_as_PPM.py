@@ -100,6 +100,7 @@ if __name__ == "__main__":
                 "    WRITE(hdr, fmt = '(\"P6 \", i5, \" \", i5, \" 255 \")') nx, ny\n"
                 "\n"
                 "    ! Allocate image ...\n"
+                "    ! NOTE: There is no \"sub_allocate_array()\" for CHARACTER arrays.\n"
                 "    ALLOCATE(img(nx, ny))\n"
                 "\n"
                 "    ! Loop over x ...\n"

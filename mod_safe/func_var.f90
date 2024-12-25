@@ -24,6 +24,8 @@ PURE FUNCTION func_var(arr, dof) RESULT(ans)
     n = SIZE(arr, kind = INT64)
 
     ! Allocate array ...
+    ! NOTE: I decided not to use "sub_allocate_array()" here so as to keep this
+    !       function "PURE".
     ALLOCATE(tmp(n))
 
     ! Calculate the squared deviations from the mean ...

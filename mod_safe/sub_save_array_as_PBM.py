@@ -79,7 +79,7 @@ if __name__ == "__main__":
                 "    WRITE(hdr, fmt = '(\"P4 \", i5, \" \", i5, \" \")') nxArr, nyArr\n"
                 "\n"
                 "    ! Allocate image ...\n"
-                "    ALLOCATE(img(nxImg, nyImg))\n"
+                "    CALL sub_allocate_array(img, \"img\", nxImg, nyImg, .FALSE._INT8)\n"
                 "\n"
                 "    ! Loop over image x ...\n"
                 "    DO ixImg = 1_INT64, nxImg\n"

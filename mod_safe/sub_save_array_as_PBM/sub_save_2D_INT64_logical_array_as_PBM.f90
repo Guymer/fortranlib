@@ -55,7 +55,7 @@ SUBROUTINE sub_save_2D_INT64_logical_array_as_PBM(arr, fname)
     WRITE(hdr, fmt = '("P4 ", i5, " ", i5, " ")') nxArr, nyArr
 
     ! Allocate image ...
-    ALLOCATE(img(nxImg, nyImg))
+    CALL sub_allocate_array(img, "img", nxImg, nyImg, .FALSE._INT8)
 
     ! Loop over image x ...
     DO ixImg = 1_INT64, nxImg

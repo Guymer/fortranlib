@@ -19,6 +19,8 @@ PURE SUBROUTINE sub_buffer_POINT(point, dist, nang, polygon)
     REAL(kind = REAL64)                                                         :: ang2
 
     ! Set up the Polygon ...
+    ! NOTE: I decided not to use "sub_allocate_array()" here so as to keep this
+    !       subroutine "PURE".
     polygon%exterior%ring = .TRUE._INT8
     polygon%exterior%npoints = nang                                             ! [#]
     ALLOCATE(polygon%exterior%x(nang))

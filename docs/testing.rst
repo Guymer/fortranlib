@@ -18,6 +18,7 @@ that I might have introduced; and demonstrate some simple programming techniques
     test_test14
     test_test15
     test_test16
+    test_test17
 
 To compare the images with a previous version, try something like::
 

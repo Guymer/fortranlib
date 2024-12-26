@@ -1,0 +1,66 @@
+SUBROUTINE sub_shrink_2D_REAL32_real_array(nx, ny, arr, shrinkScale, shrunkenArr)
+    ! Import modules ...
+    USE ISO_FORTRAN_ENV
+
+    IMPLICIT NONE
+
+    ! Declare inputs/outputs ...
+    INTEGER(kind = INT64), INTENT(in)                                           :: nx
+    INTEGER(kind = INT64), INTENT(in)                                           :: ny
+    REAL(kind = REAL32), DIMENSION(nx, ny), INTENT(in)                          :: arr
+    INTEGER(kind = INT64), INTENT(in)                                           :: shrinkScale
+    REAL(kind = REAL32), ALLOCATABLE, DIMENSION(:, :), INTENT(out)              :: shrunkenArr
+
+    ! Declare variables ...
+    INTEGER(kind = INT64)                                                       :: ix
+    INTEGER(kind = INT64)                                                       :: ixlo
+    INTEGER(kind = INT64)                                                       :: ixhi
+    INTEGER(kind = INT64)                                                       :: iy
+    INTEGER(kind = INT64)                                                       :: iylo
+    INTEGER(kind = INT64)                                                       :: iyhi
+    REAL(kind = REAL64)                                                         :: fact
+
+    ! Check shrinkScale ...
+    IF(MOD(nx, shrinkScale) /= 0_INT64)THEN
+        WRITE(fmt = '("ERROR: ", a, ".")', unit = ERROR_UNIT) '"nx" is not an integer multiple of "shrinkScale"'
+        FLUSH(unit = ERROR_UNIT)
+        STOP
+    END IF
+    IF(MOD(ny, shrinkScale) /= 0_INT64)THEN
+        WRITE(fmt = '("ERROR: ", a, ".")', unit = ERROR_UNIT) '"ny" is not an integer multiple of "shrinkScale"'
+        FLUSH(unit = ERROR_UNIT)
+        STOP
+    END IF
+
+    ! Create short-hand ...
+    fact = 1.0e0_REAL64 / REAL(shrinkScale ** 2, kind = REAL64)
+
+    ! Allocate array ...
+    CALL sub_allocate_array(                                                    &
+          arr = shrunkenArr,                                                    &
+         name = "shrunkenArr",                                                  &
+           n1 = nx / shrinkScale,                                               &
+           n2 = ny / shrinkScale,                                               &
+        debug = .FALSE._INT8                                                    &
+    )
+
+    ! Loop over shrunken x-axis ...
+    DO ix = 1_INT64, nx / shrinkScale
+        ! Find the extent of the shrunken element ...
+        ixlo = (ix - 1_INT64) * shrinkScale + 1_INT64
+        ixhi =  ix            * shrinkScale
+
+        ! Loop over shrunken y-axis ...
+        DO iy = 1_INT64, ny / shrinkScale
+            ! Find the extent of the shrunken element ...
+            iylo = (iy - 1_INT64) * shrinkScale + 1_INT64
+            iyhi =  iy            * shrinkScale
+
+            ! Promote the subset of the input array which contributes to this
+            ! shrunken element up to REAL64 so as to (hopefully) avoid an
+            ! overflow, then find the average value and demote the value back
+            ! down to REAL32 ...
+            shrunkenArr(ix, iy) = REAL(fact * SUM(REAL(arr(ixlo:ixhi, iylo:iyhi), kind = REAL64)), kind = REAL32)
+        END DO
+    END DO
+END SUBROUTINE sub_shrink_2D_REAL32_real_array

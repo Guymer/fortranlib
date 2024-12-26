@@ -333,6 +333,11 @@ MODULE mod_safe
     END INTERFACE sub_save_array_as_PPM
 
     ! Declare interface ...
+    INTERFACE sub_shrink_array
+        MODULE PROCEDURE sub_shrink_2D_REAL32_real_array
+    END INTERFACE sub_shrink_array
+
+    ! Declare interface ...
     INTERFACE sub_solve_quadratic_equation
         MODULE PROCEDURE sub_solve_quadratic_REAL32_equation
         MODULE PROCEDURE sub_solve_quadratic_REAL64_equation
@@ -656,6 +661,7 @@ MODULE mod_safe
 #if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
     INCLUDE "mod_safe/sub_save_array_as_PPM/sub_save_2D_REAL128_real_array_as_PPM.f90"
 #endif
+    INCLUDE "mod_safe/sub_shrink_array/sub_shrink_2D_REAL32_real_array.f90"
     INCLUDE "mod_safe/sub_solve_quadratic_equation/sub_solve_quadratic_REAL32_equation.f90"
     INCLUDE "mod_safe/sub_solve_quadratic_equation/sub_solve_quadratic_REAL64_equation.f90"
 #if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__

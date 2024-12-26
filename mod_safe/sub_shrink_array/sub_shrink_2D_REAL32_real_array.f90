@@ -44,23 +44,41 @@ SUBROUTINE sub_shrink_2D_REAL32_real_array(nx, ny, arr, shrinkScale, shrunkenArr
         debug = .FALSE._INT8                                                    &
     )
 
-    ! Loop over shrunken x-axis ...
-    DO ix = 1_INT64, nx / shrinkScale
-        ! Find the extent of the shrunken element ...
-        ixlo = (ix - 1_INT64) * shrinkScale + 1_INT64
-        ixhi =  ix            * shrinkScale
+    !$omp parallel                                                              &
+    !$omp default(none)                                                         &
+    !$omp private(ix)                                                           &
+    !$omp private(ixlo)                                                         &
+    !$omp private(ixhi)                                                         &
+    !$omp private(iy)                                                           &
+    !$omp private(iylo)                                                         &
+    !$omp private(iyhi)                                                         &
+    !$omp shared(arr)                                                           &
+    !$omp shared(fact)                                                          &
+    !$omp shared(nx)                                                            &
+    !$omp shared(ny)                                                            &
+    !$omp shared(shrinkScale)                                                   &
+    !$omp shared(shrunkenArr)
+        !$omp do                                                                &
+        !$omp schedule(dynamic)
+            ! Loop over shrunken x-axis ...
+            DO ix = 1_INT64, nx / shrinkScale
+                ! Find the extent of the shrunken element ...
+                ixlo = (ix - 1_INT64) * shrinkScale + 1_INT64
+                ixhi =  ix            * shrinkScale
 
-        ! Loop over shrunken y-axis ...
-        DO iy = 1_INT64, ny / shrinkScale
-            ! Find the extent of the shrunken element ...
-            iylo = (iy - 1_INT64) * shrinkScale + 1_INT64
-            iyhi =  iy            * shrinkScale
+                ! Loop over shrunken y-axis ...
+                DO iy = 1_INT64, ny / shrinkScale
+                    ! Find the extent of the shrunken element ...
+                    iylo = (iy - 1_INT64) * shrinkScale + 1_INT64
+                    iyhi =  iy            * shrinkScale
 
-            ! Promote the subset of the input array which contributes to this
-            ! shrunken element up to REAL64 so as to (hopefully) avoid an
-            ! overflow, then find the average value and demote the value back
-            ! down to REAL32 ...
-            shrunkenArr(ix, iy) = REAL(fact * SUM(REAL(arr(ixlo:ixhi, iylo:iyhi), kind = REAL64)), kind = REAL32)
-        END DO
-    END DO
+                    ! Promote the subset of the input array which contributes to
+                    ! this shrunken element up to REAL64 so as to (hopefully)
+                    ! avoid an overflow, then find the average value and demote
+                    ! the value back down to REAL32 ...
+                    shrunkenArr(ix, iy) = REAL(fact * SUM(REAL(arr(ixlo:ixhi, iylo:iyhi), kind = REAL64)), kind = REAL32)
+                END DO
+            END DO
+        !$omp end do
+    !$omp end parallel
 END SUBROUTINE sub_shrink_2D_REAL32_real_array

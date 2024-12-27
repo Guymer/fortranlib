@@ -36,6 +36,11 @@ PURE FUNCTION func_integrate_2D_REAL64_real_array(x1, x2, arr) RESULT(ans)
     n1 = SIZE(x1, kind = INT64)
     n2 = SIZE(x2, kind = INT64)
 
+    ! TODO: In future, think about:
+    !         * Is it quicker to calculate a "dx" vector and a "midy" vector and
+    !           then just take the "DOT_PRODUCT()" of them?
+    !         * Is it quicker to use OpenMP and perform a reduction?
+
     ! Set starting value ...
     ans = 0.0e0_REAL64
 

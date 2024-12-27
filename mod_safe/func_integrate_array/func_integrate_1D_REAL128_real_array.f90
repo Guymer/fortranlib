@@ -28,6 +28,11 @@ PURE FUNCTION func_integrate_1D_REAL128_real_array(x1, arr) RESULT(ans)
     ! Find size of input array ...
     n1 = SIZE(x1, kind = INT64)
 
+    ! TODO: In future, think about:
+    !         * Is it quicker to calculate a "dx" vector and a "midy" vector and
+    !           then just take the "DOT_PRODUCT()" of them?
+    !         * Is it quicker to use OpenMP and perform a reduction?
+
     ! Set starting value ...
     ans = 0.0e0_REAL128
 

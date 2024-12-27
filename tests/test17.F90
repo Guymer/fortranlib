@@ -28,7 +28,7 @@ PROGRAM test17
          name = "elev",                                                         &
            n1 = nx,                                                             &
            n2 = ny,                                                             &
-        debug = .TRUE._INT8                                                     &
+        debug = .FALSE._INT8                                                    &
     )
     CALL sub_load_array_from_BIN(                                               &
           arr = elev,                                                           &
@@ -49,7 +49,7 @@ PROGRAM test17
          name = "flooded",                                                      &
            n1 = nx,                                                             &
            n2 = ny,                                                             &
-        debug = .TRUE._INT8                                                     &
+        debug = .FALSE._INT8                                                    &
     )
     flooded = .FALSE._INT8
     flooded(1, 1) = .TRUE._INT8

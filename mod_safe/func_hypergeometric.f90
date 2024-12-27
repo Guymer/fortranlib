@@ -1,8 +1,11 @@
 ELEMENTAL FUNCTION func_hypergeometric(a, b, c, z) RESULT(ans)
     ! NOTE: See https://en.wikipedia.org/wiki/Hypergeometric_function
+
     ! NOTE: See https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.hyp2f1.html
+
     ! NOTE: See https://github.com/scipy/scipy/blob/main/scipy/special/_precompute/hyp2f1_data.py
 
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE

@@ -1,6 +1,7 @@
 PURE FUNCTION func_stderr(arr, dof) RESULT(ans)
     ! NOTE: See https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.sem.html
 
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE

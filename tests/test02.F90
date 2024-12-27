@@ -3,9 +3,13 @@ PROGRAM test02
     ! NOTE: 2^31 - 1 = 2,147,483,647
     ! NOTE: 2,494,357,888 > 2,147,483,647
 
-    ! Import modules ...
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
+
+    ! Import special modules ...
     USE MPI
+
+    ! Import my modules ...
     USE mod_safe, ONLY: func_overall_index, sub_allocate_array
     USE mod_safe_mpi, ONLY: sub_allreduce_array
 

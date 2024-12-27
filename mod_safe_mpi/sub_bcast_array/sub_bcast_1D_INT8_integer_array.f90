@@ -1,8 +1,11 @@
 SUBROUTINE sub_bcast_1D_INT8_integer_array(buff, root, comm)
     ! This subroutine broadcasts a 1D INT8 integer array.
 
+    ! Import standard modules ...
     USE ISO_C_BINDING
     USE ISO_FORTRAN_ENV
+
+    ! Import special modules ...
     USE MPI
 
     IMPLICIT NONE

@@ -1,8 +1,11 @@
 SUBROUTINE sub_allreduce_5D_INT8_logical_array(buff, op, comm)
     ! This subroutine reduces a 5D INT8 logical array.
 
+    ! Import standard modules ...
     USE ISO_C_BINDING
     USE ISO_FORTRAN_ENV
+
+    ! Import special modules ...
     USE MPI
 
     IMPLICIT NONE

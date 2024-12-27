@@ -1,9 +1,11 @@
 ELEMENTAL FUNCTION func_t_CDF(x, dof) RESULT(ans)
     ! NOTE: See https://en.wikipedia.org/wiki/Student's_t-distribution
+
     ! TODO: Given that func_hypergeometric() does not currently work when |z|>=1
     !       then this function should not attempt direct calculation of the CDF,
     !       but should rather integrate the PDF instead.
 
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE

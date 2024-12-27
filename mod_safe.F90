@@ -2,6 +2,7 @@ MODULE mod_safe
     ! This module contains a lot of constants, functions and subroutines which
     ! are thread-safe and which can be safely imported in to any program.
 
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE

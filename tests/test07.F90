@@ -1,5 +1,5 @@
 MODULE mod_test07
-    ! Import modules ...
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE
@@ -11,7 +11,7 @@ MODULE mod_test07
 
     ! Define functions ...
     FUNCTION calc_pi() RESULT(ans)
-        ! Import modules ...
+        ! Import standard modules ...
         USE ISO_FORTRAN_ENV
         USE OMP_LIB
         USE mod_safe, ONLY: sub_allocate_array
@@ -62,9 +62,13 @@ MODULE mod_test07
 END MODULE mod_test07
 
 PROGRAM test07
-    ! Import modules ...
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
+
+    ! Import special modules ...
     USE MPI
+
+    ! Import my modules ...
     USE mod_safe, ONLY: const_pi, sub_allocate_array
     USE mod_safe_mpi, ONLY: sub_allreduce_array
     USE mod_test07

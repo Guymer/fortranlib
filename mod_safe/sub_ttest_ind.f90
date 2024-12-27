@@ -2,9 +2,12 @@ PURE SUBROUTINE sub_ttest_ind(arr1, arr2, similarVar, t, p)
     ! NOTE: See https://en.wikipedia.org/wiki/Student's_t-test
     !         * "Equal or unequal sample sizes, similar variances" section
     !         * "Equal or unequal sample sizes, unequal variances" section
+
     ! NOTE: See https://en.wikipedia.org/wiki/Welch's_t-test
+
     ! NOTE: See https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html
 
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE

@@ -1,8 +1,11 @@
 SUBROUTINE sub_allreduce_3D_INT64_logical_array(buff, op, comm)
     ! This subroutine reduces a 3D INT64 logical array.
 
+    ! Import standard modules ...
     USE ISO_C_BINDING
     USE ISO_FORTRAN_ENV
+
+    ! Import special modules ...
     USE MPI
 
     IMPLICIT NONE

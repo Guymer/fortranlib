@@ -1,8 +1,11 @@
 SUBROUTINE sub_allreduce_7D_INT8_integer_array(buff, op, comm)
     ! This subroutine reduces a 7D INT8 integer array.
 
+    ! Import standard modules ...
     USE ISO_C_BINDING
     USE ISO_FORTRAN_ENV
+
+    ! Import special modules ...
     USE MPI
 
     IMPLICIT NONE

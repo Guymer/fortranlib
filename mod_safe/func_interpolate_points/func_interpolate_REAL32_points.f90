@@ -12,6 +12,7 @@
 !>
 
 ELEMENTAL FUNCTION func_interpolate_REAL32_points(x1, x2, y1, y2, x) RESULT(ans)
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE

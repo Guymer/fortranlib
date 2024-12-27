@@ -1,6 +1,8 @@
 PROGRAM test10
-    ! Import modules ...
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
+
+    ! Import my modules ...
     USE mod_safe, ONLY: sub_allocate_array, sub_save_array_as_PGM
 
     IMPLICIT NONE

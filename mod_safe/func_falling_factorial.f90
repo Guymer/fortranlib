@@ -1,6 +1,7 @@
 ELEMENTAL FUNCTION func_falling_factorial(x, n) result(ans)
     ! NOTE: See https://en.wikipedia.org/wiki/Falling_and_rising_factorials
 
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE

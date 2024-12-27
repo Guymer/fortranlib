@@ -1,6 +1,8 @@
 PROGRAM test03
-    ! Import modules ...
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
+
+    ! Import my modules ...
     USE mod_safe, ONLY: const_c, const_eps0, const_mu0
 
     IMPLICIT NONE

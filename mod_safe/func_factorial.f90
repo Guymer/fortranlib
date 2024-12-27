@@ -1,6 +1,7 @@
 ELEMENTAL FUNCTION func_factorial(x) result(ans)
     ! NOTE: See https://en.wikipedia.org/wiki/Factorial
 
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE

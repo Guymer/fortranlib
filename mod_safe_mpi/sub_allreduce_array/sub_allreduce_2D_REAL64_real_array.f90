@@ -1,8 +1,11 @@
 SUBROUTINE sub_allreduce_2D_REAL64_real_array(buff, op, comm)
     ! This subroutine reduces a 2D REAL64 real array.
 
+    ! Import standard modules ...
     USE ISO_C_BINDING
     USE ISO_FORTRAN_ENV
+
+    ! Import special modules ...
     USE MPI
 
     IMPLICIT NONE

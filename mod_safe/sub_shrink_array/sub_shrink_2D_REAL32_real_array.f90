@@ -1,5 +1,5 @@
 SUBROUTINE sub_shrink_2D_REAL32_real_array(nx, ny, arr, shrinkScale, shrunkenArr)
-    ! Import modules ...
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE

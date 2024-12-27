@@ -7,6 +7,7 @@ PURE FUNCTION func_var(arr, dof) RESULT(ans)
     !         * dof=0 provides a maximum likelihood estimate of the variance for
     !           normally distributed variables
 
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE

@@ -17,6 +17,7 @@ PROGRAM test17
 
     ! Declare variables ...
     LOGICAL(kind = INT8), ALLOCATABLE, DIMENSION(:, :)                          :: flooded
+    INTEGER(kind = INT64), ALLOCATABLE, DIMENSION(:)                            :: tot
     REAL(kind = REAL32), ALLOCATABLE, DIMENSION(:, :)                           :: elev
 
     ! **************************************************************************
@@ -60,7 +61,8 @@ PROGRAM test17
              elev = elev,                                                       &
          seaLevel = 500.0e0_REAL32,                                             &
           flooded = flooded,                                                    &
-        tileScale = 1_INT64                                                     &
+        tileScale = 1_INT64,                                                    &
+              tot = tot                                                         &
     )
 
     ! Save flooded map ...
@@ -72,4 +74,5 @@ PROGRAM test17
     ! Clean up ...
     DEALLOCATE(elev)
     DEALLOCATE(flooded)
+    DEALLOCATE(tot)
 END PROGRAM test17

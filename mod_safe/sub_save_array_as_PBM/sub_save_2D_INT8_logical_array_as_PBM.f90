@@ -58,27 +58,42 @@ SUBROUTINE sub_save_2D_INT8_logical_array_as_PBM(arr, fname)
     ! Allocate image ...
     CALL sub_allocate_array(img, "img", nxImg, nyImg, .FALSE._INT8)
 
-    ! Loop over image x ...
-    DO ixImg = 1_INT64, nxImg
-        ! Loop over image y ...
-        DO iyImg = 1_INT64, nyImg
-            ! Loop over bits ...
-            DO i = 1_INT64, 8_INT64
-                ! Determine array x and y ...
-                ixArr = ixImg * 8_INT64 - (i - 1_INT64)
-                iyArr = iyImg
+    !$omp parallel                                                              &
+    !$omp default(none)                                                         &
+    !$omp private(i)                                                            &
+    !$omp private(ixArr)                                                        &
+    !$omp private(ixImg)                                                        &
+    !$omp private(iyArr)                                                        &
+    !$omp private(iyImg)                                                        &
+    !$omp shared(arr)                                                           &
+    !$omp shared(img)                                                           &
+    !$omp shared(nxImg)                                                         &
+    !$omp shared(nyImg)
+        !$omp do                                                                &
+        !$omp schedule(dynamic)
+            ! Loop over image x ...
+            DO ixImg = 1_INT64, nxImg
+                ! Loop over image y ...
+                DO iyImg = 1_INT64, nyImg
+                    ! Loop over bits ...
+                    DO i = 1_INT64, 8_INT64
+                        ! Determine array x and y ...
+                        ixArr = ixImg * 8_INT64 - (i - 1_INT64)
+                        iyArr = iyImg
 
-                ! Check what needs doing ...
-                IF(arr(ixArr, iyArr))THEN
-                    ! Set pixel ...
-                    img(ixImg, iyImg) = IBCLR(img(ixImg, iyImg), i - 1_INT64)
-                ELSE
-                    ! Set pixel ...
-                    img(ixImg, iyImg) = IBSET(img(ixImg, iyImg), i - 1_INT64)
-                END IF
+                        ! Check what needs doing ...
+                        IF(arr(ixArr, iyArr))THEN
+                            ! Set pixel ...
+                            img(ixImg, iyImg) = IBCLR(img(ixImg, iyImg), i - 1_INT64)
+                        ELSE
+                            ! Set pixel ...
+                            img(ixImg, iyImg) = IBSET(img(ixImg, iyImg), i - 1_INT64)
+                        END IF
+                    END DO
+                END DO
             END DO
-        END DO
-    END DO
+        !$omp end do
+    !$omp end parallel
 
     ! Open PBM ...
     OPEN(                                                                       &

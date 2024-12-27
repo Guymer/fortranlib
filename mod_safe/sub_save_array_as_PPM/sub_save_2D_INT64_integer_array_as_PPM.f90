@@ -56,27 +56,41 @@ SUBROUTINE sub_save_2D_INT64_integer_array_as_PPM(arr, fname, cm)
     ! NOTE: There is no "sub_allocate_array()" for CHARACTER arrays.
     ALLOCATE(img(nx, ny))
 
-    ! Loop over x ...
-    DO ix = 1_INT64, nx
-        ! Loop over y ...
-        DO iy = 1_INT64, ny
-            ! Determine level ...
-            lvl = MAX(0_INT64, MIN(255_INT64, arr(ix, iy)))
+    !$omp parallel                                                              &
+    !$omp default(none)                                                         &
+    !$omp private(ix)                                                           &
+    !$omp private(iy)                                                           &
+    !$omp private(lvl)                                                          &
+    !$omp shared(arr)                                                           &
+    !$omp shared(cm)                                                            &
+    !$omp shared(img)                                                           &
+    !$omp shared(nx)                                                            &
+    !$omp shared(ny)
+        !$omp do                                                                &
+        !$omp schedule(dynamic)
+            ! Loop over x ...
+            DO ix = 1_INT64, nx
+                ! Loop over y ...
+                DO iy = 1_INT64, ny
+                    ! Determine level ...
+                    lvl = MAX(0_INT64, MIN(255_INT64, arr(ix, iy)))
 
-            ! Set pixel ...
-            IF(TRIM(cm) == "fire")THEN
-                img(ix, iy) = const_cm_fire(lvl + 1_INT64)
-            ELSE IF(TRIM(cm) == "jet")THEN
-                img(ix, iy) = const_cm_jet(lvl + 1_INT64)
-            ELSE IF(TRIM(cm) == "g2b")THEN
-                img(ix, iy) = const_cm_g2b(lvl + 1_INT64)
-            ELSE IF(TRIM(cm) == "r2g")THEN
-                img(ix, iy) = const_cm_r2g(lvl + 1_INT64)
-            ELSE IF(TRIM(cm) == "r2o2g")THEN
-                img(ix, iy) = const_cm_r2o2g(lvl + 1_INT64)
-            END IF
-        END DO
-    END DO
+                    ! Set pixel ...
+                    IF(TRIM(cm) == "fire")THEN
+                        img(ix, iy) = const_cm_fire(lvl + 1_INT64)
+                    ELSE IF(TRIM(cm) == "jet")THEN
+                        img(ix, iy) = const_cm_jet(lvl + 1_INT64)
+                    ELSE IF(TRIM(cm) == "g2b")THEN
+                        img(ix, iy) = const_cm_g2b(lvl + 1_INT64)
+                    ELSE IF(TRIM(cm) == "r2g")THEN
+                        img(ix, iy) = const_cm_r2g(lvl + 1_INT64)
+                    ELSE IF(TRIM(cm) == "r2o2g")THEN
+                        img(ix, iy) = const_cm_r2o2g(lvl + 1_INT64)
+                    END IF
+                END DO
+            END DO
+        !$omp end do
+    !$omp end parallel
 
     ! Open PPM ...
     OPEN(                                                                       &

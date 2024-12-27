@@ -46,17 +46,30 @@ SUBROUTINE sub_save_2D_INT32_integer_array_as_PGM(arr, fname)
     ! NOTE: There is no "sub_allocate_array()" for CHARACTER arrays.
     ALLOCATE(img(nx, ny))
 
-    ! Loop over x ...
-    DO ix = 1_INT64, nx
-        ! Loop over y ...
-        DO iy = 1_INT64, ny
-            ! Determine level ...
-            lvl = MAX(0_INT64, MIN(255_INT64, INT(arr(ix, iy), kind = INT64)))
+    !$omp parallel                                                              &
+    !$omp default(none)                                                         &
+    !$omp private(ix)                                                           &
+    !$omp private(iy)                                                           &
+    !$omp private(lvl)                                                          &
+    !$omp shared(arr)                                                           &
+    !$omp shared(img)                                                           &
+    !$omp shared(nx)                                                            &
+    !$omp shared(ny)
+        !$omp do                                                                &
+        !$omp schedule(dynamic)
+            ! Loop over x ...
+            DO ix = 1_INT64, nx
+                ! Loop over y ...
+                DO iy = 1_INT64, ny
+                    ! Determine level ...
+                    lvl = MAX(0_INT64, MIN(255_INT64, INT(arr(ix, iy), kind = INT64)))
 
-            ! Set pixel ...
-            img(ix, iy) = ACHAR(lvl)
-        END DO
-    END DO
+                    ! Set pixel ...
+                    img(ix, iy) = ACHAR(lvl)
+                END DO
+            END DO
+        !$omp end do
+    !$omp end parallel
 
     ! Open PGM ...
     OPEN(                                                                       &

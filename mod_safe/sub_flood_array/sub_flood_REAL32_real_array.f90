@@ -26,8 +26,7 @@ SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScal
     INTEGER(kind = INT64)                                                       :: iy
     INTEGER(kind = INT64)                                                       :: iylo
     INTEGER(kind = INT64)                                                       :: iyhi
-    INTEGER(kind = INT64)                                                       :: newTotTile
-    INTEGER(kind = INT64)                                                       :: oldTotTile
+    INTEGER(kind = INT64), ALLOCATABLE, DIMENSION(:)                            :: totTile
 
     ! Check tileScale ...
     IF(MOD(nx, tileScale) /= 0_INT64)THEN
@@ -88,6 +87,11 @@ SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScal
             !$omp shared(ny)                                                    &
             !$omp shared(seaLevel)                                              &
             !$omp shared(tileScale)
+                ! Allocate array ...
+                ! NOTE: I cannot use "sub_allocate_array()" here as I want to
+                !       set the lower bound to be zero.
+                ALLOCATE(totTile(0:nTileIters))
+
                 !$omp do                                                        &
                 !$omp schedule(dynamic)
                     ! Loop over x-axis tiles ...
@@ -102,15 +106,16 @@ SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScal
                             iylo = (iy - 1_INT64) * tileScale + 1_INT64
                             iyhi =  iy            * tileScale
 
+                            ! Populate the starting value ...
+                            totTile = 0_INT64
+                            totTile(0) = COUNT(flooded(ixlo:ixhi, iylo:iyhi), kind = INT64)
+
                             ! Start ~infinite loop ...
                             DO iTileIter = 1_INT64, nTileIters
-                                ! Find initial total flooded area ...
-                                oldTotTile = COUNT(flooded(ixlo:ixhi, iylo:iyhi), kind = INT64)
-
                                 ! Stop looping if no more flooding can occur
                                 ! either because nowhere is flooded or because
                                 ! everywhere is flooded ...
-                                IF(oldTotTile == 0_INT64 .OR. oldTotTile == tileScale ** 2)THEN
+                                IF(totTile(iTileIter - 1_INT64) == 0_INT64 .OR. totTile(iTileIter - 1_INT64) == tileScale ** 2)THEN
                                     EXIT
                                 END IF
 
@@ -128,10 +133,10 @@ SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScal
                                 )
 
                                 ! Find new total flooded area ...
-                                newTotTile = COUNT(flooded(ixlo:ixhi, iylo:iyhi), kind = INT64)
+                                totTile(iTileIter) = COUNT(flooded(ixlo:ixhi, iylo:iyhi), kind = INT64)
 
                                 ! Stop looping once no more flooding has occured ...
-                                IF(newTotTile == oldTotTile)THEN
+                                IF(totTile(iTileIter) == totTile(iTileIter - 1_INT64))THEN
                                     EXIT
                                 END IF
 
@@ -145,6 +150,9 @@ SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScal
                         END DO
                     END DO
                 !$omp end do
+
+                ! Clean up ...
+                DEALLOCATE(totTile)
             !$omp end parallel
         END IF
 

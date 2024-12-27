@@ -14,6 +14,7 @@ SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScal
     INTEGER(kind = INT64), ALLOCATABLE, DIMENSION(:), INTENT(out)               :: tot
 
     ! Declare parameters ...
+    INTEGER(kind = INT64), PARAMETER                                            :: minTile = 32_INT64
     INTEGER(kind = INT64), PARAMETER                                            :: nIters = 1000_INT64
     INTEGER(kind = INT64), PARAMETER                                            :: nTileIters = 1000_INT64
 
@@ -69,7 +70,7 @@ SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScal
         )
 
         ! Check that the tiles are large enough to bother with ...
-        IF(nx / tileScale >= 32_INT64 .AND. ny / tileScale >= 32_INT64)THEN
+        IF(nx / tileScale >= minTile .AND. ny / tileScale >= minTile)THEN
             !$omp parallel                                                      &
             !$omp default(none)                                                 &
             !$omp private(iTileIter)                                            &

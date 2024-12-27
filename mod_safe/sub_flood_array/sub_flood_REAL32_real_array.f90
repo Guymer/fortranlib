@@ -1,5 +1,5 @@
-SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScale)
-    ! Import modules ...
+SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScale, tot)
+    ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
     IMPLICIT NONE
@@ -11,6 +11,7 @@ SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScal
     REAL(kind = REAL32), INTENT(in)                                             :: seaLevel
     LOGICAL(kind = INT8), DIMENSION(nx, ny), INTENT(inout)                      :: flooded
     INTEGER(kind = INT64), INTENT(in)                                           :: tileScale
+    INTEGER(kind = INT64), ALLOCATABLE, DIMENSION(:), INTENT(out)               :: tot
 
     ! Declare parameters ...
     INTEGER(kind = INT64), PARAMETER                                            :: nIters = 1000_INT64
@@ -25,9 +26,7 @@ SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScal
     INTEGER(kind = INT64)                                                       :: iy
     INTEGER(kind = INT64)                                                       :: iylo
     INTEGER(kind = INT64)                                                       :: iyhi
-    INTEGER(kind = INT64)                                                       :: newTot
     INTEGER(kind = INT64)                                                       :: newTotTile
-    INTEGER(kind = INT64)                                                       :: oldTot
     INTEGER(kind = INT64)                                                       :: oldTotTile
 
     ! Check tileScale ...
@@ -42,13 +41,18 @@ SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScal
         STOP
     END IF
 
+    ! Allocate array and populate the starting value ...
+    ! NOTE: I cannot use "sub_allocate_array()" here as I want to set the lower
+    ! bound to be zero.
+    ALLOCATE(tot(0:nIters))
+    tot = 0_INT64
+    tot(0) = COUNT(flooded, kind = INT64)
+
     ! Start ~infinite loop ...
     DO iIter = 1_INT64, nIters
-        ! Find initial total flooded area ...
-        oldTot = COUNT(flooded, kind = INT64)
-
-        ! Stop looping once no more flooding can occur ...
-        IF(oldTot == 0_INT64 .OR. oldTot == nx * ny)THEN
+        ! Stop looping if no more flooding can occur either because nowhere is
+        ! flooded or because everywhere is flooded ...
+        IF(tot(iIter - 1_INT64) == 0_INT64 .OR. tot(iIter - 1_INT64) == nx * ny)THEN
             EXIT
         END IF
 
@@ -103,7 +107,9 @@ SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScal
                                 ! Find initial total flooded area ...
                                 oldTotTile = COUNT(flooded(ixlo:ixhi, iylo:iyhi), kind = INT64)
 
-                                ! Stop looping once no more flooding can occur ...
+                                ! Stop looping if no more flooding can occur
+                                ! either because nowhere is flooded or because
+                                ! everywhere is flooded ...
                                 IF(oldTotTile == 0_INT64 .OR. oldTotTile == tileScale ** 2)THEN
                                     EXIT
                                 END IF
@@ -143,10 +149,10 @@ SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScal
         END IF
 
         ! Find new total flooded area ...
-        newTot = COUNT(flooded, kind = INT64)
+        tot(iIter) = COUNT(flooded, kind = INT64)
 
         ! Stop looping once no more flooding has occured ...
-        IF(newTot == oldTot)THEN
+        IF(tot(iIter) == tot(iIter - 1_INT64))THEN
             EXIT
         END IF
 

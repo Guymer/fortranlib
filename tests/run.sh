@@ -23,11 +23,19 @@ if ! type optipng &> /dev/null; then
     exit 1
 fi
 
+# Set variables ...
+declare -r -x OMP_NUM_THREADS=4
+declare -r -x MPI_NUM_TASKS=4           # This isn't an official environment
+                                        # variable name, I am just using it here
+                                        # locally because it is convenient - it
+                                        # is not recognised by "mpirun" or
+                                        # anything.
+
 echo "Running test01 ..."
-mpirun --oversubscribe -np 2 ./test01
+mpirun --oversubscribe -np ${MPI_NUM_TASKS} ./test01
 
 echo "Running test02 ..."
-mpirun --oversubscribe -np 2 ./test02
+mpirun --oversubscribe -np ${MPI_NUM_TASKS} ./test02
 
 echo "Running test03 ..."
 ./test03
@@ -36,13 +44,13 @@ echo "Running test04 ..."
 ./test04
 
 echo "Running test05 ..."
-mpirun --oversubscribe -np 4 ./test05
+mpirun --oversubscribe -np ${MPI_NUM_TASKS} ./test05
 
 echo "Running test06 ..."
-OMP_NUM_THREADS=4 ./test06
+./test06
 
 echo "Running test07 ..."
-OMP_NUM_THREADS=4 mpirun --oversubscribe -np 4 ./test07
+mpirun --oversubscribe -np ${MPI_NUM_TASKS} ./test07
 
 echo "Running test08 ..."
 ./test08

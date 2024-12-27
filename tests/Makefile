@@ -5,7 +5,7 @@
 DEBUG     ?= false
 FTNLIB    ?= ..
 DEBG_OPTS := -g -fcheck=all
-LANG_OPTS := -ffree-form -ffree-line-length-none -frecursive -fno-unsafe-math-optimizations -frounding-math -fsignaling-nans -fPIC
+LANG_OPTS := -fopenmp -ffree-form -ffree-line-length-none -frecursive -fno-unsafe-math-optimizations -frounding-math -fsignaling-nans -fPIC
 WARN_OPTS := -Wall -Wextra -Waliasing -Wcharacter-truncation -Wconversion-extra -Wimplicit-interface -Wimplicit-procedure -Wunderflow -Wtabs
 OPTM_OPTS := -O2
 MACH_OPTS := -march=native -m64
@@ -145,12 +145,12 @@ test05.o:			$(FTNLIB)/mod_safe.mod										\
 
 test06.o:			$(FTNLIB)/mod_safe.mod										\
 					test06.F90
-	$(FC) -c -fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test06.F90 -o $@
+	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test06.F90 -o $@
 
 test07.o:			$(FTNLIB)/mod_safe.mod										\
 					$(FTNLIB)/mod_safe_mpi.mod									\
 					test07.F90
-	$(FC) -c -fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test07.F90 -o $@
+	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) -I$(FTNLIB) test07.F90 -o $@
 
 test08.o:			$(FTNLIB)/mod_safe.mod										\
 					test08.F90
@@ -218,12 +218,12 @@ test05:				$(FTNLIB)/mod_safe.o										\
 
 test06:				$(FTNLIB)/mod_safe.o										\
 					test06.o
-	$(FC) -fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test06.o $(FTNLIB)/mod_safe.o -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test06.o $(FTNLIB)/mod_safe.o -o $@
 
 test07:				$(FTNLIB)/mod_safe.o										\
 					$(FTNLIB)/mod_safe_mpi.o									\
 					test07.o
-	$(FC) -fopenmp $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test07.o $(FTNLIB)/mod_safe.o $(FTNLIB)/mod_safe_mpi.o -o $@
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) test07.o $(FTNLIB)/mod_safe.o $(FTNLIB)/mod_safe_mpi.o -o $@
 
 test08:				$(FTNLIB)/mod_safe.o										\
 					test08.o

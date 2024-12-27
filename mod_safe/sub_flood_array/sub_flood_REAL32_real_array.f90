@@ -80,8 +80,7 @@ SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScal
             !$omp private(iy)                                                   &
             !$omp private(iylo)                                                 &
             !$omp private(iyhi)                                                 &
-            !$omp private(oldTotTile)                                           &
-            !$omp private(newTotTile)                                           &
+            !$omp private(totTile)                                              &
             !$omp shared(elev)                                                  &
             !$omp shared(flooded)                                               &
             !$omp shared(nx)                                                    &

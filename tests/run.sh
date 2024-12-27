@@ -24,12 +24,12 @@ if ! type optipng &> /dev/null; then
 fi
 
 # Set variables ...
-declare -r -x OMP_NUM_THREADS=4
 declare -r -x MPI_NUM_TASKS=4           # This isn't an official environment
                                         # variable name, I am just using it here
                                         # locally because it is convenient - it
                                         # is not recognised by "mpirun" or
                                         # anything.
+declare -r -x OMP_NUM_THREADS=4
 
 echo "Running test01 ..."
 mpirun --oversubscribe -np ${MPI_NUM_TASKS} ./test01

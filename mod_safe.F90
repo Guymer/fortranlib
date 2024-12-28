@@ -31,6 +31,14 @@ MODULE mod_safe
     END INTERFACE func_interpolate_points
 
     ! Declare interface ...
+    INTERFACE func_mean
+        MODULE PROCEDURE func_mean_1D_REAL32_real
+        MODULE PROCEDURE func_mean_1D_REAL64_real
+        MODULE PROCEDURE func_mean_2D_REAL32_real
+        MODULE PROCEDURE func_mean_2D_REAL64_real
+    END INTERFACE func_mean
+
+    ! Declare interface ...
     INTERFACE func_overall_index
         MODULE PROCEDURE func_overall_index_2loops
         MODULE PROCEDURE func_overall_index_3loops
@@ -368,7 +376,10 @@ MODULE mod_safe
     INCLUDE "mod_safe/func_factorial.f90"
     INCLUDE "mod_safe/func_falling_factorial.f90"
     INCLUDE "mod_safe/func_hypergeometric.f90"
-    INCLUDE "mod_safe/func_mean.f90"
+    INCLUDE "mod_safe/func_mean/func_mean_1D_REAL32_real.f90"
+    INCLUDE "mod_safe/func_mean/func_mean_1D_REAL64_real.f90"
+    INCLUDE "mod_safe/func_mean/func_mean_2D_REAL32_real.f90"
+    INCLUDE "mod_safe/func_mean/func_mean_2D_REAL64_real.f90"
     INCLUDE "mod_safe/func_normal_CDF.f90"
     INCLUDE "mod_safe/func_normal_PDF.f90"
     INCLUDE "mod_safe/func_radians.f90"

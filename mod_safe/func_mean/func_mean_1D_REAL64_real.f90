@@ -1,4 +1,4 @@
-PURE FUNCTION func_mean(n, arr, dof) RESULT(ans)
+PURE FUNCTION func_mean_1D_REAL64_real(n, arr, dof) RESULT(ans)
     ! NOTE: See https://numpy.org/doc/stable/reference/generated/numpy.mean.html
 
     ! Import standard modules ...
@@ -18,4 +18,4 @@ PURE FUNCTION func_mean(n, arr, dof) RESULT(ans)
     ELSE
         ans = SUM(arr) / REAL(n, kind = REAL64)
     END IF
-END FUNCTION func_mean
+END FUNCTION func_mean_1D_REAL64_real

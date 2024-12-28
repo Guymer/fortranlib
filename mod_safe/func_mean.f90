@@ -1,4 +1,4 @@
-PURE FUNCTION func_mean(arr, dof) RESULT(ans)
+PURE FUNCTION func_mean(n, arr, dof) RESULT(ans)
     ! NOTE: See https://numpy.org/doc/stable/reference/generated/numpy.mean.html
 
     ! Import standard modules ...
@@ -7,15 +7,10 @@ PURE FUNCTION func_mean(arr, dof) RESULT(ans)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
+    INTEGER(kind = INT64), INTENT(in)                                           :: n
     INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: dof
     REAL(kind = REAL64)                                                         :: ans
-    REAL(kind = REAL64), DIMENSION(:), INTENT(in)                               :: arr
-
-    ! Declare internal variables ...
-    INTEGER(kind = INT64)                                                       :: n
-
-    ! Find size of array ...
-    n = SIZE(arr, kind = INT64)
+    REAL(kind = REAL64), DIMENSION(n), INTENT(in)                               :: arr
 
     ! Calculate the mean ...
     IF(PRESENT(dof))THEN

@@ -1,4 +1,4 @@
-PURE FUNCTION func_var(arr, dof) RESULT(ans)
+PURE FUNCTION func_var(n, arr, dof) RESULT(ans)
     ! NOTE: See https://numpy.org/doc/stable/reference/generated/numpy.var.html
 
     ! NOTE: In standard statistical practice:
@@ -13,16 +13,13 @@ PURE FUNCTION func_var(arr, dof) RESULT(ans)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
+    INTEGER(kind = INT64), INTENT(in)                                           :: n
     INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: dof
     REAL(kind = REAL64)                                                         :: ans
-    REAL(kind = REAL64), DIMENSION(:), INTENT(in)                               :: arr
+    REAL(kind = REAL64), DIMENSION(n), INTENT(in)                               :: arr
 
     ! Declare internal variables ...
-    INTEGER(kind = INT64)                                                       :: n
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: tmp
-
-    ! Find size of array ...
-    n = SIZE(arr, kind = INT64)
 
     ! Allocate array ...
     ! NOTE: I decided not to use "sub_allocate_array()" here so as to keep this
@@ -30,13 +27,13 @@ PURE FUNCTION func_var(arr, dof) RESULT(ans)
     ALLOCATE(tmp(n))
 
     ! Calculate the squared deviations from the mean ...
-    tmp = ABS(arr - func_mean(arr, 0_INT64)) ** 2
+    tmp = ABS(arr - func_mean(n, arr, 0_INT64)) ** 2
 
     ! Calculate the variance ...
     IF(PRESENT(dof))THEN
-        ans = func_mean(tmp, dof)
+        ans = func_mean(n, tmp, dof)
     ELSE
-        ans = func_mean(tmp, 0_INT64)
+        ans = func_mean(n, tmp, 0_INT64)
     END IF
 
     ! Clean up ...

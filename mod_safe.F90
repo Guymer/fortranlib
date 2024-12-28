@@ -389,9 +389,6 @@ MODULE mod_safe
     INCLUDE "mod_safe/func_t_CDF.f90"
     INCLUDE "mod_safe/func_t_PDF.f90"
     INCLUDE "mod_safe/func_var.f90"
-    INCLUDE "mod_safe/sub_calc_dist_between_two_locs.f90"
-    INCLUDE "mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist.f90"
-    INCLUDE "mod_safe/sub_ttest_ind.f90"
     INCLUDE "mod_safe/func_integrate_array/func_integrate_1D_REAL32_real_array.f90"
     INCLUDE "mod_safe/func_integrate_array/func_integrate_1D_REAL64_real_array.f90"
 #if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
@@ -492,6 +489,8 @@ MODULE mod_safe
     INCLUDE "mod_safe/sub_allocate_array/sub_allocate_6D_REAL128_real_array.f90"
     INCLUDE "mod_safe/sub_allocate_array/sub_allocate_7D_REAL128_real_array.f90"
 #endif
+    INCLUDE "mod_safe/sub_calc_dist_between_two_locs.f90"
+    INCLUDE "mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist.f90"
     INCLUDE "mod_safe/sub_flood_array/sub_flood_REAL32_real_array.f90"
     INCLUDE "mod_safe/sub_flood_array_iter/sub_flood_REAL32_real_array_iter.f90"
     INCLUDE "mod_safe/sub_load_array_from_BIN/sub_load_1D_INT8_integer_array_from_BIN.f90"
@@ -681,4 +680,5 @@ MODULE mod_safe
 #if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
     INCLUDE "mod_safe/sub_solve_quadratic_equation/sub_solve_quadratic_REAL128_equation.f90"
 #endif
+    INCLUDE "mod_safe/sub_ttest_ind.f90"
 END MODULE mod_safe

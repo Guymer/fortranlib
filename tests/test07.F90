@@ -13,7 +13,11 @@ MODULE mod_test07
     FUNCTION calc_pi() RESULT(ans)
         ! Import standard modules ...
         USE ISO_FORTRAN_ENV
+
+        ! Import special modules ...
         USE OMP_LIB
+
+        ! Import my modules ...
         USE mod_safe, ONLY: sub_allocate_array
 
         IMPLICIT NONE
@@ -69,7 +73,7 @@ PROGRAM test07
     USE MPI
 
     ! Import my modules ...
-    USE mod_safe, ONLY: const_pi, sub_allocate_array
+    USE mod_safe, ONLY: const_pi, func_mean, sub_allocate_array
     USE mod_safe_mpi, ONLY: sub_allreduce_array
     USE mod_test07
 
@@ -127,7 +131,7 @@ PROGRAM test07
     CALL sub_allreduce_array(tmp, MPI_SUM, MPI_COMM_WORLD)
 
     ! Calculate average pi ...
-    pi = SUM(tmp) / REAL(ntasks, kind = REAL64)
+    pi = func_mean(INT(ntasks, kind = INT64), tmp)
 
     ! Clean up ...
     DEALLOCATE(tmp)

@@ -13,7 +13,11 @@ MODULE mod_test06
     FUNCTION calc_pi() RESULT(ans)
         ! Import standard modules ...
         USE ISO_FORTRAN_ENV
+
+        ! Import special modules ...
         USE OMP_LIB
+
+        ! Import my modules ...
         USE mod_safe, ONLY: sub_allocate_array
 
         IMPLICIT NONE

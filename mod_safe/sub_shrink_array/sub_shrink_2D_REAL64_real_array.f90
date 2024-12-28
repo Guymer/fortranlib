@@ -18,7 +18,6 @@ SUBROUTINE sub_shrink_2D_REAL64_real_array(nx, ny, arr, shrinkScale, shrunkenArr
     INTEGER(kind = INT64)                                                       :: iy
     INTEGER(kind = INT64)                                                       :: iylo
     INTEGER(kind = INT64)                                                       :: iyhi
-    REAL(kind = REAL64)                                                         :: fact
 
     ! Check shrinkScale ...
     IF(MOD(nx, shrinkScale) /= 0_INT64)THEN
@@ -31,9 +30,6 @@ SUBROUTINE sub_shrink_2D_REAL64_real_array(nx, ny, arr, shrinkScale, shrunkenArr
         FLUSH(unit = ERROR_UNIT)
         STOP
     END IF
-
-    ! Create short-hand ...
-    fact = 1.0e0_REAL64 / REAL(shrinkScale ** 2, kind = REAL64)
 
     ! Allocate array ...
     CALL sub_allocate_array(                                                    &
@@ -53,7 +49,6 @@ SUBROUTINE sub_shrink_2D_REAL64_real_array(nx, ny, arr, shrinkScale, shrunkenArr
     !$omp private(iylo)                                                         &
     !$omp private(iyhi)                                                         &
     !$omp shared(arr)                                                           &
-    !$omp shared(fact)                                                          &
     !$omp shared(nx)                                                            &
     !$omp shared(ny)                                                            &
     !$omp shared(shrinkScale)                                                   &
@@ -73,7 +68,7 @@ SUBROUTINE sub_shrink_2D_REAL64_real_array(nx, ny, arr, shrinkScale, shrunkenArr
                     iyhi =  iy            * shrinkScale
 
                     ! Find the average value ...
-                    shrunkenArr(ix, iy) = fact * SUM(arr(ixlo:ixhi, iylo:iyhi))
+                    shrunkenArr(ix, iy) = func_mean(shrinkScale, shrinkScale, arr(ixlo:ixhi, iylo:iyhi))
                 END DO
             END DO
         !$omp end do

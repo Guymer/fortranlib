@@ -20,7 +20,7 @@ PROGRAM test08
     x(2) = 2.0e0_REAL64
     y(1) = 1.0e0_REAL64
     y(2) = 1.0e0_REAL64
-    eps = ABS(1.0e0_REAL64 - func_integrate_array(x, y) / 1.0e0_REAL64)
+    eps = ABS(1.0e0_REAL64 - func_integrate_array(2_INT64, x, y) / 1.0e0_REAL64)
     WRITE(fmt = '("Does the task think that everything worked? ", l1)', unit = OUTPUT_UNIT) eps <= EPSILON(eps)
     FLUSH(unit = OUTPUT_UNIT)
     DEALLOCATE(x)
@@ -36,7 +36,7 @@ PROGRAM test08
     y(1) = 1.0e0_REAL64
     y(2) = 1.0e0_REAL64
     y(3) = 3.0e0_REAL64
-    eps = ABS(1.0e0_REAL64 - func_integrate_array(x, y) / 5.0e0_REAL64)
+    eps = ABS(1.0e0_REAL64 - func_integrate_array(3_INT64, x, y) / 5.0e0_REAL64)
     WRITE(fmt = '("Does the task think that everything worked? ", l1)', unit = OUTPUT_UNIT) eps <= EPSILON(eps)
     FLUSH(unit = OUTPUT_UNIT)
     DEALLOCATE(x)

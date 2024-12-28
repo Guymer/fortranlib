@@ -23,7 +23,7 @@ PROGRAM test09
     arr(:, ny / 2_INT64) = .TRUE._INT8
 
     ! Save array as PBM ...
-    CALL sub_save_array_as_PBM(arr, "test09.pbm")
+    CALL sub_save_array_as_PBM(nx, ny, arr, "test09.pbm")
 
     ! Clean up ...
     DEALLOCATE(arr)

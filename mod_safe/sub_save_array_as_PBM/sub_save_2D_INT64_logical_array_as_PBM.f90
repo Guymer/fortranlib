@@ -9,7 +9,7 @@
 !> @warning the width of "arr" must be an integer multiple of 8
 !>
 
-SUBROUTINE sub_save_2D_INT64_logical_array_as_PBM(arr, fname)
+SUBROUTINE sub_save_2D_INT64_logical_array_as_PBM(nx, ny, arr, fname)
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
@@ -17,7 +17,9 @@ SUBROUTINE sub_save_2D_INT64_logical_array_as_PBM(arr, fname)
 
     ! Declare inputs/outputs ...
     CHARACTER(len = *), INTENT(in)                                              :: fname
-    LOGICAL(kind = INT64), DIMENSION(:, :), INTENT(in)                          :: arr
+    INTEGER(kind = INT64), INTENT(in)                                           :: nx
+    INTEGER(kind = INT64), INTENT(in)                                           :: ny
+    LOGICAL(kind = INT64), DIMENSION(nx, ny), INTENT(in)                        :: arr
 
     ! Declare FORTRAN variables ...
     CHARACTER(len = 256)                                                        :: errmsg
@@ -32,28 +34,22 @@ SUBROUTINE sub_save_2D_INT64_logical_array_as_PBM(arr, fname)
     INTEGER(kind = INT64)                                                       :: ixImg
     INTEGER(kind = INT64)                                                       :: iyArr
     INTEGER(kind = INT64)                                                       :: iyImg
-    INTEGER(kind = INT64)                                                       :: nxArr
     INTEGER(kind = INT64)                                                       :: nxImg
-    INTEGER(kind = INT64)                                                       :: nyArr
     INTEGER(kind = INT64)                                                       :: nyImg
 
-    ! Find size of array ...
-    nxArr = SIZE(arr, dim = 1, kind = INT64)
-    nyArr = SIZE(arr, dim = 2, kind = INT64)
-
     ! Check array size ...
-    IF(MOD(nxArr, 8_INT64) /= 0_INT64)THEN
+    IF(MOD(nx, 8_INT64) /= 0_INT64)THEN
         WRITE(fmt = '("ERROR: ", a, ".")', unit = ERROR_UNIT) "The width of the input array must be an integer multiple of 8"
         FLUSH(unit = ERROR_UNIT)
         STOP
     END IF
 
     ! Find size of array ...
-    nxImg = nxArr / 8_INT64
-    nyImg = nyArr
+    nxImg = nx / 8_INT64
+    nyImg = ny
 
     ! Make header ...
-    WRITE(hdr, fmt = '("P4 ", i5, " ", i5, " ")') nxArr, nyArr
+    WRITE(hdr, fmt = '("P4 ", i5, " ", i5, " ")') nx, ny
 
     ! Allocate image ...
     CALL sub_allocate_array(img, "img", nxImg, nyImg, .FALSE._INT8)

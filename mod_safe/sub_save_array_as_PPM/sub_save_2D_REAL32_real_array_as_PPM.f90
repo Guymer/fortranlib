@@ -13,7 +13,7 @@
 !> @warning values above 1 in "arr" will be clipped to 1
 !>
 
-SUBROUTINE sub_save_2D_REAL32_real_array_as_PPM(arr, fname, cm)
+SUBROUTINE sub_save_2D_REAL32_real_array_as_PPM(nx, ny, arr, fname, cm)
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
@@ -22,7 +22,9 @@ SUBROUTINE sub_save_2D_REAL32_real_array_as_PPM(arr, fname, cm)
     ! Declare inputs/outputs ...
     CHARACTER(len = *), INTENT(in)                                              :: cm
     CHARACTER(len = *), INTENT(in)                                              :: fname
-    REAL(kind = REAL32), DIMENSION(:, :), INTENT(in)                            :: arr
+    INTEGER(kind = INT64), INTENT(in)                                           :: nx
+    INTEGER(kind = INT64), INTENT(in)                                           :: ny
+    REAL(kind = REAL32), DIMENSION(nx, ny), INTENT(in)                          :: arr
 
     ! Declare FORTRAN variables ...
     CHARACTER(len = 256)                                                        :: errmsg
@@ -35,8 +37,6 @@ SUBROUTINE sub_save_2D_REAL32_real_array_as_PPM(arr, fname, cm)
     INTEGER(kind = INT64)                                                       :: ix
     INTEGER(kind = INT64)                                                       :: iy
     INTEGER(kind = INT64)                                                       :: lvl
-    INTEGER(kind = INT64)                                                       :: nx
-    INTEGER(kind = INT64)                                                       :: ny
 
     ! Check input ...
     IF(TRIM(cm) /= "fire" .AND. TRIM(cm) /= "jet" .AND. TRIM(cm) /= "g2b" .AND. TRIM(cm) /= "r2g" .AND. TRIM(cm) /= "r2o2g")THEN
@@ -44,10 +44,6 @@ SUBROUTINE sub_save_2D_REAL32_real_array_as_PPM(arr, fname, cm)
         FLUSH(unit = ERROR_UNIT)
         STOP
     END IF
-
-    ! Find size of image ...
-    nx = SIZE(arr, dim = 1, kind = INT64)
-    ny = SIZE(arr, dim = 2, kind = INT64)
 
     ! Make header ...
     WRITE(hdr, fmt = '("P6 ", i5, " ", i5, " 255 ")') nx, ny

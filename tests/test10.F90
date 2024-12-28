@@ -27,7 +27,7 @@ PROGRAM test10
     END DO
 
     ! Save array as PGM ...
-    CALL sub_save_array_as_PGM(arr, "test10.pgm")
+    CALL sub_save_array_as_PGM(nx, ny, arr, "test10.pgm")
 
     ! Clean up ...
     DEALLOCATE(arr)

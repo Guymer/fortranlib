@@ -44,7 +44,7 @@ if __name__ == "__main__":
                     raise ValueError(f"\"typ\" is an unexpected value ({repr(typ)})") from None
 
             # Create source ...
-            lhs = f"{typ.upper()}(kind = {knd}), DIMENSION(:, :), INTENT(in)"
+            lhs = f"{typ.upper()}(kind = {knd}), DIMENSION(nx, ny), INTENT(in)"
             src = (
                 f"!> @brief This subroutine saves a 2D {knd} {typ} array to a PGM file.\n"
                 "!>\n"
@@ -59,7 +59,7 @@ if __name__ == "__main__":
                 f"!> @warning values above {lim:d} in \"arr\" will be clipped to {lim:d}\n"
                 "!>\n"
                 "\n"
-                f"SUBROUTINE sub_save_2D_{knd}_{typ}_array_as_PGM(arr, fname)\n"
+                f"SUBROUTINE sub_save_2D_{knd}_{typ}_array_as_PGM(nx, ny, arr, fname)\n"
                 "    ! Import standard modules ...\n"
                 "    USE ISO_FORTRAN_ENV\n"
                 "\n"
@@ -67,6 +67,8 @@ if __name__ == "__main__":
                 "\n"
                 "    ! Declare inputs/outputs ...\n"
                 "    CHARACTER(len = *), INTENT(in)                                              :: fname\n"
+                "    INTEGER(kind = INT64), INTENT(in)                                           :: nx\n"
+                "    INTEGER(kind = INT64), INTENT(in)                                           :: ny\n"
                 f"    {lhs:76s}:: arr\n"
                 "\n"
                 "    ! Declare FORTRAN variables ...\n"
@@ -80,12 +82,6 @@ if __name__ == "__main__":
                 "    INTEGER(kind = INT64)                                                       :: ix\n"
                 "    INTEGER(kind = INT64)                                                       :: iy\n"
                 "    INTEGER(kind = INT64)                                                       :: lvl\n"
-                "    INTEGER(kind = INT64)                                                       :: nx\n"
-                "    INTEGER(kind = INT64)                                                       :: ny\n"
-                "\n"
-                "    ! Find size of image ...\n"
-                "    nx = SIZE(arr, dim = 1, kind = INT64)\n"
-                "    ny = SIZE(arr, dim = 2, kind = INT64)\n"
                 "\n"
                 "    ! Make header ...\n"
                 "    WRITE(hdr, fmt = '(\"P5 \", i5, \" \", i5, \" 255 \")') nx, ny\n"

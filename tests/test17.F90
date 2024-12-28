@@ -37,6 +37,8 @@ PROGRAM test17
 
     ! Save scaled elevation map ...
     CALL sub_save_array_as_PPM(                                                 &
+           nx = nx,                                                             &
+           ny = ny,                                                             &
           arr = elev / 1000.0e0_REAL32,                                         &
         fname = "test17_elev.ppm",                                              &
            cm = "jet"                                                           &
@@ -67,6 +69,8 @@ PROGRAM test17
 
     ! Save flooded map ...
     CALL sub_save_array_as_PBM(                                                 &
+           nx = nx,                                                             &
+           ny = ny,                                                             &
           arr = flooded,                                                        &
         fname = "test17_flooded.pbm"                                            &
     )

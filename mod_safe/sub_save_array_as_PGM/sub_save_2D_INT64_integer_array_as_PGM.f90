@@ -11,7 +11,7 @@
 !> @warning values above 255 in "arr" will be clipped to 255
 !>
 
-SUBROUTINE sub_save_2D_INT64_integer_array_as_PGM(arr, fname)
+SUBROUTINE sub_save_2D_INT64_integer_array_as_PGM(nx, ny, arr, fname)
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
@@ -19,7 +19,9 @@ SUBROUTINE sub_save_2D_INT64_integer_array_as_PGM(arr, fname)
 
     ! Declare inputs/outputs ...
     CHARACTER(len = *), INTENT(in)                                              :: fname
-    INTEGER(kind = INT64), DIMENSION(:, :), INTENT(in)                          :: arr
+    INTEGER(kind = INT64), INTENT(in)                                           :: nx
+    INTEGER(kind = INT64), INTENT(in)                                           :: ny
+    INTEGER(kind = INT64), DIMENSION(nx, ny), INTENT(in)                        :: arr
 
     ! Declare FORTRAN variables ...
     CHARACTER(len = 256)                                                        :: errmsg
@@ -32,12 +34,6 @@ SUBROUTINE sub_save_2D_INT64_integer_array_as_PGM(arr, fname)
     INTEGER(kind = INT64)                                                       :: ix
     INTEGER(kind = INT64)                                                       :: iy
     INTEGER(kind = INT64)                                                       :: lvl
-    INTEGER(kind = INT64)                                                       :: nx
-    INTEGER(kind = INT64)                                                       :: ny
-
-    ! Find size of image ...
-    nx = SIZE(arr, dim = 1, kind = INT64)
-    ny = SIZE(arr, dim = 2, kind = INT64)
 
     ! Make header ...
     WRITE(hdr, fmt = '("P5 ", i5, " ", i5, " 255 ")') nx, ny

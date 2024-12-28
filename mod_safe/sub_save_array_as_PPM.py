@@ -44,7 +44,7 @@ if __name__ == "__main__":
                     raise ValueError(f"\"typ\" is an unexpected value ({repr(typ)})") from None
 
             # Create source ...
-            lhs = f"{typ.upper()}(kind = {knd}), DIMENSION(:, :), INTENT(in)"
+            lhs = f"{typ.upper()}(kind = {knd}), DIMENSION(nx, ny), INTENT(in)"
             src = (
                 f"!> @brief This subroutine saves a 2D {knd} {typ} array to a PPM file.\n"
                 "!>\n"
@@ -61,7 +61,7 @@ if __name__ == "__main__":
                 f"!> @warning values above {lim:d} in \"arr\" will be clipped to {lim:d}\n"
                 "!>\n"
                 "\n"
-                f"SUBROUTINE sub_save_2D_{knd}_{typ}_array_as_PPM(arr, fname, cm)\n"
+                f"SUBROUTINE sub_save_2D_{knd}_{typ}_array_as_PPM(nx, ny, arr, fname, cm)\n"
                 "    ! Import standard modules ...\n"
                 "    USE ISO_FORTRAN_ENV\n"
                 "\n"
@@ -70,6 +70,8 @@ if __name__ == "__main__":
                 "    ! Declare inputs/outputs ...\n"
                 "    CHARACTER(len = *), INTENT(in)                                              :: cm\n"
                 "    CHARACTER(len = *), INTENT(in)                                              :: fname\n"
+                "    INTEGER(kind = INT64), INTENT(in)                                           :: nx\n"
+                "    INTEGER(kind = INT64), INTENT(in)                                           :: ny\n"
                 f"    {lhs:76s}:: arr\n"
                 "\n"
                 "    ! Declare FORTRAN variables ...\n"
@@ -83,8 +85,6 @@ if __name__ == "__main__":
                 "    INTEGER(kind = INT64)                                                       :: ix\n"
                 "    INTEGER(kind = INT64)                                                       :: iy\n"
                 "    INTEGER(kind = INT64)                                                       :: lvl\n"
-                "    INTEGER(kind = INT64)                                                       :: nx\n"
-                "    INTEGER(kind = INT64)                                                       :: ny\n"
                 "\n"
                 "    ! Check input ...\n"
                 "    IF(TRIM(cm) /= \"fire\" .AND. TRIM(cm) /= \"jet\" .AND. TRIM(cm) /= \"g2b\" .AND. TRIM(cm) /= \"r2g\" .AND. TRIM(cm) /= \"r2o2g\")THEN\n"
@@ -92,10 +92,6 @@ if __name__ == "__main__":
                 "        FLUSH(unit = ERROR_UNIT)\n"
                 "        STOP\n"
                 "    END IF\n"
-                "\n"
-                "    ! Find size of image ...\n"
-                "    nx = SIZE(arr, dim = 1, kind = INT64)\n"
-                "    ny = SIZE(arr, dim = 2, kind = INT64)\n"
                 "\n"
                 "    ! Make header ...\n"
                 "    WRITE(hdr, fmt = '(\"P6 \", i5, \" \", i5, \" 255 \")') nx, ny\n"

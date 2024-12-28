@@ -34,6 +34,7 @@ MODULE mod_safe
     INTERFACE func_mean
         MODULE PROCEDURE func_mean_1D_REAL32_real
         MODULE PROCEDURE func_mean_1D_REAL64_real
+        MODULE PROCEDURE func_mean_2D_INT16_integer
         MODULE PROCEDURE func_mean_2D_REAL32_real
         MODULE PROCEDURE func_mean_2D_REAL64_real
     END INTERFACE func_mean
@@ -343,6 +344,7 @@ MODULE mod_safe
 
     ! Declare interface ...
     INTERFACE sub_shrink_array
+        MODULE PROCEDURE sub_shrink_2D_INT16_integer_array
         MODULE PROCEDURE sub_shrink_2D_REAL32_real_array
         MODULE PROCEDURE sub_shrink_2D_REAL64_real_array
     END INTERFACE sub_shrink_array
@@ -376,19 +378,6 @@ MODULE mod_safe
     INCLUDE "mod_safe/func_factorial.f90"
     INCLUDE "mod_safe/func_falling_factorial.f90"
     INCLUDE "mod_safe/func_hypergeometric.f90"
-    INCLUDE "mod_safe/func_mean/func_mean_1D_REAL32_real.f90"
-    INCLUDE "mod_safe/func_mean/func_mean_1D_REAL64_real.f90"
-    INCLUDE "mod_safe/func_mean/func_mean_2D_REAL32_real.f90"
-    INCLUDE "mod_safe/func_mean/func_mean_2D_REAL64_real.f90"
-    INCLUDE "mod_safe/func_normal_CDF.f90"
-    INCLUDE "mod_safe/func_normal_PDF.f90"
-    INCLUDE "mod_safe/func_radians.f90"
-    INCLUDE "mod_safe/func_rising_factorial.f90"
-    INCLUDE "mod_safe/func_stddev.f90"
-    INCLUDE "mod_safe/func_stderr.f90"
-    INCLUDE "mod_safe/func_t_CDF.f90"
-    INCLUDE "mod_safe/func_t_PDF.f90"
-    INCLUDE "mod_safe/func_var.f90"
     INCLUDE "mod_safe/func_integrate_array/func_integrate_1D_REAL32_real_array.f90"
     INCLUDE "mod_safe/func_integrate_array/func_integrate_1D_REAL64_real_array.f90"
 #if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
@@ -404,12 +393,26 @@ MODULE mod_safe
 #if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
     INCLUDE "mod_safe/func_interpolate_points/func_interpolate_REAL128_points.f90"
 #endif
+    INCLUDE "mod_safe/func_mean/func_mean_1D_REAL32_real.f90"
+    INCLUDE "mod_safe/func_mean/func_mean_1D_REAL64_real.f90"
+    INCLUDE "mod_safe/func_mean/func_mean_2D_INT16_integer.f90"
+    INCLUDE "mod_safe/func_mean/func_mean_2D_REAL32_real.f90"
+    INCLUDE "mod_safe/func_mean/func_mean_2D_REAL64_real.f90"
+    INCLUDE "mod_safe/func_normal_CDF.f90"
+    INCLUDE "mod_safe/func_normal_PDF.f90"
     INCLUDE "mod_safe/func_overall_index/func_overall_index_2loops.f90"
     INCLUDE "mod_safe/func_overall_index/func_overall_index_3loops.f90"
     INCLUDE "mod_safe/func_overall_index/func_overall_index_4loops.f90"
     INCLUDE "mod_safe/func_overall_index/func_overall_index_5loops.f90"
     INCLUDE "mod_safe/func_overall_index/func_overall_index_6loops.f90"
     INCLUDE "mod_safe/func_overall_index/func_overall_index_7loops.f90"
+    INCLUDE "mod_safe/func_radians.f90"
+    INCLUDE "mod_safe/func_rising_factorial.f90"
+    INCLUDE "mod_safe/func_stddev.f90"
+    INCLUDE "mod_safe/func_stderr.f90"
+    INCLUDE "mod_safe/func_t_CDF.f90"
+    INCLUDE "mod_safe/func_t_PDF.f90"
+    INCLUDE "mod_safe/func_var.f90"
     INCLUDE "mod_safe/sub_allocate_array/sub_allocate_1D_INT8_integer_array.f90"
     INCLUDE "mod_safe/sub_allocate_array/sub_allocate_2D_INT8_integer_array.f90"
     INCLUDE "mod_safe/sub_allocate_array/sub_allocate_3D_INT8_integer_array.f90"
@@ -673,6 +676,7 @@ MODULE mod_safe
 #if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
     INCLUDE "mod_safe/sub_save_array_as_PPM/sub_save_2D_REAL128_real_array_as_PPM.f90"
 #endif
+    INCLUDE "mod_safe/sub_shrink_array/sub_shrink_2D_INT16_integer_array.f90"
     INCLUDE "mod_safe/sub_shrink_array/sub_shrink_2D_REAL32_real_array.f90"
     INCLUDE "mod_safe/sub_shrink_array/sub_shrink_2D_REAL64_real_array.f90"
     INCLUDE "mod_safe/sub_solve_quadratic_equation/sub_solve_quadratic_REAL32_equation.f90"

@@ -1,15 +1,17 @@
 !> @brief This function returns the integral of the supplied 1D tabulated data.
 !>
+!> @param[in] n1 The size of the variable of integration.
+!>
 !> @param[in] x1 The variable of integration.
 !>
-!> @param[in] arr The integrand.
+!> @param[in] arr The discrete integrand.
 !>
 !> @note "x1" does not have to be uniform.
 !>
 !> @warning "x1" must be the same dimension as "arr".
 !>
 
-FUNCTION func_integrate_1D_REAL32_real_array(n1, x1, arr) RESULT(ans)
+PURE FUNCTION func_integrate_1D_REAL32_real_array(n1, x1, arr) RESULT(ans)
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
@@ -52,23 +54,9 @@ FUNCTION func_integrate_1D_REAL32_real_array(n1, x1, arr) RESULT(ans)
     ! Set starting value ...
     ans = 0.0e0_REAL32
 
-    !$omp parallel                                                              &
-    !$omp default(none)                                                         &
-    !$omp private(i1)                                                           &
-    !$omp reduction(+:ans)                                                      &
-    !$omp shared(arr)                                                           &
-    !$omp shared(n1)                                                            &
-    !$omp shared(x1)
-        ! Set starting value ...
-        ans = 0.0e0_REAL32
-
-        !$omp do                                                                &
-        !$omp schedule(dynamic)
-            ! Loop over x ...
-            DO i1 = 1_INT64, n1 - 1_INT64
-                ! Integrate via the trapezium rule ...
-                ans = ans + (x1(i1 + 1_INT64) - x1(i1)) * 0.5e0_REAL32 * (arr(i1) + arr(i1 + 1_INT64))
-            END DO
-        !$omp end do
-    !$omp end parallel
+    ! Loop over x ...
+    DO i1 = 1_INT64, n1 - 1_INT64
+        ! Integrate via the trapezium rule ...
+        ans = ans + (x1(i1 + 1_INT64) - x1(i1)) * 0.5e0_REAL32 * (arr(i1) + arr(i1 + 1_INT64))
+    END DO
 END FUNCTION func_integrate_1D_REAL32_real_array

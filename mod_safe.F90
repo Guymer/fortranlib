@@ -32,9 +32,14 @@ MODULE mod_safe
 
     ! Declare interface ...
     INTERFACE func_mean
+        MODULE PROCEDURE func_mean_1D_INT16_integer
+        MODULE PROCEDURE func_mean_1D_INT32_integer
+        MODULE PROCEDURE func_mean_1D_INT64_integer
         MODULE PROCEDURE func_mean_1D_REAL32_real
         MODULE PROCEDURE func_mean_1D_REAL64_real
         MODULE PROCEDURE func_mean_2D_INT16_integer
+        MODULE PROCEDURE func_mean_2D_INT32_integer
+        MODULE PROCEDURE func_mean_2D_INT64_integer
         MODULE PROCEDURE func_mean_2D_REAL32_real
         MODULE PROCEDURE func_mean_2D_REAL64_real
     END INTERFACE func_mean
@@ -393,9 +398,14 @@ MODULE mod_safe
 #if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
     INCLUDE "mod_safe/func_interpolate_points/func_interpolate_REAL128_points.f90"
 #endif
+    INCLUDE "mod_safe/func_mean/func_mean_1D_INT16_integer.f90"
+    INCLUDE "mod_safe/func_mean/func_mean_1D_INT32_integer.f90"
+    INCLUDE "mod_safe/func_mean/func_mean_1D_INT64_integer.f90"
     INCLUDE "mod_safe/func_mean/func_mean_1D_REAL32_real.f90"
     INCLUDE "mod_safe/func_mean/func_mean_1D_REAL64_real.f90"
     INCLUDE "mod_safe/func_mean/func_mean_2D_INT16_integer.f90"
+    INCLUDE "mod_safe/func_mean/func_mean_2D_INT32_integer.f90"
+    INCLUDE "mod_safe/func_mean/func_mean_2D_INT64_integer.f90"
     INCLUDE "mod_safe/func_mean/func_mean_2D_REAL32_real.f90"
     INCLUDE "mod_safe/func_mean/func_mean_2D_REAL64_real.f90"
     INCLUDE "mod_safe/func_normal_CDF.f90"

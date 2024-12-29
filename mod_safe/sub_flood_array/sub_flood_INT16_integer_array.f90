@@ -69,8 +69,9 @@ SUBROUTINE sub_flood_INT16_integer_array(nx, ny, elev, seaLevel, flooded, tileSc
                 iyhi = ny                                                       &
         )
 
-        ! Check that the tiles are large enough to bother with ...
-        IF(nx / tileScale >= minTile .AND. ny / tileScale >= minTile)THEN
+        ! Check that the whole array is actually scaled and then check that the
+        ! tiles are large enough to bother with ...
+        IF(tileScale > 1_INT64 .AND. nx / tileScale >= minTile .AND. ny / tileScale >= minTile)THEN
             !$omp parallel                                                      &
             !$omp default(none)                                                 &
             !$omp private(iTileIter)                                            &

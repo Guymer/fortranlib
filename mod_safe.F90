@@ -139,12 +139,20 @@ MODULE mod_safe
 
     ! Declare interface ...
     INTERFACE sub_flood_array
+        MODULE PROCEDURE sub_flood_INT16_integer_array
+        MODULE PROCEDURE sub_flood_INT32_integer_array
+        MODULE PROCEDURE sub_flood_INT64_integer_array
         MODULE PROCEDURE sub_flood_REAL32_real_array
+        MODULE PROCEDURE sub_flood_REAL64_real_array
     END INTERFACE sub_flood_array
 
     ! Declare interface ...
     INTERFACE sub_flood_array_iter
+        MODULE PROCEDURE sub_flood_INT16_integer_array_iter
+        MODULE PROCEDURE sub_flood_INT32_integer_array_iter
+        MODULE PROCEDURE sub_flood_INT64_integer_array_iter
         MODULE PROCEDURE sub_flood_REAL32_real_array_iter
+        MODULE PROCEDURE sub_flood_REAL64_real_array_iter
     END INTERFACE sub_flood_array_iter
 
     ! Declare interface ...
@@ -506,8 +514,16 @@ MODULE mod_safe
 #endif
     INCLUDE "mod_safe/sub_calc_dist_between_two_locs.f90"
     INCLUDE "mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist.f90"
+    INCLUDE "mod_safe/sub_flood_array/sub_flood_INT16_integer_array.f90"
+    INCLUDE "mod_safe/sub_flood_array/sub_flood_INT32_integer_array.f90"
+    INCLUDE "mod_safe/sub_flood_array/sub_flood_INT64_integer_array.f90"
     INCLUDE "mod_safe/sub_flood_array/sub_flood_REAL32_real_array.f90"
+    INCLUDE "mod_safe/sub_flood_array/sub_flood_REAL64_real_array.f90"
+    INCLUDE "mod_safe/sub_flood_array_iter/sub_flood_INT16_integer_array_iter.f90"
+    INCLUDE "mod_safe/sub_flood_array_iter/sub_flood_INT32_integer_array_iter.f90"
+    INCLUDE "mod_safe/sub_flood_array_iter/sub_flood_INT64_integer_array_iter.f90"
     INCLUDE "mod_safe/sub_flood_array_iter/sub_flood_REAL32_real_array_iter.f90"
+    INCLUDE "mod_safe/sub_flood_array_iter/sub_flood_REAL64_real_array_iter.f90"
     INCLUDE "mod_safe/sub_load_array_from_BIN/sub_load_1D_INT8_integer_array_from_BIN.f90"
     INCLUDE "mod_safe/sub_load_array_from_BIN/sub_load_2D_INT8_integer_array_from_BIN.f90"
     INCLUDE "mod_safe/sub_load_array_from_BIN/sub_load_3D_INT8_integer_array_from_BIN.f90"

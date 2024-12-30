@@ -146,8 +146,8 @@ PURE SUBROUTINE sub_calc_dist_between_two_locs(lon1_deg, lat1_deg, lon2_deg, lat
     s_m = b * bigA * (sigma - delta_sigma)
     alpha1 = ATAN2(COS(u2) * SIN(lambda), COS(u1) * SIN(u2) - SIN(u1) * COS(u2) * COS(lambda))
     alpha2 = ATAN2(COS(u1) * SIN(lambda), SIN(u1) * COS(u2) - COS(u1) * SIN(u2) * COS(lambda))
-    alpha1 = MODULO(alpha1 + 2.0e0_REAL64 * const_pi, 2.0e0_REAL64 * const_pi)              ! NOTE: Normalize to 0 <--> +360 (in radians)
-    alpha2 = MODULO(alpha2 + 2.0e0_REAL64 * const_pi, 2.0e0_REAL64 * const_pi)              ! NOTE: Normalize to 0 <--> +360 (in radians)
+    alpha1 = MODULO(alpha1 + 2.0e0_REAL64 * const_pi, 2.0e0_REAL64 * const_pi)              ! NOTE: Normalize to 0° <--> +360° (in radians)
+    alpha2 = MODULO(alpha2 + 2.0e0_REAL64 * const_pi, 2.0e0_REAL64 * const_pi)              ! NOTE: Normalize to 0° <--> +360° (in radians)
 
     ! Convert to degrees ...
     alpha1_deg = func_degrees(alpha1)                                           ! [°]

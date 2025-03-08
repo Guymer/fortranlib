@@ -26,7 +26,7 @@ if __name__ == "__main__":
         # Loop over levels ...
         for i in range(256):
             # Find colour values and convert them to the range [0, 255] ...
-            r, g, b, a = matplotlib.pyplot.cm.gnuplot(float(i) / 255.0)
+            r, g, b, a = matplotlib.colormaps["gnuplot"](float(i) / 255.0)
             r *= 255.0
             g *= 255.0
             b *= 255.0
@@ -48,7 +48,7 @@ if __name__ == "__main__":
         # Loop over levels ...
         for i in range(256):
             # Find colour values and convert them to the range [0, 255] ...
-            r, g, b, a = matplotlib.pyplot.cm.jet(float(i) / 255.0)
+            r, g, b, a = matplotlib.colormaps["jet"](float(i) / 255.0)
             r *= 255.0
             g *= 255.0
             b *= 255.0

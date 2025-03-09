@@ -26,14 +26,11 @@ jobs:
                     python -m pip install --upgrade pip
                     pip install -r main/requirements.txt
                     pip install -r main/docs/requirements.txt
-                    pip install -r main/pyguymer3/f90/fortranlib/requirements.txt
                     pip install git+https://github.com/VACUMM/sphinx-fortran.git@master
                     pip install mypy
             -
                 name: List programs
                 run: |
-                    echo "::notice $(which gfortran)"
-                    echo "::notice $(which gmake)"
                     echo "::notice $(which mypy)"
                     echo "::notice $(which pip)"
                     echo "::notice $(which python)"
@@ -41,5 +38,4 @@ jobs:
                 name: Analyse the Python ${{ matrix.python-version }} code
                 run: |
                     cd main
-                    gmake -r -C pyguymer3/f90 FC=`which gfortran` PYTHON3=`which python` compile
                     mypy $(git ls-files "*.py")

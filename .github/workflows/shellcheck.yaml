@@ -7,8 +7,8 @@ jobs:
         runs-on: ubuntu-24.04
         steps:
             -
-                name: Checkout project                                          # https://github.com/actions/checkout
-                uses: actions/checkout@v4
+                name: Checkout project
+                uses: actions/checkout@v4                                       # https://github.com/actions/checkout
                 with:
                     path: main
                     submodules: true

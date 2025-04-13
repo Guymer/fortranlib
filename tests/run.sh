@@ -14,6 +14,10 @@ if ! type exiftool &> /dev/null; then
     echo "ERROR: \"exiftool\" is not installed." >&2
     exit 1
 fi
+if ! type gcovr &> /dev/null; then
+    echo "ERROR: \"gcovr\" is not installed." >&2
+    exit 1
+fi
 if ! type mpirun &> /dev/null; then
     echo "ERROR: \"mpirun\" is not installed." >&2
     exit 1
@@ -86,3 +90,9 @@ echo "Converting images ..."
 mogrify -format png ./*.pbm ./*.pgm ./*.ppm &> /dev/null
 optipng -strip all ./*.png &> /dev/null
 exiftool -overwrite_original -all= ./*.png &> /dev/null
+
+echo "Generating coverage report ..."
+cd ..
+rm -rf coverage-output
+mkdir coverage-output
+gcovr --gcov-ignore-parse-errors --html-details coverage-output/index.html

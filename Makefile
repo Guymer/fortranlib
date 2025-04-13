@@ -2,11 +2,10 @@
 # *                                 VARIABLES                                  *
 # ******************************************************************************
 
+COVERAGE  ?= false
 DEBUG     ?= false
-DEBG_OPTS := -g -fcheck=all
 LANG_OPTS := -fopenmp -ffree-form -ffree-line-length-none -frecursive -fno-unsafe-math-optimizations -frounding-math -fsignaling-nans -fPIC
 WARN_OPTS := -Wall -Wextra -Waliasing -Wcharacter-truncation -Wconversion-extra -Wimplicit-interface -Wimplicit-procedure -Wunderflow -Wtabs
-OPTM_OPTS := -O2
 MACH_OPTS := -march=native -m64
 
 # ******************************************************************************
@@ -24,8 +23,12 @@ RM      := $(shell which rm                   2> /dev/null || echo "ERROR")
 # *                             DYNAMIC VARIABLES                              *
 # ******************************************************************************
 
-ifeq ($(DEBUG), true)
-	LANG_OPTS += $(DEBG_OPTS)
+ifeq ($(COVERAGE), true)
+	LANG_OPTS += -g -O0 --coverage
+else ifeq ($(DEBUG), true)
+	LANG_OPTS += -g -fcheck=all
+else
+	LANG_OPTS += -O2
 endif
 
 # ******************************************************************************
@@ -85,7 +88,7 @@ all:			compile															\
 
 # "gmake -r clean"       = removes the compiled FORTRAN code and Sphinx documentation
 clean:
-	$(RM) -f *.mod *.o *.so
+	$(RM) -f *.gcda *.gcno *.mod *.o *.so
 	$(MAKE) -C docs clean
 
 # "gmake -r compile"     = compiles the FORTRAN code
@@ -563,18 +566,18 @@ mod_safe_mpi/sub_bcast_array/sub_bcast_7D_REAL128_real_array.f90 &:				mod_safe_
 mod_geo.mod																		\
 mod_geo.o &:		$(MOD_GEO_SRC)												\
 					mod_safe.mod
-	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) mod_geo.F90
+	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS) mod_geo.F90
 
 mod_safe.mod																	\
 mod_safe.o &:		$(MOD_SAFE_SRC)
-	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) mod_safe.F90
+	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS) mod_safe.F90
 
 mod_safe_mpi.mod																\
 mod_safe_mpi.o &:	$(MOD_SAFE_MPI_SRC)
-	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS) mod_safe_mpi.F90
+	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS) mod_safe_mpi.F90
 
 mod_f2py.so:		$(MOD_F2PY_SRC)												\
 					mod_safe.mod
 	$(RM) -f mod_f2py.*.so mod_f2py.so
-	FC=$(FC) FFLAGS="$(LANG_OPTS) $(WARN_OPTS) $(OPTM_OPTS) $(MACH_OPTS)" $(PYTHON3) -m numpy.f2py -c mod_f2py.F90 -m mod_f2py --backend meson -lgomp -I$(CURDIR)
+	FC=$(FC) FFLAGS="$(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS)" $(PYTHON3) -m numpy.f2py -c mod_f2py.F90 -m mod_f2py --backend meson -lgomp -I$(CURDIR)
 	$(LN) -s mod_f2py$(SUFFIX) mod_f2py.so

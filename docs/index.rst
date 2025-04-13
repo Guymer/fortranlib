@@ -5,6 +5,16 @@ Welcome to ``fortranlib``'s documentation!
    :maxdepth: 2
    :caption: Contents:
 
+.. image:: https://readthedocs.org/projects/fortranlib/badge/
+
+.. image:: https://github.com/Guymer/fortranlib/actions/workflows/gmake.yaml/badge.svg
+
+.. image:: https://github.com/Guymer/fortranlib/actions/workflows/mypy.yaml/badge.svg
+
+.. image:: https://github.com/Guymer/fortranlib/actions/workflows/pylint.yaml/badge.svg
+
+.. image:: https://github.com/Guymer/fortranlib/actions/workflows/shellcheck.yaml/badge.svg
+
 Please enjoy using my FORTRAN library. It contains a whole load of random functions and subroutines that I have written over the years. Most of them are overloaded to allow their use by different kinds of arguments. To save repetitive typing you will find some Python scripts dotted around this repository which have been written to create all the different versions of each FORTRAN function or FORTRAN subroutine.
 
 I find the `GFortran Intrinsic Procedures Reference <https://gcc.gnu.org/onlinedocs/gfortran/Intrinsic-Procedures.html>`_ an excellent resource when determining what *kind* an argument must be. As an aside, it niggles me that a lot of intrinsic procedures, according to the FORTRAN standard, are "of default kind" (to me, these are the sort of problems that ``ISO_FORTRAN_ENV`` was supposed to fix).

@@ -96,3 +96,5 @@ cd ..
 rm -rf coverage-output
 mkdir coverage-output
 gcovr --gcov-ignore-parse-errors --html-details coverage-output/index.html
+echo "# Created by run.sh" >> coverage-output/.gitignore
+echo "*" >> coverage-output/.gitignore

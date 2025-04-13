@@ -4,7 +4,7 @@
 
 COVERAGE  ?= false
 DEBUG     ?= false
-FTNLIB    ?= ..
+FTNLIB    ?= $(abspath ..)
 LANG_OPTS := -fopenmp -ffree-form -ffree-line-length-none -frecursive -fno-unsafe-math-optimizations -frounding-math -fsignaling-nans -fPIC
 WARN_OPTS := -Wall -Wextra -Waliasing -Wcharacter-truncation -Wconversion-extra -Wimplicit-interface -Wimplicit-procedure -Wunderflow -Wtabs
 MACH_OPTS := -march=native -m64
@@ -24,7 +24,7 @@ RM      := $(shell which rm                   2> /dev/null || echo "ERROR")
 # ******************************************************************************
 
 ifeq ($(COVERAGE), true)
-	LANG_OPTS += -g -O0 --coverage
+	LANG_OPTS += -g -O0 -fprofile-abs-path --coverage
 else ifeq ($(DEBUG), true)
 	LANG_OPTS += -g -fcheck=all
 else

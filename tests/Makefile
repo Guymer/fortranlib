@@ -74,7 +74,7 @@ all:			compile
 
 # "gmake -r clean"   = removes the compiled FORTRAN code
 clean:
-	$(RM) -f test?? *.gcda *.gcno *.mod *.o
+	$(RM) -f test?? *.gcda *.gcno *.mod *.o *.so
 	$(MAKE) -r -C $(FTNLIB) COVERAGE=$(COVERAGE) DEBUG=$(DEBUG) FC=$(FC) PYTHON3=$(PYTHON3) clean
 
 # "gmake -r compile" = compiles the FORTRAN code

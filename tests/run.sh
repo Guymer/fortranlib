@@ -92,6 +92,8 @@ optipng -strip all ./*.png &> /dev/null
 exiftool -overwrite_original -all= ./*.png &> /dev/null
 
 echo "Generating coverage report ..."
+echo "NOTE: On MacOS these commands produce empty output when run in the BASH"
+echo "      script but work fine if you run them in your terminal manually."
 cd ..
 rm -rf coverage-output
 mkdir coverage-output

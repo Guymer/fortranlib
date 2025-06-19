@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
         # Start declaration ...
         # NOTE: This colour map will go from (0,255,0) to (0,0,255).
-        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_g2b = (/ &\n")
+        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_g2b = (/                        &\n")
 
         # Loop over levels ...
         for i in range(256):
@@ -78,7 +78,7 @@ if __name__ == "__main__":
 
         # Start declaration ...
         # NOTE: This colour map will go from (255,0,0) to (0,255,0).
-        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2g = (/ &\n")
+        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2g = (/                        &\n")
 
         # Loop over levels ...
         for i in range(256):
@@ -100,7 +100,7 @@ if __name__ == "__main__":
 
         # Start declaration ...
         # NOTE: This colour map will go from (255,0,0) to (255,127,0) to (0,255,0).
-        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2o2g = (/ &\n")
+        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2o2g = (/                      &\n")
 
         # Loop over levels ...
         for i in range(256):

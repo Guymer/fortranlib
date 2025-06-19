@@ -41,7 +41,7 @@ PROGRAM test17
            ny = ny,                                                             &
           arr = elev / 1000.0e0_REAL32,                                         &
         fname = "test17_elev.ppm",                                              &
-           cm = "jet"                                                           &
+           cm = "turbo"                                                         &
     )
 
     ! Allocate (56.38 KiB) array and initialize it so that nowhere is flooded

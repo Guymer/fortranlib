@@ -27,11 +27,16 @@ PROGRAM test11
     END DO
 
     ! Save array as PPMs ...
-    CALL sub_save_array_as_PPM(nx, ny, arr, "test11_fire.ppm" , "fire" )
-    CALL sub_save_array_as_PPM(nx, ny, arr, "test11_jet.ppm"  , "jet"  )
-    CALL sub_save_array_as_PPM(nx, ny, arr, "test11_g2b.ppm"  , "g2b"  )
-    CALL sub_save_array_as_PPM(nx, ny, arr, "test11_r2g.ppm"  , "r2g"  )
-    CALL sub_save_array_as_PPM(nx, ny, arr, "test11_r2o2g.ppm", "r2o2g")
+    CALL sub_save_array_as_PPM(nx, ny, arr, "test11_viridis.ppm" , "viridis" )
+    CALL sub_save_array_as_PPM(nx, ny, arr, "test11_plasma.ppm"  , "plasma"  )
+    CALL sub_save_array_as_PPM(nx, ny, arr, "test11_inferno.ppm" , "inferno" )
+    CALL sub_save_array_as_PPM(nx, ny, arr, "test11_magma.ppm"   , "magma"   )
+    CALL sub_save_array_as_PPM(nx, ny, arr, "test11_cividis.ppm" , "cividis" )
+    CALL sub_save_array_as_PPM(nx, ny, arr, "test11_coolwarm.ppm", "coolwarm")
+    CALL sub_save_array_as_PPM(nx, ny, arr, "test11_turbo.ppm"   , "turbo"   )
+    CALL sub_save_array_as_PPM(nx, ny, arr, "test11_g2b.ppm"     , "g2b"     )
+    CALL sub_save_array_as_PPM(nx, ny, arr, "test11_r2g.ppm"     , "r2g"     )
+    CALL sub_save_array_as_PPM(nx, ny, arr, "test11_r2o2g.ppm"   , "r2o2g"   )
 
     ! Clean up ...
     DEALLOCATE(arr)

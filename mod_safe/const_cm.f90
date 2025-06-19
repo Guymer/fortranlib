@@ -1804,7 +1804,7 @@ CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   
                                                                                     ACHAR(126) // ACHAR(  5) // ACHAR(  2), &
                                                                                     ACHAR(122) // ACHAR(  4) // ACHAR(  3)  &
                                                                                 /)
-CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_g2b = (/ &
+CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_g2b = (/                        &
                                                                                     ACHAR(  0) // ACHAR(255) // ACHAR(  0), &
                                                                                     ACHAR(  0) // ACHAR(254) // ACHAR(  1), &
                                                                                     ACHAR(  0) // ACHAR(253) // ACHAR(  2), &
@@ -2062,7 +2062,7 @@ CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   
                                                                                     ACHAR(  0) // ACHAR(  1) // ACHAR(254), &
                                                                                     ACHAR(  0) // ACHAR(  0) // ACHAR(255)  &
                                                                                 /)
-CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2g = (/ &
+CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2g = (/                        &
                                                                                     ACHAR(255) // ACHAR(  0) // ACHAR(  0), &
                                                                                     ACHAR(254) // ACHAR(  1) // ACHAR(  0), &
                                                                                     ACHAR(253) // ACHAR(  2) // ACHAR(  0), &
@@ -2320,7 +2320,7 @@ CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   
                                                                                     ACHAR(  1) // ACHAR(254) // ACHAR(  0), &
                                                                                     ACHAR(  0) // ACHAR(255) // ACHAR(  0)  &
                                                                                 /)
-CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2o2g = (/ &
+CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2o2g = (/                      &
                                                                                     ACHAR(255) // ACHAR(  0) // ACHAR(  0), &
                                                                                     ACHAR(255) // ACHAR(  1) // ACHAR(  0), &
                                                                                     ACHAR(255) // ACHAR(  2) // ACHAR(  0), &

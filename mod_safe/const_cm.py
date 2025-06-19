@@ -20,47 +20,37 @@ if __name__ == "__main__":
 
     # Open output file ...
     with open("const_cm.f90", "wt", encoding = "utf-8") as fObj:
-        # Start declaration ...
-        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_fire = (/ &\n")
+        # Loop over MatPlotLib colour map names ...
+        # NOTE: See https://matplotlib.org/stable/users/explain/colors/colormaps.html
+        for name in [
+            "viridis",                  # Perceptually uniform sequential colour map.
+            "plasma",                   # Perceptually uniform sequential colour map.
+            "inferno",                  # Perceptually uniform sequential colour map.
+            "magma",                    # Perceptually uniform sequential colour map.
+            "cividis",                  # Perceptually uniform sequential colour map.
+            "coolwarm",                 # A replacement for "bwr" which has smooth lightness.
+            "turbo",                    # A replacement for "jet" which has smooth lightness.
+        ]:
+            # Start declaration ...
+            paddedName = f"{name} = (/"
+            fObj.write(f"CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_{paddedName:32s}&\n")
 
-        # Loop over levels ...
-        for i in range(256):
-            # Find colour values and convert them to the range [0, 255] ...
-            r, g, b, a = matplotlib.colormaps["gnuplot"](float(i) / 255.0)
-            r *= 255.0
-            g *= 255.0
-            b *= 255.0
+            # Loop over levels ...
+            for i in range(256):
+                # Find colour values and convert them to the range [0, 255] ...
+                r, g, b, a = matplotlib.colormaps[name](float(i) / 255.0)
+                r *= 255.0
+                g *= 255.0
+                b *= 255.0
 
-            # Write colour values ...
-            if i == 255:
-                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f})  &\n')
-            else:
-                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
+                # Write colour values ...
+                if i == 255:
+                    fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f})  &\n')
+                else:
+                    fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
 
-        # Finish declaration ...
-        fObj.write(f'{80 * " "}/)\n')
-
-        # **********************************************************************
-
-        # Start declaration ...
-        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_jet = (/ &\n")
-
-        # Loop over levels ...
-        for i in range(256):
-            # Find colour values and convert them to the range [0, 255] ...
-            r, g, b, a = matplotlib.colormaps["jet"](float(i) / 255.0)
-            r *= 255.0
-            g *= 255.0
-            b *= 255.0
-
-            # Write colour values ...
-            if i == 255:
-                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f})  &\n')
-            else:
-                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
-
-        # Finish declaration ...
-        fObj.write(f'{80 * " "}/)\n')
+            # Finish declaration ...
+            fObj.write(f'{80 * " "}/)\n')
 
         # **********************************************************************
 

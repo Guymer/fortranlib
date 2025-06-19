@@ -39,7 +39,18 @@ SUBROUTINE sub_save_2D_REAL128_real_array_as_PPM(nx, ny, arr, fname, cm)
     INTEGER(kind = INT64)                                                       :: lvl
 
     ! Check input ...
-    IF(TRIM(cm) /= "fire" .AND. TRIM(cm) /= "jet" .AND. TRIM(cm) /= "g2b" .AND. TRIM(cm) /= "r2g" .AND. TRIM(cm) /= "r2o2g")THEN
+    IF(                                                                         &
+              TRIM(cm) /= "viridis"                                           &
+        .AND. TRIM(cm) /= "plasma"                                            &
+        .AND. TRIM(cm) /= "inferno"                                           &
+        .AND. TRIM(cm) /= "magma"                                             &
+        .AND. TRIM(cm) /= "cividis"                                           &
+        .AND. TRIM(cm) /= "coolwarm"                                          &
+        .AND. TRIM(cm) /= "turbo"                                             &
+        .AND. TRIM(cm) /= "g2b"                                               &
+        .AND. TRIM(cm) /= "r2g"                                               &
+        .AND. TRIM(cm) /= "r2o2g"                                             &
+    )THEN
         WRITE(fmt = '("ERROR: ", a, ".")', unit = ERROR_UNIT) "Not a recognised colour map"
         FLUSH(unit = ERROR_UNIT)
         STOP
@@ -72,10 +83,20 @@ SUBROUTINE sub_save_2D_REAL128_real_array_as_PPM(nx, ny, arr, fname, cm)
                     lvl = MAX(0_INT64, MIN(255_INT64, NINT(255.0e0_REAL128 * arr(ix, iy), kind = INT64)))
 
                     ! Set pixel ...
-                    IF(TRIM(cm) == "fire")THEN
-                        img(ix, iy) = const_cm_fire(lvl + 1_INT64)
-                    ELSE IF(TRIM(cm) == "jet")THEN
-                        img(ix, iy) = const_cm_jet(lvl + 1_INT64)
+                    IF(TRIM(cm) == "viridis")THEN
+                        img(ix, iy) = const_cm_viridis(lvl + 1_INT64)
+                    ELSE IF(TRIM(cm) == "plasma")THEN
+                        img(ix, iy) = const_cm_plasma(lvl + 1_INT64)
+                    ELSE IF(TRIM(cm) == "inferno")THEN
+                        img(ix, iy) = const_cm_inferno(lvl + 1_INT64)
+                    ELSE IF(TRIM(cm) == "magma")THEN
+                        img(ix, iy) = const_cm_magma(lvl + 1_INT64)
+                    ELSE IF(TRIM(cm) == "cividis")THEN
+                        img(ix, iy) = const_cm_cividis(lvl + 1_INT64)
+                    ELSE IF(TRIM(cm) == "coolwarm")THEN
+                        img(ix, iy) = const_cm_coolwarm(lvl + 1_INT64)
+                    ELSE IF(TRIM(cm) == "turbo")THEN
+                        img(ix, iy) = const_cm_turbo(lvl + 1_INT64)
                     ELSE IF(TRIM(cm) == "g2b")THEN
                         img(ix, iy) = const_cm_g2b(lvl + 1_INT64)
                     ELSE IF(TRIM(cm) == "r2g")THEN

@@ -12,6 +12,7 @@ MACH_OPTS := -march=native -m64
 # *                                  BINARIES                                  *
 # ******************************************************************************
 
+AR      := $(shell which ar                   2> /dev/null || echo "ERROR")
 CUT     := $(shell which cut                  2> /dev/null || echo "ERROR")
 FC      := $(shell which mpif90-openmpi-gcc14 2> /dev/null || echo "ERROR")
 GREP    := $(shell which grep                 2> /dev/null || echo "ERROR")
@@ -35,6 +36,9 @@ endif
 # *                               CHECK BINARIES                               *
 # ******************************************************************************
 
+ifeq ($(AR),ERROR)
+    $(error The binary "ar" is not installed)
+endif
 ifeq ($(CUT),ERROR)
     $(error The binary "cut" is not installed)
 endif
@@ -88,7 +92,7 @@ all:			compile															\
 
 # "gmake -r clean"       = removes the compiled FORTRAN code and Sphinx documentation
 clean:
-	$(RM) -f *.gcda *.gcno *.mod *.o *.so
+	$(RM) -f *.a *.gcda *.gcno *.mod *.o *.so
 	$(MAKE) -C docs clean
 
 # "gmake -r compile"     = compiles the FORTRAN code
@@ -128,6 +132,15 @@ help:
 #         * https://github.com/numpy/numpy/issues/25344
 
 # NOTE: See https://numpy.org/doc/stable/f2py/buildtools/distutils-to-meson.html
+
+# NOTE: How GCC embeds the RPATH has changed, which results in binaries which do
+#       not work on MacOS 15.5 using GFortran 14.2 and Python 3.12 (as of
+#       21/Jun/2025). Here are two examples of other people having the same
+#       problem:
+#         * https://github.com/mesonbuild/meson/issues/10711
+#         * https://stackoverflow.com/questions/52430325/f2py-compilation-failed-cannot-find-library-gomp
+#       After hours of investigation, I have settled on a work around using
+#       "install_name_tool -add_rpath" on Darwin-based operating systems.
 
 mod_safe/const_cm.f90:															mod_safe/const_cm.py
 	cd $(<D) && $(PYTHON3) $(<F)
@@ -563,21 +576,31 @@ mod_safe_mpi/sub_bcast_array/sub_bcast_7D_REAL64_real_array.f90	    			\
 mod_safe_mpi/sub_bcast_array/sub_bcast_7D_REAL128_real_array.f90 &:				mod_safe_mpi/sub_bcast_array.py
 	cd $(<D) && $(PYTHON3) $(<F)
 
+libmod_geo.a																	\
 mod_geo.mod																		\
 mod_geo.o &:		$(MOD_GEO_SRC)												\
 					mod_safe.mod
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS) mod_geo.F90
+	$(AR) -r libmod_geo.a mod_geo.o
 
+libmod_safe.a																	\
 mod_safe.mod																	\
 mod_safe.o &:		$(MOD_SAFE_SRC)
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS) mod_safe.F90
+	$(AR) -r libmod_safe.a mod_safe.o
 
+libmod_safe_mpi.a																\
 mod_safe_mpi.mod																\
 mod_safe_mpi.o &:	$(MOD_SAFE_MPI_SRC)
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS) mod_safe_mpi.F90
+	$(AR) -r libmod_safe_mpi.a mod_safe_mpi.o
 
 mod_f2py.so:		$(MOD_F2PY_SRC)												\
-					mod_safe.mod
+					libmod_safe.a
 	$(RM) -f mod_f2py.*.so mod_f2py.so
-	FC=$(FC) FFLAGS="$(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS)" $(PYTHON3) -m numpy.f2py -c mod_f2py.F90 -m mod_f2py --backend meson -lgomp -I$(CURDIR)
+	FC=$(FC) FFLAGS="$(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS)" $(PYTHON3) -m numpy.f2py -c mod_f2py.F90 -m mod_f2py --backend meson -lgomp -lmod_safe -L$(CURDIR) -I$(CURDIR)
+	[[ $(shell uname) == "Darwin" ]] && install_name_tool -add_rpath /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib mod_f2py$(SUFFIX)
+	[[ $(shell uname) == "Darwin" ]] && install_name_tool -add_rpath /opt/local/lib mod_f2py$(SUFFIX)
+	[[ $(shell uname) == "Darwin" ]] && install_name_tool -add_rpath /opt/local/lib/libgcc mod_f2py$(SUFFIX)
+	[[ $(shell uname) == "Darwin" ]] && install_name_tool -add_rpath /opt/local/lib/libomp mod_f2py$(SUFFIX)
 	$(LN) -s mod_f2py$(SUFFIX) mod_f2py.so

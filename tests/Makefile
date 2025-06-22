@@ -119,6 +119,15 @@ help:
 
 # NOTE: See https://numpy.org/doc/stable/f2py/buildtools/distutils-to-meson.html
 
+# NOTE: How GCC embeds the RPATH has changed, which results in binaries which do
+#       not work on MacOS 15.5 using GFortran 14.2 and Python 3.12 (as of
+#       21/Jun/2025). Here are two examples of other people having the same
+#       problem:
+#         * https://github.com/mesonbuild/meson/issues/10711
+#         * https://stackoverflow.com/questions/52430325/f2py-compilation-failed-cannot-find-library-gomp
+#       After hours of investigation, I have settled on a work around using
+#       "install_name_tool -add_rpath" on Darwin-based operating systems.
+
 $(FTNLIB)/%.mod																	\
 $(FTNLIB)/%.o &:	$(FTNLIB)/%.F90
 	$(MAKE) -r -C $(FTNLIB) COVERAGE=$(COVERAGE) DEBUG=$(DEBUG) FC=$(FC) PYTHON3=$(PYTHON3) $*.o

@@ -21,6 +21,7 @@ shellcheck.log
 *.gcno
 
 # Ignore compiler generated files ...
+*.a
 *.mod
 *.o
 *.so

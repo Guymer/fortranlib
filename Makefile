@@ -599,8 +599,8 @@ mod_f2py.so:		$(MOD_F2PY_SRC)												\
 					libmod_safe.a
 	$(RM) -f mod_f2py.*.so mod_f2py.so
 	FC=$(FC) FFLAGS="$(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS)" $(PYTHON3) -m numpy.f2py -c mod_f2py.F90 -m mod_f2py --backend meson -lgomp -lmod_safe -L$(CURDIR) -I$(CURDIR)
-	[ $(shell uname) == Darwin ] && install_name_tool -add_rpath /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib mod_f2py$(SUFFIX)
-	[ $(shell uname) == Darwin ] && install_name_tool -add_rpath /opt/local/lib mod_f2py$(SUFFIX)
-	[ $(shell uname) == Darwin ] && install_name_tool -add_rpath /opt/local/lib/libgcc mod_f2py$(SUFFIX)
-	[ $(shell uname) == Darwin ] && install_name_tool -add_rpath /opt/local/lib/libomp mod_f2py$(SUFFIX)
+	test $(shell uname) = Darwin && install_name_tool -add_rpath /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib mod_f2py$(SUFFIX)
+	test $(shell uname) = Darwin && install_name_tool -add_rpath /opt/local/lib mod_f2py$(SUFFIX)
+	test $(shell uname) = Darwin && install_name_tool -add_rpath /opt/local/lib/libgcc mod_f2py$(SUFFIX)
+	test $(shell uname) = Darwin && install_name_tool -add_rpath /opt/local/lib/libomp mod_f2py$(SUFFIX)
 	$(LN) -s mod_f2py$(SUFFIX) mod_f2py.so

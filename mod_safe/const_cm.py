@@ -106,11 +106,33 @@ if __name__ == "__main__":
         for i in range(256):
             # Find colour values in the range [0, 255] ...
             if i <= 127:
-                r = 255
+                r = 255.0
             else:
                 r = float(255 - 2 * (i - 127) + 1)
             g = float(i)
             b = 0.0
+
+            # Write colour values ...
+            if i == 255:
+                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f})  &\n')
+            else:
+                fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
+
+        # Finish declaration ...
+        fObj.write(f'{80 * " "}/)\n')
+
+        # **********************************************************************
+
+        # Start declaration ...
+        # NOTE: This colour map will go from (0,0,0) to (255,255,255).
+        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_grey = (/                       &\n")
+
+        # Loop over levels ...
+        for i in range(256):
+            # Find colour values in the range [0, 255] ...
+            r = float(i)
+            g = float(i)
+            b = float(i)
 
             # Write colour values ...
             if i == 255:

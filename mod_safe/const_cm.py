@@ -18,6 +18,8 @@ if __name__ == "__main__":
     except:
         raise Exception("\"matplotlib\" is not installed; run \"pip install --user matplotlib\"") from None
 
+    # **************************************************************************
+
     # Open output file ...
     with open("const_cm.f90", "wt", encoding = "utf-8") as fObj:
         # Loop over MatPlotLib colour map names ...
@@ -31,23 +33,23 @@ if __name__ == "__main__":
             "coolwarm",                 # A replacement for "bwr" which has smooth lightness.
             "turbo",                    # A replacement for "jet" which has smooth lightness.
         ]:
+            # Check MatPlotLib colour map ...
+            assert matplotlib.colormaps[name].N == 256, f"the MatPlotLib colour map \"{name}\" has {matplotlib.colormaps[name].N:d} colours"
+
             # Start declaration ...
             paddedName = f"{name} = (/"
             fObj.write(f"CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_{paddedName:32s}&\n")
 
             # Loop over levels ...
             for i in range(256):
-                # Find colour values and convert them to the range [0, 255] ...
-                r, g, b, a = matplotlib.colormaps[name](float(i) / 255.0)
-                r *= 255.0
-                g *= 255.0
-                b *= 255.0
+                # Find colour values ...
+                r, g, b, _ = matplotlib.colormaps[name](i, bytes = True)
 
                 # Write colour values ...
                 if i == 255:
-                    fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f})  &\n')
+                    fObj.write(f'{84 * " "}ACHAR({r:3d}) // ACHAR({g:3d}) // ACHAR({b:3d})  &\n')
                 else:
-                    fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
+                    fObj.write(f'{84 * " "}ACHAR({r:3d}) // ACHAR({g:3d}) // ACHAR({b:3d}), &\n')
 
             # Finish declaration ...
             fObj.write(f'{80 * " "}/)\n')

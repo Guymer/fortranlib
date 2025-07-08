@@ -111,7 +111,10 @@ doc-targets:	docs/_build/html/objects.inv
 
 # "gmake -r help"        = print this help
 help:
-	echo "The suffix is \"${SUFFIX}\"."
+	echo "These are the knwon settings:"
+	echo "  COVERAGE = $(COVERAGE)"
+	echo "     DEBUG = $(DEBUG)"
+	echo "    SUFFIX = $(SUFFIX)"
 	echo "These are the available options:"
 	$(GREP) -E "^# \"gmake -r " Makefile | $(CUT) -c 2-
 

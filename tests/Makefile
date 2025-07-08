@@ -98,6 +98,10 @@ compile:		test01															\
 
 # "gmake -r help"    = print this help
 help:
+	echo "These are the knwon settings:"
+	echo "  COVERAGE = $(COVERAGE)"
+	echo "     DEBUG = $(DEBUG)"
+	echo "    FTNLIB = $(FTNLIB)"
 	echo "These are the available options:"
 	$(GREP) -E "^# \"gmake -r " Makefile | $(CUT) -c 2-
 

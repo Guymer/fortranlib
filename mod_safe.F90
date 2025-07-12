@@ -357,6 +357,8 @@ MODULE mod_safe
 
     ! Declare interface ...
     INTERFACE sub_shrink_array
+        MODULE PROCEDURE sub_shrink_2D_INT8_integer_array_to_2D_REAL32_real_array
+        MODULE PROCEDURE sub_shrink_2D_INT8_integer_array_to_2D_REAL64_real_array
         MODULE PROCEDURE sub_shrink_2D_INT8_logical_array_to_2D_REAL32_real_array
         MODULE PROCEDURE sub_shrink_2D_INT8_logical_array_to_2D_REAL64_real_array
         MODULE PROCEDURE sub_shrink_2D_INT16_integer_array
@@ -706,6 +708,8 @@ MODULE mod_safe
 #if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
     INCLUDE "mod_safe/sub_save_array_as_PPM/sub_save_2D_REAL128_real_array_as_PPM.f90"
 #endif
+    INCLUDE "mod_safe/sub_shrink_array/sub_shrink_2D_INT8_integer_array_to_2D_REAL32_real_array.f90"
+    INCLUDE "mod_safe/sub_shrink_array/sub_shrink_2D_INT8_integer_array_to_2D_REAL64_real_array.f90"
     INCLUDE "mod_safe/sub_shrink_array/sub_shrink_2D_INT8_logical_array_to_2D_REAL32_real_array.f90"
     INCLUDE "mod_safe/sub_shrink_array/sub_shrink_2D_INT8_logical_array_to_2D_REAL64_real_array.f90"
     INCLUDE "mod_safe/sub_shrink_array/sub_shrink_2D_INT16_integer_array.f90"

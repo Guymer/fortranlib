@@ -40,16 +40,16 @@ SUBROUTINE sub_save_2D_INT16_integer_array_as_PPM(nx, ny, arr, fname, cm)
 
     ! Check input ...
     IF(                                                                         &
-              TRIM(cm) /= "viridis"                                           &
-        .AND. TRIM(cm) /= "plasma"                                            &
-        .AND. TRIM(cm) /= "inferno"                                           &
-        .AND. TRIM(cm) /= "magma"                                             &
-        .AND. TRIM(cm) /= "cividis"                                           &
-        .AND. TRIM(cm) /= "coolwarm"                                          &
-        .AND. TRIM(cm) /= "turbo"                                             &
-        .AND. TRIM(cm) /= "g2b"                                               &
-        .AND. TRIM(cm) /= "r2g"                                               &
-        .AND. TRIM(cm) /= "r2o2g"                                             &
+              TRIM(cm) /= "viridis"                                             &
+        .AND. TRIM(cm) /= "plasma"                                              &
+        .AND. TRIM(cm) /= "inferno"                                             &
+        .AND. TRIM(cm) /= "magma"                                               &
+        .AND. TRIM(cm) /= "cividis"                                             &
+        .AND. TRIM(cm) /= "coolwarm"                                            &
+        .AND. TRIM(cm) /= "turbo"                                               &
+        .AND. TRIM(cm) /= "g2b"                                                 &
+        .AND. TRIM(cm) /= "r2g"                                                 &
+        .AND. TRIM(cm) /= "r2o2g"                                               &
     )THEN
         WRITE(fmt = '("ERROR: ", a, ".")', unit = ERROR_UNIT) "Not a recognised colour map"
         FLUSH(unit = ERROR_UNIT)

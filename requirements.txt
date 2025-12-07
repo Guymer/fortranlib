@@ -4,4 +4,5 @@
 matplotlib >= 3.5.0
 scipy
 sphinx
+sphinx_fortran
 sphinx_rtd_theme

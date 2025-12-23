@@ -30,7 +30,6 @@ jobs:
                     python -m pip install --upgrade pip
                     pip install -r main/requirements.txt
                     pip install -r main/docs/requirements.txt
-                    pip install git+https://github.com/VACUMM/sphinx-fortran.git@master
                     pip install pylint
             -
                 name: List programs

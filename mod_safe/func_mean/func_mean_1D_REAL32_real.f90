@@ -1,4 +1,4 @@
-PURE FUNCTION func_mean_1D_REAL32_real(n, arr, dof) RESULT(ans)
+PURE FUNCTION func_mean_1D_REAL32_real(n1, arr, dof) RESULT(ans)
     ! NOTE: See https://numpy.org/doc/stable/reference/generated/numpy.mean.html
 
     ! Import standard modules ...
@@ -10,7 +10,7 @@ PURE FUNCTION func_mean_1D_REAL32_real(n, arr, dof) RESULT(ans)
     INTEGER(kind = INT64), INTENT(in)                                           :: n1
     INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: dof
     REAL(kind = REAL32)                                                         :: ans
-    REAL(kind = REAL32), DIMENSION(n), INTENT(in)                               :: arr
+    REAL(kind = REAL32), DIMENSION(n1), INTENT(in)                              :: arr
 
     ! Calculate the mean ...
     IF(PRESENT(dof))THEN

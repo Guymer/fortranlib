@@ -36,6 +36,7 @@ docs/test_test16.rst
 docs/test_test17.rst
 docs/testing.rst
 docs/todo.rst
+git-files.txt
 LICENCE.txt
 Makefile
 mod_f2py.F90

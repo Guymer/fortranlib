@@ -138,6 +138,12 @@ MODULE mod_safe
     END INTERFACE sub_allocate_array
 
     ! Declare interface ...
+    INTERFACE sub_border_array
+        MODULE PROCEDURE sub_border_2D_REAL32_real_array
+        MODULE PROCEDURE sub_border_2D_REAL64_real_array
+    END INTERFACE sub_border_array
+
+    ! Declare interface ...
     INTERFACE sub_flood_array
         MODULE PROCEDURE sub_flood_INT16_integer_array
         MODULE PROCEDURE sub_flood_INT32_integer_array
@@ -516,6 +522,8 @@ MODULE mod_safe
     INCLUDE "mod_safe/sub_allocate_array/sub_allocate_6D_REAL128_real_array.f90"
     INCLUDE "mod_safe/sub_allocate_array/sub_allocate_7D_REAL128_real_array.f90"
 #endif
+    INCLUDE "mod_safe/sub_border_array/sub_border_2D_REAL32_real_array.f90"
+    INCLUDE "mod_safe/sub_border_array/sub_border_2D_REAL64_real_array.f90"
     INCLUDE "mod_safe/sub_calc_dist_between_two_locs.f90"
     INCLUDE "mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist.f90"
     INCLUDE "mod_safe/sub_flood_array/sub_flood_INT16_integer_array.f90"

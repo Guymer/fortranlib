@@ -19,6 +19,46 @@ SUBROUTINE sub_shrink_2D_INT8_logical_array_to_2D_REAL32_real_array(nx, ny, arr,
     INTEGER(kind = INT64)                                                       :: iylo
     INTEGER(kind = INT64)                                                       :: iyhi
 
+    ! Check if a short-cut is possible ...
+    IF(shrinkScale == 1_INT64)THEN
+        ! Allocate array ...
+        CALL sub_allocate_array(                                                &
+              arr = shrunkenArr,                                                &
+             name = "shrunkenArr",                                              &
+               n1 = nx,                                                         &
+               n2 = ny,                                                         &
+            debug = .FALSE._INT8                                                &
+        )
+
+        !$omp parallel                                                          &
+        !$omp default(none)                                                     &
+        !$omp private(ix)                                                       &
+        !$omp private(iy)                                                       &
+        !$omp shared(arr)                                                       &
+        !$omp shared(nx)                                                        &
+        !$omp shared(ny)                                                        &
+        !$omp shared(shrunkenArr)
+            !$omp do                                                            &
+            !$omp schedule(dynamic)
+                ! Loop over x-axis ...
+                DO ix = 1_INT64, nx
+                    ! Loop over y-axis ...
+                    DO iy = 1_INT64, ny
+                        ! Find the value ...
+                        IF(arr(ix, iy))THEN
+                            shrunkenArr(ix, iy) = 1.0e0_REAL32
+                        ELSE
+                            shrunkenArr(ix, iy) = 0.0e0_REAL32
+                        END IF
+                    END DO
+                END DO
+            !$omp end do
+        !$omp end parallel
+
+        ! Return ...
+        RETURN
+    END IF
+
     ! Check shrinkScale ...
     IF(MOD(nx, shrinkScale) /= 0_INT64)THEN
         WRITE(fmt = '("ERROR: ", a, ".")', unit = ERROR_UNIT) '"nx" is not an integer multiple of "shrinkScale"'

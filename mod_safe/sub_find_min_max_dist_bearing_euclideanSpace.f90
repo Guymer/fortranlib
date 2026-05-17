@@ -122,7 +122,7 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
     ! Check arguments ...
     IF(iIter2 == nIter2)THEN
         WRITE(                                                                  &
-             fmt = '("ERROR: Failed to converge; the middle is currently (", f11.6, "°, ", f10.6, "°); nIter = ", i3, ".")',    &
+             fmt = '("ERROR: Failed to converge; the middle is currently (", f11.6, "°, ", f10.6, "°); nIter = ", i9, ".")',    &
             unit = ERROR_UNIT                                                   &
         ) midLon, midLat, nIter2
         FLUSH(unit = ERROR_UNIT)
@@ -151,7 +151,7 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
 
     IF(debug2)THEN
         WRITE(                                                                  &
-             fmt = '("INFO: #", i3, "/", i3, ": The middle is now (", f11.6, "°, ", f10.6, "°) and the minimum maximum distance bearing is now ", f10.6, "°.")',    &
+             fmt = '("INFO: #", i9, "/", i9, ": The middle is now (", f11.6, "°, ", f10.6, "°) and the minimum maximum distance bearing is now ", f10.6, "°.")',    &
             unit = OUTPUT_UNIT                                                  &
         ) iIter2, nIter2, midLon, midLat, startAng2
         FLUSH(unit = OUTPUT_UNIT)
@@ -266,7 +266,7 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
         IF(ABS(startAng2 - bestAng) <= angConv2)THEN
             IF(debug2)THEN
                 WRITE(                                                          &
-                     fmt = '("INFO: #", i3, "/", i3, ": The middle is finally (", f11.6, "°, ", f10.6, "°) and the minimum maximum distance bearing is finally ", f10.6, "°.")',    &
+                     fmt = '("INFO: #", i9, "/", i9, ": The middle is finally (", f11.6, "°, ", f10.6, "°) and the minimum maximum distance bearing is finally ", f10.6, "°.")',    &
                     unit = OUTPUT_UNIT                                          &
                 ) iIter2 + 1_INT64, nIter2, midLon, midLat, bestAng
                 FLUSH(unit = OUTPUT_UNIT)

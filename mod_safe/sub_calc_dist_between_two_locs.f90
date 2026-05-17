@@ -60,9 +60,9 @@ PURE SUBROUTINE sub_calc_dist_between_two_locs(lon1_deg, lat1_deg, lon2_deg, lat
 
     ! Set value ...
     IF(PRESENT(nmax))THEN
-        nmax2 = MAX(3_INT64, MIN(100_INT64, nmax))
+        nmax2 = MAX(3_INT64, MIN(100_INT64, nmax))                              ! [#]
     ELSE
-        nmax2 = 100_INT64
+        nmax2 = 100_INT64                                                       ! [#]
     END IF
 
     ! Set value ...

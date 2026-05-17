@@ -5,8 +5,7 @@ PROGRAM test18
     ! Import my modules ...
     USE mod_safe,           ONLY:   sub_allocate_array,                         &
                                     sub_find_middle_of_locs_euclideanBox,       &
-                                    sub_find_min_max_dist_bearing_euclideanSpace,   &
-                                    sub_max_dist_euclideanSpace
+                                    sub_find_min_max_dist_bearing_euclideanSpace
 
     IMPLICIT NONE
 
@@ -107,23 +106,19 @@ PROGRAM test18
 
     ! **************************************************************************
 
-!    CALL sub_find_middle_of_locs_euclideanBox(                                  &
-!        n,                                                                      &
-!        lons,                                                                   &
-!        lats,                                                                   &
-!        midLon,                                                                 &
-!        midLat,                                                                 &
-!        maxDist                                                                 &
-!    )
-
-!    CALL sub_max_dist_euclideanSpace(                                           &
-!        n,                                                                      &
-!        midLon,                                                                 &
-!        midLat,                                                                 &
-!        lons,                                                                   &
-!        lats,                                                                   &
-!        maxDist                                                                 &
-!    )
+    ! Test subroutine ...
+    CALL sub_find_middle_of_locs_euclideanBox(                                  &
+        n,                                                                      &
+        lons,                                                                   &
+        lats,                                                                   &
+        midLon,                                                                 &
+        midLat,                                                                 &
+        maxDist                                                                 &
+    )
+    WRITE(                                                                      &
+        fmt = '("The middle is (", f11.6, "°, ", f10.6, "°) and the maximum distance is ", f10.6, "°.")',   &
+        unit = OUTPUT_UNIT                                                      &
+    ) midLon, midLat, maxDist
 
 !    CALL sub_find_min_max_dist_bearing_euclideanSpace(                          &
 !        n,                                                                      &

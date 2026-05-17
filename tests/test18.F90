@@ -118,7 +118,7 @@ PROGRAM test18
         maxDist = maxDist                                                       &
     )
     WRITE(                                                                      &
-        fmt = '("The (EuclideanBox) middle is (", f11.6, "°, ", f10.6, "°) and the maximum distance is ", f10.6, "°.")',   &
+        fmt = '("The (EuclideanBox) middle is (", f11.6, "°, ", f10.6, "°) and the maximum distance is ", f10.6, "°.")',    &
         unit = OUTPUT_UNIT                                                      &
     ) midLon, midLat, maxDist
     FLUSH(unit = OUTPUT_UNIT)

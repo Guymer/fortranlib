@@ -19,10 +19,10 @@ PURE SUBROUTINE sub_find_middle_of_locs_euclideanBox(n, lons, lats, midLon, midL
     ! Find the maximum Euclidean distance from the middle to any location ...
     CALL sub_max_dist_euclideanSpace(                                           &
               n = n,                                                            &
-           lons = lons,                                                         &
-           lats = lats,                                                         &
          midLon = midLon,                                                       &
          midLat = midLat,                                                       &
+           lons = lons,                                                         &
+           lats = lats,                                                         &
         maxDist = maxDist                                                       &
     )
 END SUBROUTINE sub_find_middle_of_locs_euclideanBox

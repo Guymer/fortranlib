@@ -1,4 +1,4 @@
-PURE SUBROUTINE sub_max_dist_euclideanSpace(n, lons, lats, midLon, midLat, maxDist)
+PURE SUBROUTINE sub_max_dist_euclideanSpace(n, midLon, midLat, lons, lats, maxDist)
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 
@@ -6,10 +6,10 @@ PURE SUBROUTINE sub_max_dist_euclideanSpace(n, lons, lats, midLon, midLat, maxDi
 
     ! Declare input variables/outputs ...
     INTEGER(kind = INT64), INTENT(in)                                           :: n
-    REAL(kind = REAL64), DIMENSION(n), INTENT(in)                               :: lons
-    REAL(kind = REAL64), DIMENSION(n), INTENT(in)                               :: lats
     REAL(kind = REAL64), INTENT(in)                                             :: midLon
     REAL(kind = REAL64), INTENT(in)                                             :: midLat
+    REAL(kind = REAL64), DIMENSION(n), INTENT(in)                               :: lons
+    REAL(kind = REAL64), DIMENSION(n), INTENT(in)                               :: lats
     REAL(kind = REAL64), INTENT(out)                                            :: maxDist
 
     ! Declare internal variables ...

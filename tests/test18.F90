@@ -12,6 +12,7 @@ PROGRAM test18
     ! Declare variables ...
     INTEGER(kind = INT64)                                                       :: i
     INTEGER(kind = INT64)                                                       :: n
+    REAL(kind = REAL64)                                                         :: bestAng
     REAL(kind = REAL64)                                                         :: midLon
     REAL(kind = REAL64)                                                         :: midLat
     REAL(kind = REAL64)                                                         :: maxDist
@@ -108,25 +109,28 @@ PROGRAM test18
 
     ! Test subroutine ...
     CALL sub_find_middle_of_locs_euclideanBox(                                  &
-        n,                                                                      &
-        lons,                                                                   &
-        lats,                                                                   &
-        midLon,                                                                 &
-        midLat,                                                                 &
-        maxDist                                                                 &
+              n = n,                                                            &
+           lons = lons,                                                         &
+           lats = lats,                                                         &
+         midLon = midLon,                                                       &
+         midLat = midLat,                                                       &
+        maxDist = maxDist                                                       &
     )
     WRITE(                                                                      &
         fmt = '("The middle is (", f11.6, "°, ", f10.6, "°) and the maximum distance is ", f10.6, "°.")',   &
         unit = OUTPUT_UNIT                                                      &
     ) midLon, midLat, maxDist
+    FLUSH(unit = OUTPUT_UNIT)
 
-!    CALL sub_find_min_max_dist_bearing_euclideanSpace(                          &
-!        n,                                                                      &
-!        midLon,                                                                 &
-!        midLat,                                                                 &
-!        lons,                                                                   &
-!        lats                                                                    &
-!    )
+    ! Test subroutine ...
+    CALL sub_find_min_max_dist_bearing_euclideanSpace(                          &
+              n = n,                                                            &
+           lons = lons,                                                         &
+           lats = lats,                                                         &
+         midLon = midLon,                                                       &
+         midLat = midLat,                                                       &
+        bestAng = bestAng                                                       &
+    )
 
     ! **************************************************************************
 

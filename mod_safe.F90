@@ -526,6 +526,7 @@ MODULE mod_safe
     INCLUDE "mod_safe/sub_border_array/sub_border_2D_REAL64_real_array.f90"
     INCLUDE "mod_safe/sub_calc_dist_between_two_locs.f90"
     INCLUDE "mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist.f90"
+    INCLUDE "mod_safe/sub_find_middle_of_locs_euclideanBox.f90"
     INCLUDE "mod_safe/sub_flood_array/sub_flood_INT16_integer_array.f90"
     INCLUDE "mod_safe/sub_flood_array/sub_flood_INT32_integer_array.f90"
     INCLUDE "mod_safe/sub_flood_array/sub_flood_INT64_integer_array.f90"

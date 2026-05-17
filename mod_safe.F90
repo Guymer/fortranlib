@@ -616,6 +616,7 @@ MODULE mod_safe
     INCLUDE "mod_safe/sub_load_array_from_BIN/sub_load_7D_REAL128_real_array_from_BIN.f90"
 #endif
     INCLUDE "mod_safe/sub_max_dist_euclideanSpace.f90"
+    INCLUDE "mod_safe/sub_max_dist_geodesicSpace.f90"
     INCLUDE "mod_safe/sub_save_array_as_BIN/sub_save_1D_INT8_integer_array_as_BIN.f90"
     INCLUDE "mod_safe/sub_save_array_as_BIN/sub_save_2D_INT8_integer_array_as_BIN.f90"
     INCLUDE "mod_safe/sub_save_array_as_BIN/sub_save_3D_INT8_integer_array_as_BIN.f90"

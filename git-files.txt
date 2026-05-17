@@ -543,6 +543,7 @@ mod_safe/sub_solve_quadratic_equation/sub_solve_quadratic_REAL64_equation.f90
 mod_safe/sub_ttest_ind.f90
 README.md
 requirements.txt
+tests/exampleLonsLats.csv
 tests/func_t_CDF.py
 tests/func_t_PDF.py
 tests/Makefile
@@ -594,3 +595,4 @@ tests/test17_elev.ppm
 tests/test17_flooded.pbm
 tests/test17_flooded.png
 tests/test17.F90
+tests/test18.F90

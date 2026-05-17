@@ -131,6 +131,11 @@ PROGRAM test18
          midLat = midLat,                                                       &
         bestAng = bestAng                                                       &
     )
+    WRITE(                                                                      &
+        fmt = '("The bearing to the mimimum maximum distance is ", f10.6, "°.")',   &
+        unit = OUTPUT_UNIT                                                      &
+    ) bestAng
+    FLUSH(unit = OUTPUT_UNIT)
 
     ! **************************************************************************
 

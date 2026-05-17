@@ -86,6 +86,9 @@ echo "Running test16 ..."
 echo "Running test17 ..."
 ./test17
 
+echo "Running test18 ..."
+./test18
+
 echo "Converting images ..."
 mogrify -format png ./*.pbm ./*.pgm ./*.ppm &> /dev/null
 optipng -strip all ./*.png &> /dev/null

@@ -527,6 +527,7 @@ MODULE mod_safe
     INCLUDE "mod_safe/sub_calc_dist_between_two_locs.f90"
     INCLUDE "mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist.f90"
     INCLUDE "mod_safe/sub_find_middle_of_locs_euclideanBox.f90"
+    INCLUDE "mod_safe/sub_find_min_max_dist_bearing_euclideanSpace.f90"
     INCLUDE "mod_safe/sub_flood_array/sub_flood_INT16_integer_array.f90"
     INCLUDE "mod_safe/sub_flood_array/sub_flood_INT32_integer_array.f90"
     INCLUDE "mod_safe/sub_flood_array/sub_flood_INT64_integer_array.f90"
@@ -537,6 +538,7 @@ MODULE mod_safe
     INCLUDE "mod_safe/sub_flood_array_iter/sub_flood_INT64_integer_array_iter.f90"
     INCLUDE "mod_safe/sub_flood_array_iter/sub_flood_REAL32_real_array_iter.f90"
     INCLUDE "mod_safe/sub_flood_array_iter/sub_flood_REAL64_real_array_iter.f90"
+    INCLUDE "mod_safe/sub_linearRegression.f90"
     INCLUDE "mod_safe/sub_load_array_from_BIN/sub_load_1D_INT8_integer_array_from_BIN.f90"
     INCLUDE "mod_safe/sub_load_array_from_BIN/sub_load_2D_INT8_integer_array_from_BIN.f90"
     INCLUDE "mod_safe/sub_load_array_from_BIN/sub_load_3D_INT8_integer_array_from_BIN.f90"
@@ -618,6 +620,7 @@ MODULE mod_safe
 #endif
     INCLUDE "mod_safe/sub_max_dist_euclideanSpace.f90"
     INCLUDE "mod_safe/sub_max_dist_geodesicSpace.f90"
+    INCLUDE "mod_safe/sub_quadraticRegression.f90"
     INCLUDE "mod_safe/sub_save_array_as_BIN/sub_save_1D_INT8_integer_array_as_BIN.f90"
     INCLUDE "mod_safe/sub_save_array_as_BIN/sub_save_2D_INT8_integer_array_as_BIN.f90"
     INCLUDE "mod_safe/sub_save_array_as_BIN/sub_save_3D_INT8_integer_array_as_BIN.f90"

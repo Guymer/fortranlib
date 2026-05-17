@@ -56,19 +56,21 @@ PURE SUBROUTINE sub_calc_loc_from_loc_and_bearing_and_dist(lon1_deg, lat1_deg, a
     REAL(kind = REAL64)                                                         :: u1
     REAL(kind = REAL64)                                                         :: uSq
 
-    ! Set value ...
+    ! Set integer value ...
     IF(PRESENT(nmax))THEN
         nmax2 = MAX(3_INT64, MIN(100_INT64, nmax))
     ELSE
         nmax2 = 100_INT64
     END IF
 
-    ! Set value ...
+    ! Set real value ...
     IF(PRESENT(eps))THEN
         eps2 = eps
     ELSE
         eps2 = 1.0e-12_REAL64
     END IF
+
+    ! **************************************************************************
 
     ! Skip if the isn't a distance ...
     IF(s_m <= 0.0e0_REAL64)THEN

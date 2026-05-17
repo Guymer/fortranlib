@@ -22,6 +22,8 @@ PURE SUBROUTINE sub_max_dist_euclideanSpace(                                    
     ! Declare internal variables ...
     INTEGER(kind = INT64)                                                       :: i
 
+    ! **************************************************************************
+
     ! Find the maximum Euclidean distance from the middle to any location ...
     maxDist = 0.0e0_REAL64                                                      ! [°]
     DO i = 1_INT64, n

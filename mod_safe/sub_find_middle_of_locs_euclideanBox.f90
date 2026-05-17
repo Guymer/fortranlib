@@ -19,6 +19,8 @@ PURE SUBROUTINE sub_find_middle_of_locs_euclideanBox(                           
     REAL(kind = REAL64), INTENT(out)                                            :: midLat
     REAL(kind = REAL64), INTENT(out)                                            :: maxDist
 
+    ! **************************************************************************
+
     ! Calculate the middle of the Euclidean bounding box ...
     midLon = 0.5e0_REAL64 * (MINVAL(lons) + MAXVAL(lons))                       ! [°]
     midLat = 0.5e0_REAL64 * (MINVAL(lats) + MAXVAL(lats))                       ! [°]

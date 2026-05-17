@@ -94,7 +94,8 @@ compile:		test01															\
 				test14															\
 				test15															\
 				test16															\
-				test17
+				test17															\
+				test18
 
 # "gmake -r help"    = print this help
 help:
@@ -209,6 +210,10 @@ test17.o:			$(FTNLIB)/mod_safe.mod										\
 					test17.F90
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS) -I$(FTNLIB) test17.F90 -o $@
 
+test18.o:			$(FTNLIB)/mod_safe.mod										\
+					test18.F90
+	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS) -I$(FTNLIB) test18.F90 -o $@
+
 test01:				$(FTNLIB)/mod_safe.o										\
 					$(FTNLIB)/mod_safe_mpi.o									\
 					test01.o
@@ -281,3 +286,7 @@ test16:				$(FTNLIB)/mod_geo.o											\
 test17:				$(FTNLIB)/mod_safe.o										\
 					test17.o
 	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS) test17.o $(FTNLIB)/mod_safe.o -o $@
+
+test18:				$(FTNLIB)/mod_safe.o										\
+					test18.o
+	$(FC) $(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS) test18.o $(FTNLIB)/mod_safe.o -o $@

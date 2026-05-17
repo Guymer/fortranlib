@@ -1,4 +1,11 @@
-PURE SUBROUTINE sub_find_middle_of_locs_euclideanBox(n, lons, lats, midLon, midLat, maxDist)
+PURE SUBROUTINE sub_find_middle_of_locs_euclideanBox(                           &
+    n,                                                                          &
+    lons,                                                                       &
+    lats,                                                                       &
+    midLon,                                                                     &
+    midLat,                                                                     &
+    maxDist                                                                     &
+)
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 

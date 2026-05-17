@@ -1,4 +1,11 @@
-PURE SUBROUTINE sub_max_dist_euclideanSpace(n, midLon, midLat, lons, lats, maxDist)
+PURE SUBROUTINE sub_max_dist_euclideanSpace(                                    &
+    n,                                                                          &
+    midLon,                                                                     &
+    midLat,                                                                     &
+    lons,                                                                       &
+    lats,                                                                       &
+    maxDist                                                                     &
+)
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 

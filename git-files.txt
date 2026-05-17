@@ -34,6 +34,7 @@ docs/test_test14.rst
 docs/test_test15.rst
 docs/test_test16.rst
 docs/test_test17.rst
+docs/test_test18.rst
 docs/testing.rst
 docs/todo.rst
 git-files.txt
@@ -339,6 +340,8 @@ mod_safe/sub_border_array/sub_border_2D_REAL64_real_array.f90
 mod_safe/sub_calc_dist_between_two_locs.f90
 mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist.f90
 mod_safe/sub_find_middle_of_locs_euclideanBox.f90
+mod_safe/sub_find_min_max_dist_bearing_euclideanSpace.f90
+mod_safe/sub_find_min_max_dist_bearing_geodesicSpace.f90
 mod_safe/sub_flood_array_iter/sub_flood_INT16_integer_array_iter.f90
 mod_safe/sub_flood_array_iter/sub_flood_INT32_integer_array_iter.f90
 mod_safe/sub_flood_array_iter/sub_flood_INT64_integer_array_iter.f90
@@ -349,6 +352,7 @@ mod_safe/sub_flood_array/sub_flood_INT32_integer_array.f90
 mod_safe/sub_flood_array/sub_flood_INT64_integer_array.f90
 mod_safe/sub_flood_array/sub_flood_REAL32_real_array.f90
 mod_safe/sub_flood_array/sub_flood_REAL64_real_array.f90
+mod_safe/sub_linearRegression.f90
 mod_safe/sub_load_array_from_BIN.py
 mod_safe/sub_load_array_from_BIN/sub_load_1D_INT16_integer_array_from_BIN.f90
 mod_safe/sub_load_array_from_BIN/sub_load_1D_INT16_logical_array_from_BIN.f90
@@ -429,6 +433,7 @@ mod_safe/sub_load_array_from_BIN/sub_load_7D_REAL32_real_array_from_BIN.f90
 mod_safe/sub_load_array_from_BIN/sub_load_7D_REAL64_real_array_from_BIN.f90
 mod_safe/sub_max_dist_euclideanSpace.f90
 mod_safe/sub_max_dist_geodesicSpace.f90
+mod_safe/sub_quadraticRegression.f90
 mod_safe/sub_save_array_as_BIN.py
 mod_safe/sub_save_array_as_BIN/sub_save_1D_INT16_integer_array_as_BIN.f90
 mod_safe/sub_save_array_as_BIN/sub_save_1D_INT16_logical_array_as_BIN.f90

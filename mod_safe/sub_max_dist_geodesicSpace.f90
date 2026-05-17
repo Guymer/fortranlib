@@ -33,19 +33,21 @@ PURE SUBROUTINE sub_max_dist_geodesicSpace(                                     
     REAL(kind = REAL64)                                                         :: tmpBearing2
     REAL(kind = REAL64)                                                         :: tmpDist
 
-    ! Set value ...
+    ! Set integer value ...
     IF(PRESENT(nmax))THEN
         nmax2 = MAX(3_INT64, MIN(100_INT64, nmax))                              ! [#]
     ELSE
         nmax2 = 100_INT64                                                       ! [#]
     END IF
 
-    ! Set value ...
+    ! Set float value ...
     IF(PRESENT(eps))THEN
         eps2 = eps
     ELSE
         eps2 = 1.0e-12_REAL64
     END IF
+
+    ! **************************************************************************
 
     ! Find the maximum Geodesic distance from the middle to any location ...
     maxDist = 0.0e0_REAL64                                                      ! [m]

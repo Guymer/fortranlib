@@ -1,4 +1,4 @@
-PURE SUBROUTINE sub_max_dist_geodesicSpace(n, lons, lats, midLon, midLat, maxDist)
+PURE SUBROUTINE sub_max_dist_geodesicSpace(n, lons, lats, midLon, midLat, maxDist, nmax, eps)
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 

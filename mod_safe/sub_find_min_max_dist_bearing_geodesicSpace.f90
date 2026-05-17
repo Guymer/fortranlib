@@ -1,4 +1,4 @@
-SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        &
+SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(                         &
     n,                                                                          &
     midLon,                                                                     &
     midLat,                                                                     &
@@ -56,6 +56,7 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
     REAL(kind = REAL64)                                                         :: quaB
     REAL(kind = REAL64)                                                         :: quaC
     REAL(kind = REAL64)                                                         :: startAng2
+    REAL(kind = REAL64)                                                         :: tmpAng
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: angLats
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: angLons
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: fakeAngs
@@ -102,9 +103,9 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
         angHalfRange2 = 180.0e0_REAL64                                          ! [°]
     END IF
     IF(PRESENT(dist))THEN
-        dist2 = dist                                                            ! [°]
+        dist2 = dist                                                            ! [m]
     ELSE
-        dist2 = 10.0e0_REAL64                                                   ! [°]
+        dist2 = 1000.0e0_REAL64                                                 ! [m]
     END IF
     IF(PRESENT(eps))THEN
         eps2 = eps
@@ -197,8 +198,17 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
     DO iAng = 1_INT64, nAng2
         ! Populate location arrays ...
         ! NOTE: Taking care not to stray outside of 0° and 360°.
-        angLons(iAng) = midLon + dist2 * SIN(func_radians(fakeAngs(iAng)))      ! [°]
-        angLats(iAng) = midLat + dist2 * COS(func_radians(fakeAngs(iAng)))      ! [°]
+        CALL sub_calc_loc_from_loc_and_bearing_and_dist(                        &
+            midLon,                                                             &
+            midLat,                                                             &
+            MODULO(fakeAngs(iAng) + 360.0e0_REAL64, 360.0e0_REAL64),            &
+            dist2,                                                              &
+            angLons(iAng),                                                      &
+            angLats(iAng),                                                      &
+            tmpAng,                                                             &
+             eps = eps2,                                                        &
+            nmax = nIter2                                                       &
+        )
     END DO
 
     ! **************************************************************************
@@ -208,13 +218,15 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
 
     ! Populate distance array ...
     DO iAng = 1_INT64, nAng2
-        CALL sub_max_dist_euclideanSpace(                                       &
+        CALL sub_max_dist_geodesicSpace(                                        &
                   n = n,                                                        &
              midLon = angLons(iAng),                                            &
              midLat = angLats(iAng),                                            &
                lons = lons,                                                     &
                lats = lats,                                                     &
-            maxDist = maxDists(iAng)                                            &
+            maxDist = maxDists(iAng),                                           &
+                eps = eps2,                                                     &
+               nmax = nIter2                                                    &
         )
     END DO
 
@@ -230,7 +242,7 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
         iAng = MINLOC(maxDists, dim = 1, kind = INT64)                          ! [#]
 
         ! Iterate answer ...
-        CALL sub_find_min_max_dist_bearing_euclideanSpace(                      &
+        CALL sub_find_min_max_dist_bearing_geodesicSpace(                       &
                        n = n,                                                   &
                   midLon = midLon,                                              &
                   midLat = midLat,                                              &
@@ -273,7 +285,7 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
             END IF
         ELSE
             ! Iterate answer ...
-            CALL sub_find_min_max_dist_bearing_euclideanSpace(                  &
+            CALL sub_find_min_max_dist_bearing_geodesicSpace(                   &
                            n = n,                                               &
                       midLon = midLon,                                          &
                       midLat = midLat,                                          &
@@ -297,4 +309,4 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
     ! Clean up ...
     DEALLOCATE(fakeAngs)
     DEALLOCATE(maxDists)
-END SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace
+END SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace

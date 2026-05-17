@@ -5,7 +5,8 @@ PROGRAM test18
     ! Import my modules ...
     USE mod_safe,           ONLY:   sub_allocate_array,                         &
                                     sub_find_middle_of_locs_euclideanBox,       &
-                                    sub_find_min_max_dist_bearing_euclideanSpace
+                                    sub_find_min_max_dist_bearing_euclideanSpace,   &
+                                    sub_find_min_max_dist_bearing_geodesicSpace
 
     IMPLICIT NONE
 
@@ -132,7 +133,22 @@ PROGRAM test18
         bestAng = bestAng                                                       &
     )
     WRITE(                                                                      &
-        fmt = '("The bearing to the mimimum maximum distance is ", f10.6, "°.")',   &
+        fmt = '("The bearing to the mimimum maximum distance (in Euclidean space) is ", f10.6, "°.")',  &
+        unit = OUTPUT_UNIT                                                      &
+    ) bestAng
+    FLUSH(unit = OUTPUT_UNIT)
+
+    ! Test subroutine ...
+    CALL sub_find_min_max_dist_bearing_geodesicSpace(                           &
+              n = n,                                                            &
+           lons = lons,                                                         &
+           lats = lats,                                                         &
+         midLon = midLon,                                                       &
+         midLat = midLat,                                                       &
+        bestAng = bestAng                                                       &
+    )
+    WRITE(                                                                      &
+        fmt = '("The bearing to the mimimum maximum distance (in Geodesic space) is ", f10.6, "°.")',   &
         unit = OUTPUT_UNIT                                                      &
     ) bestAng
     FLUSH(unit = OUTPUT_UNIT)

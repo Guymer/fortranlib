@@ -9,7 +9,6 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              
     angHalfRange,                                                               &
     debug,                                                                      &
     dist,                                                                       &
-    eps,                                                                        &
     first,                                                                      &
     iAngIter,                                                                   &
     iDistIter,                                                                  &
@@ -46,7 +45,6 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              
     REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: angConv
     REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: angHalfRange
     REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: dist
-    REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: eps
     REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: startAng
 
     ! Declare internal variables ...
@@ -63,7 +61,6 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              
     REAL(kind = REAL64)                                                         :: angConv2
     REAL(kind = REAL64)                                                         :: angHalfRange2
     REAL(kind = REAL64)                                                         :: dist2
-    REAL(kind = REAL64)                                                         :: eps2
     REAL(kind = REAL64)                                                         :: linC
     REAL(kind = REAL64)                                                         :: linM
     REAL(kind = REAL64)                                                         :: startAng2
@@ -138,11 +135,6 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              
         dist2 = dist                                                            ! [°]
     ELSE
         dist2 = 8.993203637245378e-02_REAL64                                    ! [°] ~10 km
-    END IF
-    IF(PRESENT(eps))THEN
-        eps2 = eps
-    ELSE
-        eps2 = 1.0e-12_REAL64
     END IF
     IF(PRESENT(startAng))THEN
         startAng2 = startAng                                                    ! [°]
@@ -275,7 +267,6 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              
             angHalfRange = 0.5e0_REAL64 * angHalfRange2,                        &
                    debug = debug2,                                              &
                     dist = dist2,                                               &
-                     eps = eps2,                                                &
                    first = .FALSE._INT8,                                        &
                 iAngIter = iAngIter2 + 1_INT64,                                 &
                iDistIter = iDistIter2,                                          &
@@ -330,7 +321,6 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              
                 angHalfRange = 0.5e0_REAL64 * angHalfRange2,                    &
                        debug = debug2,                                          &
                         dist = dist2,                                           &
-                         eps = eps2,                                            &
                        first = .FALSE._INT8,                                    &
                     iAngIter = iAngIter2 + 1_INT64,                             &
                    iDistIter = iDistIter2,                                      &

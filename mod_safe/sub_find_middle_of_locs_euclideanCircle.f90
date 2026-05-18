@@ -8,7 +8,6 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                   
     angConv,                                                                    &
     debug,                                                                      &
     dist,                                                                       &
-    eps,                                                                        &
     iRefine,                                                                    &
     nAng,                                                                       &
     nAngIter,                                                                   &
@@ -37,7 +36,6 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                   
     INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nRefine
     REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: angConv
     REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: dist
-    REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: eps
 
     ! Declare internal variables ...
     LOGICAL(kind = INT8)                                                        :: debug2
@@ -50,7 +48,6 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                   
     REAL(kind = REAL64)                                                         :: angConv2
     REAL(kind = REAL64)                                                         :: bestAng
     REAL(kind = REAL64)                                                         :: dist2
-    REAL(kind = REAL64)                                                         :: eps2
     REAL(kind = REAL64)                                                         :: newMaxDist
     REAL(kind = REAL64)                                                         :: newMidLat
     REAL(kind = REAL64)                                                         :: newMidLon
@@ -99,11 +96,6 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                   
         dist2 = dist                                                            ! [°]
     ELSE
         dist2 = 8.993203637245378e-02_REAL64                                    ! [°] ~10 km
-    END IF
-    IF(PRESENT(eps))THEN
-        eps2 = eps
-    ELSE
-        eps2 = 1.0e-12_REAL64
     END IF
 
     ! **************************************************************************
@@ -169,7 +161,6 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                   
                 angHalfRange = 180.0e0_REAL64,                                  &
                        debug = debug2,                                          &
                         dist = dist2,                                           &
-                         eps = eps2,                                            &
                        first = .TRUE._INT8,                                     &
                     iAngIter = 1_INT64,                                         &
                    iDistIter = iDistIter,                                       &
@@ -256,7 +247,6 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                   
               angConv = angConv2,                                               &
                 debug = debug2,                                                 &
                  dist = 0.5e0_REAL64 * dist2,                                   &
-                  eps = eps2,                                                   &
               iRefine = iRefine2 + 1_INT64,                                     &
                  nAng = nAng2,                                                  &
              nAngIter = nAngIter2,                                              &

@@ -587,27 +587,30 @@ libmod_geo.a																	\
 mod_geo.mod																		\
 mod_geo.o &:		$(MOD_GEO_SRC)												\
 					mod_safe.mod
+	$(RM) -f libmod_geo.a mod_geo.mod mod_geo.o
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS) mod_geo.F90
 	$(AR) -r libmod_geo.a mod_geo.o
 
 libmod_safe.a																	\
 mod_safe.mod																	\
 mod_safe.o &:		$(MOD_SAFE_SRC)
+	$(RM) -f libmod_safe.a mod_safe.mod mod_safe.o
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS) mod_safe.F90
 	$(AR) -r libmod_safe.a mod_safe.o
 
 libmod_safe_mpi.a																\
 mod_safe_mpi.mod																\
 mod_safe_mpi.o &:	$(MOD_SAFE_MPI_SRC)
+	$(RM) -f libmod_safe_mpi.a mod_safe_mpi.mod mod_safe_mpi.o
 	$(FC) -c $(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS) mod_safe_mpi.F90
 	$(AR) -r libmod_safe_mpi.a mod_safe_mpi.o
 
 mod_f2py.so:		$(MOD_F2PY_SRC)												\
 					libmod_safe.a
-	$(RM) -f mod_f2py.*.so mod_f2py.so
+	$(RM) -f mod_f2py.*.so $@
 	FC=$(FC) FFLAGS="$(LANG_OPTS) $(WARN_OPTS) $(MACH_OPTS)" $(PYTHON3) -m numpy.f2py -c mod_f2py.F90 -m mod_f2py --backend meson -lgomp -lmod_safe -L$(CURDIR) -I$(CURDIR)
 	test $(shell uname) = Darwin && install_name_tool -add_rpath /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib mod_f2py$(SUFFIX) || true
 	test $(shell uname) = Darwin && install_name_tool -add_rpath /opt/local/lib mod_f2py$(SUFFIX) || true
 	test $(shell uname) = Darwin && install_name_tool -add_rpath /opt/local/lib/libgcc mod_f2py$(SUFFIX) || true
 	test $(shell uname) = Darwin && install_name_tool -add_rpath /opt/local/lib/libomp mod_f2py$(SUFFIX) || true
-	$(LN) -s mod_f2py$(SUFFIX) mod_f2py.so
+	$(LN) -s mod_f2py$(SUFFIX) $@

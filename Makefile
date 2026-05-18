@@ -24,10 +24,12 @@ RM      := $(shell which rm                   2> /dev/null || echo "ERROR")
 # *                             DYNAMIC VARIABLES                              *
 # ******************************************************************************
 
+DUMPMACHINE := $(shell $(FC) -dumpmachine 2> /dev/null || echo "ERROR")
+DUMPVERSION := $(shell $(FC) -dumpversion 2> /dev/null || echo "ERROR")
 ifeq ($(COVERAGE), true)
 	LANG_OPTS += -g -O0 -fprofile-abs-path --coverage
 else ifeq ($(DEBUG), true)
-	LANG_OPTS += -g -O0 -fcheck=all
+	LANG_OPTS += -g -O0 -fbacktrace -fcheck=all -ffpe-trap=invalid,zero
 else
 	LANG_OPTS += -O2
 endif
@@ -111,10 +113,12 @@ doc-targets:	docs/_build/html/objects.inv
 
 # "gmake -r help"        = print this help
 help:
-	echo "These are the knwon settings:"
+	echo "These are the known settings:"
 	echo "  COVERAGE = $(COVERAGE)"
 	echo "     DEBUG = $(DEBUG)"
+	echo "   MACHINE = $(DUMPMACHINE)"
 	echo "    SUFFIX = $(SUFFIX)"
+	echo "   VERSION = $(DUMPVERSION)"
 	echo "These are the available options:"
 	$(GREP) -E "^# \"gmake -r " Makefile | $(CUT) -c 2-
 

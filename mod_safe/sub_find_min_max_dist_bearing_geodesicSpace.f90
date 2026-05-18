@@ -163,7 +163,7 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
     ! Check arguments ...
     IF(iAngIter2 == nAngIter2)THEN
         WRITE(                                                                  &
-             fmt = '("ERROR: Failed to converge; the middle is currently (", f11.6, "°, ", f10.6, "°); nAngIter = ", i9, ".")',    &
+             fmt = '("ERROR: Failed to converge; the middle is currently (", f11.6, "°, ", f10.6, "°); nAngIter2 = ", i9, ".")',    &
             unit = ERROR_UNIT                                                   &
         ) midLon, midLat, nAngIter2
         FLUSH(unit = ERROR_UNIT)
@@ -205,7 +205,7 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
     !       run the first time.
     IF(first2)THEN
         nAng2 = nAng2 - 1_INT64                                                 ! [#]
-        CALL sub_allocate_array(fakeAngs, "fakeAngs", nAng2, debug2)
+        ALLOCATE(fakeAngs(nAng2))
         DO iAng = 1_INT64, nAng2
             fakeAngs(iAng) = startAng2 + REAL(                                  &
                 iAng - 1_INT64 - nAng2 / 2_INT64,                               &
@@ -216,7 +216,7 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
             )                                                                   ! [°]
         END DO
     ELSE
-        CALL sub_allocate_array(fakeAngs, "fakeAngs", nAng2, debug2)
+        ALLOCATE(fakeAngs(nAng2))
         DO iAng = 1_INT64, nAng2
             fakeAngs(iAng) = startAng2 + REAL(                                  &
                 iAng - 1_INT64 - nAng2 / 2_INT64,                               &
@@ -231,8 +231,8 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
     ! **************************************************************************
 
     ! Initialize location arrays ...
-    CALL sub_allocate_array(angLons, "angLons", nAng2, debug2)
-    CALL sub_allocate_array(angLats, "angLats", nAng2, debug2)
+    ALLOCATE(angLons(nAng2))
+    ALLOCATE(angLats(nAng2))
 
     ! Loop over angles ...
     DO iAng = 1_INT64, nAng2
@@ -254,7 +254,7 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
     ! **************************************************************************
 
     ! Initialize distance array ...
-    CALL sub_allocate_array(maxDists, "maxDists", nAng2, debug2)
+    ALLOCATE(maxDists(nAng2))
 
     ! Populate distance array ...
     DO iAng = 1_INT64, nAng2
@@ -276,10 +276,11 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
 
     ! **************************************************************************
 
-    ! Check if this is the first time that a solution has been found ...
+    ! Check if this is the first time that the angle has been iterated ...
     IF(first2)THEN
         ! Find angle with minimum maximum distance ...
         iAng = MINLOC(maxDists, dim = 1, kind = INT64)                          ! [#]
+        bestAng = fakeAngs(iAng)                                                ! [°]
 
         ! Iterate answer ...
         CALL sub_find_min_max_dist_bearing_geodesicSpace(                       &
@@ -302,7 +303,7 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
                 nAngIter = nAngIter2,                                           &
                nDistIter = nDistIter2,                                          &
                  nRefine = nRefine2,                                            &
-                startAng = MODULO(fakeAngs(iAng) + 360.0e0_REAL64, 360.0e0_REAL64)  &
+                startAng = MODULO(bestAng + 360.0e0_REAL64, 360.0e0_REAL64)     &
         )
     ELSE
         ! Fit a polynomial degree 2 to the values and find the angle with the

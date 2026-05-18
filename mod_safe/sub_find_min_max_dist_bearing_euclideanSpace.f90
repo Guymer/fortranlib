@@ -136,7 +136,7 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              
     IF(PRESENT(dist))THEN
         dist2 = dist                                                            ! [°]
     ELSE
-        dist2 = 10.0e0_REAL64                                                   ! [°]
+        dist2 = 0.01e0_REAL64                                                   ! [°]
     END IF
     IF(PRESENT(eps))THEN
         eps2 = eps

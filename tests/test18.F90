@@ -5,9 +5,7 @@ PROGRAM test18
     ! Import my modules ...
     USE mod_safe,           ONLY:   sub_allocate_array,                         &
                                     sub_find_middle_of_locs_euclideanBox,       &
-                                    sub_find_middle_of_locs_euclideanCircle,    &
-                                    sub_find_min_max_dist_bearing_euclideanSpace,   &
-                                    sub_find_min_max_dist_bearing_geodesicSpace
+                                    sub_find_middle_of_locs_euclideanCircle
 
     IMPLICIT NONE
 
@@ -37,7 +35,7 @@ PROGRAM test18
         newunit = fUnit,                                                        &
          status = "old"                                                         &
     )
-    IF(errNum /= 0)THEN
+    IF(errNum /= 0_INT32)THEN
         WRITE(                                                                  &
              fmt = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")',  &
             unit = ERROR_UNIT                                                   &
@@ -58,7 +56,7 @@ PROGRAM test18
         IF(IS_IOSTAT_END(errNum))THEN
             EXIT
         END IF
-        IF(errNum /= 0)THEN
+        IF(errNum /= 0_INT32)THEN
             WRITE(                                                              &
                  fmt = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")',  &
                 unit = ERROR_UNIT                                               &
@@ -79,7 +77,7 @@ PROGRAM test18
         iostat = errNum,                                                        &
           unit = fUnit                                                          &
     )
-    IF(errNum /= 0)THEN
+    IF(errNum /= 0_INT32)THEN
         WRITE(                                                                  &
              fmt = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")',  &
             unit = ERROR_UNIT                                                   &
@@ -94,7 +92,7 @@ PROGRAM test18
             iostat = errNum,                                                    &
               unit = fUnit                                                      &
         ) lons(i), lats(i)
-        IF(errNum /= 0)THEN
+        IF(errNum /= 0_INT32)THEN
             WRITE(                                                              &
                  fmt = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")',  &
                 unit = ERROR_UNIT                                               &
@@ -134,46 +132,12 @@ PROGRAM test18
           maxDist = maxDist,                                                    &
              conv = 8.993203637245378e-02_REAL64,                               &
              nAng = 361_INT64,                                                  &
-         nAngIter = 1000000_INT64,                                              &
-        nDistIter = 1000000_INT64,                                              &
           nRefine = 6_INT64                                                     &
     )
     WRITE(                                                                      &
          fmt = '("The (EuclideanCircle) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is ", f10.6, "°.")',  &
         unit = OUTPUT_UNIT                                                      &
     ) midLon, midLat, maxDist
-    FLUSH(unit = OUTPUT_UNIT)
-
-    ! **************************************************************************
-
-    ! Test subroutine ...
-    CALL sub_find_min_max_dist_bearing_euclideanSpace(                          &
-              n = n,                                                            &
-           lons = lons,                                                         &
-           lats = lats,                                                         &
-         midLon = midLon,                                                       &
-         midLat = midLat,                                                       &
-        bestAng = bestAng                                                       &
-    )
-    WRITE(                                                                      &
-         fmt = '("The bearing to the mimimum maximum distance (in Euclidean space) is ", f10.6, "°.")', &
-        unit = OUTPUT_UNIT                                                      &
-    ) bestAng
-    FLUSH(unit = OUTPUT_UNIT)
-
-    ! Test subroutine ...
-    CALL sub_find_min_max_dist_bearing_geodesicSpace(                           &
-              n = n,                                                            &
-           lons = lons,                                                         &
-           lats = lats,                                                         &
-         midLon = midLon,                                                       &
-         midLat = midLat,                                                       &
-        bestAng = bestAng                                                       &
-    )
-    WRITE(                                                                      &
-         fmt = '("The bearing to the mimimum maximum distance (in Geodesic space) is ", f10.6, "°.")',  &
-        unit = OUTPUT_UNIT                                                      &
-    ) bestAng
     FLUSH(unit = OUTPUT_UNIT)
 
     ! **************************************************************************

@@ -153,9 +153,9 @@ SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                             
     IF(maxDist <= conv2)THEN
         IF(debug2)THEN
             WRITE(                                                              &
-                 fmt = '("INFO: Refinement #", i3, "/", i3, ": The middle is finally (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is finally ", f10.6, "°.")',  &
+                 fmt = '("INFO: Refinement #", i3, "/", i3, ": The middle is initially converged.")',   &
                 unit = OUTPUT_UNIT                                              &
-            ) iRefine2, nRefine2, midLon, midLat, maxDist
+            ) iRefine2, nRefine2, midLon
             FLUSH(unit = OUTPUT_UNIT)
         END IF
     ELSE
@@ -211,7 +211,7 @@ SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                             
             IF(newMaxDist > maxDist)THEN
                 IF(debug2)THEN
                     WRITE(                                                      &
-                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The middle is finally (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is finally ", f10.6, "°.")',  &
+                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The moved middle is worse; the middle is finally (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is finally ", f10.6, "°.")',  &
                         unit = OUTPUT_UNIT                                      &
                     ) iRefine2, nRefine2, iDistIter, nDistIter2, midLon, midLat, maxDist
                     FLUSH(unit = OUTPUT_UNIT)
@@ -237,7 +237,7 @@ SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                             
 
             IF(debug2)THEN
                 WRITE(                                                          &
-                     fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The middle is now (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is now ", f10.6, "°.")',  &
+                     fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The moved middle is better; the middle is now (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is now ", f10.6, "°.")',  &
                     unit = OUTPUT_UNIT                                          &
                 ) iRefine2, nRefine2, iDistIter, nDistIter2, midLon, midLat, maxDist
                 FLUSH(unit = OUTPUT_UNIT)
@@ -245,33 +245,25 @@ SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                             
         END DO
     END IF
 
-    ! Stop if the end of the refinements has been reached but the answer has not
-    ! converged ...
-    IF(iRefine2 == nRefine2)THEN
-        WRITE(                                                                  &
-             fmt = '("ERROR: Failed to converge; the middle is currently (", f11.6, "°, ", f10.6, "°); nRefine = ", i9, ".")',    &
-            unit = ERROR_UNIT                                                   &
-        ) midLon, midLat, nRefine2
-        FLUSH(unit = ERROR_UNIT)
-        STOP
+    ! Check if any more refinement is needed ...
+    IF(iRefine2 < nRefine2)THEN
+        ! Iterate answer ...
+        CALL sub_find_middle_of_locs_euclideanCircle(                           &
+                    n = n,                                                      &
+                 lons = lons,                                                   &
+                 lats = lats,                                                   &
+               midLon = midLon,                                                 &
+               midLat = midLat,                                                 &
+              maxDist = maxDist,                                                &
+              angConv = angConv2,                                               &
+                 conv = 0.5e0_REAL64 * conv2,                                   &
+                debug = debug2,                                                 &
+                  eps = eps2,                                                   &
+              iRefine = iRefine2 + 1_INT64,                                     &
+                 nAng = nAng2,                                                  &
+             nAngIter = nAngIter2,                                              &
+            nDistIter = nDistIter2,                                             &
+              nRefine = nRefine2                                                &
+        )
     END IF
-
-    ! Iterate answer ...
-    CALL sub_find_middle_of_locs_euclideanCircle(                               &
-                n = n,                                                          &
-             lons = lons,                                                       &
-             lats = lats,                                                       &
-           midLon = midLon,                                                     &
-           midLat = midLat,                                                     &
-          maxDist = maxDist,                                                    &
-          angConv = angConv2,                                                   &
-             conv = 0.5e0_REAL64 * conv2,                                       &
-            debug = debug2,                                                     &
-              eps = eps2,                                                       &
-          iRefine = iRefine2 + 1_INT64,                                         &
-             nAng = nAng2,                                                      &
-         nAngIter = nAngIter2,                                                 &
-        nDistIter = nDistIter2,                                                 &
-          nRefine = nRefine2                                                    &
-    )
 END SUBROUTINE sub_find_middle_of_locs_euclideanCircle

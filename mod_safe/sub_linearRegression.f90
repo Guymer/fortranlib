@@ -1,4 +1,11 @@
-SUBROUTINE sub_linearRegression(n, x, y, m, c, debug)
+SUBROUTINE sub_linearRegression(                                                &
+    n,                                                                          &
+    x,                                                                          &
+    y,                                                                          &
+    m,                                                                          &
+    c,                                                                          &
+    debug                                                                       &
+)
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 

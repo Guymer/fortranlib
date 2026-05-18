@@ -1,4 +1,4 @@
-SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(                         &
+RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               &
     n,                                                                          &
     midLon,                                                                     &
     midLat,                                                                     &

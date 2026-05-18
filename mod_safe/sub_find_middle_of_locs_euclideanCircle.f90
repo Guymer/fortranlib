@@ -1,4 +1,4 @@
-SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                             &
+RECURSIVE SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                   &
     n,                                                                          &
     lons,                                                                       &
     lats,                                                                       &
@@ -120,30 +120,25 @@ SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                             
 
     ! **************************************************************************
 
-    ! Calculate the initial middle (using the Euclidean bounding box method if
-    ! required) and the maximum distance ...
+    ! Calculate the middle of the Euclidean bounding box as an initial starting
+    ! guess ...
     IF(iRefine2 == 1_INT64)THEN
-        CALL sub_find_middle_of_locs_euclideanBox(                              &
-                  n = n,                                                        &
-               lons = lons,                                                     &
-               lats = lats,                                                     &
-             midLon = midLon,                                                   &
-             midLat = midLat,                                                   &
-            maxDist = maxDist                                                   &
-        )
-    ELSE
-        CALL sub_max_dist_euclideanSpace(                                       &
-                  n = n,                                                        &
-             midLon = midLon,                                                   &
-             midLat = midLat,                                                   &
-               lons = lons,                                                     &
-               lats = lats,                                                     &
-            maxDist = maxDist                                                   &
-        )
+        midLon = 0.5e0_REAL64 * (MINVAL(lons) + MAXVAL(lons))                   ! [°]
+        midLat = 0.5e0_REAL64 * (MINVAL(lats) + MAXVAL(lats))                   ! [°]
     END IF
+
+    ! Find the maximum Euclidean distance from the middle to any location ...
+    CALL sub_max_dist_euclideanSpace(                                           &
+              n = n,                                                            &
+         midLon = midLon,                                                       &
+         midLat = midLat,                                                       &
+           lons = lons,                                                         &
+           lats = lats,                                                         &
+        maxDist = maxDist                                                       &
+    )
     IF(debug2)THEN
         WRITE(                                                                  &
-             fmt = '("INFO: Refinement #", i3, "/", i3, ": The middle is initially (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is initially ", f10.6, "°.")',  &
+             fmt = '("INFO: Refinement #", i3, "/", i3, ": The middle is initially (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is initially ", f10.6, "°.")',   &
             unit = OUTPUT_UNIT                                                  &
         ) iRefine2, nRefine2, midLon, midLat, maxDist
         FLUSH(unit = OUTPUT_UNIT)
@@ -159,7 +154,7 @@ SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                             
             FLUSH(unit = OUTPUT_UNIT)
         END IF
     ELSE
-        ! Loop over iterations ...
+        ! Loop over distance iterations ...
         DO iDistIter = 1_INT64, nDistIter2
             ! Find the angle towards the minimum maximum Euclidean distance ...
             CALL sub_find_min_max_dist_bearing_euclideanSpace(                  &
@@ -186,7 +181,7 @@ SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                             
             )
             IF(debug2)THEN
                 WRITE(                                                          &
-                     fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Moving middle ", f10.6, "° towards ", f10.6, "° ...")',    &
+                     fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Moving middle ", f10.6, "° towards ", f10.6, "° ...")',   &
                     unit = OUTPUT_UNIT                                          &
                 ) iRefine2, nRefine2, iDistIter, nDistIter2, conv2, minAng
                 FLUSH(unit = OUTPUT_UNIT)
@@ -211,7 +206,7 @@ SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                             
             IF(newMaxDist > maxDist)THEN
                 IF(debug2)THEN
                     WRITE(                                                      &
-                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The moved middle is worse; the middle is finally (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is finally ", f10.6, "°.")',  &
+                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The moved middle is worse; the middle is finally (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is finally ", f10.6, "°.")', &
                         unit = OUTPUT_UNIT                                      &
                     ) iRefine2, nRefine2, iDistIter, nDistIter2, midLon, midLat, maxDist
                     FLUSH(unit = OUTPUT_UNIT)
@@ -237,7 +232,7 @@ SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                             
 
             IF(debug2)THEN
                 WRITE(                                                          &
-                     fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The moved middle is better; the middle is now (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is now ", f10.6, "°.")',  &
+                     fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The moved middle is better; the middle is now (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is now ", f10.6, "°.")',    &
                     unit = OUTPUT_UNIT                                          &
                 ) iRefine2, nRefine2, iDistIter, nDistIter2, midLon, midLat, maxDist
                 FLUSH(unit = OUTPUT_UNIT)

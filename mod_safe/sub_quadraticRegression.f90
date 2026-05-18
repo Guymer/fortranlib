@@ -1,4 +1,12 @@
-SUBROUTINE sub_quadraticRegression(n, x, y, a, b, c, debug)
+SUBROUTINE sub_quadraticRegression(                                             &
+    n,                                                                          &
+    x,                                                                          &
+    y,                                                                          &
+    a,                                                                          &
+    b,                                                                          &
+    c,                                                                          &
+    debug                                                                       &
+)
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 

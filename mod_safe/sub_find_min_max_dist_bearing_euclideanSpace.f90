@@ -1,4 +1,4 @@
-SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        &
+RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              &
     n,                                                                          &
     midLon,                                                                     &
     midLat,                                                                     &

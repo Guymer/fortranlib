@@ -129,7 +129,6 @@ PROGRAM test18
            midLon = midLon,                                                     &
            midLat = midLat,                                                     &
           maxDist = maxDist,                                                    &
-             dist = 8.993203637245378e-02_REAL64,                               &
              nAng = 361_INT64,                                                  &
           nRefine = 6_INT64                                                     &
     )

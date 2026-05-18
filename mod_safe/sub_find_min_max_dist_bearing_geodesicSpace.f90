@@ -145,7 +145,7 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
     IF(PRESENT(dist))THEN
         dist2 = dist                                                            ! [m]
     ELSE
-        dist2 = 1000.0e0_REAL64                                                 ! [m]
+        dist2 = 10000.0e0_REAL64                                                ! [m] =10 km
     END IF
     IF(PRESENT(eps))THEN
         eps2 = eps

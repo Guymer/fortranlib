@@ -98,7 +98,7 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                   
     IF(PRESENT(dist))THEN
         dist2 = dist                                                            ! [°]
     ELSE
-        dist2 = 0.01e0_REAL64                                                   ! [°]
+        dist2 = 8.993203637245378e-02_REAL64                                    ! [°] ~10 km
     END IF
     IF(PRESENT(eps))THEN
         eps2 = eps

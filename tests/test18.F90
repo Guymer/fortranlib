@@ -119,26 +119,32 @@ PROGRAM test18
         maxDist = maxDist                                                       &
     )
     WRITE(                                                                      &
-        fmt = '("The (EuclideanBox) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is ", f10.6, "°.")',    &
+         fmt = '("The (EuclideanBox) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is ", f10.6, "°.")', &
         unit = OUTPUT_UNIT                                                      &
     ) midLon, midLat, maxDist
     FLUSH(unit = OUTPUT_UNIT)
 
     ! Test subroutine ...
     CALL sub_find_middle_of_locs_euclideanCircle(                               &
-              n = n,                                                            &
-           lons = lons,                                                         &
-           lats = lats,                                                         &
-         midLon = midLon,                                                       &
-         midLat = midLat,                                                       &
-        maxDist = maxDist,                                                      &
-          nIter = 1000000_INT64                                                 &
+                n = n,                                                          &
+             lons = lons,                                                       &
+             lats = lats,                                                       &
+           midLon = midLon,                                                     &
+           midLat = midLat,                                                     &
+          maxDist = maxDist,                                                    &
+             conv = 8.993203637245378e-02_REAL64,                               &
+             nAng = 361_INT64,                                                  &
+         nAngIter = 1000000_INT64,                                              &
+        nDistIter = 1000000_INT64,                                              &
+          nRefine = 6_INT64                                                     &
     )
     WRITE(                                                                      &
-        fmt = '("The (EuclideanCircle) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is ", f10.6, "°.")',    &
+         fmt = '("The (EuclideanCircle) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is ", f10.6, "°.")',  &
         unit = OUTPUT_UNIT                                                      &
     ) midLon, midLat, maxDist
     FLUSH(unit = OUTPUT_UNIT)
+
+    ! **************************************************************************
 
     ! Test subroutine ...
     CALL sub_find_min_max_dist_bearing_euclideanSpace(                          &
@@ -150,7 +156,7 @@ PROGRAM test18
         bestAng = bestAng                                                       &
     )
     WRITE(                                                                      &
-        fmt = '("The bearing to the mimimum maximum distance (in Euclidean space) is ", f10.6, "°.")',  &
+         fmt = '("The bearing to the mimimum maximum distance (in Euclidean space) is ", f10.6, "°.")', &
         unit = OUTPUT_UNIT                                                      &
     ) bestAng
     FLUSH(unit = OUTPUT_UNIT)
@@ -165,7 +171,7 @@ PROGRAM test18
         bestAng = bestAng                                                       &
     )
     WRITE(                                                                      &
-        fmt = '("The bearing to the mimimum maximum distance (in Geodesic space) is ", f10.6, "°.")',   &
+         fmt = '("The bearing to the mimimum maximum distance (in Geodesic space) is ", f10.6, "°.")',  &
         unit = OUTPUT_UNIT                                                      &
     ) bestAng
     FLUSH(unit = OUTPUT_UNIT)

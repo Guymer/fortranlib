@@ -11,9 +11,13 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
     dist,                                                                       &
     eps,                                                                        &
     first,                                                                      &
-    iIter,                                                                      &
+    iAngIter,                                                                   &
+    iDistIter,                                                                  &
+    iRefine,                                                                    &
     nAng,                                                                       &
-    nIter,                                                                      &
+    nAngIter,                                                                   &
+    nDistIter,                                                                  &
+    nRefine,                                                                    &
     startAng                                                                    &
 )
     ! Import standard modules ...
@@ -32,9 +36,13 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
     ! Declare optional input variables/outputs ...
     LOGICAL(kind = INT8), INTENT(in), OPTIONAL                                  :: debug
     LOGICAL(kind = INT8), INTENT(in), OPTIONAL                                  :: first
-    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: iIter
+    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: iAngIter
+    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: iDistIter
+    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: iRefine
     INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nAng
-    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nIter
+    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nAngIter
+    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nDistIter
+    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nRefine
     REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: angConv
     REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: angHalfRange
     REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: dist
@@ -45,9 +53,13 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
     LOGICAL(kind = INT8)                                                        :: debug2
     LOGICAL(kind = INT8)                                                        :: first2
     INTEGER(kind = INT64)                                                       :: iAng
-    INTEGER(kind = INT64)                                                       :: iIter2
+    INTEGER(kind = INT64)                                                       :: iAngIter2
+    INTEGER(kind = INT64)                                                       :: iDistIter2
+    INTEGER(kind = INT64)                                                       :: iRefine2
     INTEGER(kind = INT64)                                                       :: nAng2
-    INTEGER(kind = INT64)                                                       :: nIter2
+    INTEGER(kind = INT64)                                                       :: nAngIter2
+    INTEGER(kind = INT64)                                                       :: nDistIter2
+    INTEGER(kind = INT64)                                                       :: nRefine2
     REAL(kind = REAL64)                                                         :: angConv2
     REAL(kind = REAL64)                                                         :: angHalfRange2
     REAL(kind = REAL64)                                                         :: dist2
@@ -74,20 +86,40 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
     END IF
 
     ! Set integer values ...
-    IF(PRESENT(iIter))THEN
-        iIter2 = iIter                                                          ! [#]
+    IF(PRESENT(iAngIter))THEN
+        iAngIter2 = iAngIter                                                    ! [#]
     ELSE
-        iIter2 = 1_INT64                                                        ! [#]
+        iAngIter2 = 1_INT64                                                     ! [#]
+    END IF
+    IF(PRESENT(iDistIter))THEN
+        iDistIter2 = iDistIter                                                  ! [#]
+    ELSE
+        iDistIter2 = 1_INT64                                                    ! [#]
+    END IF
+    IF(PRESENT(iRefine))THEN
+        iRefine2 = iRefine                                                      ! [#]
+    ELSE
+        iRefine2 = 1_INT64                                                      ! [#]
     END IF
     IF(PRESENT(nAng))THEN
         nAng2 = MAX(9_INT64, nAng)                                              ! [#]
     ELSE
         nAng2 = 9_INT64                                                         ! [#]
     END IF
-    IF(PRESENT(nIter))THEN
-        nIter2 = MAX(3_INT64, nIter)                                            ! [#]
+    IF(PRESENT(nAngIter))THEN
+        nAngIter2 = MAX(3_INT64, nAngIter)                                      ! [#]
     ELSE
-        nIter2 = 100_INT64                                                      ! [#]
+        nAngIter2 = 100_INT64                                                   ! [#]
+    END IF
+    IF(PRESENT(nDistIter))THEN
+        nDistIter2 = MAX(3_INT64, nDistIter)                                    ! [#]
+    ELSE
+        nDistIter2 = 100_INT64                                                  ! [#]
+    END IF
+    IF(PRESENT(nRefine))THEN
+        nRefine2 = nRefine                                                      ! [#]
+    ELSE
+        nRefine2 = 1_INT64                                                      ! [#]
     END IF
 
     ! Set real values ...
@@ -120,11 +152,11 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
     ! **************************************************************************
 
     ! Check arguments ...
-    IF(iIter2 == nIter2)THEN
+    IF(iAngIter2 == nAngIter2)THEN
         WRITE(                                                                  &
-             fmt = '("ERROR: Failed to converge; the middle is currently (", f11.6, "°, ", f10.6, "°); nIter = ", i9, ".")',    &
+             fmt = '("ERROR: Failed to converge; the middle is currently (", f11.6, "°, ", f10.6, "°); nAngIter = ", i9, ".")',    &
             unit = ERROR_UNIT                                                   &
-        ) midLon, midLat, nIter2
+        ) midLon, midLat, nAngIter2
         FLUSH(unit = ERROR_UNIT)
         STOP
     END IF
@@ -151,9 +183,9 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
 
     IF(debug2)THEN
         WRITE(                                                                  &
-             fmt = '("INFO: #", i9, "/", i9, ": The middle is now (", f11.6, "°, ", f10.6, "°) and the minimum maximum distance bearing is now ", f10.6, "°.")',    &
+             fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Angle Iteration #", i9, "/", i9, ": The middle is now (", f11.6, "°, ", f10.6, "°) and the minimum maximum distance bearing is now ", f10.6, "°.")',    &
             unit = OUTPUT_UNIT                                                  &
-        ) iIter2, nIter2, midLon, midLat, startAng2
+        ) iRefine2, nRefine2, iDistIter2, nDistIter2, iAngIter2, nAngIter2, midLon, midLat, startAng2
         FLUSH(unit = OUTPUT_UNIT)
     END IF
 
@@ -243,9 +275,13 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
                     dist = dist2,                                               &
                      eps = eps2,                                                &
                    first = .FALSE._INT8,                                        &
-                   iIter = iIter2 + 1_INT64,                                    &
+                iAngIter = iAngIter2 + 1_INT64,                                 &
+               iDistIter = iDistIter2,                                          &
+                 iRefine = iRefine2,                                            &
                     nAng = nAng2 + 1_INT64,                                     &
-                   nIter = nIter2,                                              &
+                nAngIter = nAngIter2,                                           &
+               nDistIter = nDistIter2,                                          &
+                 nRefine = nRefine2,                                            &
                 startAng = MODULO(fakeAngs(iAng) + 360.0e0_REAL64, 360.0e0_REAL64)  &
         )
     ELSE
@@ -266,9 +302,9 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
         IF(ABS(startAng2 - bestAng) <= angConv2)THEN
             IF(debug2)THEN
                 WRITE(                                                          &
-                     fmt = '("INFO: #", i9, "/", i9, ": The middle is finally (", f11.6, "°, ", f10.6, "°) and the minimum maximum distance bearing is finally ", f10.6, "°.")',    &
+                     fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Angle Iteration #", i9, "/", i9, ": The middle is finally (", f11.6, "°, ", f10.6, "°) and the minimum maximum distance bearing is finally ", f10.6, "°.")',    &
                     unit = OUTPUT_UNIT                                          &
-                ) iIter2 + 1_INT64, nIter2, midLon, midLat, bestAng
+                ) iRefine2, nRefine2, iDistIter2, nDistIter2, iAngIter2 + 1_INT64, nAngIter2, midLon, midLat, bestAng
                 FLUSH(unit = OUTPUT_UNIT)
             END IF
         ELSE
@@ -286,9 +322,13 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
                         dist = dist2,                                           &
                          eps = eps2,                                            &
                        first = .FALSE._INT8,                                    &
-                       iIter = iIter2 + 1_INT64,                                &
+                    iAngIter = iAngIter2 + 1_INT64,                             &
+                   iDistIter = iDistIter2,                                      &
+                     iRefine = iRefine2,                                        &
                         nAng = nAng2,                                           &
-                       nIter = nIter2,                                          &
+                    nAngIter = nAngIter2,                                       &
+                   nDistIter = nDistIter2,                                      &
+                     nRefine = nRefine2,                                        &
                     startAng = MODULO(bestAng + 360.0e0_REAL64, 360.0e0_REAL64) &
             )
         END IF

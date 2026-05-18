@@ -6,7 +6,7 @@ PURE SUBROUTINE sub_max_dist_geodesicSpace(                                     
     lats,                                                                       &
     maxDist,                                                                    &
     eps,                                                                        &
-    nmax                                                                        &
+    nMax                                                                        &
 )
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
@@ -22,22 +22,22 @@ PURE SUBROUTINE sub_max_dist_geodesicSpace(                                     
     REAL(kind = REAL64), INTENT(out)                                            :: maxDist
 
     ! Declare optional input variables/outputs ...
-    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nmax
+    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nMax
     REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: eps
 
     ! Declare internal variables ...
     INTEGER(kind = INT64)                                                       :: i
-    INTEGER(kind = INT64)                                                       :: nmax2
+    INTEGER(kind = INT64)                                                       :: nMax2
     REAL(kind = REAL64)                                                         :: eps2
     REAL(kind = REAL64)                                                         :: tmpBearing1
     REAL(kind = REAL64)                                                         :: tmpBearing2
     REAL(kind = REAL64)                                                         :: tmpDist
 
     ! Set integer value ...
-    IF(PRESENT(nmax))THEN
-        nmax2 = MAX(3_INT64, MIN(100_INT64, nmax))                              ! [#]
+    IF(PRESENT(nMax))THEN
+        nMax2 = MAX(3_INT64, MIN(100_INT64, nMax))                              ! [#]
     ELSE
-        nmax2 = 100_INT64                                                       ! [#]
+        nMax2 = 100_INT64                                                       ! [#]
     END IF
 
     ! Set float value ...
@@ -60,7 +60,7 @@ PURE SUBROUTINE sub_max_dist_geodesicSpace(                                     
                    s_m = tmpDist,                                               &
             alpha1_deg = tmpBearing1,                                           &
             alpha2_deg = tmpBearing2,                                           &
-                  nmax = nmax2,                                                 &
+                  nmax = nMax2,                                                 &
                    eps = eps2                                                   &
         )
         maxDist = MAX(                                                          &

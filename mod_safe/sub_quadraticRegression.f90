@@ -1,11 +1,10 @@
-SUBROUTINE sub_quadraticRegression(                                             &
+PURE SUBROUTINE sub_quadraticRegression(                                        &
     n,                                                                          &
     x,                                                                          &
     y,                                                                          &
     a,                                                                          &
     b,                                                                          &
-    c,                                                                          &
-    debug                                                                       &
+    c                                                                           &
 )
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
@@ -20,11 +19,7 @@ SUBROUTINE sub_quadraticRegression(                                             
     REAL(kind = REAL64), INTENT(out)                                            :: b
     REAL(kind = REAL64), INTENT(out)                                            :: c
 
-    ! Declare optional input variables/outputs ...
-    LOGICAL(kind = INT8), INTENT(in), OPTIONAL                                  :: debug
-
     ! Declare internal variables ...
-    LOGICAL(kind = INT8)                                                        :: debug2
     INTEGER(kind = INT64)                                                       :: i
     REAL(kind = REAL64)                                                         :: linC
     REAL(kind = REAL64)                                                         :: linM
@@ -34,32 +29,13 @@ SUBROUTINE sub_quadraticRegression(                                             
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: dydx
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: midx
 
-    ! Set logical values ...
-    IF(PRESENT(debug))THEN
-        debug2 = debug
-    ELSE
-        debug2 = .TRUE._INT8
-    END IF
-
     ! **************************************************************************
 
-    ! Check inputs ...
-    DO i = 1_INT64, n - 1_INT64
-        IF(x(i + 1_INT64) <= x(i))THEN
-            WRITE(                                                              &
-                 fmt = '("ERROR: ""x"" is not sorted.")',                       &
-                unit = ERROR_UNIT                                               &
-            )
-            FLUSH(unit = ERROR_UNIT)
-            STOP
-        END IF
-    END DO
-
     ! Allocate arrays ...
-    CALL sub_allocate_array(dydx, "dydx", n - 1_INT64, debug2)
-    CALL sub_allocate_array(midx, "midx", n - 1_INT64, debug2)
+    ALLOCATE(dydx(n - 1_INT64))
+    ALLOCATE(midx(n - 1_INT64))
 
-    ! Calculate gradients and mid-points ...
+    ! Calculate gradients and their mid-points ...
     DO i = 1_INT64, n - 1_INT64
         dydx(i) = (y(i + 1_INT64) - y(i)) / (x(i + 1_INT64) - x(i))
         midx(i) = 0.5e0_REAL64 * (x(i) + x(i + 1_INT64))
@@ -71,8 +47,7 @@ SUBROUTINE sub_quadraticRegression(                                             
             x = midx,                                                           &
             y = dydx,                                                           &
             m = linM,                                                           &
-            c = linC,                                                           &
-        debug = debug2                                                          &
+            c = linC                                                            &
     )
     a = 0.5e0_REAL64 * linM
     b = linC

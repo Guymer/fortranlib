@@ -313,8 +313,7 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
                 y = maxDists,                                                   &
                 a = quaA,                                                       &
                 b = quaB,                                                       &
-                c = quaC,                                                       &
-            debug = debug2                                                      &
+                c = quaC                                                        &
         )
         bestAng = -quaB / (2.0e0_REAL64 * quaA)                                 ! [°]
 

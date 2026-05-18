@@ -1,10 +1,9 @@
-SUBROUTINE sub_linearRegression(                                                &
+PURE SUBROUTINE sub_linearRegression(                                           &
     n,                                                                          &
     x,                                                                          &
     y,                                                                          &
     m,                                                                          &
-    c,                                                                          &
-    debug                                                                       &
+    c                                                                           &
 )
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
@@ -18,23 +17,12 @@ SUBROUTINE sub_linearRegression(                                                
     REAL(kind = REAL64), INTENT(out)                                            :: m
     REAL(kind = REAL64), INTENT(out)                                            :: c
 
-    ! Declare optional input variables/outputs ...
-    LOGICAL(kind = INT8), INTENT(in), OPTIONAL                                  :: debug
-
     ! Declare internal variables ...
-    LOGICAL(kind = INT8)                                                        :: debug2
     INTEGER(kind = INT64)                                                       :: i
     REAL(kind = REAL64)                                                         :: xbar
     REAL(kind = REAL64)                                                         :: ybar
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: bot
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: top
-
-    ! Set logical values ...
-    IF(PRESENT(debug))THEN
-        debug2 = debug
-    ELSE
-        debug2 = .TRUE._INT8
-    END IF
 
     ! **************************************************************************
 
@@ -43,8 +31,8 @@ SUBROUTINE sub_linearRegression(                                                
     ybar = func_mean(n, y)
 
     ! Allocate arrays ...
-    CALL sub_allocate_array(top, "top", n, debug2)
-    CALL sub_allocate_array(bot, "bot", n, debug2)
+    ALLOCATE(top(n))
+    ALLOCATE(bot(n))
 
     ! Calculate parts of fraction ...
     DO i = 1_INT64, n

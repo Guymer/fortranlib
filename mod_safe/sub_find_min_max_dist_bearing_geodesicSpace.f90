@@ -67,15 +67,16 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
     REAL(kind = REAL64)                                                         :: angHalfRange2
     REAL(kind = REAL64)                                                         :: dist2
     REAL(kind = REAL64)                                                         :: eps2
-    REAL(kind = REAL64)                                                         :: quaA
-    REAL(kind = REAL64)                                                         :: quaB
-    REAL(kind = REAL64)                                                         :: quaC
+    REAL(kind = REAL64)                                                         :: linC
+    REAL(kind = REAL64)                                                         :: linM
     REAL(kind = REAL64)                                                         :: startAng2
     REAL(kind = REAL64)                                                         :: tmpAng
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: angLats
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: angLons
+    REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: dydx
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: fakeAngs
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: maxDists
+    REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: midx
 
     ! Set logical values ...
     IF(PRESENT(debug))THEN
@@ -302,21 +303,31 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
                     nAng = nAng2 + 1_INT64,                                     &
                 nAngIter = nAngIter2,                                           &
                nDistIter = nDistIter2,                                          &
+                    nMax = nMax2,                                               &
                  nRefine = nRefine2,                                            &
                 startAng = MODULO(bestAng + 360.0e0_REAL64, 360.0e0_REAL64)     &
         )
     ELSE
         ! Fit a polynomial degree 2 to the values and find the angle with the
-        ! minimum maximum distance ...
-        CALL sub_quadraticRegression(                                           &
-                n = nAng2,                                                      &
-                x = fakeAngs,                                                   &
-                y = maxDists,                                                   &
-                a = quaA,                                                       &
-                b = quaB,                                                       &
-                c = quaC                                                        &
+        ! minimum maximum distance (this is the same as differentiating each
+        ! pair and fitting a polynomial degree 1 to the gradients and finding
+        ! the angle with a zero gradient maximum distance) ...
+        ALLOCATE(dydx(nAng2 - 1_INT64))
+        ALLOCATE(midx(nAng2 - 1_INT64))
+        DO iAng = 1_INT64, nAng2 - 1_INT64
+            dydx(iAng) = (maxDists(iAng + 1_INT64) - maxDists(iAng)) / (fakeAngs(iAng + 1_INT64) - fakeAngs(iAng))  ! [m/°]
+            midx(iAng) = 0.5e0_REAL64 * (fakeAngs(iAng) + fakeAngs(iAng + 1_INT64)) ! [°]
+        END DO
+        CALL sub_linearRegression(                                              &
+                n = nAng2 - 1_INT64,                                            &
+                x = midx,                                                       &
+                y = dydx,                                                       &
+                m = linM,                                                       &
+                c = linC                                                        &
         )
-        bestAng = -quaB / (2.0e0_REAL64 * quaA)                                 ! [°]
+        DEALLOCATE(dydx)
+        DEALLOCATE(midx)
+        bestAng = -linC / linM                                                  ! [°]
 
         ! Check if the answer is converged ...
         IF(ABS(startAng2 - bestAng) <= angConv2)THEN
@@ -348,6 +359,7 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
                         nAng = nAng2,                                           &
                     nAngIter = nAngIter2,                                       &
                    nDistIter = nDistIter2,                                      &
+                        nMax = nMax2,                                           &
                      nRefine = nRefine2,                                        &
                     startAng = MODULO(bestAng + 360.0e0_REAL64, 360.0e0_REAL64) &
             )

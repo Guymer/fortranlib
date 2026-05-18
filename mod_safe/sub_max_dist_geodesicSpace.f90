@@ -60,8 +60,8 @@ PURE SUBROUTINE sub_max_dist_geodesicSpace(                                     
                    s_m = tmpDist,                                               &
             alpha1_deg = tmpBearing1,                                           &
             alpha2_deg = tmpBearing2,                                           &
-                  nmax = nMax2,                                                 &
-                   eps = eps2                                                   &
+                   eps = eps2,                                                  &
+                  nmax = nMax2                                                  &
         )
         maxDist = MAX(                                                          &
             maxDist,                                                            &

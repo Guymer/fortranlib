@@ -65,7 +65,7 @@ endif
 # *                             DERIVED VARIABLES                              *
 # ******************************************************************************
 
-# SUFFIX ?= $(shell $(PYTHON3) -c "import sysconfig; print(sysconfig.get_config_var(\"EXT_SUFFIX\"))")
+# SUFFIX := $(shell $(PYTHON3) -c "import sysconfig; print(sysconfig.get_config_var(\"EXT_SUFFIX\"))")
 
 # ******************************************************************************
 # *                           USER-SPECIFIED TARGETS                           *

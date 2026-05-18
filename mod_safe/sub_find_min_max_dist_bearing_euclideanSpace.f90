@@ -183,9 +183,9 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
 
     IF(debug2)THEN
         WRITE(                                                                  &
-             fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Angle Iteration #", i9, "/", i9, ": The middle is now (", f11.6, "°, ", f10.6, "°) and the minimum maximum distance bearing is now ", f10.6, "°.")',    &
+             fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Angle Iteration #", i9, "/", i9, ": The minimum maximum distance bearing is now ", f10.6, "°.")',    &
             unit = OUTPUT_UNIT                                                  &
-        ) iRefine2, nRefine2, iDistIter2, nDistIter2, iAngIter2, nAngIter2, midLon, midLat, startAng2
+        ) iRefine2, nRefine2, iDistIter2, nDistIter2, iAngIter2, nAngIter2, startAng2
         FLUSH(unit = OUTPUT_UNIT)
     END IF
 
@@ -302,9 +302,9 @@ SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(                        
         IF(ABS(startAng2 - bestAng) <= angConv2)THEN
             IF(debug2)THEN
                 WRITE(                                                          &
-                     fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Angle Iteration #", i9, "/", i9, ": The middle is finally (", f11.6, "°, ", f10.6, "°) and the minimum maximum distance bearing is finally ", f10.6, "°.")',    &
+                     fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Angle Iteration #", i9, "/", i9, ": The minimum maximum distance bearing is finally ", f10.6, "°.")',    &
                     unit = OUTPUT_UNIT                                          &
-                ) iRefine2, nRefine2, iDistIter2, nDistIter2, iAngIter2 + 1_INT64, nAngIter2, midLon, midLat, bestAng
+                ) iRefine2, nRefine2, iDistIter2, nDistIter2, iAngIter2 + 1_INT64, nAngIter2, bestAng
                 FLUSH(unit = OUTPUT_UNIT)
             END IF
         ELSE

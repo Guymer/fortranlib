@@ -12,7 +12,6 @@ PROGRAM test18
     ! Declare variables ...
     INTEGER(kind = INT64)                                                       :: i
     INTEGER(kind = INT64)                                                       :: n
-    REAL(kind = REAL64)                                                         :: bestAng
     REAL(kind = REAL64)                                                         :: midLon
     REAL(kind = REAL64)                                                         :: midLat
     REAL(kind = REAL64)                                                         :: maxDist

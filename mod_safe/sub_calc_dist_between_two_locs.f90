@@ -5,7 +5,17 @@
 !> @note https://www.movable-type.co.uk/scripts/latlong-vincenty.html
 !>
 
-PURE SUBROUTINE sub_calc_dist_between_two_locs(lon1_deg, lat1_deg, lon2_deg, lat2_deg, s_m, alpha1_deg, alpha2_deg, nmax, eps)
+PURE SUBROUTINE sub_calc_dist_between_two_locs(                                 &
+    lon1_deg,                                                                   &
+    lat1_deg,                                                                   &
+    lon2_deg,                                                                   &
+    lat2_deg,                                                                   &
+    s_m,                                                                        &
+    alpha1_deg,                                                                 &
+    alpha2_deg,                                                                 &
+    eps,                                                                        &
+    nmax                                                                        &
+)
     ! Import standard modules ...
     USE ISO_FORTRAN_ENV
 

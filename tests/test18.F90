@@ -6,6 +6,7 @@ PROGRAM test18
     USE mod_safe,           ONLY:   sub_allocate_array,                         &
                                     sub_find_middle_of_locs_euclideanBox,       &
                                     sub_find_middle_of_locs_euclideanCircle,    &
+                                    sub_find_middle_of_locs_geodesicBox,        &
                                     sub_find_middle_of_locs_geodesicCircle
 
     IMPLICIT NONE
@@ -137,6 +138,23 @@ PROGRAM test18
          fmt = '("The (EuclideanCircle) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is ", f10.6, "°.")',  &
         unit = OUTPUT_UNIT                                                      &
     ) midLon, midLat, maxDist
+    FLUSH(unit = OUTPUT_UNIT)
+
+    ! Test subroutine ...
+    CALL sub_find_middle_of_locs_geodesicBox(                                   &
+                n = n,                                                          &
+             lons = lons,                                                       &
+             lats = lats,                                                       &
+           midLon = midLon,                                                     &
+           midLat = midLat,                                                     &
+          maxDist = maxDist,                                                    &
+             nAng = 361_INT64,                                                  &
+          nRefine = 6_INT64                                                     &
+    )
+    WRITE(                                                                      &
+         fmt = '("The (GeodesicBox) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is ", f10.3, " km.")',  &
+        unit = OUTPUT_UNIT                                                      &
+    ) midLon, midLat, 0.001e0_REAL64 * maxDist
     FLUSH(unit = OUTPUT_UNIT)
 
     ! Test subroutine ...

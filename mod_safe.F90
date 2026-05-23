@@ -528,6 +528,7 @@ MODULE mod_safe
     INCLUDE "mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist.f90"
     INCLUDE "mod_safe/sub_find_middle_of_locs_euclideanBox.f90"
     INCLUDE "mod_safe/sub_find_middle_of_locs_euclideanCircle.f90"
+    INCLUDE "mod_safe/sub_find_middle_of_locs_geodesicBox.f90"
     INCLUDE "mod_safe/sub_find_middle_of_locs_geodesicCircle.f90"
     INCLUDE "mod_safe/sub_find_min_max_dist_bearing_euclideanSpace.f90"
     INCLUDE "mod_safe/sub_find_min_max_dist_bearing_geodesicSpace.f90"

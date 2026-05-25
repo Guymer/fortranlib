@@ -1,7 +1,7 @@
 :f:prog:`test15`'s documentation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:f:prog:`test15` is compiled by :download:`Makefile <../tests/Makefile>` and it can be run using :download:`run.sh <../tests/run.sh>`. The program uses :f:func:`mod_safe/func_hypergeometric`, :f:func:`mod_safe/func_mean`, :f:func:`mod_safe/func_rising_factorial`, :f:func:`mod_safe/func_stddev`, :f:func:`mod_safe/func_stderr`, :f:func:`mod_safe/func_t_CDF`, :f:func:`mod_safe/func_t_PDF`, :f:func:`mod_safe/func_var` and :f:subr:`mod_safe/sub_ttest_ind`. The correct output should be similar to (give or take random number generators)::
+:f:prog:`test15` is compiled by :download:`Makefile <../tests/Makefile>` and it can be run using :download:`run.sh <../tests/run.sh>`. The program uses :f:func:`mod_safe/func_hypergeometric`, :f:func:`mod_safe/func_mean`, :f:func:`mod_safe/func_rising_factorial`, :f:func:`mod_safe/func_stddev`, :f:func:`mod_safe/func_stderr`, :f:func:`mod_safe/func_t_CDF`, :f:func:`mod_safe/func_t_PDF`, :f:func:`mod_safe/func_var` and :f:subr:`mod_safe/sub_ttest_ind`. The correct output should be similar to (give or take random number generators):
 
     How does Python compare to FORTRAN? (func_rising_factorial)
          Python =    1.000000000;  120.000000000;   20.529581934

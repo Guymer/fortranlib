@@ -1,7 +1,7 @@
 :f:prog:`test14`'s documentation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-:f:prog:`test14` is compiled by :download:`Makefile <../tests/Makefile>` and it can be run using :download:`run.sh <../tests/run.sh>`. The program uses both :f:subr:`mod_safe/sub_calc_dist_between_two_locs` and :f:subr:`mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist`. The correct output should be::
+:f:prog:`test14` is compiled by :download:`Makefile <../tests/Makefile>` and it can be run using :download:`run.sh <../tests/run.sh>`. The program uses both :f:subr:`mod_safe/sub_calc_dist_between_two_locs` and :f:subr:`mod_safe/sub_calc_loc_from_loc_and_bearing_and_dist`. The correct output should be:
 
     How does Python compare to FORTRAN?
          Python = 1012752.116366;   60.395696592;  112.226826865

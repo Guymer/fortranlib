@@ -61,15 +61,15 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              
     REAL(kind = REAL64)                                                         :: angConv2
     REAL(kind = REAL64)                                                         :: angHalfRange2
     REAL(kind = REAL64)                                                         :: dist2
-    REAL(kind = REAL64)                                                         :: linC
-    REAL(kind = REAL64)                                                         :: linM
+!     REAL(kind = REAL64)                                                         :: linC
+!     REAL(kind = REAL64)                                                         :: linM
     REAL(kind = REAL64)                                                         :: startAng2
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: angLats
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: angLons
-    REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: dydx
+!     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: dydx
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: fakeAngs
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: maxDists
-    REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: midx
+!     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: midx
 
     ! Set logical values ...
     IF(PRESENT(debug))THEN
@@ -231,8 +231,9 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              
     ! Initialize distance array ...
     ALLOCATE(maxDists(nAng2))
 
-    ! Populate distance array ...
+    ! Loop over angles ...
     DO iAng = 1_INT64, nAng2
+        ! Populate distance array ...
         CALL sub_max_dist_euclideanSpace(                                       &
                   n = n,                                                        &
              midLon = angLons(iAng),                                            &

@@ -67,16 +67,16 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
     REAL(kind = REAL64)                                                         :: angHalfRange2
     REAL(kind = REAL64)                                                         :: dist2
     REAL(kind = REAL64)                                                         :: eps2
-    REAL(kind = REAL64)                                                         :: linC
-    REAL(kind = REAL64)                                                         :: linM
+!     REAL(kind = REAL64)                                                         :: linC
+!     REAL(kind = REAL64)                                                         :: linM
     REAL(kind = REAL64)                                                         :: startAng2
-    REAL(kind = REAL64)                                                         :: tmpAng
+    REAL(kind = REAL64)                                                         :: tmpBearing
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: angLats
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: angLons
-    REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: dydx
+!     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: dydx
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: fakeAngs
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: maxDists
-    REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: midx
+!     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: midx
 
     ! Set logical values ...
     IF(PRESENT(debug))THEN
@@ -246,7 +246,7 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
             dist2,                                                              &
             angLons(iAng),                                                      &
             angLats(iAng),                                                      &
-            tmpAng,                                                             &
+            tmpBearing,                                                         &
              eps = eps2,                                                        &
             nmax = nMax2                                                        &
         )
@@ -257,8 +257,9 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
     ! Initialize distance array ...
     ALLOCATE(maxDists(nAng2))
 
-    ! Populate distance array ...
+    ! Loop over angles ...
     DO iAng = 1_INT64, nAng2
+        ! Populate distance array ...
         CALL sub_max_dist_geodesicSpace(                                        &
                   n = n,                                                        &
              midLon = angLons(iAng),                                            &

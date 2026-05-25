@@ -279,7 +279,7 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
 
     ! Check if this is the first time that the angle has been iterated ...
     IF(first2)THEN
-        ! Find angle with minimum maximum distance ...
+        ! Find the angle with the minimum maximum distance ...
         iAng = MINLOC(maxDists, dim = 1, kind = INT64)                          ! [#]
         bestAng = fakeAngs(iAng)                                                ! [°]
 
@@ -312,22 +312,26 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
         ! minimum maximum distance (this is the same as differentiating each
         ! pair and fitting a polynomial degree 1 to the gradients and finding
         ! the angle with a zero gradient maximum distance) ...
-        ALLOCATE(dydx(nAng2 - 1_INT64))
-        ALLOCATE(midx(nAng2 - 1_INT64))
-        DO iAng = 1_INT64, nAng2 - 1_INT64
-            dydx(iAng) = (maxDists(iAng + 1_INT64) - maxDists(iAng)) / (fakeAngs(iAng + 1_INT64) - fakeAngs(iAng))  ! [m/°]
-            midx(iAng) = 0.5e0_REAL64 * (fakeAngs(iAng) + fakeAngs(iAng + 1_INT64)) ! [°]
-        END DO
-        CALL sub_linearRegression(                                              &
-                n = nAng2 - 1_INT64,                                            &
-                x = midx,                                                       &
-                y = dydx,                                                       &
-                m = linM,                                                       &
-                c = linC                                                        &
-        )
-        DEALLOCATE(dydx)
-        DEALLOCATE(midx)
-        bestAng = -linC / linM                                                  ! [°]
+!         ALLOCATE(dydx(nAng2 - 1_INT64))
+!         ALLOCATE(midx(nAng2 - 1_INT64))
+!         DO iAng = 1_INT64, nAng2 - 1_INT64
+!             dydx(iAng) = (maxDists(iAng + 1_INT64) - maxDists(iAng)) / (fakeAngs(iAng + 1_INT64) - fakeAngs(iAng))  ! [m/°]
+!             midx(iAng) = 0.5e0_REAL64 * (fakeAngs(iAng) + fakeAngs(iAng + 1_INT64)) ! [°]
+!         END DO
+!         CALL sub_linearRegression(                                              &
+!                 n = nAng2 - 1_INT64,                                            &
+!                 x = midx,                                                       &
+!                 y = dydx,                                                       &
+!                 m = linM,                                                       &
+!                 c = linC                                                        &
+!         )
+!         DEALLOCATE(dydx)
+!         DEALLOCATE(midx)
+!         bestAng = -linC / linM                                                  ! [°]
+
+        ! Find the angle with the minimum maximum distance ...
+        iAng = MINLOC(maxDists, dim = 1, kind = INT64)                          ! [#]
+        bestAng = fakeAngs(iAng)                                                ! [°]
 
         ! Check if the answer is converged ...
         IF(ABS(startAng2 - bestAng) <= angConv2)THEN

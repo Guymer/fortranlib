@@ -57,12 +57,12 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              
     INTEGER(kind = INT64)                                                       :: nRefine2
     REAL(kind = REAL64)                                                         :: angConv2
     REAL(kind = REAL64)                                                         :: angHalfRange2
+    REAL(kind = REAL64)                                                         :: angLat
+    REAL(kind = REAL64)                                                         :: angLon
     REAL(kind = REAL64)                                                         :: dist2
 !     REAL(kind = REAL64)                                                         :: linC
 !     REAL(kind = REAL64)                                                         :: linM
     REAL(kind = REAL64)                                                         :: startAng2
-    REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: angLats
-    REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: angLons
 !     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: dydx
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: fakeAngs
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: maxDists
@@ -206,34 +206,44 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              
 
     ! **************************************************************************
 
-    ! Initialize location arrays ...
-    ALLOCATE(angLons(nAng2))
-    ALLOCATE(angLats(nAng2))
-
     ! Initialize distance array ...
     ALLOCATE(maxDists(nAng2))
 
-    ! Loop over angles ...
-    DO iAng = 1_INT64, nAng2
-        ! Populate location arrays ...
-        ! NOTE: Taking care not to stray outside of 0° and 360°.
-        angLons(iAng) = midLon + dist2 * SIN(func_radians(fakeAngs(iAng)))      ! [°]
-        angLats(iAng) = midLat + dist2 * COS(func_radians(fakeAngs(iAng)))      ! [°]
+    !$omp parallel                                                              &
+    !$omp default(none)                                                         &
+    !$omp private(angLat)                                                       &
+    !$omp private(angLon)                                                       &
+    !$omp private(iAng)                                                         &
+    !$omp shared(dist2)                                                         &
+    !$omp shared(fakeAngs)                                                      &
+    !$omp shared(lats)                                                          &
+    !$omp shared(lons)                                                          &
+    !$omp shared(maxDists)                                                      &
+    !$omp shared(midLat)                                                        &
+    !$omp shared(midLon)                                                        &
+    !$omp shared(n)                                                             &
+    !$omp shared(nAng2)
+        !$omp do                                                                &
+        !$omp schedule(dynamic)
+            ! Loop over angles ...
+            DO iAng = 1_INT64, nAng2
+                ! Populate location arrays ...
+                ! NOTE: Taking care not to stray outside of 0° and 360°.
+                angLon = midLon + dist2 * SIN(func_radians(fakeAngs(iAng)))     ! [°]
+                angLat = midLat + dist2 * COS(func_radians(fakeAngs(iAng)))     ! [°]
 
-        ! Populate distance array ...
-        CALL sub_max_dist_euclideanSpace(                                       &
-                  n = n,                                                        &
-             midLon = angLons(iAng),                                            &
-             midLat = angLats(iAng),                                            &
-               lons = lons,                                                     &
-               lats = lats,                                                     &
-            maxDist = maxDists(iAng)                                            &
-        )
-    END DO
-
-    ! Clean up ...
-    DEALLOCATE(angLons)
-    DEALLOCATE(angLats)
+                ! Populate distance array ...
+                CALL sub_max_dist_euclideanSpace(                               &
+                          n = n,                                                &
+                     midLon = angLon,                                           &
+                     midLat = angLat,                                           &
+                       lons = lons,                                             &
+                       lats = lats,                                             &
+                    maxDist = maxDists(iAng)                                    &
+                )
+            END DO
+        !$omp end do
+    !$omp end parallel
 
     ! **************************************************************************
 

@@ -62,14 +62,14 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
     INTEGER(kind = INT64)                                                       :: nRefine2
     REAL(kind = REAL64)                                                         :: angConv2
     REAL(kind = REAL64)                                                         :: angHalfRange2
+    REAL(kind = REAL64)                                                         :: angLat
+    REAL(kind = REAL64)                                                         :: angLon
     REAL(kind = REAL64)                                                         :: dist2
     REAL(kind = REAL64)                                                         :: eps2
 !     REAL(kind = REAL64)                                                         :: linC
 !     REAL(kind = REAL64)                                                         :: linM
     REAL(kind = REAL64)                                                         :: startAng2
     REAL(kind = REAL64)                                                         :: tmpBearing
-    REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: angLats
-    REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: angLons
 !     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: dydx
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: fakeAngs
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: maxDists
@@ -223,45 +223,58 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
 
     ! **************************************************************************
 
-    ! Initialize location arrays ...
-    ALLOCATE(angLons(nAng2))
-    ALLOCATE(angLats(nAng2))
-
     ! Initialize distance array ...
     ALLOCATE(maxDists(nAng2))
 
-    ! Loop over angles ...
-    DO iAng = 1_INT64, nAng2
-        ! Populate location arrays ...
-        ! NOTE: Taking care not to stray outside of 0° and 360°.
-        CALL sub_calc_loc_from_loc_and_bearing_and_dist(                        &
-            midLon,                                                             &
-            midLat,                                                             &
-            MODULO(fakeAngs(iAng) + 360.0e0_REAL64, 360.0e0_REAL64),            &
-            dist2,                                                              &
-            angLons(iAng),                                                      &
-            angLats(iAng),                                                      &
-            tmpBearing,                                                         &
-             eps = eps2,                                                        &
-            nmax = nMax2                                                        &
-        )
+    !$omp parallel                                                              &
+    !$omp default(none)                                                         &
+    !$omp private(angLat)                                                       &
+    !$omp private(angLon)                                                       &
+    !$omp private(iAng)                                                         &
+    !$omp private(tmpBearing)                                                   &
+    !$omp shared(dist2)                                                         &
+    !$omp shared(fakeAngs)                                                      &
+    !$omp shared(lats)                                                          &
+    !$omp shared(eps2)                                                          &
+    !$omp shared(lons)                                                          &
+    !$omp shared(maxDists)                                                      &
+    !$omp shared(midLat)                                                        &
+    !$omp shared(midLon)                                                        &
+    !$omp shared(n)                                                             &
+    !$omp shared(nAng2)                                                         &
+    !$omp shared(nMax2)
+        !$omp do                                                                &
+        !$omp schedule(dynamic)
+            ! Loop over angles ...
+            DO iAng = 1_INT64, nAng2
+                ! Populate location arrays ...
+                ! NOTE: Taking care not to stray outside of 0° and 360°.
+                CALL sub_calc_loc_from_loc_and_bearing_and_dist(                &
+                    midLon,                                                     &
+                    midLat,                                                     &
+                    MODULO(fakeAngs(iAng) + 360.0e0_REAL64, 360.0e0_REAL64),    &
+                    dist2,                                                      &
+                    angLon,                                                     &
+                    angLat,                                                     &
+                    tmpBearing,                                                 &
+                     eps = eps2,                                                &
+                    nmax = nMax2                                                &
+                )
 
-        ! Populate distance array ...
-        CALL sub_max_dist_geodesicSpace(                                        &
-                  n = n,                                                        &
-             midLon = angLons(iAng),                                            &
-             midLat = angLats(iAng),                                            &
-               lons = lons,                                                     &
-               lats = lats,                                                     &
-            maxDist = maxDists(iAng),                                           &
-                eps = eps2,                                                     &
-               nmax = nMax2                                                     &
-        )
-    END DO
-
-    ! Clean up ...
-    DEALLOCATE(angLons)
-    DEALLOCATE(angLats)
+                ! Populate distance array ...
+                CALL sub_max_dist_geodesicSpace(                                &
+                          n = n,                                                &
+                     midLon = angLon,                                           &
+                     midLat = angLat,                                           &
+                       lons = lons,                                             &
+                       lats = lats,                                             &
+                    maxDist = maxDists(iAng),                                   &
+                        eps = eps2,                                             &
+                       nmax = nMax2                                             &
+                )
+            END DO
+        !$omp end do
+    !$omp end parallel
 
     ! **************************************************************************
 

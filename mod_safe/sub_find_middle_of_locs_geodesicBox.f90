@@ -332,6 +332,14 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
 
                 ! Set flag ...
                 moved = .TRUE._INT8
+            ELSE
+                IF(debug2)THEN
+                    WRITE(                                                      &
+                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Not moving middle west/east.")',  &
+                        unit = OUTPUT_UNIT                                      &
+                    ) iRefine2, nRefine2, iDistIter, nDistIter2
+                    FLUSH(unit = OUTPUT_UNIT)
+                END IF
             END IF
 
             ! Check if the middle needs moving south/north ...
@@ -431,6 +439,14 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
 
                 ! Set flag ...
                 moved = .TRUE._INT8
+            ELSE
+                IF(debug2)THEN
+                    WRITE(                                                      &
+                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Not moving middle south/north.")',    &
+                        unit = OUTPUT_UNIT                                      &
+                    ) iRefine2, nRefine2, iDistIter, nDistIter2
+                    FLUSH(unit = OUTPUT_UNIT)
+                END IF
             END IF
 
             ! Stop iterating if the answer isn't moving ...

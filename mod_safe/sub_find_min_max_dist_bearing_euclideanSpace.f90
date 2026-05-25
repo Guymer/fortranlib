@@ -218,21 +218,16 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              
     ALLOCATE(angLons(nAng2))
     ALLOCATE(angLats(nAng2))
 
+    ! Initialize distance array ...
+    ALLOCATE(maxDists(nAng2))
+
     ! Loop over angles ...
     DO iAng = 1_INT64, nAng2
         ! Populate location arrays ...
         ! NOTE: Taking care not to stray outside of 0° and 360°.
         angLons(iAng) = midLon + dist2 * SIN(func_radians(fakeAngs(iAng)))      ! [°]
         angLats(iAng) = midLat + dist2 * COS(func_radians(fakeAngs(iAng)))      ! [°]
-    END DO
 
-    ! **************************************************************************
-
-    ! Initialize distance array ...
-    ALLOCATE(maxDists(nAng2))
-
-    ! Loop over angles ...
-    DO iAng = 1_INT64, nAng2
         ! Populate distance array ...
         CALL sub_max_dist_euclideanSpace(                                       &
                   n = n,                                                        &

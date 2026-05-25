@@ -235,6 +235,9 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
     ALLOCATE(angLons(nAng2))
     ALLOCATE(angLats(nAng2))
 
+    ! Initialize distance array ...
+    ALLOCATE(maxDists(nAng2))
+
     ! Loop over angles ...
     DO iAng = 1_INT64, nAng2
         ! Populate location arrays ...
@@ -250,15 +253,7 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_geodesicSpace(               
              eps = eps2,                                                        &
             nmax = nMax2                                                        &
         )
-    END DO
 
-    ! **************************************************************************
-
-    ! Initialize distance array ...
-    ALLOCATE(maxDists(nAng2))
-
-    ! Loop over angles ...
-    DO iAng = 1_INT64, nAng2
         ! Populate distance array ...
         CALL sub_max_dist_geodesicSpace(                                        &
                   n = n,                                                        &

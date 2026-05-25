@@ -125,14 +125,15 @@ PROGRAM test18
 
     ! Test subroutine ...
     CALL sub_find_middle_of_locs_geodesicBox(                                   &
-                n = n,                                                          &
-             lons = lons,                                                       &
-             lats = lats,                                                       &
-           midLon = midLon,                                                     &
-           midLat = midLat,                                                     &
-          maxDist = maxDist,                                                    &
-             nAng = 361_INT64,                                                  &
-          nRefine = 6_INT64                                                     &
+              n = n,                                                            &
+           lons = lons,                                                         &
+           lats = lats,                                                         &
+         midLon = midLon,                                                       &
+         midLat = midLat,                                                       &
+        maxDist = maxDist,                                                      &
+          debug = .FALSE._INT8,                                                 &
+           nAng = 361_INT64,                                                    &
+        nRefine = 6_INT64                                                       &
     )
     WRITE(                                                                      &
          fmt = '("The (GeodesicBox) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is ", f10.3, " km.")',  &
@@ -142,14 +143,15 @@ PROGRAM test18
 
     ! Test subroutine ...
     CALL sub_find_middle_of_locs_euclideanCircle(                               &
-                n = n,                                                          &
-             lons = lons,                                                       &
-             lats = lats,                                                       &
-           midLon = midLon,                                                     &
-           midLat = midLat,                                                     &
-          maxDist = maxDist,                                                    &
-             nAng = 361_INT64,                                                  &
-          nRefine = 6_INT64                                                     &
+              n = n,                                                            &
+           lons = lons,                                                         &
+           lats = lats,                                                         &
+         midLon = midLon,                                                       &
+         midLat = midLat,                                                       &
+        maxDist = maxDist,                                                      &
+          debug = .FALSE._INT8,                                                 &
+           nAng = 361_INT64,                                                    &
+        nRefine = 6_INT64                                                       &
     )
     WRITE(                                                                      &
          fmt = '("The (EuclideanCircle) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is ", f10.6, "°.")',  &
@@ -159,14 +161,15 @@ PROGRAM test18
 
     ! Test subroutine ...
     CALL sub_find_middle_of_locs_geodesicCircle(                                &
-                n = n,                                                          &
-             lons = lons,                                                       &
-             lats = lats,                                                       &
-           midLon = midLon,                                                     &
-           midLat = midLat,                                                     &
-          maxDist = maxDist,                                                    &
-             nAng = 361_INT64,                                                  &
-          nRefine = 6_INT64                                                     &
+              n = n,                                                            &
+           lons = lons,                                                         &
+           lats = lats,                                                         &
+         midLon = midLon,                                                       &
+         midLat = midLat,                                                       &
+        maxDist = maxDist,                                                      &
+          debug = .FALSE._INT8,                                                 &
+           nAng = 361_INT64,                                                    &
+        nRefine = 6_INT64                                                       &
     )
     WRITE(                                                                      &
          fmt = '("The (GeodesicCircle) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is ", f10.3, " km.")',  &

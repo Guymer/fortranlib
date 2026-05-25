@@ -161,7 +161,6 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                   
                 angHalfRange = 180.0e0_REAL64,                                  &
                        debug = debug2,                                          &
                         dist = dist2,                                           &
-                       first = .TRUE._INT8,                                     &
                     iAngIter = 1_INT64,                                         &
                    iDistIter = iDistIter,                                       &
                      iRefine = iRefine2,                                        &

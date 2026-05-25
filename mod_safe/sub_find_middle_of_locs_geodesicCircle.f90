@@ -57,7 +57,7 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicCircle(                    
     REAL(kind = REAL64)                                                         :: newMaxDist
     REAL(kind = REAL64)                                                         :: newMidLat
     REAL(kind = REAL64)                                                         :: newMidLon
-    REAL(kind = REAL64)                                                         :: tmpAng
+    REAL(kind = REAL64)                                                         :: tmpBearing
 
     ! Set logical value ...
     IF(PRESENT(debug))THEN
@@ -207,7 +207,7 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicCircle(                    
                 dist2,                                                          &
                 newMidLon,                                                      &
                 newMidLat,                                                      &
-                tmpAng,                                                         &
+                tmpBearing,                                                     &
                  eps = eps2,                                                    &
                 nmax = nMax2                                                    &
             )

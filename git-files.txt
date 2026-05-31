@@ -3,8 +3,6 @@
 .github/FUNDING.yml
 .github/workflows/gmake.yaml
 .github/workflows/mypy.yaml
-.github/workflows/pylint.yaml
-.github/workflows/shellcheck.yaml
 .gitignore
 .mypy.ini
 .pylint.ini

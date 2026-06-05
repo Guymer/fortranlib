@@ -160,7 +160,7 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicCircle(                    
             WRITE(                                                              &
                  fmt = '("INFO: Refinement #", i3, "/", i3, ": The middle is initially converged.")',   &
                 unit = OUTPUT_UNIT                                              &
-            ) iRefine2, nRefine2, midLon
+            ) iRefine2, nRefine2
             FLUSH(unit = OUTPUT_UNIT)
         END IF
     ELSE

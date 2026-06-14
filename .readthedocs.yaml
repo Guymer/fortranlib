@@ -22,7 +22,7 @@ build:
             - pip3 install git+https://github.com/VACUMM/sphinx-fortran.git@master
     os: ubuntu-22.04
     tools:
-        python: "3.12"
+        python: "3.13"
 
 python:
     install:

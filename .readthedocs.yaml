@@ -12,10 +12,10 @@ version: 2
 
 build:
     apt_packages:
-        - gfortran-12
+        - gfortran-14
     jobs:
         post_install:
-            - which gfortran-12
+            - which gfortran-14
             - which gmake
             - which pip3
             - which python3

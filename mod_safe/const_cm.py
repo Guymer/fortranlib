@@ -25,7 +25,7 @@ if __name__ == "__main__":
     # **************************************************************************
 
     # Open output file ...
-    with open("const_cm.f90", "wt", encoding = "utf-8") as fObj:
+    with open("const_cm.f90", mode = "wt", encoding = "utf-8") as fObj:
         # Loop over MatPlotLib colour map names ...
         # NOTE: See https://matplotlib.org/stable/users/explain/colors/colormaps.html
         for name in [

@@ -74,11 +74,11 @@ if __name__ == "__main__":
                 )
 
                 # Save source ...
-                with open(f"sub_load_array_from_BIN/sub_load_{dim + 1:d}D_{knd}_{typ}_array_from_BIN.f90", "wt", encoding = "utf-8") as fObj:
+                with open(f"sub_load_array_from_BIN/sub_load_{dim + 1:d}D_{knd}_{typ}_array_from_BIN.f90", mode = "wt", encoding = "utf-8") as fObj:
                     fObj.write(src)
 
     # Open output file ...
-    with open("sub_load_array_from_BIN.tmp", "wt", encoding = "utf-8") as fObj:
+    with open("sub_load_array_from_BIN.tmp", mode = "wt", encoding = "utf-8") as fObj:
         # Write out interfaces and includes ...
         fObj.write("INTERFACE sub_load_array_from_BIN\n")
         for typ in sorted(data.keys()):

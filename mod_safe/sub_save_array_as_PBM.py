@@ -145,11 +145,11 @@ if __name__ == "__main__":
             )
 
             # Save source ...
-            with open(f"sub_save_array_as_PBM/sub_save_2D_{knd}_{typ}_array_as_PBM.f90", "wt", encoding = "utf-8") as fObj:
+            with open(f"sub_save_array_as_PBM/sub_save_2D_{knd}_{typ}_array_as_PBM.f90", mode = "wt", encoding = "utf-8") as fObj:
                 fObj.write(src)
 
     # Open output file ...
-    with open("sub_save_array_as_PBM.tmp", "wt", encoding = "utf-8") as fObj:
+    with open("sub_save_array_as_PBM.tmp", mode = "wt", encoding = "utf-8") as fObj:
         # Write out interfaces and includes ...
         fObj.write("INTERFACE sub_save_array_as_PBM\n")
         for typ in sorted(data.keys()):

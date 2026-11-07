@@ -14,6 +14,7 @@ __pycache__
 # Hide output of Coverage/cProfile/MyPy/PyLint/ShellCheck ...
 .coverage
 cProfile.log
+fortitude.log
 mypy.log
 pylint.log
 shellcheck.log

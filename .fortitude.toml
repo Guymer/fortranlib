@@ -1,5 +1,24 @@
-# To know more about the checks that I have ignored, run the following command:
+# To know more about any of the checks that I have ignored, run the following
+# command:
 #   fortitude explain C092
+
+# Fortitude does not follow "INCLUDE" commands. This has two consequences:
+#   * You must tell Fortitude to explicitly check every file - you cannot rely
+#     on it finding all the included files itself just by parsing the top-level
+#     file.
+#   * Included files must be valid syntax in their own right. For example,
+#     Fortitude will complain of invalid syntax if a file just contains a list
+#     of parameters.
+
+# Fortitude does not process pre-processor macros. Therefore, it can incorrectly
+# think that the following is invalid syntax because the line continuation
+# character after "funcB" does not continue to valid source code:
+#   PUBLIC funcA,                       &
+#          funcB,                       &
+#   #if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
+#          funcC,                       &
+#   #endif
+#          funcD
 
 [check]
 ignore = ["C092", "C121", "MOD011", "S001", "S233", "S241"]

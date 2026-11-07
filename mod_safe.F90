@@ -55,6 +55,15 @@ MODULE mod_safe
         const_cm_r2g,                                                           &
         const_cm_r2o2g,                                                         &
         const_cm_grey,                                                          &
+        const_factorial_INT8,                                                   &
+        const_factorial_INT16,                                                  &
+        const_factorial_INT32,                                                  &
+        const_factorial_INT64,                                                  &
+        const_factorial_REAL32,                                                 &
+        const_factorial_REAL64,                                                 &
+#if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
+        const_factorial_REAL128,                                                &
+#endif
         func_degrees,                                                           &
         func_factorial,                                                         &
         func_falling_factorial,                                                 &

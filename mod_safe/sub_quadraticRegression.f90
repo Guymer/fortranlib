@@ -7,7 +7,7 @@ PURE SUBROUTINE sub_quadraticRegression(                                        
     c                                                                           &
 )
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

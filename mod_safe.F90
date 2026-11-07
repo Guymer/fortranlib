@@ -3,7 +3,7 @@ MODULE mod_safe
     ! are thread-safe and which can be safely imported in to any program.
 
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

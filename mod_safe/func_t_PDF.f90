@@ -2,7 +2,7 @@ ELEMENTAL FUNCTION func_t_PDF(x, dof) RESULT(ans)
     ! NOTE: See https://en.wikipedia.org/wiki/Student's_t-distribution
 
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

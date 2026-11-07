@@ -1,6 +1,6 @@
 SUBROUTINE sub_shrink_2D_INT8_logical_array_to_2D_REAL64_real_array(nx, ny, arr, shrinkScale, shrunkenArr)
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

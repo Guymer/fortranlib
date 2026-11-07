@@ -2,8 +2,8 @@ SUBROUTINE sub_allreduce_6D_INT64_integer_array(buff, op, comm)
     ! This subroutine reduces a 6D INT64 integer array.
 
     ! Import standard modules ...
-    USE ISO_C_BINDING
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_C_BINDING
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     ! Import special modules ...
     USE MPI

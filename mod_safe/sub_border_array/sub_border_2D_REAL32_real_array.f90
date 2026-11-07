@@ -15,7 +15,7 @@
 
 SUBROUTINE sub_border_2D_REAL32_real_array(n1, n2, arr, borderedArr, name, debug)
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

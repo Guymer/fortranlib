@@ -1,6 +1,6 @@
 MODULE mod_test04
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 
@@ -12,7 +12,7 @@ MODULE mod_test04
     ! Define functions ...
     FUNCTION calc_pi() RESULT(ans)
         ! Import standard modules ...
-        USE ISO_FORTRAN_ENV
+        USE, INTRINSIC :: ISO_FORTRAN_ENV
 
         ! Import my modules ...
         USE mod_safe, ONLY: sub_allocate_array
@@ -45,7 +45,7 @@ END MODULE mod_test04
 
 PROGRAM test04
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     ! Import my modules ...
     USE mod_safe, ONLY: const_pi

@@ -1,6 +1,6 @@
 MODULE mod_test06
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 
@@ -12,7 +12,7 @@ MODULE mod_test06
     ! Define functions ...
     FUNCTION calc_pi() RESULT(ans)
         ! Import standard modules ...
-        USE ISO_FORTRAN_ENV
+        USE, INTRINSIC :: ISO_FORTRAN_ENV
 
         ! Import special modules ...
         USE OMP_LIB
@@ -67,7 +67,7 @@ END MODULE mod_test06
 
 PROGRAM test06
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     ! Import my modules ...
     USE mod_safe, ONLY: const_pi

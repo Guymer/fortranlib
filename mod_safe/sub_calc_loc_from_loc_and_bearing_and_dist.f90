@@ -17,7 +17,7 @@ PURE SUBROUTINE sub_calc_loc_from_loc_and_bearing_and_dist(                     
     nmax                                                                        &
 )
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

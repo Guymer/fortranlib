@@ -8,7 +8,7 @@ PURE SUBROUTINE sub_ttest_ind(n1, n2, arr1, arr2, similarVar, t, p)
     ! NOTE: See https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html
 
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

@@ -61,7 +61,7 @@ if __name__ == "__main__":
                 "\n"
                 f"SUBROUTINE sub_save_2D_{knd}_{typ}_array_as_PGM(nx, ny, arr, fname)\n"
                 "    ! Import standard modules ...\n"
-                "    USE ISO_FORTRAN_ENV\n"
+                "    USE, INTRINSIC :: ISO_FORTRAN_ENV\n"
                 "\n"
                 "    IMPLICIT NONE\n"
                 "\n"

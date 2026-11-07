@@ -19,7 +19,7 @@
 
 SUBROUTINE sub_allocate_5D_REAL128_real_array(arr, name, n1, n2, n3, n4, n5, debug)
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

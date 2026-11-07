@@ -6,7 +6,7 @@ ELEMENTAL FUNCTION func_t_CDF(x, dof) RESULT(ans)
     !       but should rather integrate the PDF instead.
 
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

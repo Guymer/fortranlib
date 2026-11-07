@@ -7,7 +7,7 @@ PURE SUBROUTINE sub_find_middle_of_locs_euclideanBox(                           
     maxDist                                                                     &
 )
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

@@ -2,8 +2,8 @@ SUBROUTINE sub_allreduce_2D_INT16_logical_array(buff, op, comm)
     ! This subroutine reduces a 2D INT16 logical array.
 
     ! Import standard modules ...
-    USE ISO_C_BINDING
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_C_BINDING
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     ! Import special modules ...
     USE MPI

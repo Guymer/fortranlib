@@ -1,6 +1,6 @@
 PROGRAM test12
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     ! Import my modules ...
     USE mod_safe, ONLY: func_interpolate_points

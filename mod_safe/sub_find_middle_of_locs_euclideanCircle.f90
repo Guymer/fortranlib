@@ -15,7 +15,7 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_euclideanCircle(                   
     nRefine                                                                     &
 )
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

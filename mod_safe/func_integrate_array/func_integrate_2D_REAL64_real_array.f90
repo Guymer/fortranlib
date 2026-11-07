@@ -19,7 +19,7 @@
 
 PURE FUNCTION func_integrate_2D_REAL64_real_array(n1, n2, x1, x2, arr) RESULT(ans)
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

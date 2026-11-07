@@ -2,7 +2,7 @@ PURE FUNCTION func_mean_1D_REAL64_real(n1, arr, dof) RESULT(ans)
     ! NOTE: See https://numpy.org/doc/stable/reference/generated/numpy.mean.html
 
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

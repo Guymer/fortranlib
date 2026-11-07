@@ -1,6 +1,6 @@
 PURE SUBROUTINE sub_flood_REAL64_real_array_iter(nx, ny, elev, seaLevel, flooded, ixlo, ixhi, iylo, iyhi)
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

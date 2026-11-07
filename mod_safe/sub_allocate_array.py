@@ -52,7 +52,7 @@ if __name__ == "__main__":
                     "\n"
                     f'SUBROUTINE sub_allocate_{dim + 1:d}D_{knd}_{typ}_array(arr, name, {", ".join(ns)}, debug)\n'
                     "    ! Import standard modules ...\n"
-                    "    USE ISO_FORTRAN_ENV\n"
+                    "    USE, INTRINSIC :: ISO_FORTRAN_ENV\n"
                     "\n"
                     "    IMPLICIT NONE\n"
                     "\n"

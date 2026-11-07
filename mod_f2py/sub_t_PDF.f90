@@ -2,7 +2,7 @@ PURE SUBROUTINE sub_t_PDF(x, dof, ans)
     !f2py threadsafe
 
     ! Import standard modules ...
-    USE ISO_C_BINDING
+    USE, INTRINSIC :: ISO_C_BINDING
 
     ! Import my modules ...
     USE mod_safe, ONLY: func_t_PDF

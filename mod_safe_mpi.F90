@@ -3,7 +3,7 @@ MODULE mod_safe_MPI
     ! which can be safely imported in to any program.
 
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     ! Import special modules ...
     USE MPI

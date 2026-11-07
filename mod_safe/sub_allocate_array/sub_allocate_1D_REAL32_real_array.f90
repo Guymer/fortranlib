@@ -11,7 +11,7 @@
 
 SUBROUTINE sub_allocate_1D_REAL32_real_array(arr, name, n1, debug)
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

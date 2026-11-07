@@ -2,8 +2,8 @@ SUBROUTINE sub_bcast_5D_INT32_integer_array(buff, root, comm)
     ! This subroutine broadcasts a 5D INT32 integer array.
 
     ! Import standard modules ...
-    USE ISO_C_BINDING
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_C_BINDING
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     ! Import special modules ...
     USE MPI

@@ -4,7 +4,7 @@ PROGRAM test02
     ! NOTE: 2,494,357,888 > 2,147,483,647
 
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     ! Import special modules ...
     USE MPI

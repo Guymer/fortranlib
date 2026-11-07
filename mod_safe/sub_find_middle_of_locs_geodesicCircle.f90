@@ -17,7 +17,7 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicCircle(                    
     nRefine                                                                     &
 )
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

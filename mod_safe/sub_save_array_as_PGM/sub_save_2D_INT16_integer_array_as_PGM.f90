@@ -13,7 +13,7 @@
 
 SUBROUTINE sub_save_2D_INT16_integer_array_as_PGM(nx, ny, arr, fname)
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

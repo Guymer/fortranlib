@@ -7,7 +7,7 @@
 
 SUBROUTINE sub_save_3D_INT64_integer_array_as_BIN(arr, fname)
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

@@ -8,7 +8,7 @@ PURE FUNCTION func_var(n, arr, dof) RESULT(ans)
     !           normally distributed variables
 
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

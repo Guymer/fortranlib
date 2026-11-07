@@ -1,6 +1,6 @@
 PURE SUBROUTINE sub_buffer_POINT(point, dist, nang, polygon)
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     ! Import my modules ...
     USE mod_safe, ONLY: sub_calc_loc_from_loc_and_bearing_and_dist

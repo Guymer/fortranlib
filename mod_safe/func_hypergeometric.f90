@@ -6,7 +6,7 @@ ELEMENTAL FUNCTION func_hypergeometric(a, b, c, z) RESULT(ans)
     ! NOTE: See https://github.com/scipy/scipy/blob/main/scipy/special/_precompute/hyp2f1_data.py
 
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

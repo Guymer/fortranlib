@@ -2,7 +2,7 @@ SUBROUTINE sub_save_POLYGON_as_GEOJSON(polygon, fname)
     ! NOTE: See https://en.wikipedia.org/wiki/GeoJSON#Geometries
 
     ! Import standard modules ...
-    USE ISO_FORTRAN_ENV
+    USE, INTRINSIC :: ISO_FORTRAN_ENV
 
     IMPLICIT NONE
 

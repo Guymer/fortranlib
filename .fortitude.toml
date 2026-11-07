@@ -1,4 +1,7 @@
+# To know more about the checks that I have ignored, run the following command:
+#   fortitude explain C092
+
 [check]
-ignore = ["C121", "MOD011", "S001"]
+ignore = ["C092", "C121", "MOD011", "S001"]
 incorrect-keyword-case.keyword-case = "uppercase"
 target-std = "f2008"

@@ -4,6 +4,10 @@ MODULE mod_test07
 
     IMPLICIT NONE
 
+    PRIVATE
+
+    PUBLIC calc_pi
+
     ! Declare parameters ...
     INTEGER(kind = INT64), PARAMETER                                            :: nsamples = 1000_INT64
 

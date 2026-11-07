@@ -34,4 +34,4 @@ ELEMENTAL FUNCTION func_overall_index_4loops(i1, i2, i3, i4, n2, n3, n4) RESULT(
     INTEGER(kind = INT64)                                                       :: ans
 
     ans = i4 + n4 * ((i3 - 1_INT64) + n3 * ((i2 - 1_INT64) + n2 * (i1 - 1_INT64)))
-END FUNCTION
+END FUNCTION func_overall_index_4loops

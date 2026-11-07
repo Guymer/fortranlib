@@ -46,4 +46,4 @@ ELEMENTAL FUNCTION func_overall_index_6loops(i1, i2, i3, i4, i5, i6, n2, n3, n4,
     INTEGER(kind = INT64)                                                       :: ans
 
     ans = i6 + n6 * ((i5 - 1_INT64) + n5 * ((i4 - 1_INT64) + n4 * ((i3 - 1_INT64) + n3 * ((i2 - 1_INT64) + n2 * (i1 - 1_INT64)))))
-END FUNCTION
+END FUNCTION func_overall_index_6loops

@@ -28,4 +28,4 @@ ELEMENTAL FUNCTION func_overall_index_3loops(i1, i2, i3, n2, n3) RESULT(ans)
     INTEGER(kind = INT64)                                                       :: ans
 
     ans = i3 + n3 * ((i2 - 1_INT64) + n2 * (i1 - 1_INT64))
-END FUNCTION
+END FUNCTION func_overall_index_3loops

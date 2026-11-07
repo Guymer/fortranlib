@@ -1,5 +1,6 @@
 .editorconfig
 .f2py_f2cmap
+.fortitude.toml
 .github/FUNDING.yml
 .github/workflows/gmake.yaml
 .github/workflows/mypy.yaml

@@ -1,3 +1,4 @@
 [check]
-ignore = ["S001"]
+ignore = ["C121", "MOD011", "S001"]
 incorrect-keyword-case.keyword-case = "uppercase"
+target-std = "f2008"

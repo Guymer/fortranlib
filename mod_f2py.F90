@@ -4,6 +4,12 @@ MODULE mod_f2py
 
     IMPLICIT NONE
 
+    PRIVATE
+
+    PUBLIC sub_hypergeometric,                                                  &
+        sub_t_CDF,                                                              &
+        sub_t_PDF
+
     CONTAINS
 
     ! Include functions and subroutines ...

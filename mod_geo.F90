@@ -4,6 +4,17 @@ MODULE mod_geo
 
     IMPLICIT NONE
 
+    PRIVATE
+
+    PUBLIC aPoint,                                                              &
+        aLine,                                                                  &
+        aPolygon,                                                               &
+        manyPoints,                                                             &
+        manyLines,                                                              &
+        manyPolygons,                                                           &
+        sub_buffer,                                                             &
+        sub_save_as_GEOJSON
+
     ! Declare type ...
     TYPE aPoint
         REAL(kind = REAL64)                                                     :: x    ! longitude

@@ -7,6 +7,81 @@ MODULE mod_safe
 
     IMPLICIT NONE
 
+    PRIVATE
+
+    PUBLIC func_integrate_array,                                                &
+        func_interpolate_points,                                                &
+        func_mean,                                                              &
+        func_overall_index,                                                     &
+        sub_allocate_array,                                                     &
+        sub_border_array,                                                       &
+        sub_flood_array,                                                        &
+        sub_flood_array_iter,                                                   &
+        sub_load_array_from_BIN,                                                &
+        sub_save_array_as_BIN,                                                  &
+        sub_save_array_as_PBM,                                                  &
+        sub_save_array_as_PGM,                                                  &
+        sub_save_array_as_PPM,                                                  &
+        sub_shrink_array,                                                       &
+        sub_solve_quadratic_equation,                                           &
+        const_1sigma,                                                           &
+        const_2sigma,                                                           &
+        const_3sigma,                                                           &
+        const_4sigma,                                                           &
+        const_5sigma,                                                           &
+        const_6sigma,                                                           &
+        const_amu,                                                              &
+        const_c,                                                                &
+        const_e,                                                                &
+        const_eps0,                                                             &
+        const_g,                                                                &
+        const_h,                                                                &
+        const_kb,                                                               &
+        const_me,                                                               &
+        const_mn,                                                               &
+        const_mp,                                                               &
+        const_mu0,                                                              &
+        const_na,                                                               &
+        const_pi,                                                               &
+        const_sig,                                                              &
+        const_cm_viridis,                                                       &
+        const_cm_plasma,                                                        &
+        const_cm_inferno,                                                       &
+        const_cm_magma,                                                         &
+        const_cm_cividis,                                                       &
+        const_cm_coolwarm,                                                      &
+        const_cm_turbo,                                                         &
+        const_cm_g2b,                                                           &
+        const_cm_r2g,                                                           &
+        const_cm_r2o2g,                                                         &
+        const_cm_grey,                                                          &
+        func_degrees,                                                           &
+        func_factorial,                                                         &
+        func_falling_factorial,                                                 &
+        func_hypergeometric,                                                    &
+        func_normal_CDF,                                                        &
+        func_normal_PDF,                                                        &
+        func_radians,                                                           &
+        func_rising_factorial,                                                  &
+        func_stddev,                                                            &
+        func_stderr,                                                            &
+        func_t_CDF,                                                             &
+        func_t_PDF,                                                             &
+        func_var,                                                               &
+        sub_calc_dist_between_two_locs,                                         &
+        sub_calc_loc_from_loc_and_bearing_and_dist,                             &
+        sub_find_middle_of_locs_euclideanCircle,                                &
+        sub_find_middle_of_locs_euclideanbox,                                   &
+        sub_find_middle_of_locs_geodesicBox,                                    &
+        sub_find_middle_of_locs_geodesicCircle,                                 &
+        sub_find_min_max_dist_bearing_euclideanSpace,                           &
+        sub_find_min_max_dist_bearing_geodesicSpace,                            &
+        sub_linearRegression,                                                   &
+        sub_max_dist_euclideanSpace,                                            &
+        sub_max_dist_geodesicSpace,                                             &
+        sub_quadraticregression,                                                &
+        sub_ttest_ind
+
     ! Declare interface ...
     INTERFACE func_integrate_array
         MODULE PROCEDURE func_integrate_1D_REAL32_real_array

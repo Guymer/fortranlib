@@ -10,6 +10,11 @@ MODULE mod_safe_MPI
 
     IMPLICIT NONE
 
+    PRIVATE
+
+    PUBLIC sub_allreduce_array,                                                 &
+        sub_bcast_array
+
     ! Declare interfaces ...
     INTERFACE sub_allreduce_array
         MODULE PROCEDURE sub_allreduce_1D_INT8_integer_array

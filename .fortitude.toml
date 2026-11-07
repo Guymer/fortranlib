@@ -2,6 +2,6 @@
 #   fortitude explain C092
 
 [check]
-ignore = ["C092", "C121", "MOD011", "S001"]
+ignore = ["C092", "C121", "MOD011", "S001", "S233", "S241"]
 incorrect-keyword-case.keyword-case = "uppercase"
 target-std = "f2008"

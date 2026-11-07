@@ -8,8 +8,8 @@ ELEMENTAL FUNCTION func_rising_factorial(x, n) result(ans)
 
     ! Declare inputs/outputs ...
     REAL(kind = REAL64)                                                         :: ans
-    REAL(kind = REAL64), INTENT(in)                                             :: n
-    REAL(kind = REAL64), INTENT(in)                                             :: x
+    REAL(kind = REAL64), INTENT(IN)                                             :: n
+    REAL(kind = REAL64), INTENT(IN)                                             :: x
 
     ! Set value ...
     ans = GAMMA(x + n) / GAMMA(x)

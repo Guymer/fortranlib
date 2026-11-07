@@ -18,9 +18,9 @@ PURE FUNCTION func_integrate_1D_REAL32_real_array(n1, x1, arr) RESULT(ans)
     IMPLICIT NONE
 
     ! Declare input variables ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: n1
-    REAL(kind = REAL32), DIMENSION(n1), INTENT(in)                              :: x1
-    REAL(kind = REAL32), DIMENSION(n1), INTENT(in)                              :: arr
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n1
+    REAL(kind = REAL32), DIMENSION(n1), INTENT(IN)                              :: x1
+    REAL(kind = REAL32), DIMENSION(n1), INTENT(IN)                              :: arr
 
     ! Declare output variables ...
     REAL(kind = REAL32)                                                         :: ans

@@ -11,9 +11,9 @@ SUBROUTINE sub_bcast_5D_INT8_logical_array(buff, root, comm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    LOGICAL(kind = INT8), CONTIGUOUS, DIMENSION(:, :, :, :, :), INTENT(inout), TARGET:: buff ! The 5D INT8 logical array to be broadcast.
-    INTEGER, INTENT(in)                                                         :: root ! The root task.
-    INTEGER, INTENT(in)                                                         :: comm ! The communicator.
+    LOGICAL(kind = INT8), CONTIGUOUS, DIMENSION(:, :, :, :, :), INTENT(INOUT), TARGET:: buff ! The 5D INT8 logical array to be broadcast.
+    INTEGER, INTENT(IN)                                                         :: root ! The root task.
+    INTEGER, INTENT(IN)                                                         :: comm ! The communicator.
 
     ! Declare parameters ...
     ! NOTE: "chunk" is the number of elements of "buff" that are needed to

@@ -12,8 +12,8 @@ SUBROUTINE sub_load_7D_INT64_integer_array_from_BIN(arr, fname)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    CHARACTER(len = *), INTENT(in)                                              :: fname
-    INTEGER(kind = INT64), DIMENSION(:, :, :, :, :, :, :), INTENT(out)          :: arr
+    CHARACTER(len = *), INTENT(IN)                                              :: fname
+    INTEGER(kind = INT64), DIMENSION(:, :, :, :, :, :, :), INTENT(OUT)          :: arr
 
     ! Declare FORTRAN variables ...
     CHARACTER(len = 256)                                                        :: errmsg

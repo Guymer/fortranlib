@@ -7,8 +7,8 @@ SUBROUTINE sub_save_LINE_as_GEOJSON(line, fname)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    TYPE(aLine), INTENT(in)                                                     :: line
-    CHARACTER(len = *), INTENT(in)                                              :: fname
+    TYPE(aLine), INTENT(IN)                                                     :: line
+    CHARACTER(len = *), INTENT(IN)                                              :: fname
 
     ! Declare internal variables ...
     INTEGER(kind = INT32)                                                       :: ipoints

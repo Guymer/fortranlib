@@ -20,11 +20,11 @@ PURE SUBROUTINE sub_solve_quadratic_REAL32_equation(a, b, c, x1, x2)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    REAL(kind = REAL32), INTENT(in)                                             :: a
-    REAL(kind = REAL32), INTENT(in)                                             :: b
-    REAL(kind = REAL32), INTENT(in)                                             :: c
-    REAL(kind = REAL32), INTENT(out)                                            :: x1
-    REAL(kind = REAL32), INTENT(out)                                            :: x2
+    REAL(kind = REAL32), INTENT(IN)                                             :: a
+    REAL(kind = REAL32), INTENT(IN)                                             :: b
+    REAL(kind = REAL32), INTENT(IN)                                             :: c
+    REAL(kind = REAL32), INTENT(OUT)                                            :: x1
+    REAL(kind = REAL32), INTENT(OUT)                                            :: x2
 
     ! Check sign of b ...
     IF(b >= 0.0e0_REAL32)THEN

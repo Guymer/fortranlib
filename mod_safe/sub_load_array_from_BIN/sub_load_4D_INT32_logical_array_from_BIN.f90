@@ -12,8 +12,8 @@ SUBROUTINE sub_load_4D_INT32_logical_array_from_BIN(arr, fname)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    CHARACTER(len = *), INTENT(in)                                              :: fname
-    LOGICAL(kind = INT32), DIMENSION(:, :, :, :), INTENT(out)                   :: arr
+    CHARACTER(len = *), INTENT(IN)                                              :: fname
+    LOGICAL(kind = INT32), DIMENSION(:, :, :, :), INTENT(OUT)                   :: arr
 
     ! Declare FORTRAN variables ...
     CHARACTER(len = 256)                                                        :: errmsg

@@ -5,11 +5,11 @@ SUBROUTINE sub_shrink_2D_INT16_integer_array(nx, ny, arr, shrinkScale, shrunkenA
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: nx
-    INTEGER(kind = INT64), INTENT(in)                                           :: ny
-    INTEGER(kind = INT16), DIMENSION(nx, ny), INTENT(in)                        :: arr
-    INTEGER(kind = INT64), INTENT(in)                                           :: shrinkScale
-    INTEGER(kind = INT16), ALLOCATABLE, DIMENSION(:, :), INTENT(out)            :: shrunkenArr
+    INTEGER(kind = INT64), INTENT(IN)                                           :: nx
+    INTEGER(kind = INT64), INTENT(IN)                                           :: ny
+    INTEGER(kind = INT16), DIMENSION(nx, ny), INTENT(IN)                        :: arr
+    INTEGER(kind = INT64), INTENT(IN)                                           :: shrinkScale
+    INTEGER(kind = INT16), ALLOCATABLE, DIMENSION(:, :), INTENT(OUT)            :: shrunkenArr
 
     ! Declare variables ...
     INTEGER(kind = INT64)                                                       :: ix

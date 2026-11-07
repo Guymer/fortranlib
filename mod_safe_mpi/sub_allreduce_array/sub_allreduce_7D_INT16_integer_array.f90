@@ -11,9 +11,9 @@ SUBROUTINE sub_allreduce_7D_INT16_integer_array(buff, op, comm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT16), CONTIGUOUS, DIMENSION(:, :, :, :, :, :, :), INTENT(inout), TARGET:: buff ! The 7D INT16 integer array to be reduced.
-    INTEGER, INTENT(in)                                                         :: op ! The operation to perform.
-    INTEGER, INTENT(in)                                                         :: comm ! The communicator.
+    INTEGER(kind = INT16), CONTIGUOUS, DIMENSION(:, :, :, :, :, :, :), INTENT(INOUT), TARGET:: buff ! The 7D INT16 integer array to be reduced.
+    INTEGER, INTENT(IN)                                                         :: op ! The operation to perform.
+    INTEGER, INTENT(IN)                                                         :: comm ! The communicator.
 
     ! Declare parameters ...
     ! NOTE: "chunk" is the number of elements of "buff" that are needed to

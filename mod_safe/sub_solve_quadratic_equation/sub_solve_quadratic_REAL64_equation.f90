@@ -20,11 +20,11 @@ PURE SUBROUTINE sub_solve_quadratic_REAL64_equation(a, b, c, x1, x2)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    REAL(kind = REAL64), INTENT(in)                                             :: a
-    REAL(kind = REAL64), INTENT(in)                                             :: b
-    REAL(kind = REAL64), INTENT(in)                                             :: c
-    REAL(kind = REAL64), INTENT(out)                                            :: x1
-    REAL(kind = REAL64), INTENT(out)                                            :: x2
+    REAL(kind = REAL64), INTENT(IN)                                             :: a
+    REAL(kind = REAL64), INTENT(IN)                                             :: b
+    REAL(kind = REAL64), INTENT(IN)                                             :: c
+    REAL(kind = REAL64), INTENT(OUT)                                            :: x1
+    REAL(kind = REAL64), INTENT(OUT)                                            :: x2
 
     ! Check sign of b ...
     IF(b >= 0.0e0_REAL64)THEN

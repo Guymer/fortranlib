@@ -7,8 +7,8 @@ SUBROUTINE sub_save_POLYGON_as_GEOJSON(polygon, fname)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    TYPE(aPolygon), INTENT(in)                                                  :: polygon
-    CHARACTER(len = *), INTENT(in)                                              :: fname
+    TYPE(aPolygon), INTENT(IN)                                                  :: polygon
+    CHARACTER(len = *), INTENT(IN)                                              :: fname
 
     ! Declare internal variables ...
     INTEGER(kind = INT32)                                                       :: iinteriors

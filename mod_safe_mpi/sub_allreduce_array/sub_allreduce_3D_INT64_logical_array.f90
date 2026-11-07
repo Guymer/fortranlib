@@ -11,9 +11,9 @@ SUBROUTINE sub_allreduce_3D_INT64_logical_array(buff, op, comm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    LOGICAL(kind = INT64), CONTIGUOUS, DIMENSION(:, :, :), INTENT(inout), TARGET:: buff ! The 3D INT64 logical array to be reduced.
-    INTEGER, INTENT(in)                                                         :: op ! The operation to perform.
-    INTEGER, INTENT(in)                                                         :: comm ! The communicator.
+    LOGICAL(kind = INT64), CONTIGUOUS, DIMENSION(:, :, :), INTENT(INOUT), TARGET:: buff ! The 3D INT64 logical array to be reduced.
+    INTEGER, INTENT(IN)                                                         :: op ! The operation to perform.
+    INTEGER, INTENT(IN)                                                         :: comm ! The communicator.
 
     ! Declare parameters ...
     ! NOTE: "chunk" is the number of elements of "buff" that are needed to

@@ -8,10 +8,10 @@ PURE SUBROUTINE sub_buffer_POINT(point, dist, nang, polygon)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    TYPE(aPoint), INTENT(in)                                                    :: point
-    REAL(kind = REAL64), INTENT(in)                                             :: dist
-    INTEGER(kind = INT32), INTENT(in)                                           :: nang
-    TYPE(aPolygon), INTENT(out)                                                 :: polygon
+    TYPE(aPoint), INTENT(IN)                                                    :: point
+    REAL(kind = REAL64), INTENT(IN)                                             :: dist
+    INTEGER(kind = INT32), INTENT(IN)                                           :: nang
+    TYPE(aPolygon), INTENT(OUT)                                                 :: polygon
 
     ! Declare internal variables ...
     INTEGER(kind = INT32)                                                       :: iang

@@ -12,8 +12,8 @@ SUBROUTINE sub_save_3D_INT64_integer_array_as_BIN(arr, fname)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    CHARACTER(len = *), INTENT(in)                                              :: fname
-    INTEGER(kind = INT64), DIMENSION(:, :, :), INTENT(in)                       :: arr
+    CHARACTER(len = *), INTENT(IN)                                              :: fname
+    INTEGER(kind = INT64), DIMENSION(:, :, :), INTENT(IN)                       :: arr
 
     ! Declare FORTRAN variables ...
     CHARACTER(len = 256)                                                        :: errmsg

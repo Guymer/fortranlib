@@ -12,8 +12,8 @@ SUBROUTINE sub_load_6D_REAL64_real_array_from_BIN(arr, fname)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    CHARACTER(len = *), INTENT(in)                                              :: fname
-    REAL(kind = REAL64), DIMENSION(:, :, :, :, :, :), INTENT(out)               :: arr
+    CHARACTER(len = *), INTENT(IN)                                              :: fname
+    REAL(kind = REAL64), DIMENSION(:, :, :, :, :, :), INTENT(OUT)               :: arr
 
     ! Declare FORTRAN variables ...
     CHARACTER(len = 256)                                                        :: errmsg

@@ -22,17 +22,17 @@ PURE SUBROUTINE sub_calc_loc_from_loc_and_bearing_and_dist(                     
     IMPLICIT NONE
 
     ! Declare input variables/outputs ...
-    REAL(kind = REAL64), INTENT(in)                                             :: lon1_deg
-    REAL(kind = REAL64), INTENT(in)                                             :: lat1_deg
-    REAL(kind = REAL64), INTENT(in)                                             :: alpha1_deg
-    REAL(kind = REAL64), INTENT(in)                                             :: s_m
-    REAL(kind = REAL64), INTENT(out)                                            :: lon2_deg
-    REAL(kind = REAL64), INTENT(out)                                            :: lat2_deg
-    REAL(kind = REAL64), INTENT(out)                                            :: alpha2_deg
+    REAL(kind = REAL64), INTENT(IN)                                             :: lon1_deg
+    REAL(kind = REAL64), INTENT(IN)                                             :: lat1_deg
+    REAL(kind = REAL64), INTENT(IN)                                             :: alpha1_deg
+    REAL(kind = REAL64), INTENT(IN)                                             :: s_m
+    REAL(kind = REAL64), INTENT(OUT)                                            :: lon2_deg
+    REAL(kind = REAL64), INTENT(OUT)                                            :: lat2_deg
+    REAL(kind = REAL64), INTENT(OUT)                                            :: alpha2_deg
 
     ! Declare optional input variables/outputs ...
-    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nmax
-    REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: eps
+    INTEGER(kind = INT64), INTENT(IN), OPTIONAL                                 :: nmax
+    REAL(kind = REAL64), INTENT(IN), OPTIONAL                                   :: eps
 
     ! Declare internal parameters ...
     REAL(kind = REAL64), PARAMETER                                              :: a = 6378137.0e0_REAL64

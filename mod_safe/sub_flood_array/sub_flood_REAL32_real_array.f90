@@ -5,13 +5,13 @@ SUBROUTINE sub_flood_REAL32_real_array(nx, ny, elev, seaLevel, flooded, tileScal
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: nx
-    INTEGER(kind = INT64), INTENT(in)                                           :: ny
-    REAL(kind = REAL32), DIMENSION(nx, ny), INTENT(in)                          :: elev
-    REAL(kind = REAL32), INTENT(in)                                             :: seaLevel
-    LOGICAL(kind = INT8), DIMENSION(nx, ny), INTENT(inout)                      :: flooded
-    INTEGER(kind = INT64), INTENT(in)                                           :: tileScale
-    INTEGER(kind = INT64), ALLOCATABLE, DIMENSION(:), INTENT(out)               :: tot
+    INTEGER(kind = INT64), INTENT(IN)                                           :: nx
+    INTEGER(kind = INT64), INTENT(IN)                                           :: ny
+    REAL(kind = REAL32), DIMENSION(nx, ny), INTENT(IN)                          :: elev
+    REAL(kind = REAL32), INTENT(IN)                                             :: seaLevel
+    LOGICAL(kind = INT8), DIMENSION(nx, ny), INTENT(INOUT)                      :: flooded
+    INTEGER(kind = INT64), INTENT(IN)                                           :: tileScale
+    INTEGER(kind = INT64), ALLOCATABLE, DIMENSION(:), INTENT(OUT)               :: tot
 
     ! Declare parameters ...
     INTEGER(kind = INT64), PARAMETER                                            :: minTile = 32_INT64

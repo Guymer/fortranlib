@@ -18,11 +18,11 @@ SUBROUTINE sub_allocate_2D_INT64_integer_array(arr, name, n1, n2, debug)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    CHARACTER(len = *), INTENT(in)                                              :: name
-    LOGICAL(kind = INT8), INTENT(in)                                            :: debug
-    INTEGER(kind = INT64), INTENT(in)                                           :: n1
-    INTEGER(kind = INT64), INTENT(in)                                           :: n2
-    INTEGER(kind = INT64), ALLOCATABLE, DIMENSION(:, :), INTENT(inout)          :: arr
+    CHARACTER(len = *), INTENT(IN)                                              :: name
+    LOGICAL(kind = INT8), INTENT(IN)                                            :: debug
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n1
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n2
+    INTEGER(kind = INT64), ALLOCATABLE, DIMENSION(:, :), INTENT(INOUT)          :: arr
 
     ! Declare variables ...
     CHARACTER(len = 3)                                                          :: units

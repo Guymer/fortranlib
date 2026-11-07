@@ -7,10 +7,10 @@ PURE FUNCTION func_mean_1D_INT64_integer(n1, arr, dof) RESULT(ans)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: n1
-    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: dof
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n1
+    INTEGER(kind = INT64), INTENT(IN), OPTIONAL                                 :: dof
     INTEGER(kind = INT64)                                                       :: ans
-    INTEGER(kind = INT64), DIMENSION(n1), INTENT(in)                            :: arr
+    INTEGER(kind = INT64), DIMENSION(n1), INTENT(IN)                            :: arr
 
     ! Calculate the mean ...
     IF(PRESENT(dof))THEN

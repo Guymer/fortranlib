@@ -12,8 +12,8 @@ SUBROUTINE sub_save_6D_INT64_logical_array_as_BIN(arr, fname)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    CHARACTER(len = *), INTENT(in)                                              :: fname
-    LOGICAL(kind = INT64), DIMENSION(:, :, :, :, :, :), INTENT(in)              :: arr
+    CHARACTER(len = *), INTENT(IN)                                              :: fname
+    LOGICAL(kind = INT64), DIMENSION(:, :, :, :, :, :), INTENT(IN)              :: arr
 
     ! Declare FORTRAN variables ...
     CHARACTER(len = 256)                                                        :: errmsg

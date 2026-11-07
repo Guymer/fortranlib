@@ -12,8 +12,8 @@ SUBROUTINE sub_save_5D_INT32_logical_array_as_BIN(arr, fname)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    CHARACTER(len = *), INTENT(in)                                              :: fname
-    LOGICAL(kind = INT32), DIMENSION(:, :, :, :, :), INTENT(in)                 :: arr
+    CHARACTER(len = *), INTENT(IN)                                              :: fname
+    LOGICAL(kind = INT32), DIMENSION(:, :, :, :, :), INTENT(IN)                 :: arr
 
     ! Declare FORTRAN variables ...
     CHARACTER(len = 256)                                                        :: errmsg

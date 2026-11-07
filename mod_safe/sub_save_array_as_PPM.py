@@ -44,7 +44,7 @@ if __name__ == "__main__":
                     raise ValueError(f"\"typ\" is an unexpected value ({repr(typ)})") from None
 
             # Create source ...
-            lhs = f"{typ.upper()}(kind = {knd}), DIMENSION(nx, ny), INTENT(in)"
+            lhs = f"{typ.upper()}(kind = {knd}), DIMENSION(nx, ny), INTENT(IN)"
             src = (
                 f"!> @brief This subroutine saves a 2D {knd} {typ} array to a PPM file.\n"
                 "!>\n"
@@ -68,10 +68,10 @@ if __name__ == "__main__":
                 "    IMPLICIT NONE\n"
                 "\n"
                 "    ! Declare inputs/outputs ...\n"
-                "    CHARACTER(len = *), INTENT(in)                                              :: cm\n"
-                "    CHARACTER(len = *), INTENT(in)                                              :: fname\n"
-                "    INTEGER(kind = INT64), INTENT(in)                                           :: nx\n"
-                "    INTEGER(kind = INT64), INTENT(in)                                           :: ny\n"
+                "    CHARACTER(len = *), INTENT(IN)                                              :: cm\n"
+                "    CHARACTER(len = *), INTENT(IN)                                              :: fname\n"
+                "    INTEGER(kind = INT64), INTENT(IN)                                           :: nx\n"
+                "    INTEGER(kind = INT64), INTENT(IN)                                           :: ny\n"
                 f"    {lhs:76s}:: arr\n"
                 "\n"
                 "    ! Declare FORTRAN variables ...\n"

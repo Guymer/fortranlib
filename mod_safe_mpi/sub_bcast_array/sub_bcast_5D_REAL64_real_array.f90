@@ -11,9 +11,9 @@ SUBROUTINE sub_bcast_5D_REAL64_real_array(buff, root, comm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    REAL(kind = REAL64), CONTIGUOUS, DIMENSION(:, :, :, :, :), INTENT(inout), TARGET:: buff ! The 5D REAL64 real array to be broadcast.
-    INTEGER, INTENT(in)                                                         :: root ! The root task.
-    INTEGER, INTENT(in)                                                         :: comm ! The communicator.
+    REAL(kind = REAL64), CONTIGUOUS, DIMENSION(:, :, :, :, :), INTENT(INOUT), TARGET:: buff ! The 5D REAL64 real array to be broadcast.
+    INTEGER, INTENT(IN)                                                         :: root ! The root task.
+    INTEGER, INTENT(IN)                                                         :: comm ! The communicator.
 
     ! Declare parameters ...
     ! NOTE: "chunk" is the number of elements of "buff" that are needed to

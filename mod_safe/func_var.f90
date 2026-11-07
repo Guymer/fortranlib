@@ -13,10 +13,10 @@ PURE FUNCTION func_var(n, arr, dof) RESULT(ans)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: n
-    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: dof
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n
+    INTEGER(kind = INT64), INTENT(IN), OPTIONAL                                 :: dof
     REAL(kind = REAL64)                                                         :: ans
-    REAL(kind = REAL64), DIMENSION(n), INTENT(in)                               :: arr
+    REAL(kind = REAL64), DIMENSION(n), INTENT(IN)                               :: arr
 
     ! Declare internal variables ...
     REAL(kind = REAL64), ALLOCATABLE, DIMENSION(:)                              :: tmp

@@ -5,15 +5,15 @@ PURE SUBROUTINE sub_flood_INT64_integer_array_iter(nx, ny, elev, seaLevel, flood
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: nx
-    INTEGER(kind = INT64), INTENT(in)                                           :: ny
-    INTEGER(kind = INT64), DIMENSION(nx, ny), INTENT(in)                        :: elev
-    INTEGER(kind = INT64), INTENT(in)                                           :: seaLevel
-    LOGICAL(kind = INT8), DIMENSION(nx, ny), INTENT(inout)                      :: flooded
-    INTEGER(kind = INT64), INTENT(in)                                           :: ixlo
-    INTEGER(kind = INT64), INTENT(in)                                           :: ixhi
-    INTEGER(kind = INT64), INTENT(in)                                           :: iylo
-    INTEGER(kind = INT64), INTENT(in)                                           :: iyhi
+    INTEGER(kind = INT64), INTENT(IN)                                           :: nx
+    INTEGER(kind = INT64), INTENT(IN)                                           :: ny
+    INTEGER(kind = INT64), DIMENSION(nx, ny), INTENT(IN)                        :: elev
+    INTEGER(kind = INT64), INTENT(IN)                                           :: seaLevel
+    LOGICAL(kind = INT8), DIMENSION(nx, ny), INTENT(INOUT)                      :: flooded
+    INTEGER(kind = INT64), INTENT(IN)                                           :: ixlo
+    INTEGER(kind = INT64), INTENT(IN)                                           :: ixhi
+    INTEGER(kind = INT64), INTENT(IN)                                           :: iylo
+    INTEGER(kind = INT64), INTENT(IN)                                           :: iyhi
 
     ! Declare variables ...
     INTEGER(kind = INT64)                                                       :: ix

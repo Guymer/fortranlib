@@ -12,8 +12,8 @@ SUBROUTINE sub_save_5D_REAL64_real_array_as_BIN(arr, fname)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    CHARACTER(len = *), INTENT(in)                                              :: fname
-    REAL(kind = REAL64), DIMENSION(:, :, :, :, :), INTENT(in)                   :: arr
+    CHARACTER(len = *), INTENT(IN)                                              :: fname
+    REAL(kind = REAL64), DIMENSION(:, :, :, :, :), INTENT(IN)                   :: arr
 
     ! Declare FORTRAN variables ...
     CHARACTER(len = 256)                                                        :: errmsg

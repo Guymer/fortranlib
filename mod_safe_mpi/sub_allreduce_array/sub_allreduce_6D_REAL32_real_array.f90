@@ -11,9 +11,9 @@ SUBROUTINE sub_allreduce_6D_REAL32_real_array(buff, op, comm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    REAL(kind = REAL32), CONTIGUOUS, DIMENSION(:, :, :, :, :, :), INTENT(inout), TARGET:: buff ! The 6D REAL32 real array to be reduced.
-    INTEGER, INTENT(in)                                                         :: op ! The operation to perform.
-    INTEGER, INTENT(in)                                                         :: comm ! The communicator.
+    REAL(kind = REAL32), CONTIGUOUS, DIMENSION(:, :, :, :, :, :), INTENT(INOUT), TARGET:: buff ! The 6D REAL32 real array to be reduced.
+    INTEGER, INTENT(IN)                                                         :: op ! The operation to perform.
+    INTEGER, INTENT(IN)                                                         :: comm ! The communicator.
 
     ! Declare parameters ...
     ! NOTE: "chunk" is the number of elements of "buff" that are needed to

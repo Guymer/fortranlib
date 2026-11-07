@@ -12,8 +12,8 @@ ELEMENTAL FUNCTION func_t_CDF(x, dof) RESULT(ans)
 
     ! Declare inputs/outputs ...
     REAL(kind = REAL64)                                                         :: ans
-    REAL(kind = REAL64), INTENT(in)                                             :: dof
-    REAL(kind = REAL64), INTENT(in)                                             :: x
+    REAL(kind = REAL64), INTENT(IN)                                             :: dof
+    REAL(kind = REAL64), INTENT(IN)                                             :: x
 
     ! Declare constants ...
     REAL(kind = REAL64), PARAMETER                                              :: a = 0.5e0_REAL64

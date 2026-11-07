@@ -11,9 +11,9 @@ SUBROUTINE sub_bcast_1D_INT32_integer_array(buff, root, comm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT32), CONTIGUOUS, DIMENSION(:), INTENT(inout), TARGET      :: buff ! The 1D INT32 integer array to be broadcast.
-    INTEGER, INTENT(in)                                                         :: root ! The root task.
-    INTEGER, INTENT(in)                                                         :: comm ! The communicator.
+    INTEGER(kind = INT32), CONTIGUOUS, DIMENSION(:), INTENT(INOUT), TARGET      :: buff ! The 1D INT32 integer array to be broadcast.
+    INTEGER, INTENT(IN)                                                         :: root ! The root task.
+    INTEGER, INTENT(IN)                                                         :: comm ! The communicator.
 
     ! Declare parameters ...
     ! NOTE: "chunk" is the number of elements of "buff" that are needed to

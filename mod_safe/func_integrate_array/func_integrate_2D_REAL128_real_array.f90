@@ -24,11 +24,11 @@ PURE FUNCTION func_integrate_2D_REAL128_real_array(n1, n2, x1, x2, arr) RESULT(a
     IMPLICIT NONE
 
     ! Declare input variables ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: n1
-    INTEGER(kind = INT64), INTENT(in)                                           :: n2
-    REAL(kind = REAL128), DIMENSION(n1), INTENT(in)                             :: x1
-    REAL(kind = REAL128), DIMENSION(n2), INTENT(in)                             :: x2
-    REAL(kind = REAL128), DIMENSION(n1, n2), INTENT(in)                         :: arr
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n1
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n2
+    REAL(kind = REAL128), DIMENSION(n1), INTENT(IN)                             :: x1
+    REAL(kind = REAL128), DIMENSION(n2), INTENT(IN)                             :: x2
+    REAL(kind = REAL128), DIMENSION(n1, n2), INTENT(IN)                         :: arr
 
     ! Declare output variables ...
     REAL(kind = REAL128)                                                        :: ans

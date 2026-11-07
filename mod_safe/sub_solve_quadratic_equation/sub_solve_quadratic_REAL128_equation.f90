@@ -20,11 +20,11 @@ PURE SUBROUTINE sub_solve_quadratic_REAL128_equation(a, b, c, x1, x2)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    REAL(kind = REAL128), INTENT(in)                                            :: a
-    REAL(kind = REAL128), INTENT(in)                                            :: b
-    REAL(kind = REAL128), INTENT(in)                                            :: c
-    REAL(kind = REAL128), INTENT(out)                                           :: x1
-    REAL(kind = REAL128), INTENT(out)                                           :: x2
+    REAL(kind = REAL128), INTENT(IN)                                            :: a
+    REAL(kind = REAL128), INTENT(IN)                                            :: b
+    REAL(kind = REAL128), INTENT(IN)                                            :: c
+    REAL(kind = REAL128), INTENT(OUT)                                           :: x1
+    REAL(kind = REAL128), INTENT(OUT)                                           :: x2
 
     ! Check sign of b ...
     IF(b >= 0.0e0_REAL128)THEN

@@ -5,11 +5,11 @@ SUBROUTINE sub_shrink_2D_REAL32_real_array(nx, ny, arr, shrinkScale, shrunkenArr
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: nx
-    INTEGER(kind = INT64), INTENT(in)                                           :: ny
-    REAL(kind = REAL32), DIMENSION(nx, ny), INTENT(in)                          :: arr
-    INTEGER(kind = INT64), INTENT(in)                                           :: shrinkScale
-    REAL(kind = REAL32), ALLOCATABLE, DIMENSION(:, :), INTENT(out)              :: shrunkenArr
+    INTEGER(kind = INT64), INTENT(IN)                                           :: nx
+    INTEGER(kind = INT64), INTENT(IN)                                           :: ny
+    REAL(kind = REAL32), DIMENSION(nx, ny), INTENT(IN)                          :: arr
+    INTEGER(kind = INT64), INTENT(IN)                                           :: shrinkScale
+    REAL(kind = REAL32), ALLOCATABLE, DIMENSION(:, :), INTENT(OUT)              :: shrunkenArr
 
     ! Declare variables ...
     INTEGER(kind = INT64)                                                       :: ix

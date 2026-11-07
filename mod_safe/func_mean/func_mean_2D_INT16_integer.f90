@@ -7,11 +7,11 @@ PURE FUNCTION func_mean_2D_INT16_integer(n1, n2, arr, dof) RESULT(ans)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: n1
-    INTEGER(kind = INT64), INTENT(in)                                           :: n2
-    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: dof
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n1
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n2
+    INTEGER(kind = INT64), INTENT(IN), OPTIONAL                                 :: dof
     INTEGER(kind = INT16)                                                       :: ans
-    INTEGER(kind = INT16), DIMENSION(n1, n2), INTENT(in)                        :: arr
+    INTEGER(kind = INT16), DIMENSION(n1, n2), INTENT(IN)                        :: arr
 
     ! Calculate the mean ...
     IF(PRESENT(dof))THEN

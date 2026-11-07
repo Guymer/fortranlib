@@ -22,24 +22,24 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicCircle(                    
     IMPLICIT NONE
 
     ! Declare input variables/outputs ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: n
-    REAL(kind = REAL64), DIMENSION(n), INTENT(in)                               :: lons
-    REAL(kind = REAL64), DIMENSION(n), INTENT(in)                               :: lats
-    REAL(kind = REAL64), INTENT(inout)                                          :: midLon
-    REAL(kind = REAL64), INTENT(inout)                                          :: midLat
-    REAL(kind = REAL64), INTENT(out)                                            :: maxDist
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n
+    REAL(kind = REAL64), DIMENSION(n), INTENT(IN)                               :: lons
+    REAL(kind = REAL64), DIMENSION(n), INTENT(IN)                               :: lats
+    REAL(kind = REAL64), INTENT(INOUT)                                          :: midLon
+    REAL(kind = REAL64), INTENT(INOUT)                                          :: midLat
+    REAL(kind = REAL64), INTENT(OUT)                                            :: maxDist
 
     ! Declare optional input variables/outputs ...
-    LOGICAL(kind = INT8), INTENT(in), OPTIONAL                                  :: debug
-    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: iRefine
-    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nAng
-    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nAngIter
-    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nDistIter
-    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nMax
-    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nRefine
-    REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: angConv
-    REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: dist
-    REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: eps
+    LOGICAL(kind = INT8), INTENT(IN), OPTIONAL                                  :: debug
+    INTEGER(kind = INT64), INTENT(IN), OPTIONAL                                 :: iRefine
+    INTEGER(kind = INT64), INTENT(IN), OPTIONAL                                 :: nAng
+    INTEGER(kind = INT64), INTENT(IN), OPTIONAL                                 :: nAngIter
+    INTEGER(kind = INT64), INTENT(IN), OPTIONAL                                 :: nDistIter
+    INTEGER(kind = INT64), INTENT(IN), OPTIONAL                                 :: nMax
+    INTEGER(kind = INT64), INTENT(IN), OPTIONAL                                 :: nRefine
+    REAL(kind = REAL64), INTENT(IN), OPTIONAL                                   :: angConv
+    REAL(kind = REAL64), INTENT(IN), OPTIONAL                                   :: dist
+    REAL(kind = REAL64), INTENT(IN), OPTIONAL                                   :: eps
 
     ! Declare internal variables ...
     LOGICAL(kind = INT8)                                                        :: debug2

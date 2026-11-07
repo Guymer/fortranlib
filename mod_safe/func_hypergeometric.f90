@@ -12,10 +12,10 @@ ELEMENTAL FUNCTION func_hypergeometric(a, b, c, z) RESULT(ans)
 
     ! Declare inputs/outputs ...
     REAL(kind = REAL64)                                                         :: ans
-    REAL(kind = REAL64), INTENT(in)                                             :: a
-    REAL(kind = REAL64), INTENT(in)                                             :: b
-    REAL(kind = REAL64), INTENT(in)                                             :: c
-    REAL(kind = REAL64), INTENT(in)                                             :: z
+    REAL(kind = REAL64), INTENT(IN)                                             :: a
+    REAL(kind = REAL64), INTENT(IN)                                             :: b
+    REAL(kind = REAL64), INTENT(IN)                                             :: c
+    REAL(kind = REAL64), INTENT(IN)                                             :: z
 
     ! Declare internal parameters ...
     INTEGER(kind = INT64), PARAMETER                                            :: imax = 1024_INT64

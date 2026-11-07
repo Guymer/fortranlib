@@ -5,15 +5,15 @@ PURE SUBROUTINE sub_flood_REAL64_real_array_iter(nx, ny, elev, seaLevel, flooded
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: nx
-    INTEGER(kind = INT64), INTENT(in)                                           :: ny
-    REAL(kind = REAL64), DIMENSION(nx, ny), INTENT(in)                          :: elev
-    REAL(kind = REAL64), INTENT(in)                                             :: seaLevel
-    LOGICAL(kind = INT8), DIMENSION(nx, ny), INTENT(inout)                      :: flooded
-    INTEGER(kind = INT64), INTENT(in)                                           :: ixlo
-    INTEGER(kind = INT64), INTENT(in)                                           :: ixhi
-    INTEGER(kind = INT64), INTENT(in)                                           :: iylo
-    INTEGER(kind = INT64), INTENT(in)                                           :: iyhi
+    INTEGER(kind = INT64), INTENT(IN)                                           :: nx
+    INTEGER(kind = INT64), INTENT(IN)                                           :: ny
+    REAL(kind = REAL64), DIMENSION(nx, ny), INTENT(IN)                          :: elev
+    REAL(kind = REAL64), INTENT(IN)                                             :: seaLevel
+    LOGICAL(kind = INT8), DIMENSION(nx, ny), INTENT(INOUT)                      :: flooded
+    INTEGER(kind = INT64), INTENT(IN)                                           :: ixlo
+    INTEGER(kind = INT64), INTENT(IN)                                           :: ixhi
+    INTEGER(kind = INT64), INTENT(IN)                                           :: iylo
+    INTEGER(kind = INT64), INTENT(IN)                                           :: iyhi
 
     ! Declare variables ...
     INTEGER(kind = INT64)                                                       :: ix

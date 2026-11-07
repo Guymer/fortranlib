@@ -10,11 +10,11 @@ PURE SUBROUTINE sub_hypergeometric(a, b, c, z, ans)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    REAL(kind = C_DOUBLE), INTENT(in)                                           :: a
-    REAL(kind = C_DOUBLE), INTENT(in)                                           :: b
-    REAL(kind = C_DOUBLE), INTENT(in)                                           :: c
-    REAL(kind = C_DOUBLE), INTENT(in)                                           :: z
-    REAL(kind = C_DOUBLE), INTENT(out)                                          :: ans
+    REAL(kind = C_DOUBLE), INTENT(IN)                                           :: a
+    REAL(kind = C_DOUBLE), INTENT(IN)                                           :: b
+    REAL(kind = C_DOUBLE), INTENT(IN)                                           :: c
+    REAL(kind = C_DOUBLE), INTENT(IN)                                           :: z
+    REAL(kind = C_DOUBLE), INTENT(OUT)                                          :: ans
 
     ! Calculate answer ...
     ans = func_hypergeometric(a, b, c, z)

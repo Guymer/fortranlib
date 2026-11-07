@@ -22,17 +22,17 @@ PURE SUBROUTINE sub_calc_dist_between_two_locs(                                 
     IMPLICIT NONE
 
     ! Declare input variables/outputs ...
-    REAL(kind = REAL64), INTENT(in)                                             :: lon1_deg
-    REAL(kind = REAL64), INTENT(in)                                             :: lat1_deg
-    REAL(kind = REAL64), INTENT(in)                                             :: lon2_deg
-    REAL(kind = REAL64), INTENT(in)                                             :: lat2_deg
-    REAL(kind = REAL64), INTENT(out)                                            :: s_m
-    REAL(kind = REAL64), INTENT(out)                                            :: alpha1_deg
-    REAL(kind = REAL64), INTENT(out)                                            :: alpha2_deg
+    REAL(kind = REAL64), INTENT(IN)                                             :: lon1_deg
+    REAL(kind = REAL64), INTENT(IN)                                             :: lat1_deg
+    REAL(kind = REAL64), INTENT(IN)                                             :: lon2_deg
+    REAL(kind = REAL64), INTENT(IN)                                             :: lat2_deg
+    REAL(kind = REAL64), INTENT(OUT)                                            :: s_m
+    REAL(kind = REAL64), INTENT(OUT)                                            :: alpha1_deg
+    REAL(kind = REAL64), INTENT(OUT)                                            :: alpha2_deg
 
     ! Declare optional input variables/outputs ...
-    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nmax
-    REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: eps
+    INTEGER(kind = INT64), INTENT(IN), OPTIONAL                                 :: nmax
+    REAL(kind = REAL64), INTENT(IN), OPTIONAL                                   :: eps
 
     ! Declare internal parameters ...
     REAL(kind = REAL64), PARAMETER                                              :: a = 6378137.0e0_REAL64

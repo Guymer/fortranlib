@@ -7,8 +7,8 @@ SUBROUTINE sub_save_POINT_as_GEOJSON(point, fname)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    TYPE(aPoint), INTENT(in)                                                    :: point
-    CHARACTER(len = *), INTENT(in)                                              :: fname
+    TYPE(aPoint), INTENT(IN)                                                    :: point
+    CHARACTER(len = *), INTENT(IN)                                              :: fname
 
     ! Declare FORTRAN variables ...
     CHARACTER(len = 256)                                                        :: errmsg

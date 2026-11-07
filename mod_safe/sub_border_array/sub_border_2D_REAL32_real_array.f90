@@ -20,12 +20,12 @@ SUBROUTINE sub_border_2D_REAL32_real_array(n1, n2, arr, borderedArr, name, debug
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    CHARACTER(len = *), INTENT(in)                                              :: name
-    LOGICAL(kind = INT8), INTENT(in)                                            :: debug
-    INTEGER(kind = INT64), INTENT(in)                                           :: n1
-    INTEGER(kind = INT64), INTENT(in)                                           :: n2
-    REAL(kind = REAL32), DIMENSION(1:n1, 1:n2), INTENT(in)                      :: arr
-    REAL(kind = REAL32), ALLOCATABLE, DIMENSION(:, :), INTENT(out)              :: borderedArr
+    CHARACTER(len = *), INTENT(IN)                                              :: name
+    LOGICAL(kind = INT8), INTENT(IN)                                            :: debug
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n1
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n2
+    REAL(kind = REAL32), DIMENSION(1:n1, 1:n2), INTENT(IN)                      :: arr
+    REAL(kind = REAL32), ALLOCATABLE, DIMENSION(:, :), INTENT(OUT)              :: borderedArr
 
     ! Declare variables ...
     CHARACTER(len = 3)                                                          :: units

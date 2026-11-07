@@ -12,8 +12,8 @@ SUBROUTINE sub_load_5D_INT16_logical_array_from_BIN(arr, fname)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    CHARACTER(len = *), INTENT(in)                                              :: fname
-    LOGICAL(kind = INT16), DIMENSION(:, :, :, :, :), INTENT(out)                :: arr
+    CHARACTER(len = *), INTENT(IN)                                              :: fname
+    LOGICAL(kind = INT16), DIMENSION(:, :, :, :, :), INTENT(OUT)                :: arr
 
     ! Declare FORTRAN variables ...
     CHARACTER(len = 256)                                                        :: errmsg

@@ -20,11 +20,11 @@ SUBROUTINE sub_save_2D_REAL32_real_array_as_PPM(nx, ny, arr, fname, cm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    CHARACTER(len = *), INTENT(in)                                              :: cm
-    CHARACTER(len = *), INTENT(in)                                              :: fname
-    INTEGER(kind = INT64), INTENT(in)                                           :: nx
-    INTEGER(kind = INT64), INTENT(in)                                           :: ny
-    REAL(kind = REAL32), DIMENSION(nx, ny), INTENT(in)                          :: arr
+    CHARACTER(len = *), INTENT(IN)                                              :: cm
+    CHARACTER(len = *), INTENT(IN)                                              :: fname
+    INTEGER(kind = INT64), INTENT(IN)                                           :: nx
+    INTEGER(kind = INT64), INTENT(IN)                                           :: ny
+    REAL(kind = REAL32), DIMENSION(nx, ny), INTENT(IN)                          :: arr
 
     ! Declare FORTRAN variables ...
     CHARACTER(len = 256)                                                        :: errmsg

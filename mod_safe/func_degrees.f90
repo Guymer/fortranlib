@@ -7,7 +7,7 @@ ELEMENTAL FUNCTION func_degrees(x) RESULT(ans)
     IMPLICIT NONE
 
     ! Declare input variables ...
-    REAL(kind = REAL64), INTENT(in)                                             :: x        ! The input angle in radians.
+    REAL(kind = REAL64), INTENT(IN)                                             :: x        ! The input angle in radians.
 
     ! Declare output variables ...
     REAL(kind = REAL64)                                                         :: ans      ! The output angle in degrees.

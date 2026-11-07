@@ -18,11 +18,11 @@ ELEMENTAL FUNCTION func_interpolate_REAL32_points(x1, x2, y1, y2, x) RESULT(ans)
     IMPLICIT NONE
 
     ! Declare input variables ...
-    REAL(kind = REAL32), INTENT(in)                                             :: x
-    REAL(kind = REAL32), INTENT(in)                                             :: x1
-    REAL(kind = REAL32), INTENT(in)                                             :: x2
-    REAL(kind = REAL32), INTENT(in)                                             :: y1
-    REAL(kind = REAL32), INTENT(in)                                             :: y2
+    REAL(kind = REAL32), INTENT(IN)                                             :: x
+    REAL(kind = REAL32), INTENT(IN)                                             :: x1
+    REAL(kind = REAL32), INTENT(IN)                                             :: x2
+    REAL(kind = REAL32), INTENT(IN)                                             :: y1
+    REAL(kind = REAL32), INTENT(IN)                                             :: y2
 
     ! Declare output variables ...
     REAL(kind = REAL32)                                                         :: ans

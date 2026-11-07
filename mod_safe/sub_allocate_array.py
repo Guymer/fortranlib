@@ -57,18 +57,18 @@ if __name__ == "__main__":
                     "    IMPLICIT NONE\n"
                     "\n"
                     "    ! Declare inputs/outputs ...\n"
-                    "    CHARACTER(len = *), INTENT(in)                                              :: name\n"
-                    "    LOGICAL(kind = INT8), INTENT(in)                                            :: debug\n"
+                    "    CHARACTER(len = *), INTENT(IN)                                              :: name\n"
+                    "    LOGICAL(kind = INT8), INTENT(IN)                                            :: debug\n"
                 )
 
                 # Create source ...
                 for n in ns:
                     src += (
-                        f"    INTEGER(kind = INT64), INTENT(in)                                           :: {n}\n"
+                        f"    INTEGER(kind = INT64), INTENT(IN)                                           :: {n}\n"
                     )
 
                 # Create source ...
-                lhs = f'{typ.upper()}(kind = {knd}), ALLOCATABLE, DIMENSION({", ".join((dim + 1) * [":"])}), INTENT(inout)'
+                lhs = f'{typ.upper()}(kind = {knd}), ALLOCATABLE, DIMENSION({", ".join((dim + 1) * [":"])}), INTENT(INOUT)'
                 src += (
                     f"    {lhs:76s}:: arr\n"
                     "\n"

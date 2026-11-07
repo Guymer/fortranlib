@@ -11,9 +11,9 @@ SUBROUTINE sub_bcast_4D_INT16_integer_array(buff, root, comm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT16), CONTIGUOUS, DIMENSION(:, :, :, :), INTENT(inout), TARGET:: buff ! The 4D INT16 integer array to be broadcast.
-    INTEGER, INTENT(in)                                                         :: root ! The root task.
-    INTEGER, INTENT(in)                                                         :: comm ! The communicator.
+    INTEGER(kind = INT16), CONTIGUOUS, DIMENSION(:, :, :, :), INTENT(INOUT), TARGET:: buff ! The 4D INT16 integer array to be broadcast.
+    INTEGER, INTENT(IN)                                                         :: root ! The root task.
+    INTEGER, INTENT(IN)                                                         :: comm ! The communicator.
 
     ! Declare parameters ...
     ! NOTE: "chunk" is the number of elements of "buff" that are needed to

@@ -24,7 +24,7 @@ if __name__ == "__main__":
             # Loop over dimensions ...
             for dim in range(7):
                 # Create source ...
-                lhs = f'{typ.upper()}(kind = {knd}), DIMENSION({", ".join((dim + 1) * [":"])}), INTENT(out)'
+                lhs = f'{typ.upper()}(kind = {knd}), DIMENSION({", ".join((dim + 1) * [":"])}), INTENT(OUT)'
                 src = (
                     f"!> @brief This subroutine loads a {dim + 1:d}D {knd} {typ} array from a BIN file.\n"
                     "!>\n"
@@ -40,7 +40,7 @@ if __name__ == "__main__":
                     "    IMPLICIT NONE\n"
                     "\n"
                     "    ! Declare inputs/outputs ...\n"
-                    "    CHARACTER(len = *), INTENT(in)                                              :: fname\n"
+                    "    CHARACTER(len = *), INTENT(IN)                                              :: fname\n"
                     f"    {lhs:76s}:: arr\n"
                     "\n"
                     "    ! Declare FORTRAN variables ...\n"

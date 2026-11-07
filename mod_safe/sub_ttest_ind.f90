@@ -13,13 +13,13 @@ PURE SUBROUTINE sub_ttest_ind(n1, n2, arr1, arr2, similarVar, t, p)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: n1
-    INTEGER(kind = INT64), INTENT(in)                                           :: n2
-    LOGICAL(kind = INT8), INTENT(in)                                            :: similarVar
-    REAL(kind = REAL64), INTENT(out)                                            :: p
-    REAL(kind = REAL64), INTENT(out)                                            :: t
-    REAL(kind = REAL64), DIMENSION(n1), INTENT(in)                              :: arr1
-    REAL(kind = REAL64), DIMENSION(n2), INTENT(in)                              :: arr2
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n1
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n2
+    LOGICAL(kind = INT8), INTENT(IN)                                            :: similarVar
+    REAL(kind = REAL64), INTENT(OUT)                                            :: p
+    REAL(kind = REAL64), INTENT(OUT)                                            :: t
+    REAL(kind = REAL64), DIMENSION(n1), INTENT(IN)                              :: arr1
+    REAL(kind = REAL64), DIMENSION(n2), INTENT(IN)                              :: arr2
 
     ! Declare internal variables ...
     REAL(kind = REAL64)                                                         :: dof

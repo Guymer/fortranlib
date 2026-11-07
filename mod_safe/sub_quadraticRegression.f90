@@ -12,12 +12,12 @@ PURE SUBROUTINE sub_quadraticRegression(                                        
     IMPLICIT NONE
 
     ! Declare input variables/outputs ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: n
-    REAL(kind = REAL64), DIMENSION(n), INTENT(in)                               :: x
-    REAL(kind = REAL64), DIMENSION(n), INTENT(in)                               :: y
-    REAL(kind = REAL64), INTENT(out)                                            :: a
-    REAL(kind = REAL64), INTENT(out)                                            :: b
-    REAL(kind = REAL64), INTENT(out)                                            :: c
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n
+    REAL(kind = REAL64), DIMENSION(n), INTENT(IN)                               :: x
+    REAL(kind = REAL64), DIMENSION(n), INTENT(IN)                               :: y
+    REAL(kind = REAL64), INTENT(OUT)                                            :: a
+    REAL(kind = REAL64), INTENT(OUT)                                            :: b
+    REAL(kind = REAL64), INTENT(OUT)                                            :: c
 
     ! Declare internal variables ...
     INTEGER(kind = INT64)                                                       :: i

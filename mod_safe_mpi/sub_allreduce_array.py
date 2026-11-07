@@ -25,7 +25,7 @@ if __name__ == "__main__":
             # Loop over dimensions ...
             for dim in range(7):
                 # Create source ...
-                lhs1 = f'{typ.upper()}(kind = {knd1}), CONTIGUOUS, DIMENSION({", ".join((dim + 1) * [":"])}), INTENT(inout), TARGET'
+                lhs1 = f'{typ.upper()}(kind = {knd1}), CONTIGUOUS, DIMENSION({", ".join((dim + 1) * [":"])}), INTENT(INOUT), TARGET'
                 lhs2 = f"{typ.upper()}(kind = {knd1}), CONTIGUOUS, DIMENSION(:), POINTER"
                 src = (
                     f"SUBROUTINE sub_allreduce_{dim + 1:d}D_{knd1}_{typ}_array(buff, op, comm)\n"
@@ -42,8 +42,8 @@ if __name__ == "__main__":
                     "\n"
                     "    ! Declare inputs/outputs ...\n"
                     f"    {lhs1:76s}:: buff ! The {dim + 1:d}D {knd1} {typ} array to be reduced.\n"
-                    "    INTEGER, INTENT(in)                                                         :: op ! The operation to perform.\n"
-                    "    INTEGER, INTENT(in)                                                         :: comm ! The communicator.\n"
+                    "    INTEGER, INTENT(IN)                                                         :: op ! The operation to perform.\n"
+                    "    INTEGER, INTENT(IN)                                                         :: comm ! The communicator.\n"
                     "\n"
                     "    ! Declare parameters ...\n"
                     "    ! NOTE: \"chunk\" is the number of elements of \"buff\" that are needed to\n"

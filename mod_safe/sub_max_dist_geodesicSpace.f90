@@ -14,16 +14,16 @@ PURE SUBROUTINE sub_max_dist_geodesicSpace(                                     
     IMPLICIT NONE
 
     ! Declare input variables/outputs ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: n
-    REAL(kind = REAL64), INTENT(in)                                             :: midLon
-    REAL(kind = REAL64), INTENT(in)                                             :: midLat
-    REAL(kind = REAL64), DIMENSION(n), INTENT(in)                               :: lons
-    REAL(kind = REAL64), DIMENSION(n), INTENT(in)                               :: lats
-    REAL(kind = REAL64), INTENT(out)                                            :: maxDist
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n
+    REAL(kind = REAL64), INTENT(IN)                                             :: midLon
+    REAL(kind = REAL64), INTENT(IN)                                             :: midLat
+    REAL(kind = REAL64), DIMENSION(n), INTENT(IN)                               :: lons
+    REAL(kind = REAL64), DIMENSION(n), INTENT(IN)                               :: lats
+    REAL(kind = REAL64), INTENT(OUT)                                            :: maxDist
 
     ! Declare optional input variables/outputs ...
-    INTEGER(kind = INT64), INTENT(in), OPTIONAL                                 :: nMax
-    REAL(kind = REAL64), INTENT(in), OPTIONAL                                   :: eps
+    INTEGER(kind = INT64), INTENT(IN), OPTIONAL                                 :: nMax
+    REAL(kind = REAL64), INTENT(IN), OPTIONAL                                   :: eps
 
     ! Declare internal variables ...
     INTEGER(kind = INT64)                                                       :: i

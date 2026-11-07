@@ -20,11 +20,11 @@ ELEMENTAL FUNCTION func_overall_index_3loops(i1, i2, i3, n2, n3) RESULT(ans)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: i1
-    INTEGER(kind = INT64), INTENT(in)                                           :: i2
-    INTEGER(kind = INT64), INTENT(in)                                           :: i3
-    INTEGER(kind = INT64), INTENT(in)                                           :: n2
-    INTEGER(kind = INT64), INTENT(in)                                           :: n3
+    INTEGER(kind = INT64), INTENT(IN)                                           :: i1
+    INTEGER(kind = INT64), INTENT(IN)                                           :: i2
+    INTEGER(kind = INT64), INTENT(IN)                                           :: i3
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n2
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n3
     INTEGER(kind = INT64)                                                       :: ans
 
     ans = i3 + n3 * ((i2 - 1_INT64) + n2 * (i1 - 1_INT64))

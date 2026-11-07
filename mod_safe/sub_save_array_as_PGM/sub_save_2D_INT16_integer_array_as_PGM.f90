@@ -18,10 +18,10 @@ SUBROUTINE sub_save_2D_INT16_integer_array_as_PGM(nx, ny, arr, fname)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    CHARACTER(len = *), INTENT(in)                                              :: fname
-    INTEGER(kind = INT64), INTENT(in)                                           :: nx
-    INTEGER(kind = INT64), INTENT(in)                                           :: ny
-    INTEGER(kind = INT16), DIMENSION(nx, ny), INTENT(in)                        :: arr
+    CHARACTER(len = *), INTENT(IN)                                              :: fname
+    INTEGER(kind = INT64), INTENT(IN)                                           :: nx
+    INTEGER(kind = INT64), INTENT(IN)                                           :: ny
+    INTEGER(kind = INT16), DIMENSION(nx, ny), INTENT(IN)                        :: arr
 
     ! Declare FORTRAN variables ...
     CHARACTER(len = 256)                                                        :: errmsg

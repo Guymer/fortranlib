@@ -12,12 +12,12 @@ PURE SUBROUTINE sub_find_middle_of_locs_euclideanBox(                           
     IMPLICIT NONE
 
     ! Declare input variables/outputs ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: n
-    REAL(kind = REAL64), DIMENSION(n), INTENT(in)                               :: lons
-    REAL(kind = REAL64), DIMENSION(n), INTENT(in)                               :: lats
-    REAL(kind = REAL64), INTENT(out)                                            :: midLon
-    REAL(kind = REAL64), INTENT(out)                                            :: midLat
-    REAL(kind = REAL64), INTENT(out)                                            :: maxDist
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n
+    REAL(kind = REAL64), DIMENSION(n), INTENT(IN)                               :: lons
+    REAL(kind = REAL64), DIMENSION(n), INTENT(IN)                               :: lats
+    REAL(kind = REAL64), INTENT(OUT)                                            :: midLon
+    REAL(kind = REAL64), INTENT(OUT)                                            :: midLat
+    REAL(kind = REAL64), INTENT(OUT)                                            :: maxDist
 
     ! **************************************************************************
 

@@ -28,15 +28,15 @@ ELEMENTAL FUNCTION func_overall_index_5loops(i1, i2, i3, i4, i5, n2, n3, n4, n5)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    INTEGER(kind = INT64), INTENT(in)                                           :: i1
-    INTEGER(kind = INT64), INTENT(in)                                           :: i2
-    INTEGER(kind = INT64), INTENT(in)                                           :: i3
-    INTEGER(kind = INT64), INTENT(in)                                           :: i4
-    INTEGER(kind = INT64), INTENT(in)                                           :: i5
-    INTEGER(kind = INT64), INTENT(in)                                           :: n2
-    INTEGER(kind = INT64), INTENT(in)                                           :: n3
-    INTEGER(kind = INT64), INTENT(in)                                           :: n4
-    INTEGER(kind = INT64), INTENT(in)                                           :: n5
+    INTEGER(kind = INT64), INTENT(IN)                                           :: i1
+    INTEGER(kind = INT64), INTENT(IN)                                           :: i2
+    INTEGER(kind = INT64), INTENT(IN)                                           :: i3
+    INTEGER(kind = INT64), INTENT(IN)                                           :: i4
+    INTEGER(kind = INT64), INTENT(IN)                                           :: i5
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n2
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n3
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n4
+    INTEGER(kind = INT64), INTENT(IN)                                           :: n5
     INTEGER(kind = INT64)                                                       :: ans
 
     ans = i5 + n5 * ((i4 - 1_INT64) + n4 * ((i3 - 1_INT64) + n3 * ((i2 - 1_INT64) + n2 * (i1 - 1_INT64))))

@@ -11,9 +11,9 @@ SUBROUTINE sub_bcast_3D_INT16_logical_array(buff, root, comm)
     IMPLICIT NONE
 
     ! Declare inputs/outputs ...
-    LOGICAL(kind = INT16), CONTIGUOUS, DIMENSION(:, :, :), INTENT(inout), TARGET:: buff ! The 3D INT16 logical array to be broadcast.
-    INTEGER, INTENT(in)                                                         :: root ! The root task.
-    INTEGER, INTENT(in)                                                         :: comm ! The communicator.
+    LOGICAL(kind = INT16), CONTIGUOUS, DIMENSION(:, :, :), INTENT(INOUT), TARGET:: buff ! The 3D INT16 logical array to be broadcast.
+    INTEGER, INTENT(IN)                                                         :: root ! The root task.
+    INTEGER, INTENT(IN)                                                         :: comm ! The communicator.
 
     ! Declare parameters ...
     ! NOTE: "chunk" is the number of elements of "buff" that are needed to

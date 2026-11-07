@@ -8,9 +8,9 @@ ELEMENTAL FUNCTION func_normal_PDF(x, mean, stddev) RESULT(ans)
 
     ! Declare inputs/outputs ...
     REAL(kind = REAL64)                                                         :: ans
-    REAL(kind = REAL64), INTENT(in)                                             :: mean
-    REAL(kind = REAL64), INTENT(in)                                             :: stddev
-    REAL(kind = REAL64), INTENT(in)                                             :: x
+    REAL(kind = REAL64), INTENT(IN)                                             :: mean
+    REAL(kind = REAL64), INTENT(IN)                                             :: stddev
+    REAL(kind = REAL64), INTENT(IN)                                             :: x
 
     ! Declare internal variables ...
     REAL(kind = REAL64)                                                         :: tmp

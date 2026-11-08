@@ -63,7 +63,7 @@ if __name__ == "__main__":
                     "\n"
                     "    ! Create flat array of pointers ...\n"
                     "    n = SIZE(buff, kind = INT64)\n"
-                    f'    CALL C_F_POINTER(C_LOC(buff({", ".join((dim + 1) * ["1_INT64"])})), buff_flat, (/ n /))\n'
+                    f'    CALL C_F_POINTER(C_LOC(buff({", ".join((dim + 1) * ["1_INT64"])})), buff_flat, [n])\n'
                     "\n"
                     "    ! Loop over parcels ...\n"
                     "    DO i = 1_INT64, n, chunk\n"

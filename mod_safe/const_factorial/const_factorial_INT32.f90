@@ -1,4 +1,4 @@
-INTEGER(kind = INT32), DIMENSION(0:12), PARAMETER                               :: const_factorial_INT32 = (/ &
+INTEGER(kind = INT32), DIMENSION(0:12), PARAMETER                               :: const_factorial_INT32 = [ &
                                                                                     1_INT32, &
                                                                                     1_INT32, &
                                                                                     2_INT32, &
@@ -12,4 +12,4 @@ INTEGER(kind = INT32), DIMENSION(0:12), PARAMETER                               
                                                                                     3628800_INT32, &
                                                                                     39916800_INT32, &
                                                                                     479001600_INT32  &
-                                                                                /)
+                                                                                ]

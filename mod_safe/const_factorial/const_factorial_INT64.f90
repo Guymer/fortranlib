@@ -1,4 +1,4 @@
-INTEGER(kind = INT64), DIMENSION(0:20), PARAMETER                               :: const_factorial_INT64 = (/ &
+INTEGER(kind = INT64), DIMENSION(0:20), PARAMETER                               :: const_factorial_INT64 = [ &
                                                                                     1_INT64, &
                                                                                     1_INT64, &
                                                                                     2_INT64, &
@@ -20,4 +20,4 @@ INTEGER(kind = INT64), DIMENSION(0:20), PARAMETER                               
                                                                                     6402373705728000_INT64, &
                                                                                     121645100408832000_INT64, &
                                                                                     2432902008176640000_INT64  &
-                                                                                /)
+                                                                                ]

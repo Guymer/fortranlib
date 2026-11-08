@@ -41,7 +41,7 @@ if __name__ == "__main__":
             assert matplotlib.colormaps[name].N == 256, f"the MatPlotLib colour map \"{name}\" has {matplotlib.colormaps[name].N:d} colours"
 
             # Start declaration ...
-            paddedName = f"{name} = (/"
+            paddedName = f"{name} = ["
             fObj.write(f"CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_{paddedName:32s}&\n")
 
             # Loop over levels ...
@@ -56,13 +56,13 @@ if __name__ == "__main__":
                     fObj.write(f'{84 * " "}ACHAR({r:3d}) // ACHAR({g:3d}) // ACHAR({b:3d}), &\n')
 
             # Finish declaration ...
-            fObj.write(f'{80 * " "}/)\n')
+            fObj.write(f'{80 * " "}]\n')
 
         # **********************************************************************
 
         # Start declaration ...
         # NOTE: This colour map will go from (0,255,0) to (0,0,255).
-        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_g2b = (/                        &\n")
+        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_g2b = [                         &\n")
 
         # Loop over levels ...
         for i in range(256):
@@ -78,13 +78,13 @@ if __name__ == "__main__":
                 fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
 
         # Finish declaration ...
-        fObj.write(f'{80 * " "}/)\n')
+        fObj.write(f'{80 * " "}]\n')
 
         # **********************************************************************
 
         # Start declaration ...
         # NOTE: This colour map will go from (255,0,0) to (0,255,0).
-        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2g = (/                        &\n")
+        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2g = [                         &\n")
 
         # Loop over levels ...
         for i in range(256):
@@ -100,13 +100,13 @@ if __name__ == "__main__":
                 fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
 
         # Finish declaration ...
-        fObj.write(f'{80 * " "}/)\n')
+        fObj.write(f'{80 * " "}]\n')
 
         # **********************************************************************
 
         # Start declaration ...
         # NOTE: This colour map will go from (255,0,0) to (255,127,0) to (0,255,0).
-        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2o2g = (/                      &\n")
+        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2o2g = [                       &\n")
 
         # Loop over levels ...
         for i in range(256):
@@ -125,13 +125,13 @@ if __name__ == "__main__":
                 fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
 
         # Finish declaration ...
-        fObj.write(f'{80 * " "}/)\n')
+        fObj.write(f'{80 * " "}]\n')
 
         # **********************************************************************
 
         # Start declaration ...
         # NOTE: This colour map will go from (0,0,0) to (255,255,255).
-        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_grey = (/                       &\n")
+        fObj.write("CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_grey = [                        &\n")
 
         # Loop over levels ...
         for i in range(256):
@@ -147,4 +147,4 @@ if __name__ == "__main__":
                 fObj.write(f'{84 * " "}ACHAR({r:3.0f}) // ACHAR({g:3.0f}) // ACHAR({b:3.0f}), &\n')
 
         # Finish declaration ...
-        fObj.write(f'{80 * " "}/)\n')
+        fObj.write(f'{80 * " "}]\n')

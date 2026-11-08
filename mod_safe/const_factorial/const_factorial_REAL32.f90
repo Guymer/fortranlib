@@ -1,4 +1,4 @@
-REAL(kind = REAL32), DIMENSION(0:34), PARAMETER                                 :: const_factorial_REAL32 = (/ &
+REAL(kind = REAL32), DIMENSION(0:34), PARAMETER                                 :: const_factorial_REAL32 = [ &
                                                                                     1.000000e+0000_REAL32, &
                                                                                     1.000000e+0000_REAL32, &
                                                                                     2.000000e+0000_REAL32, &
@@ -34,4 +34,4 @@ REAL(kind = REAL32), DIMENSION(0:34), PARAMETER                                 
                                                                                     2.631308e+0035_REAL32, &
                                                                                     8.683317e+0036_REAL32, &
                                                                                     2.952327e+0038_REAL32  &
-                                                                                /)
+                                                                                ]

@@ -1,4 +1,4 @@
-REAL(kind = REAL64), DIMENSION(0:170), PARAMETER                                :: const_factorial_REAL64 = (/ &
+REAL(kind = REAL64), DIMENSION(0:170), PARAMETER                                :: const_factorial_REAL64 = [ &
                                                                                     1.000000000000000e+0000_REAL64, &
                                                                                     1.000000000000000e+0000_REAL64, &
                                                                                     2.000000000000000e+0000_REAL64, &
@@ -170,4 +170,4 @@ REAL(kind = REAL64), DIMENSION(0:170), PARAMETER                                
                                                                                     2.526075744973198e+0302_REAL64, &
                                                                                     4.269068009004705e+0304_REAL64, &
                                                                                     7.257415615307998e+0306_REAL64  &
-                                                                                /)
+                                                                                ]

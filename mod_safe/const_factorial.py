@@ -64,7 +64,7 @@ if __name__ == "__main__":
         with open(f"const_factorial/const_factorial_INT{kind:d}.f90", mode = "wt", encoding = "utf-8") as fObj:
             # Start declaration ...
             lhs = f"INTEGER(kind = INT{kind:d}), DIMENSION(0:{limit:d}), PARAMETER"
-            fObj.write(f"{lhs:80s}:: const_factorial_INT{kind:d} = (/ &\n")
+            fObj.write(f"{lhs:80s}:: const_factorial_INT{kind:d} = [ &\n")
 
             # Loop over factorials ...
             for i in range(limit + 1):
@@ -75,7 +75,7 @@ if __name__ == "__main__":
                     fObj.write(f'{84 * " "}{math.factorial(i):d}_INT{kind:d}, &\n')
 
             # Finish declaration ...
-            fObj.write(f'{80 * " "}/)\n')
+            fObj.write(f'{80 * " "}]\n')
 
     # **************************************************************************
 
@@ -86,7 +86,7 @@ if __name__ == "__main__":
         with open(f"const_factorial/const_factorial_REAL{kind:d}.f90", mode = "wt", encoding = "utf-8") as fObj:
             # Start declaration ...
             lhs = f"REAL(kind = REAL{kind:d}), DIMENSION(0:{limit:d}), PARAMETER"
-            fObj.write(f"{lhs:80s}:: const_factorial_REAL{kind:d} = (/ &\n")
+            fObj.write(f"{lhs:80s}:: const_factorial_REAL{kind:d} = [ &\n")
 
             # Loop over factorials ...
             for i in range(limit + 1):
@@ -97,4 +97,4 @@ if __name__ == "__main__":
                     fObj.write(f'{84 * " "}{hack(math.factorial(i), prec)}_REAL{kind:d}, &\n')
 
             # Finish declaration ...
-            fObj.write(f'{80 * " "}/)\n')
+            fObj.write(f'{80 * " "}]\n')

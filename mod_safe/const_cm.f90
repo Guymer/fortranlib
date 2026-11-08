@@ -1,4 +1,4 @@
-CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_viridis = (/                    &
+CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_viridis = [                     &
                                                                                     ACHAR( 68) // ACHAR(  1) // ACHAR( 84), &
                                                                                     ACHAR( 68) // ACHAR(  2) // ACHAR( 85), &
                                                                                     ACHAR( 68) // ACHAR(  3) // ACHAR( 87), &
@@ -255,8 +255,8 @@ CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   
                                                                                     ACHAR(248) // ACHAR(230) // ACHAR( 33), &
                                                                                     ACHAR(250) // ACHAR(230) // ACHAR( 34), &
                                                                                     ACHAR(253) // ACHAR(231) // ACHAR( 36)  &
-                                                                                /)
-CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_plasma = (/                     &
+                                                                                ]
+CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_plasma = [                      &
                                                                                     ACHAR( 12) // ACHAR(  7) // ACHAR(134), &
                                                                                     ACHAR( 16) // ACHAR(  7) // ACHAR(135), &
                                                                                     ACHAR( 19) // ACHAR(  6) // ACHAR(137), &
@@ -513,8 +513,8 @@ CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   
                                                                                     ACHAR(240) // ACHAR(245) // ACHAR( 37), &
                                                                                     ACHAR(240) // ACHAR(246) // ACHAR( 35), &
                                                                                     ACHAR(239) // ACHAR(248) // ACHAR( 33)  &
-                                                                                /)
-CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_inferno = (/                    &
+                                                                                ]
+CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_inferno = [                     &
                                                                                     ACHAR(  0) // ACHAR(  0) // ACHAR(  3), &
                                                                                     ACHAR(  0) // ACHAR(  0) // ACHAR(  4), &
                                                                                     ACHAR(  0) // ACHAR(  0) // ACHAR(  6), &
@@ -771,8 +771,8 @@ CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   
                                                                                     ACHAR(249) // ACHAR(252) // ACHAR(157), &
                                                                                     ACHAR(250) // ACHAR(253) // ACHAR(160), &
                                                                                     ACHAR(252) // ACHAR(254) // ACHAR(164)  &
-                                                                                /)
-CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_magma = (/                      &
+                                                                                ]
+CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_magma = [                       &
                                                                                     ACHAR(  0) // ACHAR(  0) // ACHAR(  3), &
                                                                                     ACHAR(  0) // ACHAR(  0) // ACHAR(  4), &
                                                                                     ACHAR(  0) // ACHAR(  0) // ACHAR(  6), &
@@ -1029,8 +1029,8 @@ CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   
                                                                                     ACHAR(251) // ACHAR(249) // ACHAR(187), &
                                                                                     ACHAR(251) // ACHAR(250) // ACHAR(189), &
                                                                                     ACHAR(251) // ACHAR(252) // ACHAR(191)  &
-                                                                                /)
-CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_cividis = (/                    &
+                                                                                ]
+CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_cividis = [                     &
                                                                                     ACHAR(  0) // ACHAR( 34) // ACHAR( 77), &
                                                                                     ACHAR(  0) // ACHAR( 35) // ACHAR( 79), &
                                                                                     ACHAR(  0) // ACHAR( 35) // ACHAR( 80), &
@@ -1287,8 +1287,8 @@ CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   
                                                                                     ACHAR(253) // ACHAR(229) // ACHAR( 52), &
                                                                                     ACHAR(253) // ACHAR(230) // ACHAR( 54), &
                                                                                     ACHAR(253) // ACHAR(231) // ACHAR( 55)  &
-                                                                                /)
-CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_coolwarm = (/                   &
+                                                                                ]
+CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_coolwarm = [                    &
                                                                                     ACHAR( 58) // ACHAR( 76) // ACHAR(192), &
                                                                                     ACHAR( 59) // ACHAR( 77) // ACHAR(193), &
                                                                                     ACHAR( 60) // ACHAR( 79) // ACHAR(195), &
@@ -1545,8 +1545,8 @@ CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   
                                                                                     ACHAR(182) // ACHAR( 13) // ACHAR( 40), &
                                                                                     ACHAR(181) // ACHAR(  8) // ACHAR( 39), &
                                                                                     ACHAR(179) // ACHAR(  3) // ACHAR( 38)  &
-                                                                                /)
-CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_turbo = (/                      &
+                                                                                ]
+CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_turbo = [                       &
                                                                                     ACHAR( 48) // ACHAR( 18) // ACHAR( 59), &
                                                                                     ACHAR( 49) // ACHAR( 21) // ACHAR( 66), &
                                                                                     ACHAR( 50) // ACHAR( 24) // ACHAR( 74), &
@@ -1803,8 +1803,8 @@ CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   
                                                                                     ACHAR(129) // ACHAR(  6) // ACHAR(  2), &
                                                                                     ACHAR(125) // ACHAR(  5) // ACHAR(  2), &
                                                                                     ACHAR(122) // ACHAR(  4) // ACHAR(  2)  &
-                                                                                /)
-CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_g2b = (/                        &
+                                                                                ]
+CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_g2b = [                         &
                                                                                     ACHAR(  0) // ACHAR(255) // ACHAR(  0), &
                                                                                     ACHAR(  0) // ACHAR(254) // ACHAR(  1), &
                                                                                     ACHAR(  0) // ACHAR(253) // ACHAR(  2), &
@@ -2061,8 +2061,8 @@ CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   
                                                                                     ACHAR(  0) // ACHAR(  2) // ACHAR(253), &
                                                                                     ACHAR(  0) // ACHAR(  1) // ACHAR(254), &
                                                                                     ACHAR(  0) // ACHAR(  0) // ACHAR(255)  &
-                                                                                /)
-CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2g = (/                        &
+                                                                                ]
+CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2g = [                         &
                                                                                     ACHAR(255) // ACHAR(  0) // ACHAR(  0), &
                                                                                     ACHAR(254) // ACHAR(  1) // ACHAR(  0), &
                                                                                     ACHAR(253) // ACHAR(  2) // ACHAR(  0), &
@@ -2319,8 +2319,8 @@ CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   
                                                                                     ACHAR(  2) // ACHAR(253) // ACHAR(  0), &
                                                                                     ACHAR(  1) // ACHAR(254) // ACHAR(  0), &
                                                                                     ACHAR(  0) // ACHAR(255) // ACHAR(  0)  &
-                                                                                /)
-CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2o2g = (/                      &
+                                                                                ]
+CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_r2o2g = [                       &
                                                                                     ACHAR(255) // ACHAR(  0) // ACHAR(  0), &
                                                                                     ACHAR(255) // ACHAR(  1) // ACHAR(  0), &
                                                                                     ACHAR(255) // ACHAR(  2) // ACHAR(  0), &
@@ -2577,8 +2577,8 @@ CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   
                                                                                     ACHAR(  4) // ACHAR(253) // ACHAR(  0), &
                                                                                     ACHAR(  2) // ACHAR(254) // ACHAR(  0), &
                                                                                     ACHAR(  0) // ACHAR(255) // ACHAR(  0)  &
-                                                                                /)
-CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_grey = (/                       &
+                                                                                ]
+CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   :: const_cm_grey = [                        &
                                                                                     ACHAR(  0) // ACHAR(  0) // ACHAR(  0), &
                                                                                     ACHAR(  1) // ACHAR(  1) // ACHAR(  1), &
                                                                                     ACHAR(  2) // ACHAR(  2) // ACHAR(  2), &
@@ -2835,4 +2835,4 @@ CHARACTER(len = 3), DIMENSION(256), PARAMETER                                   
                                                                                     ACHAR(253) // ACHAR(253) // ACHAR(253), &
                                                                                     ACHAR(254) // ACHAR(254) // ACHAR(254), &
                                                                                     ACHAR(255) // ACHAR(255) // ACHAR(255)  &
-                                                                                /)
+                                                                                ]

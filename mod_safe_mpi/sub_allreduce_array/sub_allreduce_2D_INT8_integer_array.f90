@@ -33,7 +33,7 @@ SUBROUTINE sub_allreduce_2D_INT8_integer_array(buff, op, comm)
 
     ! Create flat array of pointers ...
     n = SIZE(buff, kind = INT64)
-    CALL C_F_POINTER(C_LOC(buff(1_INT64, 1_INT64)), buff_flat, (/ n /))
+    CALL C_F_POINTER(C_LOC(buff(1_INT64, 1_INT64)), buff_flat, [n])
 
     ! Loop over parcels ...
     DO i = 1_INT64, n, chunk

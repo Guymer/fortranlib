@@ -2,13 +2,15 @@
 # command:
 #   fortitude explain C092
 
-# Fortitude does not follow "INCLUDE" commands. This has two consequences:
+# Fortitude does not follow "INCLUDE" commands. This has three consequences:
 #   * You must tell Fortitude to explicitly check every file - you cannot rely
 #     on it finding all the included files itself just by parsing the top-level
 #     file.
 #   * Included files must be valid syntax in their own right. For example,
 #     Fortitude will complain of invalid syntax if a file just contains a list
 #     of parameters.
+#   * Fortitude will think that functions/subroutines are not included in
+#     modules (this is why I ignore the C092 check).
 
 [check]
 extend-exclude = ["mod_safe/const*.f90"]

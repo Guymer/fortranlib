@@ -14,7 +14,7 @@
 
 [check]
 extend-exclude = ["mod_safe/const*.f90"]
-ignore = ["C092", "C121", "S001", "S233", "S241"]
+ignore = ["C092", "C121", "S001", "S241"]
 line-length = 132
 target-std = "f2008"
 

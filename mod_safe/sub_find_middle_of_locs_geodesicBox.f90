@@ -128,10 +128,10 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
     ! Check arguments ...
     IF(MODULO(nAng2, 2_INT64) == 0_INT64)THEN
         WRITE(                                                                  &
-             fmt = '("ERROR: ""nAng2"" is even; nAng2 = ", i3, ".")',           &
-            unit = ERROR_UNIT                                                   &
+             FMT = '("ERROR: ""nAng2"" is even; nAng2 = ", i3, ".")',           &
+            UNIT = ERROR_UNIT                                                   &
         ) nAng2
-        FLUSH(unit = ERROR_UNIT)
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
 
@@ -156,20 +156,20 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
 
     IF(debug2)THEN
         WRITE(                                                                  &
-             fmt = '("INFO: Refinement #", i3, "/", i3, ": The middle is initially (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is initially ", f10.3, " km.")',  &
-            unit = OUTPUT_UNIT                                                  &
+             FMT = '("INFO: Refinement #", i3, "/", i3, ": The middle is initially (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is initially ", f10.3, " km.")',  &
+            UNIT = OUTPUT_UNIT                                                  &
         ) iRefine2, nRefine2, midLon, midLat, 0.001e0_REAL64 * maxDist
-        FLUSH(unit = OUTPUT_UNIT)
+        FLUSH(UNIT = OUTPUT_UNIT)
     END IF
 
     ! Check if the answer is initially converged ...
     IF(maxDist <= dist2)THEN
         IF(debug2)THEN
             WRITE(                                                              &
-                 fmt = '("INFO: Refinement #", i3, "/", i3, ": The middle is initially converged.")',   &
-                unit = OUTPUT_UNIT                                              &
+                 FMT = '("INFO: Refinement #", i3, "/", i3, ": The middle is initially converged.")',   &
+                UNIT = OUTPUT_UNIT                                              &
             ) iRefine2, nRefine2
-            FLUSH(unit = OUTPUT_UNIT)
+            FLUSH(UNIT = OUTPUT_UNIT)
         END IF
     ELSE
         ! Loop over distance iterations ...
@@ -222,14 +222,14 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
 
             IF(debug2)THEN
                 WRITE(                                                          &
-                     fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": ", f10.3, " km west ← middle → ", f10.3, " km east.")',   &
-                    unit = OUTPUT_UNIT                                          &
+                     FMT = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": ", f10.3, " km west ← middle → ", f10.3, " km east.")',   &
+                    UNIT = OUTPUT_UNIT                                          &
                 ) iRefine2, nRefine2, iDistIter, nDistIter2, 0.001e0_REAL64 * maxWestDist, 0.001e0_REAL64 * maxEastDist
                 WRITE(                                                          &
-                     fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": ", f10.3, " km south ↓ middle ↑ ", f10.3, " km north.")',   &
-                    unit = OUTPUT_UNIT                                          &
+                     FMT = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": ", f10.3, " km south ↓ middle ↑ ", f10.3, " km north.")',   &
+                    UNIT = OUTPUT_UNIT                                          &
                 ) iRefine2, nRefine2, iDistIter, nDistIter2, 0.001e0_REAL64 * maxSouthDist, 0.001e0_REAL64 * maxNorthDist
-                FLUSH(unit = OUTPUT_UNIT)
+                FLUSH(UNIT = OUTPUT_UNIT)
             END IF
 
             ! Initialize flag ...
@@ -239,10 +239,10 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
             IF(0.5e0_REAL64 * (maxWestDist - maxEastDist) > dist2)THEN
                 IF(debug2)THEN
                     WRITE(                                                      &
-                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Moving middle ", f10.3, " km towards the west ...")', &
-                        unit = OUTPUT_UNIT                                      &
+                         FMT = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Moving middle ", f10.3, " km towards the west ...")', &
+                        UNIT = OUTPUT_UNIT                                      &
                     ) iRefine2, nRefine2, iDistIter, nDistIter2, 0.001e0_REAL64 * 0.5e0_REAL64 * (maxWestDist - maxEastDist)
-                    FLUSH(unit = OUTPUT_UNIT)
+                    FLUSH(UNIT = OUTPUT_UNIT)
                 END IF
 
                 ! Find the new location ...
@@ -276,10 +276,10 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
 
                 IF(debug2)THEN
                     WRITE(                                                      &
-                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The middle is now (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is now ", f10.3, " km.")',    &
-                        unit = OUTPUT_UNIT                                      &
+                         FMT = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The middle is now (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is now ", f10.3, " km.")',    &
+                        UNIT = OUTPUT_UNIT                                      &
                     ) iRefine2, nRefine2, iDistIter, nDistIter2, midLon, midLat, 0.001e0_REAL64 * maxDist
-                    FLUSH(unit = OUTPUT_UNIT)
+                    FLUSH(UNIT = OUTPUT_UNIT)
                 END IF
 
                 ! Set flag ...
@@ -287,10 +287,10 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
             ELSE IF(0.5e0_REAL64 * (maxEastDist - maxWestDist) > dist2)THEN
                 IF(debug2)THEN
                     WRITE(                                                      &
-                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Moving middle ", f10.3, " km towards the east ...")', &
-                        unit = OUTPUT_UNIT                                      &
+                         FMT = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Moving middle ", f10.3, " km towards the east ...")', &
+                        UNIT = OUTPUT_UNIT                                      &
                     ) iRefine2, nRefine2, iDistIter, nDistIter2, 0.001e0_REAL64 * 0.5e0_REAL64 * (maxEastDist - maxWestDist)
-                    FLUSH(unit = OUTPUT_UNIT)
+                    FLUSH(UNIT = OUTPUT_UNIT)
                 END IF
 
                 ! Find the new location ...
@@ -324,10 +324,10 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
 
                 IF(debug2)THEN
                     WRITE(                                                      &
-                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The middle is now (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is now ", f10.3, " km.")',    &
-                        unit = OUTPUT_UNIT                                      &
+                         FMT = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The middle is now (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is now ", f10.3, " km.")',    &
+                        UNIT = OUTPUT_UNIT                                      &
                     ) iRefine2, nRefine2, iDistIter, nDistIter2, midLon, midLat, 0.001e0_REAL64 * maxDist
-                    FLUSH(unit = OUTPUT_UNIT)
+                    FLUSH(UNIT = OUTPUT_UNIT)
                 END IF
 
                 ! Set flag ...
@@ -335,10 +335,10 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
             ELSE
                 IF(debug2)THEN
                     WRITE(                                                      &
-                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Not moving middle west/east.")',  &
-                        unit = OUTPUT_UNIT                                      &
+                         FMT = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Not moving middle west/east.")',  &
+                        UNIT = OUTPUT_UNIT                                      &
                     ) iRefine2, nRefine2, iDistIter, nDistIter2
-                    FLUSH(unit = OUTPUT_UNIT)
+                    FLUSH(UNIT = OUTPUT_UNIT)
                 END IF
             END IF
 
@@ -346,10 +346,10 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
             IF(0.5e0_REAL64 * (maxSouthDist - maxNorthDist) > dist2)THEN
                 IF(debug2)THEN
                     WRITE(                                                      &
-                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Moving middle ", f10.3, " km towards the south ...")', &
-                        unit = OUTPUT_UNIT                                      &
+                         FMT = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Moving middle ", f10.3, " km towards the south ...")', &
+                        UNIT = OUTPUT_UNIT                                      &
                     ) iRefine2, nRefine2, iDistIter, nDistIter2, 0.001e0_REAL64 * 0.5e0_REAL64 * (maxSouthDist - maxNorthDist)
-                    FLUSH(unit = OUTPUT_UNIT)
+                    FLUSH(UNIT = OUTPUT_UNIT)
                 END IF
 
                 ! Find the new location ...
@@ -383,10 +383,10 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
 
                 IF(debug2)THEN
                     WRITE(                                                      &
-                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The middle is now (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is now ", f10.3, " km.")',    &
-                        unit = OUTPUT_UNIT                                      &
+                         FMT = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The middle is now (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is now ", f10.3, " km.")',    &
+                        UNIT = OUTPUT_UNIT                                      &
                     ) iRefine2, nRefine2, iDistIter, nDistIter2, midLon, midLat, 0.001e0_REAL64 * maxDist
-                    FLUSH(unit = OUTPUT_UNIT)
+                    FLUSH(UNIT = OUTPUT_UNIT)
                 END IF
 
                 ! Set flag ...
@@ -394,10 +394,10 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
             ELSE IF(0.5e0_REAL64 * (maxNorthDist - maxSouthDist) > dist2)THEN
                 IF(debug2)THEN
                     WRITE(                                                      &
-                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Moving middle ", f10.3, " km towards the north ...")', &
-                        unit = OUTPUT_UNIT                                      &
+                         FMT = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Moving middle ", f10.3, " km towards the north ...")', &
+                        UNIT = OUTPUT_UNIT                                      &
                     ) iRefine2, nRefine2, iDistIter, nDistIter2, 0.001e0_REAL64 * 0.5e0_REAL64 * (maxNorthDist - maxSouthDist)
-                    FLUSH(unit = OUTPUT_UNIT)
+                    FLUSH(UNIT = OUTPUT_UNIT)
                 END IF
 
                 ! Find the new location ...
@@ -431,10 +431,10 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
 
                 IF(debug2)THEN
                     WRITE(                                                      &
-                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The middle is now (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is now ", f10.3, " km.")',    &
-                        unit = OUTPUT_UNIT                                      &
+                         FMT = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The middle is now (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is now ", f10.3, " km.")',    &
+                        UNIT = OUTPUT_UNIT                                      &
                     ) iRefine2, nRefine2, iDistIter, nDistIter2, midLon, midLat, 0.001e0_REAL64 * maxDist
-                    FLUSH(unit = OUTPUT_UNIT)
+                    FLUSH(UNIT = OUTPUT_UNIT)
                 END IF
 
                 ! Set flag ...
@@ -442,10 +442,10 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
             ELSE
                 IF(debug2)THEN
                     WRITE(                                                      &
-                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Not moving middle south/north.")',    &
-                        unit = OUTPUT_UNIT                                      &
+                         FMT = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Not moving middle south/north.")',    &
+                        UNIT = OUTPUT_UNIT                                      &
                     ) iRefine2, nRefine2, iDistIter, nDistIter2
-                    FLUSH(unit = OUTPUT_UNIT)
+                    FLUSH(UNIT = OUTPUT_UNIT)
                 END IF
             END IF
 
@@ -453,10 +453,10 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
             IF(.NOT. moved)THEN
                 IF(debug2)THEN
                     WRITE(                                                      &
-                         fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The middle was not moved; the middle is finally (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is finally ", f10.3, " km.")',    &
-                        unit = OUTPUT_UNIT                                      &
+                         FMT = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": The middle was not moved; the middle is finally (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is finally ", f10.3, " km.")',    &
+                        UNIT = OUTPUT_UNIT                                      &
                     ) iRefine2, nRefine2, iDistIter, nDistIter2, midLon, midLat, 0.001e0_REAL64 * maxDist
-                    FLUSH(unit = OUTPUT_UNIT)
+                    FLUSH(UNIT = OUTPUT_UNIT)
                 END IF
                 EXIT
             END IF
@@ -465,10 +465,10 @@ RECURSIVE SUBROUTINE sub_find_middle_of_locs_geodesicBox(                       
             ! has not converged ...
             IF(iDistIter == nDistIter2)THEN
                 WRITE(                                                          &
-                     fmt = '("ERROR: Failed to converge; the middle is currently (", f11.6, "°, ", f10.6, "°); nDistIter = ", i9, ".")',    &
-                    unit = ERROR_UNIT                                           &
+                     FMT = '("ERROR: Failed to converge; the middle is currently (", f11.6, "°, ", f10.6, "°); nDistIter = ", i9, ".")',    &
+                    UNIT = ERROR_UNIT                                           &
                 ) midLon, midLat, nDistIter2
-                FLUSH(unit = ERROR_UNIT)
+                FLUSH(UNIT = ERROR_UNIT)
                 STOP
             END IF
         END DO

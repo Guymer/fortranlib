@@ -51,13 +51,13 @@ SUBROUTINE sub_save_2D_INT8_integer_array_as_PPM(nx, ny, arr, fname, cm)
         .AND. TRIM(cm) /= "r2g"                                                 &
         .AND. TRIM(cm) /= "r2o2g"                                               &
     )THEN
-        WRITE(fmt = '("ERROR: ", a, ".")', unit = ERROR_UNIT) "Not a recognised colour map"
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ".")', UNIT = ERROR_UNIT) "Not a recognised colour map"
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
 
     ! Make header ...
-    WRITE(hdr, fmt = '("P6 ", i5, " ", i5, " 255 ")') nx, ny
+    WRITE(hdr, FMT = '("P6 ", i5, " ", i5, " 255 ")') nx, ny
 
     ! Allocate image ...
     ! NOTE: There is no "sub_allocate_array()" for CHARACTER arrays.
@@ -121,17 +121,17 @@ SUBROUTINE sub_save_2D_INT8_integer_array_as_PPM(nx, ny, arr, fname, cm)
          status = "replace"                                                     &
     )
     IF(errnum /= 0_INT32)THEN
-        WRITE(fmt = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")', unit = ERROR_UNIT) "Failed to open PPM", TRIM(errmsg), errnum
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")', UNIT = ERROR_UNIT) "Failed to open PPM", TRIM(errmsg), errnum
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
 
     ! Write out header and image ...
-    WRITE(unit = funit) hdr
-    WRITE(unit = funit) img
+    WRITE(UNIT = funit) hdr
+    WRITE(UNIT = funit) img
 
     ! Close PPM ...
-    CLOSE(unit = funit)
+    CLOSE(UNIT = funit)
 
     ! Clean up ...
     DEALLOCATE(img)

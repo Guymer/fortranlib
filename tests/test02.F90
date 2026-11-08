@@ -36,16 +36,16 @@ PROGRAM test02
     ! Initizalize MPI ...
     CALL MPI_INIT(ierr)
     IF(ierr /= MPI_SUCCESS)THEN
-        WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_INIT() failed", ierr
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ". ierr = ", i3, ".")', UNIT = ERROR_UNIT) "CALL MPI_INIT() failed", ierr
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
 
     ! Find out this MPI task's rank ...
     CALL MPI_COMM_RANK(MPI_COMM_WORLD, itasks, ierr)
     IF(ierr /= MPI_SUCCESS)THEN
-        WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_COMM_RANK() failed", ierr
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ". ierr = ", i3, ".")', UNIT = ERROR_UNIT) "CALL MPI_COMM_RANK() failed", ierr
+        FLUSH(UNIT = ERROR_UNIT)
         CALL MPI_ABORT(MPI_COMM_WORLD, 111, ierr)
         STOP
     END IF
@@ -53,8 +53,8 @@ PROGRAM test02
     ! Find out how many MPI tasks there are ...
     CALL MPI_COMM_SIZE(MPI_COMM_WORLD, ntasks, ierr)
     IF(ierr /= MPI_SUCCESS)THEN
-        WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_COMM_SIZE() failed", ierr
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ". ierr = ", i3, ".")', UNIT = ERROR_UNIT) "CALL MPI_COMM_SIZE() failed", ierr
+        FLUSH(UNIT = ERROR_UNIT)
         CALL MPI_ABORT(MPI_COMM_WORLD, 111, ierr)
         STOP
     END IF
@@ -91,8 +91,8 @@ PROGRAM test02
     CALL sub_allreduce_array(arr, MPI_SUM, MPI_COMM_WORLD)
 
     ! Print summary ...
-    WRITE(fmt = '("Does MPI task ", i1, " of ", i1, " think that everything worked? ", l1)', unit = OUTPUT_UNIT) itasks, ntasks, ALL(arr == 1_INT8)
-    FLUSH(unit = OUTPUT_UNIT)
+    WRITE(FMT = '("Does MPI task ", i1, " of ", i1, " think that everything worked? ", l1)', UNIT = OUTPUT_UNIT) itasks, ntasks, ALL(arr == 1_INT8)
+    FLUSH(UNIT = OUTPUT_UNIT)
 
     ! Clean up ...
     DEALLOCATE(arr)
@@ -100,8 +100,8 @@ PROGRAM test02
     ! Finalize MPI ...
     CALL MPI_FINALIZE(ierr)
     IF(ierr /= MPI_SUCCESS)THEN
-        WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_FINALIZE() failed", ierr
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ". ierr = ", i3, ".")', UNIT = ERROR_UNIT) "CALL MPI_FINALIZE() failed", ierr
+        FLUSH(UNIT = ERROR_UNIT)
         CALL MPI_ABORT(MPI_COMM_WORLD, 111, ierr)
         STOP
     END IF

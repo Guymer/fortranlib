@@ -32,14 +32,14 @@ SUBROUTINE sub_load_4D_INT16_logical_array_from_BIN(arr, fname)
          status = "old"                                                         &
     )
     IF(errnum /= 0_INT32)THEN
-        WRITE(fmt = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")', unit = ERROR_UNIT) "Failed to open BIN", TRIM(errmsg), errnum
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")', UNIT = ERROR_UNIT) "Failed to open BIN", TRIM(errmsg), errnum
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
 
     ! Read in array ...
-    READ(unit = funit) arr
+    READ(UNIT = funit) arr
 
     ! Close BIN ...
-    CLOSE(unit = funit)
+    CLOSE(UNIT = funit)
 END SUBROUTINE sub_load_4D_INT16_logical_array_from_BIN

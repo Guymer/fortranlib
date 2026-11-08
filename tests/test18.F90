@@ -33,15 +33,15 @@ PROGRAM test18
            file = "exampleLonsLats.csv",                                        &
           iomsg = errMsg,                                                       &
          iostat = errNum,                                                       &
-        newunit = fUnit,                                                        &
+        newUNIT = fUnit,                                                        &
          status = "old"                                                         &
     )
     IF(errNum /= 0_INT32)THEN
         WRITE(                                                                  &
-             fmt = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")',  &
-            unit = ERROR_UNIT                                                   &
+             FMT = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")',  &
+            UNIT = ERROR_UNIT                                                   &
         ) "Failed to open CSV", TRIM(errMsg), errNum
-        FLUSH(unit = ERROR_UNIT)
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
 
@@ -49,20 +49,20 @@ PROGRAM test18
     n = 0_INT64                                                                 ! [#]
     DO
         READ(                                                                   &
-               fmt = '(f6.2, x, f6.2)',                                         &
+               FMT = '(f6.2, x, f6.2)',                                         &
              iomsg = errMsg,                                                    &
             iostat = errNum,                                                    &
-              unit = fUnit                                                      &
+              UNIT = fUnit                                                      &
         )
         IF(IS_IOSTAT_END(errNum))THEN
             EXIT
         END IF
         IF(errNum /= 0_INT32)THEN
             WRITE(                                                              &
-                 fmt = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")',  &
-                unit = ERROR_UNIT                                               &
+                 FMT = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")',  &
+                UNIT = ERROR_UNIT                                               &
             ) "Failed to read CSV", TRIM(errMsg), errNum
-            FLUSH(unit = ERROR_UNIT)
+            FLUSH(UNIT = ERROR_UNIT)
             STOP
         END IF
         n = n + 1_INT64                                                         ! [#]
@@ -76,35 +76,35 @@ PROGRAM test18
     REWIND(                                                                     &
          iomsg = errMsg,                                                        &
         iostat = errNum,                                                        &
-          unit = fUnit                                                          &
+          UNIT = fUnit                                                          &
     )
     IF(errNum /= 0_INT32)THEN
         WRITE(                                                                  &
-             fmt = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")',  &
-            unit = ERROR_UNIT                                                   &
+             FMT = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")',  &
+            UNIT = ERROR_UNIT                                                   &
         ) "Failed to rewind CSV", TRIM(errMsg), errNum
-        FLUSH(unit = ERROR_UNIT)
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
     DO i = 1_INT64, n
         READ(                                                                   &
-               fmt = '(f6.2, x, f6.2)',                                         &
+               FMT = '(f6.2, x, f6.2)',                                         &
              iomsg = errMsg,                                                    &
             iostat = errNum,                                                    &
-              unit = fUnit                                                      &
+              UNIT = fUnit                                                      &
         ) lons(i), lats(i)
         IF(errNum /= 0_INT32)THEN
             WRITE(                                                              &
-                 fmt = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")',  &
-                unit = ERROR_UNIT                                               &
+                 FMT = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")',  &
+                UNIT = ERROR_UNIT                                               &
             ) "Failed to read CSV", TRIM(errMsg), errNum
-            FLUSH(unit = ERROR_UNIT)
+            FLUSH(UNIT = ERROR_UNIT)
             STOP
         END IF
     END DO
 
     ! Close CSV ...
-    CLOSE(unit = fUnit)
+    CLOSE(UNIT = fUnit)
 
     ! **************************************************************************
 
@@ -118,10 +118,10 @@ PROGRAM test18
         maxDist = maxDist                                                       &
     )
     WRITE(                                                                      &
-         fmt = '("The (EuclideanBox) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is ", f10.6, "°.")', &
-        unit = OUTPUT_UNIT                                                      &
+         FMT = '("The (EuclideanBox) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is ", f10.6, "°.")', &
+        UNIT = OUTPUT_UNIT                                                      &
     ) midLon, midLat, maxDist
-    FLUSH(unit = OUTPUT_UNIT)
+    FLUSH(UNIT = OUTPUT_UNIT)
 
     ! Test subroutine ...
     CALL sub_find_middle_of_locs_geodesicBox(                                   &
@@ -136,10 +136,10 @@ PROGRAM test18
         nRefine = 6_INT64                                                       &
     )
     WRITE(                                                                      &
-         fmt = '("The (GeodesicBox) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is ", f10.3, " km.")',  &
-        unit = OUTPUT_UNIT                                                      &
+         FMT = '("The (GeodesicBox) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is ", f10.3, " km.")',  &
+        UNIT = OUTPUT_UNIT                                                      &
     ) midLon, midLat, 0.001e0_REAL64 * maxDist
-    FLUSH(unit = OUTPUT_UNIT)
+    FLUSH(UNIT = OUTPUT_UNIT)
 
     ! Test subroutine ...
     CALL sub_find_middle_of_locs_euclideanCircle(                               &
@@ -154,10 +154,10 @@ PROGRAM test18
         nRefine = 6_INT64                                                       &
     )
     WRITE(                                                                      &
-         fmt = '("The (EuclideanCircle) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is ", f10.6, "°.")',  &
-        unit = OUTPUT_UNIT                                                      &
+         FMT = '("The (EuclideanCircle) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Euclidean distance is ", f10.6, "°.")',  &
+        UNIT = OUTPUT_UNIT                                                      &
     ) midLon, midLat, maxDist
-    FLUSH(unit = OUTPUT_UNIT)
+    FLUSH(UNIT = OUTPUT_UNIT)
 
     ! Test subroutine ...
     CALL sub_find_middle_of_locs_geodesicCircle(                                &
@@ -172,10 +172,10 @@ PROGRAM test18
         nRefine = 6_INT64                                                       &
     )
     WRITE(                                                                      &
-         fmt = '("The (GeodesicCircle) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is ", f10.3, " km.")',  &
-        unit = OUTPUT_UNIT                                                      &
+         FMT = '("The (GeodesicCircle) middle is (", f11.6, "°, ", f10.6, "°) and the maximum Geodesic distance is ", f10.3, " km.")',  &
+        UNIT = OUTPUT_UNIT                                                      &
     ) midLon, midLat, 0.001e0_REAL64 * maxDist
-    FLUSH(unit = OUTPUT_UNIT)
+    FLUSH(UNIT = OUTPUT_UNIT)
 
     ! **************************************************************************
 

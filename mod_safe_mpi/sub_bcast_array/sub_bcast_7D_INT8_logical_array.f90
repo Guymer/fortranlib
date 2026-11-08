@@ -43,8 +43,8 @@ SUBROUTINE sub_bcast_7D_INT8_logical_array(buff, root, comm)
         ! Broadcast the parcel ...
         CALL MPI_BCAST(buff_flat(i), parcel, MPI_INTEGER1, root, comm, errnum)
         IF(errnum /= MPI_SUCCESS)THEN
-            WRITE(fmt = '("ERROR: ", a, ". errnum = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_BCAST() failed", errnum
-            FLUSH(unit = ERROR_UNIT)
+            WRITE(FMT = '("ERROR: ", a, ". errnum = ", i3, ".")', UNIT = ERROR_UNIT) "CALL MPI_BCAST() failed", errnum
+            FLUSH(UNIT = ERROR_UNIT)
             CALL MPI_ABORT(comm, 111, errnum)
             STOP
         END IF

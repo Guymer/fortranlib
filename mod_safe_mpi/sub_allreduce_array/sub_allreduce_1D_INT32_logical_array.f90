@@ -43,8 +43,8 @@ SUBROUTINE sub_allreduce_1D_INT32_logical_array(buff, op, comm)
         ! Reduce the parcel ...
         CALL MPI_ALLREDUCE(MPI_IN_PLACE, buff_flat(i), parcel, MPI_INTEGER4, op, comm, errnum)
         IF(errnum /= MPI_SUCCESS)THEN
-            WRITE(fmt = '("ERROR: ", a, ". errnum = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_ALLREDUCE() failed", errnum
-            FLUSH(unit = ERROR_UNIT)
+            WRITE(FMT = '("ERROR: ", a, ". errnum = ", i3, ".")', UNIT = ERROR_UNIT) "CALL MPI_ALLREDUCE() failed", errnum
+            FLUSH(UNIT = ERROR_UNIT)
             CALL MPI_ABORT(comm, 111, errnum)
             STOP
         END IF

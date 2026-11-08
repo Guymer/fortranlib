@@ -33,6 +33,6 @@ PROGRAM test13
 
     ! Solve and print summary ...
     CALL sub_solve_quadratic_equation(a, b, c, x1, x2)
-    WRITE(fmt = '("Does the task think that everything worked? ", l1)', unit = OUTPUT_UNIT) x1 == -10.0e0_REAL64 .AND. x2 == 5.0e0_REAL64
-    FLUSH(unit = OUTPUT_UNIT)
+    WRITE(FMT = '("Does the task think that everything worked? ", l1)', UNIT = OUTPUT_UNIT) x1 == -10.0e0_REAL64 .AND. x2 == 5.0e0_REAL64
+    FLUSH(UNIT = OUTPUT_UNIT)
 END PROGRAM test13

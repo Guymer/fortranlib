@@ -87,8 +87,8 @@ if __name__ == "__main__":
                 for i in range(dim + 1):
                     src += (
                         f"    IF(n{i + 1:d} <= 0_INT64)THEN\n"
-                        f"        WRITE(fmt = '(\"ERROR: The size of the {i + 1:d}-th dimension of \"\"\", a, \"\"\" is not positive.\")', unit = ERROR_UNIT) name\n"
-                        "        FLUSH(unit = ERROR_UNIT)\n"
+                        f"        WRITE(FMT = '(\"ERROR: The size of the {i + 1:d}-th dimension of \"\"\", a, \"\"\" is not positive.\")', UNIT = ERROR_UNIT) name\n"
+                        "        FLUSH(UNIT = ERROR_UNIT)\n"
                         "        STOP\n"
                         "    END IF\n"
                     )
@@ -115,15 +115,15 @@ if __name__ == "__main__":
                     "        END IF\n"
                     "\n"
                     "        ! Print summary ...\n"
-                    "        WRITE(fmt = '(\"INFO: Attempting to ALLOCATE() \", f7.2, \" \", a, \" for \"\"\", a, \"\"\".\")', unit = OUTPUT_UNIT) tmp, units, name\n"
-                    "        FLUSH(unit = OUTPUT_UNIT)\n"
+                    "        WRITE(FMT = '(\"INFO: Attempting to ALLOCATE() \", f7.2, \" \", a, \" for \"\"\", a, \"\"\".\")', UNIT = OUTPUT_UNIT) tmp, units, name\n"
+                    "        FLUSH(UNIT = OUTPUT_UNIT)\n"
                     "    END IF\n"
                     "\n"
                     "    ! Allocate array ...\n"
                     f'    ALLOCATE(arr({", ".join(ns)}), stat = errnum, errmsg = errmsg)\n'
                     "    IF(errnum /= 0_INT32)THEN\n"
-                    "        WRITE(fmt = '(\"ERROR: Failed to ALLOCATE() \"\"\", a, \"\"\". ERRMSG = \", a, \". ERRNUM = \", i3, \".\")', unit = ERROR_UNIT) name, TRIM(errmsg), errnum\n"
-                    "        FLUSH(unit = ERROR_UNIT)\n"
+                    "        WRITE(FMT = '(\"ERROR: Failed to ALLOCATE() \"\"\", a, \"\"\". ERRMSG = \", a, \". ERRNUM = \", i3, \".\")', UNIT = ERROR_UNIT) name, TRIM(errmsg), errnum\n"
+                    "        FLUSH(UNIT = ERROR_UNIT)\n"
                     "        STOP\n"
                     "    END IF\n"
                 )

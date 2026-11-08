@@ -31,13 +31,13 @@ SUBROUTINE sub_flood_REAL64_real_array(nx, ny, elev, seaLevel, flooded, tileScal
 
     ! Check tileScale ...
     IF(MOD(nx, tileScale) /= 0_INT64)THEN
-        WRITE(fmt = '("ERROR: ", a, ".")', unit = ERROR_UNIT) '"nx" is not an integer multiple of "tileScale"'
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ".")', UNIT = ERROR_UNIT) '"nx" is not an integer multiple of "tileScale"'
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
     IF(MOD(ny, tileScale) /= 0_INT64)THEN
-        WRITE(fmt = '("ERROR: ", a, ".")', unit = ERROR_UNIT) '"ny" is not an integer multiple of "tileScale"'
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ".")', UNIT = ERROR_UNIT) '"ny" is not an integer multiple of "tileScale"'
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
 
@@ -143,8 +143,8 @@ SUBROUTINE sub_flood_REAL64_real_array(nx, ny, elev, seaLevel, flooded, tileScal
 
                                 ! Cry ...
                                 IF(iTileIter == nTileIters)THEN
-                                    WRITE(fmt = '("ERROR: ", a, ".")', unit = ERROR_UNIT) 'Failed to converge the flooding of a tile of the whole array'
-                                    FLUSH(unit = ERROR_UNIT)
+                                    WRITE(FMT = '("ERROR: ", a, ".")', UNIT = ERROR_UNIT) 'Failed to converge the flooding of a tile of the whole array'
+                                    FLUSH(UNIT = ERROR_UNIT)
                                     STOP
                                 END IF
                             END DO
@@ -167,8 +167,8 @@ SUBROUTINE sub_flood_REAL64_real_array(nx, ny, elev, seaLevel, flooded, tileScal
 
         ! Cry ...
         IF(iIter == nIters)THEN
-            WRITE(fmt = '("ERROR: ", a, ".")', unit = ERROR_UNIT) 'Failed to converge the flooding of the whole array'
-            FLUSH(unit = ERROR_UNIT)
+            WRITE(FMT = '("ERROR: ", a, ".")', UNIT = ERROR_UNIT) 'Failed to converge the flooding of the whole array'
+            FLUSH(UNIT = ERROR_UNIT)
             STOP
         END IF
     END DO

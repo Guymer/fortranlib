@@ -86,6 +86,6 @@ PROGRAM test06
     pi = calc_pi()
 
     ! Print summary ...
-    WRITE(fmt = '("How does real pi compare to calculated pi? real = ", f11.9, "; calc = ", f11.9)', unit = OUTPUT_UNIT) const_pi, pi
-    FLUSH(unit = OUTPUT_UNIT)
+    WRITE(FMT = '("How does real pi compare to calculated pi? real = ", f11.9, "; calc = ", f11.9)', UNIT = OUTPUT_UNIT) const_pi, pi
+    FLUSH(UNIT = OUTPUT_UNIT)
 END PROGRAM test06

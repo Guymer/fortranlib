@@ -32,14 +32,14 @@ SUBROUTINE sub_save_3D_REAL128_real_array_as_BIN(arr, fname)
          status = "replace"                                                     &
     )
     IF(errnum /= 0_INT32)THEN
-        WRITE(fmt = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")', unit = ERROR_UNIT) "Failed to open BIN", TRIM(errmsg), errnum
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")', UNIT = ERROR_UNIT) "Failed to open BIN", TRIM(errmsg), errnum
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
 
     ! Write out array ...
-    WRITE(unit = funit) arr
+    WRITE(UNIT = funit) arr
 
     ! Close BIN ...
-    CLOSE(unit = funit)
+    CLOSE(UNIT = funit)
 END SUBROUTINE sub_save_3D_REAL128_real_array_as_BIN

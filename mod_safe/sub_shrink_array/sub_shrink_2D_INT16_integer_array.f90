@@ -21,13 +21,13 @@ SUBROUTINE sub_shrink_2D_INT16_integer_array(nx, ny, arr, shrinkScale, shrunkenA
 
     ! Check shrinkScale ...
     IF(MOD(nx, shrinkScale) /= 0_INT64)THEN
-        WRITE(fmt = '("ERROR: ", a, ".")', unit = ERROR_UNIT) '"nx" is not an integer multiple of "shrinkScale"'
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ".")', UNIT = ERROR_UNIT) '"nx" is not an integer multiple of "shrinkScale"'
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
     IF(MOD(ny, shrinkScale) /= 0_INT64)THEN
-        WRITE(fmt = '("ERROR: ", a, ".")', unit = ERROR_UNIT) '"ny" is not an integer multiple of "shrinkScale"'
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ".")', UNIT = ERROR_UNIT) '"ny" is not an integer multiple of "shrinkScale"'
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
 

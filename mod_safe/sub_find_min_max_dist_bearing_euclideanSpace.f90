@@ -139,27 +139,27 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              
     ! Check arguments ...
     IF(iAngIter2 == nAngIter2)THEN
         WRITE(                                                                  &
-             fmt = '("ERROR: Failed to converge; the middle is currently (", f11.6, "°, ", f10.6, "°); nAngIter2 = ", i9, ".")',    &
-            unit = ERROR_UNIT                                                   &
+             FMT = '("ERROR: Failed to converge; the middle is currently (", f11.6, "°, ", f10.6, "°); nAngIter2 = ", i9, ".")',    &
+            UNIT = ERROR_UNIT                                                   &
         ) midLon, midLat, nAngIter2
-        FLUSH(unit = ERROR_UNIT)
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
     IF(MODULO(nAng2, 2_INT64) == 0_INT64)THEN
         WRITE(                                                                  &
-             fmt = '("ERROR: ""nAng2"" is even; nAng2 = ", i3, ".")',           &
-            unit = ERROR_UNIT                                                   &
+             FMT = '("ERROR: ""nAng2"" is even; nAng2 = ", i3, ".")',           &
+            UNIT = ERROR_UNIT                                                   &
         ) nAng2
-        FLUSH(unit = ERROR_UNIT)
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
     IF(iAngIter2 > 1_INT64)THEN
         IF(angHalfRange2 >= 180.0e0_REAL64)THEN
             WRITE(                                                              &
-                 fmt = '("ERROR: ""angHalfRange2"" is greater than, or equal to, 180°; angHalfRange2 = ", f10.6, "°.")',    &
-                unit = ERROR_UNIT                                               &
+                 FMT = '("ERROR: ""angHalfRange2"" is greater than, or equal to, 180°; angHalfRange2 = ", f10.6, "°.")',    &
+                UNIT = ERROR_UNIT                                               &
             ) angHalfRange2
-            FLUSH(unit = ERROR_UNIT)
+            FLUSH(UNIT = ERROR_UNIT)
             STOP
         END IF
     END IF
@@ -168,10 +168,10 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              
 
     IF(debug2)THEN
         WRITE(                                                                  &
-             fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Angle Iteration #", i9, "/", i9, ": The minimum maximum distance bearing is now ", f10.6, "°.")',    &
-            unit = OUTPUT_UNIT                                                  &
+             FMT = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Angle Iteration #", i9, "/", i9, ": The minimum maximum distance bearing is now ", f10.6, "°.")',    &
+            UNIT = OUTPUT_UNIT                                                  &
         ) iRefine2, nRefine2, iDistIter2, nDistIter2, iAngIter2, nAngIter2, startAng2
-        FLUSH(unit = OUTPUT_UNIT)
+        FLUSH(UNIT = OUTPUT_UNIT)
     END IF
 
     ! **************************************************************************
@@ -304,10 +304,10 @@ RECURSIVE SUBROUTINE sub_find_min_max_dist_bearing_euclideanSpace(              
         IF(ABS(startAng2 - bestAng) <= angConv2)THEN
             IF(debug2)THEN
                 WRITE(                                                          &
-                     fmt = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Angle Iteration #", i9, "/", i9, ": The minimum maximum distance bearing is finally ", f10.6, "°.")',    &
-                    unit = OUTPUT_UNIT                                          &
+                     FMT = '("INFO: Refinement #", i3, "/", i3, ": Distance Iteration #", i9, "/", i9, ": Angle Iteration #", i9, "/", i9, ": The minimum maximum distance bearing is finally ", f10.6, "°.")',    &
+                    UNIT = OUTPUT_UNIT                                          &
                 ) iRefine2, nRefine2, iDistIter2, nDistIter2, iAngIter2 + 1_INT64, nAngIter2, bestAng
-                FLUSH(unit = OUTPUT_UNIT)
+                FLUSH(UNIT = OUTPUT_UNIT)
             END IF
         ELSE
             ! Iterate answer ...

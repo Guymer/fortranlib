@@ -16,6 +16,6 @@ PROGRAM test03
     eps = ABS(1.0e0_REAL64 - tmp / const_c)
 
     ! Print summary ...
-    WRITE(fmt = '("Does the task think that everything worked? ", l1)', unit = OUTPUT_UNIT) eps <= EPSILON(eps)
-    FLUSH(unit = OUTPUT_UNIT)
+    WRITE(FMT = '("Does the task think that everything worked? ", l1)', UNIT = OUTPUT_UNIT) eps <= EPSILON(eps)
+    FLUSH(UNIT = OUTPUT_UNIT)
 END PROGRAM test03

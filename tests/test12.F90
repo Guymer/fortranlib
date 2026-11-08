@@ -24,13 +24,13 @@ PROGRAM test12
     y1 = 1.0e0_REAL64
     y2 = 3.0e0_REAL64
     eps = ABS(1.0e0_REAL64 - func_interpolate_points(x1, x2, y1, y2, x) / 2.0e0_REAL64)
-    WRITE(fmt = '("Does the task think that everything worked? ", l1)', unit = OUTPUT_UNIT) eps <= EPSILON(eps)
-    FLUSH(unit = OUTPUT_UNIT)
+    WRITE(FMT = '("Does the task think that everything worked? ", l1)', UNIT = OUTPUT_UNIT) eps <= EPSILON(eps)
+    FLUSH(UNIT = OUTPUT_UNIT)
 
     ! Populate the y values, interpolate and print summary ...
     y1 = 3.0e0_REAL64
     y2 = 1.0e0_REAL64
     eps = ABS(1.0e0_REAL64 - func_interpolate_points(x1, x2, y1, y2, x) / 2.0e0_REAL64)
-    WRITE(fmt = '("Does the task think that everything worked? ", l1)', unit = OUTPUT_UNIT) eps <= EPSILON(eps)
-    FLUSH(unit = OUTPUT_UNIT)
+    WRITE(FMT = '("Does the task think that everything worked? ", l1)', UNIT = OUTPUT_UNIT) eps <= EPSILON(eps)
+    FLUSH(UNIT = OUTPUT_UNIT)
 END PROGRAM test12

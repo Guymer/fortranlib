@@ -95,16 +95,16 @@ PROGRAM test07
     ! Initizalize MPI ...
     CALL MPI_INIT(ierr)
     IF(ierr /= MPI_SUCCESS)THEN
-        WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_INIT() failed", ierr
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ". ierr = ", i3, ".")', UNIT = ERROR_UNIT) "CALL MPI_INIT() failed", ierr
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
 
     ! Find out this MPI task's rank ...
     CALL MPI_COMM_RANK(MPI_COMM_WORLD, itasks, ierr)
     IF(ierr /= MPI_SUCCESS)THEN
-        WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_COMM_RANK() failed", ierr
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ". ierr = ", i3, ".")', UNIT = ERROR_UNIT) "CALL MPI_COMM_RANK() failed", ierr
+        FLUSH(UNIT = ERROR_UNIT)
         CALL MPI_ABORT(MPI_COMM_WORLD, 111, ierr)
         STOP
     END IF
@@ -112,8 +112,8 @@ PROGRAM test07
     ! Find out how many MPI tasks there are ...
     CALL MPI_COMM_SIZE(MPI_COMM_WORLD, ntasks, ierr)
     IF(ierr /= MPI_SUCCESS)THEN
-        WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_COMM_SIZE() failed", ierr
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ". ierr = ", i3, ".")', UNIT = ERROR_UNIT) "CALL MPI_COMM_SIZE() failed", ierr
+        FLUSH(UNIT = ERROR_UNIT)
         CALL MPI_ABORT(MPI_COMM_WORLD, 111, ierr)
         STOP
     END IF
@@ -128,8 +128,8 @@ PROGRAM test07
     tmp(itasks + 1) = calc_pi()
 
     ! Print summary ...
-    WRITE(fmt = '("For MPI task ", i1, " of ", i1, ", how does real pi compare to calculated pi? real = ", f11.9, "; calc = ", f11.9)', unit = OUTPUT_UNIT) itasks, ntasks, const_pi, tmp(itasks + 1)
-    FLUSH(unit = OUTPUT_UNIT)
+    WRITE(FMT = '("For MPI task ", i1, " of ", i1, ", how does real pi compare to calculated pi? real = ", f11.9, "; calc = ", f11.9)', UNIT = OUTPUT_UNIT) itasks, ntasks, const_pi, tmp(itasks + 1)
+    FLUSH(UNIT = OUTPUT_UNIT)
 
     ! Reduce array ...
     CALL sub_allreduce_array(tmp, MPI_SUM, MPI_COMM_WORLD)
@@ -142,15 +142,15 @@ PROGRAM test07
 
     ! Print summary ...
     IF(itasks == 0)THEN
-        WRITE(fmt = '("Overall, how does real pi compare to calculated pi? real = ", f11.9, "; calc = ", f11.9)', unit = OUTPUT_UNIT) const_pi, pi
-        FLUSH(unit = OUTPUT_UNIT)
+        WRITE(FMT = '("Overall, how does real pi compare to calculated pi? real = ", f11.9, "; calc = ", f11.9)', UNIT = OUTPUT_UNIT) const_pi, pi
+        FLUSH(UNIT = OUTPUT_UNIT)
     END IF
 
     ! Finalize MPI ...
     CALL MPI_FINALIZE(ierr)
     IF(ierr /= MPI_SUCCESS)THEN
-        WRITE(fmt = '("ERROR: ", a, ". ierr = ", i3, ".")', unit = ERROR_UNIT) "CALL MPI_FINALIZE() failed", ierr
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ". ierr = ", i3, ".")', UNIT = ERROR_UNIT) "CALL MPI_FINALIZE() failed", ierr
+        FLUSH(UNIT = ERROR_UNIT)
         CALL MPI_ABORT(MPI_COMM_WORLD, 111, ierr)
         STOP
     END IF

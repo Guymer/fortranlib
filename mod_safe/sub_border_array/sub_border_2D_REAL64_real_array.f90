@@ -56,15 +56,15 @@ SUBROUTINE sub_border_2D_REAL64_real_array(n1, n2, arr, borderedArr, name, debug
         END IF
 
         ! Print summary ...
-        WRITE(fmt = '("INFO: Attempting to ALLOCATE() ", f7.2, " ", a, " for """, a, """.")', unit = OUTPUT_UNIT) tmp, units, name
-        FLUSH(unit = OUTPUT_UNIT)
+        WRITE(FMT = '("INFO: Attempting to ALLOCATE() ", f7.2, " ", a, " for """, a, """.")', UNIT = OUTPUT_UNIT) tmp, units, name
+        FLUSH(UNIT = OUTPUT_UNIT)
     END IF
 
     ! Allocate array ...
     ALLOCATE(borderedArr(0_INT64:n1 + 1_INT64, 0_INT64:n2 + 1_INT64), stat = errnum, errmsg = errmsg)
     IF(errnum /= 0_INT32)THEN
-        WRITE(fmt = '("ERROR: Failed to ALLOCATE() """, a, """. ERRMSG = ", a, ". ERRNUM = ", i3, ".")', unit = ERROR_UNIT) name, TRIM(errmsg), errnum
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: Failed to ALLOCATE() """, a, """. ERRMSG = ", a, ". ERRNUM = ", i3, ".")', UNIT = ERROR_UNIT) name, TRIM(errmsg), errnum
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
 

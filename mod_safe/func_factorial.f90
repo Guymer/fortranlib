@@ -1,4 +1,4 @@
-ELEMENTAL FUNCTION func_factorial(x) result(ans)
+ELEMENTAL FUNCTION func_factorial(x) RESULT(ans)
     ! NOTE: See https://en.wikipedia.org/wiki/Factorial
 
     ! Import standard modules ...

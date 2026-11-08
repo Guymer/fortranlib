@@ -31,8 +31,8 @@ SUBROUTINE sub_allocate_1D_INT64_integer_array(arr, name, n1, debug)
 
     ! Check inputs ...
     IF(n1 <= 0_INT64)THEN
-        WRITE(fmt = '("ERROR: The size of the 1-th dimension of """, a, """ is not positive.")', unit = ERROR_UNIT) name
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: The size of the 1-th dimension of """, a, """ is not positive.")', UNIT = ERROR_UNIT) name
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
 
@@ -55,15 +55,15 @@ SUBROUTINE sub_allocate_1D_INT64_integer_array(arr, name, n1, debug)
         END IF
 
         ! Print summary ...
-        WRITE(fmt = '("INFO: Attempting to ALLOCATE() ", f7.2, " ", a, " for """, a, """.")', unit = OUTPUT_UNIT) tmp, units, name
-        FLUSH(unit = OUTPUT_UNIT)
+        WRITE(FMT = '("INFO: Attempting to ALLOCATE() ", f7.2, " ", a, " for """, a, """.")', UNIT = OUTPUT_UNIT) tmp, units, name
+        FLUSH(UNIT = OUTPUT_UNIT)
     END IF
 
     ! Allocate array ...
     ALLOCATE(arr(n1), stat = errnum, errmsg = errmsg)
     IF(errnum /= 0_INT32)THEN
-        WRITE(fmt = '("ERROR: Failed to ALLOCATE() """, a, """. ERRMSG = ", a, ". ERRNUM = ", i3, ".")', unit = ERROR_UNIT) name, TRIM(errmsg), errnum
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: Failed to ALLOCATE() """, a, """. ERRMSG = ", a, ". ERRNUM = ", i3, ".")', UNIT = ERROR_UNIT) name, TRIM(errmsg), errnum
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
 END SUBROUTINE sub_allocate_1D_INT64_integer_array

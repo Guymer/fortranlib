@@ -39,8 +39,8 @@ SUBROUTINE sub_save_2D_INT8_logical_array_as_PBM(nx, ny, arr, fname)
 
     ! Check array size ...
     IF(MOD(nx, 8_INT64) /= 0_INT64)THEN
-        WRITE(fmt = '("ERROR: ", a, ".")', unit = ERROR_UNIT) "The width of the input array must be an integer multiple of 8"
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ".")', UNIT = ERROR_UNIT) "The width of the input array must be an integer multiple of 8"
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
 
@@ -49,7 +49,7 @@ SUBROUTINE sub_save_2D_INT8_logical_array_as_PBM(nx, ny, arr, fname)
     nyImg = ny
 
     ! Make header ...
-    WRITE(hdr, fmt = '("P4 ", i5, " ", i5, " ")') nx, ny
+    WRITE(hdr, FMT = '("P4 ", i5, " ", i5, " ")') nx, ny
 
     ! Allocate image ...
     CALL sub_allocate_array(img, "img", nxImg, nyImg, .FALSE._INT8)
@@ -103,17 +103,17 @@ SUBROUTINE sub_save_2D_INT8_logical_array_as_PBM(nx, ny, arr, fname)
          status = "replace"                                                     &
     )
     IF(errnum /= 0_INT32)THEN
-        WRITE(fmt = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")', unit = ERROR_UNIT) "Failed to open PBM", TRIM(errmsg), errnum
-        FLUSH(unit = ERROR_UNIT)
+        WRITE(FMT = '("ERROR: ", a, ". ERRMSG = ", a, ". ERRNUM = ", i3, ".")', UNIT = ERROR_UNIT) "Failed to open PBM", TRIM(errmsg), errnum
+        FLUSH(UNIT = ERROR_UNIT)
         STOP
     END IF
 
     ! Write out header and image ...
-    WRITE(unit = funit) hdr
-    WRITE(unit = funit) img
+    WRITE(UNIT = funit) hdr
+    WRITE(UNIT = funit) img
 
     ! Close PBM ...
-    CLOSE(unit = funit)
+    CLOSE(UNIT = funit)
 
     ! Clean up ...
     DEALLOCATE(img)

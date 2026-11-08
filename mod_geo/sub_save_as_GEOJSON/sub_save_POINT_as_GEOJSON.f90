@@ -32,15 +32,15 @@ SUBROUTINE sub_save_POINT_as_GEOJSON(point, fname)
     END IF
 
     ! Write out header ...
-    WRITE(FMT = '(a)', UNIT = funit) "{"
-    WRITE(FMT = '(a)', UNIT = funit) "    ""type"" : ""Point"","
-    WRITE(FMT = '(a)', UNIT = funit) "    ""coordinates"" :"
+    WRITE(FMT = "(a)", UNIT = funit) "{"
+    WRITE(FMT = "(a)", UNIT = funit) "    ""type"" : ""Point"","
+    WRITE(FMT = "(a)", UNIT = funit) "    ""coordinates"" :"
 
     ! Write out point ...
     WRITE(FMT = '("        [", f14.9, ", ", f13.9, "]")', UNIT = funit) point%x, point%y
 
     ! Write out footer ...
-    WRITE(FMT = '(a)', UNIT = funit) "}"
+    WRITE(FMT = "(a)", UNIT = funit) "}"
 
     ! Close GEOJSON ...
     CLOSE(UNIT = funit)

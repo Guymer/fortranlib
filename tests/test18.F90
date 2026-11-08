@@ -49,7 +49,7 @@ PROGRAM test18
     n = 0_INT64                                                                 ! [#]
     DO
         READ(                                                                   &
-               FMT = '(f6.2, x, f6.2)',                                         &
+               FMT = "(f6.2, x, f6.2)",                                         &
              iomsg = errMsg,                                                    &
             iostat = errNum,                                                    &
               UNIT = fUnit                                                      &
@@ -88,7 +88,7 @@ PROGRAM test18
     END IF
     DO i = 1_INT64, n
         READ(                                                                   &
-               FMT = '(f6.2, x, f6.2)',                                         &
+               FMT = "(f6.2, x, f6.2)",                                         &
              iomsg = errMsg,                                                    &
             iostat = errNum,                                                    &
               UNIT = fUnit                                                      &

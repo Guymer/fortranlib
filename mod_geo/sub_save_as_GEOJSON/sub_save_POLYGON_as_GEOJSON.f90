@@ -36,47 +36,47 @@ SUBROUTINE sub_save_POLYGON_as_GEOJSON(polygon, fname)
     END IF
 
     ! Write out header ...
-    WRITE(FMT = '(a)', UNIT = funit) "{"
-    WRITE(FMT = '(a)', UNIT = funit) "    ""type"" : ""Polygon"","
-    WRITE(FMT = '(a)', UNIT = funit) "    ""coordinates"" : ["
+    WRITE(FMT = "(a)", UNIT = funit) "{"
+    WRITE(FMT = "(a)", UNIT = funit) "    ""type"" : ""Polygon"","
+    WRITE(FMT = "(a)", UNIT = funit) "    ""coordinates"" : ["
 
     ! Write out exterior ring ...
-    WRITE(FMT = '(a)', UNIT = funit) "        ["
+    WRITE(FMT = "(a)", UNIT = funit) "        ["
     DO ipoints = 1_INT32, polygon%exterior%npoints - 1_INT32
         WRITE(FMT = '("            [", f14.9, ", ", f13.9, "],")', UNIT = funit) polygon%exterior%x(ipoints), polygon%exterior%y(ipoints)
     END DO
     WRITE(FMT = '("            [", f14.9, ", ", f13.9, "]")', UNIT = funit) polygon%exterior%x(polygon%exterior%npoints), polygon%exterior%y(polygon%exterior%npoints)
     IF(polygon%ninteriors == 0_INT32)THEN
-        WRITE(FMT = '(a)', UNIT = funit) "        ]"
+        WRITE(FMT = "(a)", UNIT = funit) "        ]"
     ELSE
-        WRITE(FMT = '(a)', UNIT = funit) "        ],"
+        WRITE(FMT = "(a)", UNIT = funit) "        ],"
     END IF
 
     ! Write out all but the last interior ring ...
     IF(polygon%ninteriors > 1_INT32)THEN
         DO iinteriors = 1_INT32, polygon%ninteriors - 1_INT32
-            WRITE(FMT = '(a)', UNIT = funit) "        ["
+            WRITE(FMT = "(a)", UNIT = funit) "        ["
             DO ipoints = 1_INT32, polygon%interiors(iinteriors)%npoints - 1_INT32
                 WRITE(FMT = '("            [", f14.9, ", ", f13.9, "],")', UNIT = funit) polygon%interiors(iinteriors)%x(ipoints), polygon%interiors(iinteriors)%y(ipoints)
             END DO
             WRITE(FMT = '("            [", f14.9, ", ", f13.9, "]")', UNIT = funit) polygon%interiors(iinteriors)%x(polygon%interiors(iinteriors)%npoints), polygon%interiors(iinteriors)%y(polygon%interiors(iinteriors)%npoints)
-            WRITE(FMT = '(a)', UNIT = funit) "        ],"
+            WRITE(FMT = "(a)", UNIT = funit) "        ],"
         END DO
     END IF
 
     ! Write out the last interior ring ...
     IF(polygon%ninteriors > 0_INT32)THEN
-        WRITE(FMT = '(a)', UNIT = funit) "        ["
+        WRITE(FMT = "(a)", UNIT = funit) "        ["
         DO ipoints = 1_INT32, polygon%interiors(polygon%ninteriors)%npoints - 1_INT32
             WRITE(FMT = '("            [", f14.9, ", ", f13.9, "],")', UNIT = funit) polygon%interiors(polygon%ninteriors)%x(ipoints), polygon%interiors(polygon%ninteriors)%y(ipoints)
         END DO
         WRITE(FMT = '("            [", f14.9, ", ", f13.9, "]")', UNIT = funit) polygon%interiors(polygon%ninteriors)%x(polygon%interiors(polygon%ninteriors)%npoints), polygon%interiors(polygon%ninteriors)%y(polygon%interiors(polygon%ninteriors)%npoints)
-        WRITE(FMT = '(a)', UNIT = funit) "        ]"
+        WRITE(FMT = "(a)", UNIT = funit) "        ]"
     END IF
 
     ! Write out footer ...
-    WRITE(FMT = '(a)', UNIT = funit) "    ]"
-    WRITE(FMT = '(a)', UNIT = funit) "}"
+    WRITE(FMT = "(a)", UNIT = funit) "    ]"
+    WRITE(FMT = "(a)", UNIT = funit) "}"
 
     ! Close GEOJSON ...
     CLOSE(UNIT = funit)

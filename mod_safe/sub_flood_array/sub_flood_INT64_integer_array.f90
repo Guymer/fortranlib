@@ -143,7 +143,7 @@ SUBROUTINE sub_flood_INT64_integer_array(nx, ny, elev, seaLevel, flooded, tileSc
 
                                 ! Cry ...
                                 IF(iTileIter == nTileIters)THEN
-                                    WRITE(FMT = '("ERROR: ", a, ".")', UNIT = ERROR_UNIT) 'Failed to converge the flooding of a tile of the whole array'
+                                    WRITE(FMT = '("ERROR: ", a, ".")', UNIT = ERROR_UNIT) "Failed to converge the flooding of a tile of the whole array"
                                     FLUSH(UNIT = ERROR_UNIT)
                                     STOP
                                 END IF
@@ -167,7 +167,7 @@ SUBROUTINE sub_flood_INT64_integer_array(nx, ny, elev, seaLevel, flooded, tileSc
 
         ! Cry ...
         IF(iIter == nIters)THEN
-            WRITE(FMT = '("ERROR: ", a, ".")', UNIT = ERROR_UNIT) 'Failed to converge the flooding of the whole array'
+            WRITE(FMT = '("ERROR: ", a, ".")', UNIT = ERROR_UNIT) "Failed to converge the flooding of the whole array"
             FLUSH(UNIT = ERROR_UNIT)
             STOP
         END IF

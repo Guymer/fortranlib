@@ -26,11 +26,14 @@ shellcheck.log
 *.mod
 *.o
 *.so
+*.so.dSYM
 *.tmp
-docs/_autosummary
-docs/_build
 tests/test??
 
 # Ignore Doxygen generated documentation ...
 doxygen.log
 doc
+
+# Ignore Sphinx generated documentation ...
+docs/_autosummary
+docs/_build

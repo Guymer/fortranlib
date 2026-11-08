@@ -10,16 +10,6 @@
 #     Fortitude will complain of invalid syntax if a file just contains a list
 #     of parameters.
 
-# Fortitude does not process pre-processor macros. Therefore, it can incorrectly
-# think that the following is invalid syntax because the line continuation
-# character after "funcB" does not continue to valid source code:
-#   PUBLIC funcA,                       &
-#          funcB,                       &
-#   #if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
-#          funcC,                       &
-#   #endif
-#          funcD
-
 [check]
 extend-exclude = ["mod_safe/const*.f90"]
 ignore = ["C092", "C121", "MOD011", "S001", "S233", "S241"]

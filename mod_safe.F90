@@ -61,9 +61,6 @@ MODULE mod_safe
         const_factorial_INT64,                                                  &
         const_factorial_REAL32,                                                 &
         const_factorial_REAL64,                                                 &
-#if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
-        const_factorial_REAL128,                                                &
-#endif
         func_degrees,                                                           &
         func_factorial,                                                         &
         func_falling_factorial,                                                 &
@@ -90,6 +87,9 @@ MODULE mod_safe
         sub_max_dist_geodesicSpace,                                             &
         sub_quadraticregression,                                                &
         sub_ttest_ind
+#if __SIZEOF_LONG_DOUBLE__ != __SIZEOF_DOUBLE__
+    PUBLIC const_factorial_REAL128
+#endif
 
     ! Declare interface ...
     INTERFACE func_integrate_array

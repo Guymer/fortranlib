@@ -36,8 +36,8 @@ SUBROUTINE sub_save_LINE_as_GEOJSON(line, fname)
 
     ! Write out header ...
     WRITE(FMT = "(a)", UNIT = funit) "{"
-    WRITE(FMT = "(a)", UNIT = funit) "    ""type"" : ""LineString"","
-    WRITE(FMT = "(a)", UNIT = funit) "    ""coordinates"" : ["
+    WRITE(FMT = "(a)", UNIT = funit) '    "type" : "LineString",'
+    WRITE(FMT = "(a)", UNIT = funit) '    "coordinates" : ['
 
     ! Write out line ...
     DO ipoints = 1_INT32, line%npoints - 1_INT32

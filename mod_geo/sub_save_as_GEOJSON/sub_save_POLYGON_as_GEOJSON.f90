@@ -37,8 +37,8 @@ SUBROUTINE sub_save_POLYGON_as_GEOJSON(polygon, fname)
 
     ! Write out header ...
     WRITE(FMT = "(a)", UNIT = funit) "{"
-    WRITE(FMT = "(a)", UNIT = funit) "    ""type"" : ""Polygon"","
-    WRITE(FMT = "(a)", UNIT = funit) "    ""coordinates"" : ["
+    WRITE(FMT = "(a)", UNIT = funit) '    "type" : "Polygon",'
+    WRITE(FMT = "(a)", UNIT = funit) '    "coordinates" : ['
 
     ! Write out exterior ring ...
     WRITE(FMT = "(a)", UNIT = funit) "        ["
